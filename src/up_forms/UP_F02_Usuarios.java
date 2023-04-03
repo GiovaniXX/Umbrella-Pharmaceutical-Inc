@@ -1,0 +1,658 @@
+package up_forms;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import up_classes.DadosDB;
+import up_classes.Usuario;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import up_classes.TabelaColorida;
+import up_classes.Utilidades;
+
+public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
+
+    private DadosDB dadosDB;
+    private int usuAtual = 0;
+    private boolean novo = false;
+    private DefaultTableModel mTabela;
+
+    private String ID;
+    private String Nome;
+    private String SNome;
+
+    public void setDadosDB(DadosDB dadosDB) {
+        this.dadosDB = dadosDB;
+    }
+
+    public UP_F02_Usuarios() {
+        initComponents();
+        jpfSenha.setEnabled(false);
+        jpfConfirmarSenha.setEnabled(false);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtIDUsuario = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
+        txtSNome = new javax.swing.JTextField();
+        jpfSenha = new javax.swing.JPasswordField();
+        jpfConfirmarSenha = new javax.swing.JPasswordField();
+        btnPrimeiro = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnProximo = new javax.swing.JButton();
+        btnUltimo = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
+        cmbPerfil = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtTabela = new javax.swing.JTable();
+        TelaFundo = new javax.swing.JLabel();
+
+        setClosable(true);
+        setTitle(".:Umbrella Pharmaceutical Inc™ Usuarios");
+        setMaximumSize(new java.awt.Dimension(1366, 768));
+        setMinimumSize(new java.awt.Dimension(1366, 768));
+        setPreferredSize(new java.awt.Dimension(1366, 768));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("ID Usuario.:");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 70, -1));
+
+        jLabel3.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Nome.:");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 70, -1));
+
+        jLabel4.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("S_Nome.:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, 70, -1));
+
+        jLabel5.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("Senha.:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 70, -1));
+
+        jLabel6.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Conf Senha.:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, -1));
+
+        jLabel7.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel7.setText("Perfil.:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 40, -1));
+
+        txtIDUsuario.setBackground(new java.awt.Color(122, 126, 140));
+        txtIDUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtIDUsuario.setBorder(null);
+        txtIDUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtIDUsuario.setDisabledTextColor(new java.awt.Color(174, 146, 144));
+        txtIDUsuario.setEnabled(false);
+        txtIDUsuario.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(txtIDUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 50, -1));
+
+        txtNome.setBackground(new java.awt.Color(122, 126, 140));
+        txtNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtNome.setBorder(null);
+        txtNome.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNome.setDisabledTextColor(new java.awt.Color(174, 146, 144));
+        txtNome.setEnabled(false);
+        txtNome.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 310, -1));
+
+        txtSNome.setBackground(new java.awt.Color(122, 126, 140));
+        txtSNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtSNome.setBorder(null);
+        txtSNome.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtSNome.setDisabledTextColor(new java.awt.Color(174, 146, 144));
+        txtSNome.setEnabled(false);
+        txtSNome.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(txtSNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 310, -1));
+
+        jpfSenha.setBackground(new java.awt.Color(122, 126, 140));
+        jpfSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jpfSenha.setBorder(null);
+        jpfSenha.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 310, -1));
+
+        jpfConfirmarSenha.setBackground(new java.awt.Color(122, 126, 140));
+        jpfConfirmarSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jpfConfirmarSenha.setBorder(null);
+        jpfConfirmarSenha.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(jpfConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 310, -1));
+
+        btnPrimeiro.setBackground(new java.awt.Color(0, 0, 0));
+        btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
+        btnPrimeiro.setText("Primeiro");
+        btnPrimeiro.setBorder(null);
+        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrimeiroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPrimeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 73, 25));
+
+        btnAnterior.setBackground(new java.awt.Color(0, 0, 0));
+        btnAnterior.setForeground(new java.awt.Color(3, 155, 216));
+        btnAnterior.setText("Anterior");
+        btnAnterior.setBorder(null);
+        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 73, 25));
+
+        btnProximo.setBackground(new java.awt.Color(0, 0, 0));
+        btnProximo.setForeground(new java.awt.Color(3, 155, 216));
+        btnProximo.setText("Proximo");
+        btnProximo.setBorder(null);
+        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProximoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 73, 25));
+
+        btnUltimo.setBackground(new java.awt.Color(0, 0, 0));
+        btnUltimo.setForeground(new java.awt.Color(3, 155, 216));
+        btnUltimo.setText("Ultimo");
+        btnUltimo.setBorder(null);
+        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUltimoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnUltimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, 73, 25));
+
+        btnNovo.setBackground(new java.awt.Color(0, 0, 0));
+        btnNovo.setForeground(new java.awt.Color(3, 155, 216));
+        btnNovo.setText("Novo");
+        btnNovo.setBorder(null);
+        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 73, 25));
+
+        btnEditar.setBackground(new java.awt.Color(0, 0, 0));
+        btnEditar.setForeground(new java.awt.Color(3, 155, 216));
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(null);
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 73, 25));
+
+        btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
+        btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
+        btnSalvar.setText("Salvar");
+        btnSalvar.setBorder(null);
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.setEnabled(false);
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 73, 25));
+
+        btnExcluir.setBackground(new java.awt.Color(0, 0, 0));
+        btnExcluir.setForeground(new java.awt.Color(3, 155, 216));
+        btnExcluir.setText("Excluir");
+        btnExcluir.setBorder(null);
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 73, 25));
+
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
+        btnCancelar.setForeground(new java.awt.Color(3, 155, 216));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setBorder(null);
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 73, 25));
+
+        btnPesquisar.setBackground(new java.awt.Color(0, 0, 0));
+        btnPesquisar.setForeground(new java.awt.Color(3, 155, 216));
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setBorder(null);
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 73, 25));
+
+        cmbPerfil.setBackground(new java.awt.Color(122, 126, 140));
+        cmbPerfil.setForeground(new java.awt.Color(255, 255, 255));
+        cmbPerfil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione um Perfil", "Admin", "Usuario" }));
+        cmbPerfil.setEnabled(false);
+        getContentPane().add(cmbPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 27, 150, -1));
+
+        jtTabela.setBackground(new java.awt.Color(0, 0, 0));
+        jtTabela.setForeground(new java.awt.Color(3, 155, 216));
+        jtTabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Usuario", "Nome", "S_Nome", "Perfil"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtTabela.setGridColor(new java.awt.Color(0, 0, 0));
+        jtTabela.setSelectionBackground(new java.awt.Color(122, 126, 140));
+        jtTabela.setSelectionForeground(new java.awt.Color(3, 155, 216));
+        jtTabela.setShowGrid(false);
+        jScrollPane1.setViewportView(jtTabela);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 280, 1350, 460));
+
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
+        TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
+        TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
+        TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 1370, -1));
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        btnPrimeiro.setEnabled(false);
+        btnAnterior.setEnabled(false);
+        btnProximo.setEnabled(false);
+        btnUltimo.setEnabled(false);
+        btnNovo.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        btnPesquisar.setEnabled(false);
+        btnSalvar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+
+        txtIDUsuario.setEnabled(true);
+        txtNome.setEnabled(true);
+        txtSNome.setEnabled(true);
+        jpfSenha.setEnabled(true);
+        jpfConfirmarSenha.setEnabled(true);
+        cmbPerfil.setEnabled(true);
+
+        txtIDUsuario.setText("");
+        txtNome.setText("");
+        txtSNome.setText("");
+        jpfSenha.setText("");
+        jpfConfirmarSenha.setText("");
+        cmbPerfil.setSelectedIndex(0);
+
+        novo = true;
+        txtIDUsuario.requestFocus();
+    }//GEN-LAST:event_btnNovoActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (txtIDUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor inserir um número de ID!");
+            txtIDUsuario.requestFocusInWindow();
+            return;
+        }
+
+        if (cmbPerfil.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Favor selecionar um perfil!");
+            cmbPerfil.requestFocusInWindow();
+            return;
+        }
+
+        if (txtNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor digitar um nome válido!");
+            txtNome.requestFocusInWindow();
+            return;
+        }
+
+        if (txtSNome.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor digitar um sobre nome válido!");
+            txtSNome.requestFocusInWindow();
+            return;
+        }
+
+        String senha = new String(jpfSenha.getPassword());
+        String confirmar = new String(jpfConfirmarSenha.getPassword());
+
+        if (senha.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor digitar uma senha válida!");
+            jpfSenha.requestFocusInWindow();
+            return;
+        }
+
+        if (confirmar.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor confirmar sua senha!");
+            jpfConfirmarSenha.requestFocusInWindow();
+            return;
+        }
+
+        if (!senha.equals(confirmar)) {
+            JOptionPane.showMessageDialog(rootPane, "A sua senha esta diferente da confirmação!");
+            jpfSenha.setText("");
+            jpfConfirmarSenha.setText("");
+            jpfSenha.requestFocusInWindow();
+            return;
+        }
+
+        if (novo) {
+            if (dadosDB.existeUsuario(txtIDUsuario.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Este usuário já existe!");
+                txtIDUsuario.requestFocusInWindow();
+                return;
+            }
+        } else {
+            if (dadosDB.existeUsuario(txtIDUsuario.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Este usuário não existe!");
+                txtIDUsuario.requestFocusInWindow();
+                return;
+            }
+        }
+        String chave = null;
+
+        Usuario mUsuario = new Usuario(txtIDUsuario.getText(), txtNome.getText(), txtSNome.getText(), senha, chave, cmbPerfil.getSelectedIndex());
+
+        String msg;
+        if (novo) {
+            msg = dadosDB.adicionarUsuario(mUsuario);
+        } else {
+            msg = dadosDB.editarUsuario(mUsuario);
+        }
+        JOptionPane.showMessageDialog(rootPane, msg);
+
+        btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(true);
+        btnUltimo.setEnabled(true);
+        btnNovo.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+
+        txtIDUsuario.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtSNome.setEnabled(false);
+        jpfSenha.setEnabled(false);
+        jpfConfirmarSenha.setEnabled(false);
+        cmbPerfil.setEnabled(false);
+
+        preencherTabela();
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(true);
+        btnUltimo.setEnabled(true);
+        btnNovo.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+
+        txtIDUsuario.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtSNome.setEnabled(false);
+        jpfSenha.setEnabled(false);
+        jpfConfirmarSenha.setEnabled(false);
+        cmbPerfil.setEnabled(false);
+
+        txtIDUsuario.setText(ID);
+        txtNome.setText(Nome);
+        txtSNome.setText(SNome);
+        jpfSenha.setText("");
+        jpfConfirmarSenha.setText("");
+
+        carregarPrimeiroRegistro();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        btnPrimeiro.setEnabled(false);
+        btnAnterior.setEnabled(false);
+        btnProximo.setEnabled(false);
+        btnUltimo.setEnabled(false);
+        btnNovo.setEnabled(false);
+        btnEditar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        btnPesquisar.setEnabled(false);
+        btnSalvar.setEnabled(true);
+        btnCancelar.setEnabled(true);
+
+        txtNome.setEnabled(true);
+        txtSNome.setEnabled(true);
+        jpfSenha.setEnabled(true);
+        jpfConfirmarSenha.setEnabled(true);
+        cmbPerfil.setEnabled(true);
+
+        novo = false;
+        txtNome.requestFocus();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        preencherTabela();
+        mostrarRegistro();
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
+        usuAtual = 0;
+        mostrarRegistro();
+    }//GEN-LAST:event_btnPrimeiroActionPerformed
+
+    private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
+        usuAtual = dadosDB.numeroUsuarios() - 1;
+        mostrarRegistro();
+        mostrarRegistro();
+    }//GEN-LAST:event_btnUltimoActionPerformed
+
+    private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
+        usuAtual++;
+        if (usuAtual == dadosDB.numeroUsuarios()) {
+            usuAtual = 0;
+        }
+        mostrarRegistro();
+    }//GEN-LAST:event_btnProximoActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        usuAtual--;
+        if (usuAtual == -1) {
+            usuAtual = dadosDB.numeroUsuarios() - 1;
+        }
+        mostrarRegistro();
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Deletar este cadastro?");
+        if (resposta != 0) {
+            return;
+        }
+        String msg;
+        msg = dadosDB.deletarUsuario(txtIDUsuario.getText());
+        JOptionPane.showMessageDialog(rootPane, msg);
+        usuAtual = 0;
+        preencherTabela();
+        mostrarRegistro();
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        String usuario = JOptionPane.showInputDialog("Insira o código do usuário");
+        if (usuario.equals("")) {
+            return;
+        }
+
+        if (!dadosDB.existeUsuario(usuario)) {
+            JOptionPane.showMessageDialog(rootPane, "Este usuário não existe!");
+            return;
+        }
+        int num = jtTabela.getRowCount();
+        for (int i = 0; i < num; i++) {
+            if (Utilidades.objectToString(jtTabela.getValueAt(i, 0)).equals(usuario)) {
+                usuAtual = i;
+                break;
+            }
+        }
+        mostrarRegistro();
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void mostrarRegistro() {
+        txtIDUsuario.setText(Utilidades.objectToString(jtTabela.getValueAt(usuAtual, 0)));
+        txtNome.setText(Utilidades.objectToString(jtTabela.getValueAt(usuAtual, 1)));
+        txtSNome.setText(Utilidades.objectToString(jtTabela.getValueAt(usuAtual, 2)));
+        jpfSenha.setText("");
+        jpfConfirmarSenha.setText("");
+        cmbPerfil.setSelectedIndex(perfil(Utilidades.objectToString(jtTabela.getValueAt(usuAtual, 3))));
+    }
+
+    private void preencherTabela() {
+        try {
+            String titulos[] = {"ID Usuario", "Nome", "Sobre-Nome", "Perfil"};
+            String registro[] = new String[4];
+            mTabela = new DefaultTableModel(null, titulos);
+            ResultSet rs = dadosDB.getUsuarios();
+
+            while (rs.next()) {
+                registro[0] = rs.getString("idUsuario");
+                registro[1] = rs.getString("nome");
+                registro[2] = rs.getString("snome");
+                registro[3] = perfil(rs.getInt("idPerfil"));
+
+                mTabela.addRow(registro);
+            }
+            jtTabela.setModel(mTabela);
+            //TabelaColorida.destacarLinhas(jtTabela);
+        } catch (SQLException ex) {
+            Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void carregarPrimeiroRegistro() {
+        ResultSet rs = dadosDB.getUsuarios();
+        try {
+            if (rs.next()) {
+                ID = rs.getString("IDUsuario");
+                Nome = rs.getString("Nome");
+                SNome = rs.getString("SNome");
+
+                txtIDUsuario.setText(ID);
+                txtNome.setText(Nome);
+                txtSNome.setText(SNome);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private String perfil(int idPerfil) {
+        if (idPerfil == 1) {
+            return "Administrador";
+        } else {
+            return "Usuario";
+        }
+    }
+
+    private int perfil(String perfil) {
+        if (perfil.equals("Administrador")) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TelaFundo;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnPrimeiro;
+    private javax.swing.JButton btnProximo;
+    private javax.swing.JButton btnSalvar;
+    private javax.swing.JButton btnUltimo;
+    private javax.swing.JComboBox<String> cmbPerfil;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPasswordField jpfConfirmarSenha;
+    private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JTable jtTabela;
+    private javax.swing.JTextField txtIDUsuario;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtSNome;
+    // End of variables declaration//GEN-END:variables
+
+    /*private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
+    }*/
+}
