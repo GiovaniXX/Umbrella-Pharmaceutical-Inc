@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import up_classes.Produto;
 
 public class UP_F08_Vendas extends javax.swing.JInternalFrame {
@@ -373,7 +374,15 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        //Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        String idProduto = ((String) cmbProduto.getSelectedItem()).substring(0, 6);
+        Produto mProduto = dadosDB.getProduto(idProduto);
+
+        if (mProduto == null) {
+            JOptionPane.showMessageDialog(rootPane, "Produto não encontrado!");
+            return;
+        }
+
         String registro[] = new String[5];
         registro[0] = mProduto.getIdProduto();
         registro[1] = mProduto.getDescricao();
@@ -389,63 +398,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         tblDetalhes.setModel(mTabela);
         preencherTabela();
         totalGeral();
-
-//        if (cmbProduto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione um produto!");
-//            cmbProduto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        String quantidadeStr = txtQuantidade.getText().trim();
-//        if (quantidadeStr.isEmpty()) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre com uma quantidade!");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (!Utilidades.isNumeric(quantidadeStr)) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre somente com números!");
-//            txtQuantidade.setText("");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        int quantidade = Integer.parseInt(quantidadeStr);
-//        if (quantidade <= 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre somente com números acima de zero!");
-//            txtQuantidade.setText("");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        Opcoes opcaoSelecionada = (Opcoes) cmbProduto.getSelectedItem();
-//        Produto mProduto = dadosDB.getProduto(opcaoSelecionada.getValor());
-//        String registro[] = {mProduto.getIdProduto(), mProduto.getDescricao(),
-//            String.valueOf(mProduto.getPreco()),
-//            String.valueOf(quantidade),
-//            String.valueOf(quantidade * mProduto.getPreco())
-//        };
-//
-//        mTabela.addRow(registro);
-//        cmbProduto.setSelectedIndex(0);
-//        txtQuantidade.setText("");
-//        cmbProduto.requestFocusInWindow();
-//
-//        tblDetalhes.setModel(mTabela);
-//        totalGeral();
-
-        /*
-        Aqui estão as alterações feitas:
-
-        Movida a conversão da string de quantidade para um número inteiro após verificar se não está vazia e numérica. Isso ajuda
-        a evitar uma exceção desnecessária se a string não for numérica.
-        String#isEmpty() usado em vez de String#equals("") para verificar se a string de quantidade está vazia.
-        String#valueOf() usado em vez de "" + valor para converter um valor em uma string. Isso é mais eficiente e mais claro.
-        Inicializado a matriz de registro diretamente com seus valores em vez de definir cada elemento separadamente. Este é mais conciso.
-        Descomentado a linha tblDetalhes.setModel(mTabela), assumindo que é necessário.
-        O código acima comentado é o original sem alterações!
-        DEV Giovani V. Chaves em 04/03/2023
-         */
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -607,6 +559,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         String titulos[] = {"ID Produto", "Descricao", "Preço", "Quantidade", "Valor"};
         String registro[] = new String[5];
+        //mTabela.addRow(registro);
         mTabela = new DefaultTableModel(null, titulos);
 
         tblDetalhes.setModel(mTabela);
