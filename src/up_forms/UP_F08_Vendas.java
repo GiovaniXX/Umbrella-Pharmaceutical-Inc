@@ -274,9 +274,16 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 "ID Produto", "Descrição", "Preço", "Quantidade", "Valor"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -374,14 +381,14 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        //Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
-        String idProduto = ((String) cmbProduto.getSelectedItem()).substring(0, 6);
-        Produto mProduto = dadosDB.getProduto(idProduto);
-
-        if (mProduto == null) {
-            JOptionPane.showMessageDialog(rootPane, "Produto não encontrado!");
-            return;
-        }
+        Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+//        String idProduto = ((String) cmbProduto.getSelectedItem()).substring(0, 6);
+//        Produto mProduto = dadosDB.getProduto(idProduto);
+//
+//        if (mProduto == null) {
+//            JOptionPane.showMessageDialog(rootPane, "Produto não encontrado!");
+//            return;
+//        }
 
         String registro[] = new String[5];
         registro[0] = mProduto.getIdProduto();
@@ -561,7 +568,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         String registro[] = new String[5];
         //mTabela.addRow(registro);
         mTabela = new DefaultTableModel(null, titulos);
-
         tblDetalhes.setModel(mTabela);
 
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();

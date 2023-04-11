@@ -2,9 +2,12 @@ package up_forms;
 
 import java.awt.Desktop;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import up_classes.DadosDB;
 
@@ -65,9 +68,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         openFacebookProfile = new javax.swing.JMenuItem();
         openGitHubProfile = new javax.swing.JMenuItem();
         openLinkedinProfile = new javax.swing.JMenuItem();
+        openWhatsUpProfile = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         Sistema = new javax.swing.JMenuItem();
-        Info = new javax.swing.JMenuItem();
+        Dev = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:Umbrella Pharmaceutical Inc™ menu");
@@ -227,10 +231,20 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         SocialNetwork.add(openLinkedinProfile);
 
+        openWhatsUpProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/whatsapp1.png"))); // NOI18N
+        openWhatsUpProfile.setText("WhatsUp");
+        openWhatsUpProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                openWhatsUpProfileMouseClicked(evt);
+            }
+        });
+        SocialNetwork.add(openWhatsUpProfile);
+
         Menu.add(SocialNetwork);
 
         jMenu1.setText("Desenvolvedor");
 
+        Sistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/informacoes.png"))); // NOI18N
         Sistema.setText("Sistema");
         Sistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,14 +253,14 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         jMenu1.add(Sistema);
 
-        Info.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/informacoes.png"))); // NOI18N
-        Info.setText("Info");
-        Info.addActionListener(new java.awt.event.ActionListener() {
+        Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dev.png"))); // NOI18N
+        Dev.setText("Dev");
+        Dev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InfoActionPerformed(evt);
+                DevActionPerformed(evt);
             }
         });
-        jMenu1.add(Info);
+        jMenu1.add(Dev);
 
         Menu.add(jMenu1);
 
@@ -326,7 +340,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSairMouseClicked
 
     private void openFacebookProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openFacebookProfileMouseClicked
-        final String FACEBOOK_PROFILE_URL = "https://";
+        final String FACEBOOK_PROFILE_URL = "https://www.facebook.com/giovani.chaves.52";
         Desktop browser = Desktop.getDesktop();
         try {
             browser.browse(new URI(FACEBOOK_PROFILE_URL));
@@ -362,12 +376,16 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         sobre.show();
     }//GEN-LAST:event_SistemaActionPerformed
 
-    private void InfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InfoActionPerformed
+    private void DevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevActionPerformed
         UP_F07_Info info = new UP_F07_Info();
         info.setDadosDB(dadosDB);
         dpnDesk.add(info);
         info.show();
-    }//GEN-LAST:event_InfoActionPerformed
+    }//GEN-LAST:event_DevActionPerformed
+
+    private void openWhatsUpProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openWhatsUpProfileMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_openWhatsUpProfileMouseClicked
 
     // @formatter:off
     public static void main(String args[]) {
@@ -378,20 +396,12 @@ public class UP_F01_Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UP_F01_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UP_F01_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UP_F01_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(UP_F01_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UP_F01_Principal().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UP_F01_Principal().setVisible(true);
         });
     }
     // @formatter:on
@@ -399,7 +409,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Arquivo;
     private javax.swing.JMenuItem Clientes;
-    private javax.swing.JMenuItem Info;
+    private javax.swing.JMenuItem Dev;
     private javax.swing.JLabel Logo;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu Movimentos;
@@ -420,6 +430,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem openFacebookProfile;
     private javax.swing.JMenuItem openGitHubProfile;
     private javax.swing.JMenuItem openLinkedinProfile;
+    private javax.swing.JMenuItem openWhatsUpProfile;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {

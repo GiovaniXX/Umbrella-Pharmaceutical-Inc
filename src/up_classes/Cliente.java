@@ -1,9 +1,9 @@
-
 package up_classes;
 
 import java.util.Date;
 
 public class Cliente {
+
     private String idCliente;
     private int idTipo;
     private String Nome;
@@ -97,9 +97,4 @@ public class Cliente {
     public void setData(Date Data) {
         this.Data = Data;
     }
-    
-    @Override
-    public String toString() {
-        return idCliente + "|" + idTipo + "|" + Nome + "|" + SNome + "|" + Endereco + "|" + idCidade + "|" + Utilidades.formatDate(DNascimento) + "|" + Utilidades.formatDate(Data);
-    }    
 }

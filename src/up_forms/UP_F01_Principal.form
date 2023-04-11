@@ -208,6 +208,17 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openLinkedinProfileMouseClicked"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="openWhatsUpProfile">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/up_images/Icons/whatsapp1.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="WhatsUp"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openWhatsUpProfileMouseClicked"/>
+              </Events>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -217,21 +228,24 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Sistema">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/up_images/Icons/informacoes.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sistema"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SistemaActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Info">
+            <MenuItem class="javax.swing.JMenuItem" name="Dev">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/informacoes.png"/>
+                  <Image iconType="3" name="/up_images/Icons/dev.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Info"/>
+                <Property name="text" type="java.lang.String" value="Dev"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InfoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DevActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

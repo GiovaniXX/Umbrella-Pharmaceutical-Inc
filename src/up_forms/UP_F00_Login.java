@@ -34,7 +34,8 @@ public class UP_F00_Login extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         cnn = ddb.cnn;
-                        if (cnn != null) {
+                        //if (cnn != null) {
+                        if (cnn != null && !cnn.isClosed()) { // Adiciona verificação se a conexão está ativa
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
                         } else {
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png")));
@@ -128,7 +129,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Buttons/08.png"))); // NOI18N
         btnOut.setColor(new java.awt.Color(8, 13, 32));
         btnOut.setColorClick(new java.awt.Color(8, 13, 32));
-        btnOut.setColorOver(new java.awt.Color(182, 8, 1));
+        btnOut.setColorOver(new java.awt.Color(170, 4, 0));
         btnOut.setRadius(25);
         btnOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,7 +226,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
                 new String(passwordField_SecurityKey.getPassword()))) {
             String message = "<html><font color='red'><b>VALIDAÇÃO COM O BANCO DE DADOS NEGADO.!</b></font></html>";
             JOptionPane.showMessageDialog(rootPane, message, "ERROR.!", JOptionPane.ERROR_MESSAGE);
-           
+
             textField_User.setText("");
             passwordField_AccessCode.setText("");
             passwordField_SecurityKey.setText("");

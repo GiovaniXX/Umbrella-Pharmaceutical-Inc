@@ -205,7 +205,7 @@
                   <Color blue="20" green="d" red="8" type="rgb"/>
                 </Property>
                 <Property name="colorOver" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="1" green="8" red="b6" type="rgb"/>
+                  <Color blue="0" green="4" red="aa" type="rgb"/>
                 </Property>
                 <Property name="radius" type="int" value="25"/>
               </Properties>
