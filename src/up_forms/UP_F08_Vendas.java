@@ -316,161 +316,63 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-//        try {
-//            Opcoes opc = new Opcoes("abc", "Selecione um cliente");
-//            cmbCliente.addItem(opc.toString());
-//            ResultSet rsCli = dadosDB.getClientes();
-//
-//            while (rsCli.next()) {
-//
-//                opc = new Opcoes(
-//                        rsCli.getString("IdClientes"),
-//                        rsCli.getString("nome") + ""
-//                        + rsCli.getString("snome"));
-//                cmbCliente.addItem(opc.toString());
-//            }
-//
-//            opc = new Opcoes("abc", "Selecione um produto");
-//            cmbProduto.addItem(opc.toString());
-//            ResultSet rsPro = dadosDB.getProdutos();
-//
-//            while (rsPro.next()) {
-//
-//                opc = new Opcoes(
-//                        rsPro.getString("idProduto"),
-//                        rsPro.getString("descricao"));
-//                cmbProduto.addItem(opc.toString());
-//            }
-//
-//            txtData.setText(Utilidades.formatDate(new Date()));
-//            txtTotalQuantidade.setText("0");
-//            txtTotalValor.setText("0");
-//
-//            preencherTabela();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(UP_F08_Vendas.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-
         try {
-            // Adiciona item de seleção de cliente ao combobox
-            cmbCliente.addItem(new Opcoes("abc", "Selecione um cliente").toString());
-
-            // Busca os clientes no banco de dados e adiciona ao combobox
+            Opcoes opc = new Opcoes("abc", "Selecione um cliente");
+            cmbCliente.addItem(opc.toString());
             ResultSet rsCli = dadosDB.getClientes();
+
             while (rsCli.next()) {
-                String idCli = rsCli.getString("IdClientes");
-                String nomeCli = rsCli.getString("nome") + " " + rsCli.getString("snome");
-                cmbCliente.addItem(new Opcoes(idCli, nomeCli).toString());
+
+                opc = new Opcoes(
+                        rsCli.getString("IdClientes"),
+                        rsCli.getString("nome") + ""
+                        + rsCli.getString("snome"));
+                cmbCliente.addItem(opc.toString());
             }
 
-            // Adiciona item de seleção de produto ao combobox
-            cmbProduto.addItem(new Opcoes("abc", "Selecione um produto").toString());
-
-            // Busca os produtos no banco de dados e adiciona ao combobox
+            opc = new Opcoes("abc", "Selecione um produto");
+            cmbProduto.addItem(opc.toString());
             ResultSet rsPro = dadosDB.getProdutos();
+
             while (rsPro.next()) {
-                String idPro = rsPro.getString("idProduto");
-                String descPro = rsPro.getString("descricao");
-                cmbProduto.addItem(new Opcoes(idPro, descPro).toString());
+
+                opc = new Opcoes(
+                        rsPro.getString("idProduto"),
+                        rsPro.getString("descricao"));
+                cmbProduto.addItem(opc.toString());
             }
 
-            // Define a data atual no campo correspondente
             txtData.setText(Utilidades.formatDate(new Date()));
-
-            // Define os valores iniciais dos campos de total de quantidade e valor
             txtTotalQuantidade.setText("0");
             txtTotalValor.setText("0");
 
-            // Preenche a tabela com os dados iniciais
             preencherTabela();
         } catch (SQLException ex) {
-            // Registra o erro no log
             Logger.getLogger(UP_F08_Vendas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /**
-         * As principais mudanças realizadas em relação ao codigo original
-         * foram:
-         *
-         * Adição de comentários explicativos para facilitar a leitura do
-         * código; Utilização de variáveis locais para armazenar os dados do
-         * cliente/produto antes de adicioná-los ao combobox; Utilização da
-         * classe String para concatenar os nomes do cliente e do produto ao
-         * invés do operador "+" com objetos do tipo ResultSet; Adição de
-         * espaços entre as palavras concatenadas para melhorar a legibilidade;
-         * Utilização do método toString() da classe Opcoes para adicionar os
-         * itens ao combobox; Tratamento de exceção para registro de erros no
-         * log.
-         */
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-//        if (cmbProduto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione um produto!");
-//            cmbProduto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (txtQuantidade.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre com uma quantidade!");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (!Utilidades.isNumeric(txtQuantidade.getText())) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre somente com números!");
-//            txtQuantidade.setText("");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        int quantidade = Integer.parseInt(txtQuantidade.getText());
-//        if (quantidade <= 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Entre somente com números acima de zero!");
-//            txtQuantidade.setText("");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
-//        String registro[] = new String[5];
-//        registro[0] = mProduto.getIdProduto();
-//        registro[1] = mProduto.getDescricao();
-//        registro[2] = "" + (mProduto.getPreco());
-//        registro[3] = "" + quantidade;
-//        registro[4] = "" + (quantidade * mProduto.getPreco());
-//
-//        mTabela.addRow(registro);
-//        cmbProduto.setSelectedIndex(0);
-//        txtQuantidade.setText("");
-//        cmbProduto.requestFocusInWindow();
-//
-//        tblDetalhes.setModel(mTabela);
-//        preencherTabela();
-//        totalGeral();
-
-        // Verifica se um produto foi selecionado
         if (cmbProduto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um produto!");
             cmbProduto.requestFocusInWindow();
             return;
         }
 
-        // Verifica se a quantidade informada é válida
-        String quantidadeStr = txtQuantidade.getText();
-        if (quantidadeStr.isEmpty()) {
+        if (txtQuantidade.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Entre com uma quantidade!");
             txtQuantidade.requestFocusInWindow();
             return;
         }
 
-        if (!Utilidades.isNumeric(quantidadeStr)) {
+        if (!Utilidades.isNumeric(txtQuantidade.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Entre somente com números!");
             txtQuantidade.setText("");
             txtQuantidade.requestFocusInWindow();
             return;
         }
 
-        int quantidade = Integer.parseInt(quantidadeStr);
+        int quantidade = Integer.parseInt(txtQuantidade.getText());
         if (quantidade <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Entre somente com números acima de zero!");
             txtQuantidade.setText("");
@@ -478,44 +380,22 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Adiciona o produto selecionado à tabela
-        Opcoes produtoOpcoes = (Opcoes) cmbProduto.getSelectedItem();
-        Produto produto = dadosDB.getProduto(produtoOpcoes.getValor());
-        Object[] registro = new Object[5];
-        registro[0] = produto.getIdProduto();
-        registro[1] = produto.getDescricao();
-        registro[2] = produto.getPreco();
-        registro[3] = quantidade;
-        registro[4] = quantidade * produto.getPreco();
-        mTabela.addRow(registro);
+        Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        String registro[] = new String[5];
+        registro[0] = mProduto.getIdProduto();
+        registro[1] = mProduto.getDescricao();
+        registro[2] = "" + (mProduto.getPreco());
+        registro[3] = "" + quantidade;
+        registro[4] = "" + (quantidade * mProduto.getPreco());
 
-        // Limpa os campos de seleção de produto e quantidade
+        mTabela.addRow(registro);
         cmbProduto.setSelectedIndex(0);
         txtQuantidade.setText("");
-
-        // Foca o combobox de seleção de produto
         cmbProduto.requestFocusInWindow();
 
-        // Atualiza a tabela e os valores totais
         tblDetalhes.setModel(mTabela);
         preencherTabela();
         totalGeral();
-
-        /**
-         * As principais mudanças realizadas em relação ao código original
-         * foram:
-         *
-         * Utilização de variáveis locais para armazenar a quantidade informada
-         * e a opção de produto selecionada; Utilização da classe Object para
-         * criar o array que será adicionado à tabela, ao invés da classe
-         * String; Verificação da quantidade informada em etapas separadas,
-         * tornando o código mais legível; Limpeza do campo de quantidade
-         * somente depois de verificar se o valor informado é válido; Utilização
-         * de letras minúsculas para o nome do objeto Produto, seguindo as
-         * convenções de nomenclatura da linguagem Java; Utilização da classe
-         * Opcoes para obter o valor do produto selecionado; Foco no combobox de
-         * seleção de produto após adicionar um item à tabela.
-         */
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed

@@ -352,33 +352,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-//        btnPrimeiro.setEnabled(false);
-//        btnAnterior.setEnabled(false);
-//        btnProximo.setEnabled(false);
-//        btnUltimo.setEnabled(false);
-//        btnNovo.setEnabled(false);
-//        btnEditar.setEnabled(false);
-//        btnExcluir.setEnabled(false);
-//        btnPesquisar.setEnabled(false);
-//        btnSalvar.setEnabled(true);
-//        btnCancelar.setEnabled(true);
-//
-//        txtIDProduto.setEnabled(true);
-//        txtDescricao.setEnabled(true);
-//        txtPreco.setEnabled(true);
-//        txtAnotacao.setEnabled(true);
-//        cmbImposto.setEnabled(true);
-//
-//        txtIDProduto.setText("");
-//        txtDescricao.setText("");
-//        txtPreco.setText("");
-//        txtAnotacao.setText("");
-//        cmbImposto.setSelectedIndex(0);
-//
-//        novo = true;
-//        txtIDProduto.requestFocus();
-
-        // Desabilita todos os botões de navegação e ações
         btnPrimeiro.setEnabled(false);
         btnAnterior.setEnabled(false);
         btnProximo.setEnabled(false);
@@ -387,147 +360,56 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnEditar.setEnabled(false);
         btnExcluir.setEnabled(false);
         btnPesquisar.setEnabled(false);
-
-        // Habilita os botões de salvar e cancelar
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
 
-        // Habilita os campos de entrada de dados
         txtIDProduto.setEnabled(true);
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
         txtAnotacao.setEnabled(true);
         cmbImposto.setEnabled(true);
 
-        // Limpa os campos de entrada de dados
         txtIDProduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
         txtAnotacao.setText("");
         cmbImposto.setSelectedIndex(0);
 
-        // Define a flag 'novo' como verdadeira
         novo = true;
-
-        // Coloca o foco no campo IDProduto
         txtIDProduto.requestFocus();
-
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        if (txtIDProduto.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor inserir um número de ID!");
-//            txtIDProduto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (cmbImposto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor selecionar um valor!");
-//            cmbImposto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (txtDescricao.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor digitar uma descrição!");
-//            txtDescricao.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (txtPreco.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor digitar o preço!");
-//            txtPreco.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (!Utilidades.isNumeric(txtPreco.getText())) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor digitar somente números!");
-//            txtPreco.requestFocusInWindow();
-//            return;
-//        }
-//
-//        int preco = Integer.parseInt(txtPreco.getText());
-//        if (preco <= 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Favor digitar um número acima de zero!");
-//            txtPreco.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (novo) {
-//            if (dadosDB.existeProduto(txtIDProduto.getText())) {
-//                JOptionPane.showMessageDialog(rootPane, "Este produto já existe!");
-//                txtIDProduto.requestFocusInWindow();
-//                return;
-//            }
-//        } else {
-//            if (!dadosDB.existeProduto(txtIDProduto.getText())) {
-//                JOptionPane.showMessageDialog(rootPane, "Este produto não existe!");
-//                txtIDProduto.requestFocusInWindow();
-//                return;
-//            }
-//        }
-//
-//        Produto mProduto = new Produto(txtIDProduto.getText(), txtDescricao.getText(), preco, cmbImposto.getSelectedIndex(), txtAnotacao.getText());
-//
-//        String msg;
-//        if (novo) {
-//            msg = dadosDB.adicionarProduto(mProduto);
-//        } else {
-//            msg = dadosDB.editarProduto(mProduto);
-//        }
-//        JOptionPane.showMessageDialog(rootPane, msg);
-//
-//        btnPrimeiro.setEnabled(true);
-//        btnAnterior.setEnabled(true);
-//        btnProximo.setEnabled(true);
-//        btnUltimo.setEnabled(true);
-//        btnNovo.setEnabled(true);
-//        btnEditar.setEnabled(true);
-//        btnExcluir.setEnabled(true);
-//        btnPesquisar.setEnabled(true);
-//        btnSalvar.setEnabled(false);
-//        btnCancelar.setEnabled(false);
-//
-//        txtIDProduto.setEnabled(false);
-//        txtDescricao.setEnabled(false);
-//        txtPreco.setEnabled(false);
-//        cmbImposto.setEnabled(false);
-//        txtAnotacao.setEnabled(false);
-//
-//        preencherTabela();
-
-        // Verifica se o campo IDProduto está preenchido
-        if (txtIDProduto.getText().trim().isEmpty()) {
+        if (txtIDProduto.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Favor inserir um número de ID!");
             txtIDProduto.requestFocusInWindow();
             return;
         }
 
-        // Verifica se um imposto foi selecionado
         if (cmbImposto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Favor selecionar um valor!");
             cmbImposto.requestFocusInWindow();
             return;
         }
 
-        // Verifica se o campo Descrição está preenchido
-        if (txtDescricao.getText().trim().isEmpty()) {
+        if (txtDescricao.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Favor digitar uma descrição!");
             txtDescricao.requestFocusInWindow();
             return;
         }
 
-        // Verifica se o campo Preço está preenchido e contém apenas números
-        if (txtPreco.getText().trim().isEmpty()) {
+        if (txtPreco.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Favor digitar o preço!");
             txtPreco.requestFocusInWindow();
             return;
-        } else if (!Utilidades.isNumeric(txtPreco.getText())) {
+        }
+
+        if (!Utilidades.isNumeric(txtPreco.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Favor digitar somente números!");
             txtPreco.requestFocusInWindow();
             return;
         }
 
-        // Verifica se o preço é maior que zero
         int preco = Integer.parseInt(txtPreco.getText());
         if (preco <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Favor digitar um número acima de zero!");
@@ -535,35 +417,30 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Verifica se o IDProduto já existe (caso esteja adicionando um novo produto)
-        if (novo && dadosDB.existeProduto(txtIDProduto.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Este produto já existe!");
-            txtIDProduto.requestFocusInWindow();
-            return;
+        if (novo) {
+            if (dadosDB.existeProduto(txtIDProduto.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Este produto já existe!");
+                txtIDProduto.requestFocusInWindow();
+                return;
+            }
+        } else {
+            if (!dadosDB.existeProduto(txtIDProduto.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Este produto não existe!");
+                txtIDProduto.requestFocusInWindow();
+                return;
+            }
         }
 
-        // Verifica se o IDProduto não existe (caso esteja editando um produto existente)
-        if (!novo && !dadosDB.existeProduto(txtIDProduto.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Este produto não existe!");
-            txtIDProduto.requestFocusInWindow();
-            return;
-        }
-
-        // Cria um novo objeto Produto com os dados informados
-        Produto produto = new Produto(txtIDProduto.getText(), txtDescricao.getText(), preco, cmbImposto.getSelectedIndex(), txtAnotacao.getText());
+        Produto mProduto = new Produto(txtIDProduto.getText(), txtDescricao.getText(), preco, cmbImposto.getSelectedIndex(), txtAnotacao.getText());
 
         String msg;
         if (novo) {
-            // Adiciona o novo produto no banco de dados
-            msg = dadosDB.adicionarProduto(produto);
+            msg = dadosDB.adicionarProduto(mProduto);
         } else {
-            // Edita o produto existente no banco de dados
-            msg = dadosDB.editarProduto(produto);
+            msg = dadosDB.editarProduto(mProduto);
         }
-
         JOptionPane.showMessageDialog(rootPane, msg);
 
-        // Habilita novamente os botões de navegação e ações
         btnPrimeiro.setEnabled(true);
         btnAnterior.setEnabled(true);
         btnProximo.setEnabled(true);
@@ -572,21 +449,16 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnEditar.setEnabled(true);
         btnExcluir.setEnabled(true);
         btnPesquisar.setEnabled(true);
-
-        // Desabilita os botões de salvar e cancelar
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
 
-        // Desabilita os campos de entrada de dados
         txtIDProduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
         cmbImposto.setEnabled(false);
         txtAnotacao.setEnabled(false);
 
-        // Preenche a tabela com os dados atualizados
         preencherTabela();
-
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
