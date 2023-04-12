@@ -395,7 +395,7 @@ public class DadosDB {
     public Produto getProduto(String idProduto) {
         try {
             Produto mProduto = null;
-            String sql = "select * from tbprodutos " + "where idProduto = '" + idProduto + "'";
+            String sql = "SELECT * FROM tbprodutos " + "WHERE idProduto = '" + idProduto + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 

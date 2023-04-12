@@ -1,7 +1,7 @@
-
 package up_classes;
 
 public class Produto {
+
     private String idProduto;
     private String descricao;
     private int preco;
@@ -54,5 +54,10 @@ public class Produto {
 
     public void setAnotacao(String anotacao) {
         this.anotacao = anotacao;
-    }     
+    }
+
+    @Override
+    public String toString() {
+        return this.descricao;
+    }
 }
