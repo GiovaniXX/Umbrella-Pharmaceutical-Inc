@@ -40,7 +40,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
                         } else {
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png")));
                         }
-                    } catch (Exception ex) {
+                    } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex);
                     } finally {
                         try {
@@ -261,10 +261,8 @@ public class UP_F00_Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UP_F00_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UP_F00_Login().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UP_F00_Login().setVisible(true);
         });
     }
 

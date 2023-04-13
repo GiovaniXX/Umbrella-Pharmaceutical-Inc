@@ -64,12 +64,16 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Movimentos = new javax.swing.JMenu();
         NovaVenda = new javax.swing.JMenuItem();
         RelatorioVenda = new javax.swing.JMenuItem();
+        Controle = new javax.swing.JMenu();
+        ContasApagar = new javax.swing.JMenuItem();
+        ContasAvencer = new javax.swing.JMenuItem();
+        ContasPagas = new javax.swing.JMenuItem();
         SocialNetwork = new javax.swing.JMenu();
         openFacebookProfile = new javax.swing.JMenuItem();
         openGitHubProfile = new javax.swing.JMenuItem();
         openLinkedinProfile = new javax.swing.JMenuItem();
         openWhatsUpProfile = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        Desenvolvedor = new javax.swing.JMenu();
         Sistema = new javax.swing.JMenuItem();
         Dev = new javax.swing.JMenuItem();
 
@@ -202,6 +206,19 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Menu.add(Movimentos);
 
+        Controle.setText("Controle");
+
+        ContasApagar.setText("Contas a pagar");
+        Controle.add(ContasApagar);
+
+        ContasAvencer.setText("Contas a vencer");
+        Controle.add(ContasAvencer);
+
+        ContasPagas.setText("Contas Pagas");
+        Controle.add(ContasPagas);
+
+        Menu.add(Controle);
+
         SocialNetwork.setText("Redes Sociais");
 
         openFacebookProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/facebook2.png"))); // NOI18N
@@ -242,7 +259,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Menu.add(SocialNetwork);
 
-        jMenu1.setText("Desenvolvedor");
+        Desenvolvedor.setText("Desenvolvedor");
 
         Sistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/informacoes.png"))); // NOI18N
         Sistema.setText("Sistema");
@@ -251,7 +268,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
                 SistemaActionPerformed(evt);
             }
         });
-        jMenu1.add(Sistema);
+        Desenvolvedor.add(Sistema);
 
         Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dev.png"))); // NOI18N
         Dev.setText("Dev");
@@ -260,9 +277,9 @@ public class UP_F01_Principal extends javax.swing.JFrame {
                 DevActionPerformed(evt);
             }
         });
-        jMenu1.add(Dev);
+        Desenvolvedor.add(Dev);
 
-        Menu.add(jMenu1);
+        Menu.add(Desenvolvedor);
 
         setJMenuBar(Menu);
 
@@ -409,6 +426,11 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Arquivo;
     private javax.swing.JMenuItem Clientes;
+    private javax.swing.JMenuItem ContasApagar;
+    private javax.swing.JMenuItem ContasAvencer;
+    private javax.swing.JMenuItem ContasPagas;
+    private javax.swing.JMenu Controle;
+    private javax.swing.JMenu Desenvolvedor;
     private javax.swing.JMenuItem Dev;
     private javax.swing.JLabel Logo;
     private javax.swing.JMenuBar Menu;
@@ -423,7 +445,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem TrocarUsuario;
     private javax.swing.JMenuItem Usuarios;
     private javax.swing.JDesktopPane dpnDesk;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblSair;

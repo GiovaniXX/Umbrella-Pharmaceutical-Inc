@@ -530,6 +530,11 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnPesqProdutoActionPerformed
 
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(() -> {
+            new UP_F08_Vendas().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;

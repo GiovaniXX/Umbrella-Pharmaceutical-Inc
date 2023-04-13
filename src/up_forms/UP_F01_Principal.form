@@ -170,6 +170,28 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="Controle">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Controle"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="ContasApagar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contas a pagar"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ContasAvencer">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contas a vencer"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ContasPagas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Contas Pagas"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="SocialNetwork">
           <Properties>
             <Property name="text" type="java.lang.String" value="Redes Sociais"/>
@@ -221,7 +243,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="Desenvolvedor">
           <Properties>
             <Property name="text" type="java.lang.String" value="Desenvolvedor"/>
           </Properties>
