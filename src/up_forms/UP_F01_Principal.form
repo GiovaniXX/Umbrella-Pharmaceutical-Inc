@@ -172,23 +172,24 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="Controle">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Controle"/>
+            <Property name="text" type="java.lang.String" value="Boletos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="ContasApagar">
+            <MenuItem class="javax.swing.JMenuItem" name="CadastroBoletos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Contas a pagar"/>
+                <Property name="text" type="java.lang.String" value="Cadastro de Boletos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroBoletosActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="ContasAvencer">
+            <MenuItem class="javax.swing.JMenuItem" name="PesquisarBoletos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Contas a vencer"/>
+                <Property name="text" type="java.lang.String" value="Pesquisa de Boletos"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="ContasPagas">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Contas Pagas"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PesquisarBoletosActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -65,9 +65,8 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         NovaVenda = new javax.swing.JMenuItem();
         RelatorioVenda = new javax.swing.JMenuItem();
         Controle = new javax.swing.JMenu();
-        ContasApagar = new javax.swing.JMenuItem();
-        ContasAvencer = new javax.swing.JMenuItem();
-        ContasPagas = new javax.swing.JMenuItem();
+        CadastroBoletos = new javax.swing.JMenuItem();
+        PesquisarBoletos = new javax.swing.JMenuItem();
         SocialNetwork = new javax.swing.JMenu();
         openFacebookProfile = new javax.swing.JMenuItem();
         openGitHubProfile = new javax.swing.JMenuItem();
@@ -206,16 +205,23 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Menu.add(Movimentos);
 
-        Controle.setText("Controle");
+        Controle.setText("Boletos");
 
-        ContasApagar.setText("Contas a pagar");
-        Controle.add(ContasApagar);
+        CadastroBoletos.setText("Cadastro de Boletos");
+        CadastroBoletos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadastroBoletosActionPerformed(evt);
+            }
+        });
+        Controle.add(CadastroBoletos);
 
-        ContasAvencer.setText("Contas a vencer");
-        Controle.add(ContasAvencer);
-
-        ContasPagas.setText("Contas Pagas");
-        Controle.add(ContasPagas);
+        PesquisarBoletos.setText("Pesquisa de Boletos");
+        PesquisarBoletos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarBoletosActionPerformed(evt);
+            }
+        });
+        Controle.add(PesquisarBoletos);
 
         Menu.add(Controle);
 
@@ -404,6 +410,17 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_openWhatsUpProfileMouseClicked
 
+    private void CadastroBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroBoletosActionPerformed
+        UP_F14_Cadastro_Boletos ufcb = new UP_F14_Cadastro_Boletos();
+        ufcb.setDadosDB(dadosDB);
+        dpnDesk.add(ufcb);
+        ufcb.show();
+    }//GEN-LAST:event_CadastroBoletosActionPerformed
+
+    private void PesquisarBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBoletosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PesquisarBoletosActionPerformed
+
     // @formatter:off
     public static void main(String args[]) {
         try {
@@ -425,10 +442,8 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Arquivo;
+    private javax.swing.JMenuItem CadastroBoletos;
     private javax.swing.JMenuItem Clientes;
-    private javax.swing.JMenuItem ContasApagar;
-    private javax.swing.JMenuItem ContasAvencer;
-    private javax.swing.JMenuItem ContasPagas;
     private javax.swing.JMenu Controle;
     private javax.swing.JMenu Desenvolvedor;
     private javax.swing.JMenuItem Dev;
@@ -436,6 +451,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenu Movimentos;
     private javax.swing.JMenuItem NovaVenda;
+    private javax.swing.JMenuItem PesquisarBoletos;
     private javax.swing.JMenuItem Produtos;
     private javax.swing.JMenuItem RelatorioVenda;
     private javax.swing.JMenuItem Sair;

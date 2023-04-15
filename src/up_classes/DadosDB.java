@@ -32,7 +32,7 @@ public class DadosDB {
 
     public boolean validarUsuario(String usuario, String senha, String chave) {
         String sql = "SELECT 1 FROM tbusuarios WHERE idUsuario = ? AND senha = ? AND chave = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, usuario);
             ps.setString(2, senha);
             ps.setString(3, chave);
@@ -47,7 +47,7 @@ public class DadosDB {
 
     public int getPerfil(String usuario) {
         String sql = "SELECT idPerfil FROM tbusuarios WHERE idUsuario = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -62,7 +62,7 @@ public class DadosDB {
 
     public boolean existeUsuario(String usuario) {
         String sql = "SELECT COUNT(*) FROM tbusuarios WHERE idUsuario = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next() && rs.getInt(1) > 0;
@@ -75,7 +75,7 @@ public class DadosDB {
 
     public boolean existeCliente(String cliente) {
         String sql = "SELECT COUNT(*) FROM tbclientes WHERE idClientes = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, cliente);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next() && rs.getInt(1) > 0;
@@ -88,7 +88,7 @@ public class DadosDB {
 
     public boolean existeProduto(String produto) {
         String sql = "SELECT COUNT(*) FROM tbprodutos WHERE idProduto = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, produto);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next() && rs.getInt(1) > 0;
@@ -101,7 +101,7 @@ public class DadosDB {
 
     public String adicionarUsuario(Usuario mUsuario) {
         String query = "INSERT INTO tbusuarios (idUsuario, nome, snome, senha, chave, idPerfil) VALUES (?, ?, ?, ?, ?, ?)";
-        try ( var ps = cnn.prepareStatement(query)) {
+        try (var ps = cnn.prepareStatement(query)) {
             ps.setString(1, mUsuario.getIdUsuario());
             ps.setString(2, mUsuario.getNome());
             ps.setString(3, mUsuario.getSnome());
@@ -122,7 +122,7 @@ public class DadosDB {
 
     public String adicionarProduto(Produto mProduto) {
         String query = "INSERT INTO tbprodutos (id_produto, descricao, preco, imposto, anotacao) VALUES (?, ?, ?, ?, ?)";
-        try ( var ps = cnn.prepareStatement(query)) {
+        try (var ps = cnn.prepareStatement(query)) {
             ps.setInt(1, Integer.parseInt(mProduto.getIdProduto()));
             ps.setString(2, mProduto.getDescricao());
             ps.setDouble(3, mProduto.getPreco());
@@ -143,7 +143,7 @@ public class DadosDB {
 
     public String adicionarCliente(Cliente mCliente) {
         String query = "INSERT INTO tbclientes (id_cliente, id_tipo, nome, sobrenome, endereco, telefone, id_cidade, data_nascimento, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try ( var ps = cnn.prepareStatement(query)) {
+        try (var ps = cnn.prepareStatement(query)) {
             ps.setString(1, mCliente.getIdCliente());
             ps.setInt(2, mCliente.getIdTipo());
             ps.setString(3, mCliente.getNome());
@@ -161,9 +161,32 @@ public class DadosDB {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------//
+    public String cadastrarBoletoBoticario(Boletos mBoletos) {
+        String query = "INSERT INTO tbboticario (idboleto, cedente, codigoBarras, dataVencimento, valorPagamento) VALUES (?, ?, ?, ?, ?)";
+        try (var ps = cnn.prepareStatement(query)) {
+            ps.setInt(1, (mBoletos.getIDBoleto()));
+            ps.setString(2, mBoletos.getCedente());
+            ps.setDouble(3, mBoletos.getCodigoBarras());
+            ps.setDate(4, (java.sql.Date) mBoletos.getDataVencimento());
+            ps.setFloat(5, mBoletos.getValorpagar());
+            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 1) {
+                return "Boleto cadastrado com sucesso!";
+            } else {
+                return "Boleto não pode ser cadastrado!";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Não foi possível cadastrar o boleto", ex);
+            return "Boleto não pode ser cadastrado devido a um erro de comunicação com o SGBD!";
+        }
+    }
+
+    //-----------------------------------------------------------------------------------------------------------------//
     public String editarUsuario(Usuario mUsuario) {
         String sql = "UPDATE tbusuario SET nome = ?, snome = ?, senha = ?, chave = ?, idPerfil = ? WHERE idUsuario = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, mUsuario.getNome());
             ps.setString(2, mUsuario.getSnome());
             ps.setString(3, mUsuario.getSenha());
@@ -184,7 +207,7 @@ public class DadosDB {
 
     public String editarCliente(Cliente mCliente) {
         String sql = "UPDATE tbclientes SET idTipo = ?, nome = ?, snome = ?, endereco = ?, telefone = ?, idCidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idClientes = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setInt(1, mCliente.getIdTipo());
             ps.setString(2, mCliente.getNome());
             ps.setString(3, mCliente.getSNome());
@@ -208,7 +231,7 @@ public class DadosDB {
 
     public String editarProduto(Produto mProduto) {
         String sql = "UPDATE tbprodutos SET descricao = ?, preco = ?, idImposto = ?, notas = ? WHERE idProduto = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, mProduto.getDescricao());
             ps.setDouble(2, mProduto.getPreco());
             ps.setInt(3, mProduto.getImposto());
@@ -242,7 +265,7 @@ public class DadosDB {
 
     public String deletarCliente(String idCliente) {
         String sql = "DELETE FROM tbclientes WHERE idCliente = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, idCliente);
             int rowsDeleted = ps.executeUpdate();
 
@@ -259,7 +282,7 @@ public class DadosDB {
 
     public String deletarProduto(String idProduto) {
         String sql = "DELETE FROM tbprodutos WHERE idProduto = ?";
-        try ( var ps = cnn.prepareStatement(sql)) {
+        try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, idProduto);
             int result = ps.executeUpdate();
 
@@ -275,6 +298,26 @@ public class DadosDB {
         }
     }
 
+    //---------------------------------------------------------------------------------------------------//
+    public String deletarBoleto(String IDBoleto) {
+        String sql = "DELETE FROM tbboticario WHERE idboleto = ?";
+        try (var ps = cnn.prepareStatement(sql)) {
+            ps.setString(1, IDBoleto);
+            int result = ps.executeUpdate();
+
+            if (result > 0) {
+                return "Boleto deletado com sucesso!";
+            } else {
+                return "Não foi possível deletar este boleto!";
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            return "Não foi possível deletar este boleto!";
+        }
+    }
+
+    //---------------------------------------------------------------------------------------------------//
     public ResultSet getUsuarios() {
         try {
             String sql = "SELECT * FROM tbusuarios";
@@ -286,7 +329,7 @@ public class DadosDB {
         }
     }
 
-    public ResultSet getClientes() { //continuar daqui para baixo
+    public ResultSet getClientes() {
         try {
             String sql = "SELECT * FROM tbclientes";
 
@@ -328,6 +371,22 @@ public class DadosDB {
         }
     }
 
+    //-----------------------------------------------------------------------------------------------------//
+    public ResultSet getBoletos() {
+        try {
+            String sql = "SELECT * FROM tbboticario";
+
+            Statement st = cnn.createStatement();
+            return st.executeQuery(sql);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+
+            return null;
+        }
+    }
+    //-----------------------------------------------------------------------------------------------------//
+
     public ResultSet getConsulta(String sql) {
         try {
             Statement st = cnn.createStatement();
@@ -342,7 +401,7 @@ public class DadosDB {
 
     public int numeroUsuarios() {
         try {
-            String sql = "SELECT count(*) as num from tbusuarios";
+            String sql = "SELECT COUNT(*) AS num FROM tbusuarios";
 
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -360,7 +419,7 @@ public class DadosDB {
 
     public int numeroClientes() {
         try {
-            String sql = "select count(*) as num from tbclientes";
+            String sql = "SELECT COUNT(*) AS num FROM tbclientes";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -377,7 +436,7 @@ public class DadosDB {
 
     public int numeroProdutos() {
         try {
-            String sql = "select count(*) as num from tbprodutos";
+            String sql = "SELECT COUNT(*) AS num FROM tbprodutos";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -391,6 +450,25 @@ public class DadosDB {
             return 0;
         }
     }
+
+    //-----------------------------------------------------------------------------------------------------//
+    public int numeroBoletos() {
+        try {
+            String sql = "SELECT COUNT(*) AS num FROM tbboticario";
+            Statement st = cnn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                return rs.getInt("num");
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        }
+    }
+    //-----------------------------------------------------------------------------------------------------//
 
     public Produto getProduto(String idProduto) {
         try {
@@ -431,9 +509,28 @@ public class DadosDB {
         }
     }
 
+    //---------------------------------------------------------------------------------------------------//
+    public int getNumeroBoleto() {
+        try {
+            String sql = "SELECT MAX(idboleto) AS FROM tbboticario";
+            Statement st = cnn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+
+            if (rs.next()) {
+                return rs.getInt("num") + 1;
+            } else {
+                return 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            return 1;
+        }
+    }
+    //---------------------------------------------------------------------------------------------------//
+
     public void adicionarVendas(int idVenda, String idCliente, Date fdata) {
         try {
-            String sql = "insert into tbvendas values("
+            String sql = "INSERT INTO tbvendas VALUES("
                     + idVenda + ", '"
                     + idCliente + "', '"
                     + Utilidades.formatDate(fdata) + "') ";
@@ -447,7 +544,7 @@ public class DadosDB {
 
     public void adicionarDetalheVendas(int idVenda, int idLinha, String idProduto, String descricao, int preco, int quantidade) {
         try {
-            String sql = "insert into tbdetalhevendas values("
+            String sql = "INSET INTO tbdetalhevendas VALUES("
                     + idVenda + ", "
                     + idLinha + ", '"
                     + idProduto + "', '"
