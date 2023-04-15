@@ -301,7 +301,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInserirDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirDadosActionPerformed
-        IDBoleto.setEnabled(true);
+        //IDBoleto.setEnabled(true);
         txtCedente.setEnabled(true);
         txtCodigoBarras.setEnabled(true);
         txtDataVencimento.setEnabled(true);
