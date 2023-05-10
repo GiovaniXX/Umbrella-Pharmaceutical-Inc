@@ -112,6 +112,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Clientes.setBackground(new java.awt.Color(78, 103, 74));
         Clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/seguindo.png"))); // NOI18N
         Clientes.setText("Clientes");
+        Clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Clientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClientesActionPerformed(evt);
@@ -122,6 +123,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Produtos.setBackground(new java.awt.Color(78, 103, 74));
         Produtos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/caminhao-sofa.png"))); // NOI18N
         Produtos.setText("Produtos");
+        Produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Produtos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProdutosActionPerformed(evt);
@@ -132,6 +134,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Usuarios.setBackground(new java.awt.Color(78, 103, 74));
         Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/usuarios.png"))); // NOI18N
         Usuarios.setText("Usuarios");
+        Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Usuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UsuariosActionPerformed(evt);
@@ -146,6 +149,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         TrocarSenha.setBackground(new java.awt.Color(78, 103, 74));
         TrocarSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/chave.png"))); // NOI18N
         TrocarSenha.setText("Trocar Senha");
+        TrocarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TrocarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TrocarSenhaActionPerformed(evt);
@@ -156,6 +160,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         TrocarUsuario.setBackground(new java.awt.Color(78, 103, 74));
         TrocarUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/adicionar-usuario.png"))); // NOI18N
         TrocarUsuario.setText("Trocar Usuario");
+        TrocarUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TrocarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TrocarUsuarioActionPerformed(evt);
@@ -170,6 +175,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Sair.setBackground(new java.awt.Color(78, 103, 74));
         Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/circulo-cruzado.png"))); // NOI18N
         Sair.setText("Sair");
+        Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SairActionPerformed(evt);
@@ -186,6 +192,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         NovaVenda.setBackground(new java.awt.Color(78, 103, 74));
         NovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dolar-aberto-envelope.png"))); // NOI18N
         NovaVenda.setText("Nova Venda");
+        NovaVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         NovaVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NovaVendaActionPerformed(evt);
@@ -196,6 +203,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         RelatorioVenda.setBackground(new java.awt.Color(78, 103, 74));
         RelatorioVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/file-chart-line.png"))); // NOI18N
         RelatorioVenda.setText("Relatorio Venda");
+        RelatorioVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RelatorioVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RelatorioVendaActionPerformed(evt);
@@ -208,6 +216,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Controle.setText("Boletos");
 
         CadastroBoletos.setText("Cadastro de Boletos");
+        CadastroBoletos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         CadastroBoletos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CadastroBoletosActionPerformed(evt);
@@ -216,6 +225,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Controle.add(CadastroBoletos);
 
         PesquisarBoletos.setText("Pesquisa de Boletos");
+        PesquisarBoletos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         PesquisarBoletos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PesquisarBoletosActionPerformed(evt);
@@ -229,36 +239,40 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         openFacebookProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/facebook2.png"))); // NOI18N
         openFacebookProfile.setText("Facebook");
-        openFacebookProfile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openFacebookProfileMouseClicked(evt);
+        openFacebookProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        openFacebookProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFacebookProfileActionPerformed(evt);
             }
         });
         SocialNetwork.add(openFacebookProfile);
 
         openGitHubProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/github1.png"))); // NOI18N
         openGitHubProfile.setText("GitHub");
-        openGitHubProfile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openGitHubProfileMouseClicked(evt);
+        openGitHubProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        openGitHubProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openGitHubProfileActionPerformed(evt);
             }
         });
         SocialNetwork.add(openGitHubProfile);
 
         openLinkedinProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/linkedin1.png"))); // NOI18N
         openLinkedinProfile.setText("Linkedin");
-        openLinkedinProfile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openLinkedinProfileMouseClicked(evt);
+        openLinkedinProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        openLinkedinProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openLinkedinProfileActionPerformed(evt);
             }
         });
         SocialNetwork.add(openLinkedinProfile);
 
         openWhatsUpProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/whatsapp1.png"))); // NOI18N
         openWhatsUpProfile.setText("WhatsUp");
-        openWhatsUpProfile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                openWhatsUpProfileMouseClicked(evt);
+        openWhatsUpProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        openWhatsUpProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openWhatsUpProfileActionPerformed(evt);
             }
         });
         SocialNetwork.add(openWhatsUpProfile);
@@ -269,6 +283,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Sistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/informacoes.png"))); // NOI18N
         Sistema.setText("Sistema");
+        Sistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Sistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SistemaActionPerformed(evt);
@@ -278,6 +293,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dev.png"))); // NOI18N
         Dev.setText("Dev");
+        Dev.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Dev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DevActionPerformed(evt);
@@ -362,36 +378,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_lblSairMouseClicked
 
-    private void openFacebookProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openFacebookProfileMouseClicked
-        final String FACEBOOK_PROFILE_URL = "https://www.facebook.com/giovani.chaves.52";
-        Desktop browser = Desktop.getDesktop();
-        try {
-            browser.browse(new URI(FACEBOOK_PROFILE_URL));
-        } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Facebook", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_openFacebookProfileMouseClicked
-
-    private void openGitHubProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openGitHubProfileMouseClicked
-        final String GITHUB_PROFILE_URL = "https://";
-        Desktop browser = Desktop.getDesktop();
-        try {
-            browser.browse(new URI(GITHUB_PROFILE_URL));
-        } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do GitHub", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_openGitHubProfileMouseClicked
-
-    private void openLinkedinProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLinkedinProfileMouseClicked
-        final String LINKEDIN_PROFILE_URL = "https://";
-        Desktop browser = Desktop.getDesktop();
-        try {
-            browser.browse(new URI(LINKEDIN_PROFILE_URL));
-        } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_openLinkedinProfileMouseClicked
-
     private void SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SistemaActionPerformed
         UP_F06_Sobre sobre = new UP_F06_Sobre();
         sobre.setDadosDB(dadosDB);
@@ -406,10 +392,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         info.show();
     }//GEN-LAST:event_DevActionPerformed
 
-    private void openWhatsUpProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openWhatsUpProfileMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_openWhatsUpProfileMouseClicked
-
     private void CadastroBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroBoletosActionPerformed
         UP_F14_Cadastro_Boletos ufcb = new UP_F14_Cadastro_Boletos();
         ufcb.setDadosDB(dadosDB);
@@ -421,6 +403,46 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_PesquisarBoletosActionPerformed
 
+    private void openFacebookProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFacebookProfileActionPerformed
+        final String LINKEDIN_PROFILE_URL = "https://www.facebook.com/giovani.chaves.52";
+        Desktop browser = Desktop.getDesktop();
+        try {
+            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+        } catch (IOException | URISyntaxException ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_openFacebookProfileActionPerformed
+
+    private void openGitHubProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openGitHubProfileActionPerformed
+        final String LINKEDIN_PROFILE_URL = "https://github.com/GiovaniXX";
+        Desktop browser = Desktop.getDesktop();
+        try {
+            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+        } catch (IOException | URISyntaxException ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_openGitHubProfileActionPerformed
+
+    private void openLinkedinProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLinkedinProfileActionPerformed
+        final String LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/giovani-v-chaves-245440201/";
+        Desktop browser = Desktop.getDesktop();
+        try {
+            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+        } catch (IOException | URISyntaxException ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_openLinkedinProfileActionPerformed
+
+    private void openWhatsUpProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWhatsUpProfileActionPerformed
+        final String LINKEDIN_PROFILE_URL = "https://www.whatsapp.com/?lang=pt_br";
+        Desktop browser = Desktop.getDesktop();
+        try {
+            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+        } catch (IOException | URISyntaxException ex) {
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_openWhatsUpProfileActionPerformed
+
     // @formatter:off
     public static void main(String args[]) {
         try {
@@ -428,10 +450,12 @@ public class UP_F01_Principal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UP_F01_Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UP_F01_Principal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
 
         java.awt.EventQueue.invokeLater(() -> {
@@ -472,5 +496,9 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
+    }
+
+    private void openFacebookProfileMouseClicked(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

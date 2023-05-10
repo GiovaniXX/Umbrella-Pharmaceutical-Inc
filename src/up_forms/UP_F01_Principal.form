@@ -32,6 +32,9 @@
                   <Image iconType="3" name="/up_images/Icons/seguindo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClientesActionPerformed"/>
@@ -46,6 +49,9 @@
                   <Image iconType="3" name="/up_images/Icons/caminhao-sofa.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProdutosActionPerformed"/>
@@ -60,6 +66,9 @@
                   <Image iconType="3" name="/up_images/Icons/usuarios.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UsuariosActionPerformed"/>
@@ -84,6 +93,9 @@
                   <Image iconType="3" name="/up_images/Icons/chave.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Trocar Senha"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TrocarSenhaActionPerformed"/>
@@ -98,6 +110,9 @@
                   <Image iconType="3" name="/up_images/Icons/adicionar-usuario.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Trocar Usuario"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TrocarUsuarioActionPerformed"/>
@@ -122,6 +137,9 @@
                   <Image iconType="3" name="/up_images/Icons/circulo-cruzado.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SairActionPerformed"/>
@@ -149,6 +167,9 @@
                   <Image iconType="3" name="/up_images/Icons/dolar-aberto-envelope.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nova Venda"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NovaVendaActionPerformed"/>
@@ -163,6 +184,9 @@
                   <Image iconType="3" name="/up_images/Icons/file-chart-line.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Relatorio Venda"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RelatorioVendaActionPerformed"/>
@@ -178,6 +202,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="CadastroBoletos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastro de Boletos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadastroBoletosActionPerformed"/>
@@ -186,6 +213,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="PesquisarBoletos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pesquisa de Boletos"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PesquisarBoletosActionPerformed"/>
@@ -204,9 +234,12 @@
                   <Image iconType="3" name="/up_images/Icons/facebook2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Facebook"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openFacebookProfileMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openFacebookProfileActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="openGitHubProfile">
@@ -215,9 +248,12 @@
                   <Image iconType="3" name="/up_images/Icons/github1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="GitHub"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openGitHubProfileMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openGitHubProfileActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="openLinkedinProfile">
@@ -226,9 +262,12 @@
                   <Image iconType="3" name="/up_images/Icons/linkedin1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Linkedin"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openLinkedinProfileMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openLinkedinProfileActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="openWhatsUpProfile">
@@ -237,9 +276,12 @@
                   <Image iconType="3" name="/up_images/Icons/whatsapp1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="WhatsUp"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="openWhatsUpProfileMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openWhatsUpProfileActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -255,6 +297,9 @@
                   <Image iconType="3" name="/up_images/Icons/informacoes.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sistema"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SistemaActionPerformed"/>
@@ -266,6 +311,9 @@
                   <Image iconType="3" name="/up_images/Icons/dev.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dev"/>
+                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                  <Color id="Hand Cursor"/>
+                </Property>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DevActionPerformed"/>

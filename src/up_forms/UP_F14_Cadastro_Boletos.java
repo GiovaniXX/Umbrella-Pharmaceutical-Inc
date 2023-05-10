@@ -40,12 +40,11 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCodigoBarras = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtDataVencimento = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtValorPagar = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         btnInserirDados = new javax.swing.JButton();
-        btnExcluirBoleto = new javax.swing.JButton();
+        btn = new javax.swing.JButton();
         btnCadastrarBoleto = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jpMarcas = new javax.swing.JPanel();
@@ -60,6 +59,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
         txtIDboleto = new javax.swing.JTextField();
         lblHoraAtualSistema = new javax.swing.JLabel();
         btnLimparCampos = new javax.swing.JButton();
+        jdcDataVencimento = new com.toedter.calendar.JDateChooser();
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical™ Cadastro de Boletos Bancarios");
@@ -77,8 +77,6 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Data de Vencimento.:");
 
-        txtDataVencimento.setEnabled(false);
-
         jLabel4.setText("Valor a Pagar.:");
 
         txtValorPagar.setEnabled(false);
@@ -89,28 +87,25 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
         });
 
         btnInserirDados.setText("Inserir Dados");
-        btnInserirDados.setActionCommand("Inserir Dados");
         btnInserirDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInserirDadosActionPerformed(evt);
             }
         });
 
-        btnExcluirBoleto.setText("Excluir Boleto");
-        btnExcluirBoleto.setMaximumSize(new java.awt.Dimension(117, 23));
-        btnExcluirBoleto.setMinimumSize(new java.awt.Dimension(117, 23));
-        btnExcluirBoleto.setPreferredSize(new java.awt.Dimension(117, 23));
-        btnExcluirBoleto.addActionListener(new java.awt.event.ActionListener() {
+        btn.setActionCommand("");
+        btn.setEnabled(false);
+        btn.setMaximumSize(new java.awt.Dimension(117, 23));
+        btn.setMinimumSize(new java.awt.Dimension(117, 23));
+        btn.setPreferredSize(new java.awt.Dimension(117, 23));
+        btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirBoletoActionPerformed(evt);
+                btnActionPerformed(evt);
             }
         });
 
         btnCadastrarBoleto.setText("Cadastrar Boleto");
         btnCadastrarBoleto.setEnabled(false);
-        btnCadastrarBoleto.setMaximumSize(new java.awt.Dimension(117, 23));
-        btnCadastrarBoleto.setMinimumSize(new java.awt.Dimension(117, 23));
-        btnCadastrarBoleto.setPreferredSize(new java.awt.Dimension(117, 23));
         btnCadastrarBoleto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarBoletoActionPerformed(evt);
@@ -145,7 +140,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                         .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jrbNatura)
                             .addComponent(jrbGolfran))))
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
         jpMarcasLayout.setVerticalGroup(
             jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,6 +187,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
         txtIDboleto.setEnabled(false);
 
         btnLimparCampos.setText("Limpar Campos");
+        btnLimparCampos.setEnabled(false);
         btnLimparCampos.setMaximumSize(new java.awt.Dimension(117, 23));
         btnLimparCampos.setMinimumSize(new java.awt.Dimension(117, 23));
         btnLimparCampos.setPreferredSize(new java.awt.Dimension(117, 23));
@@ -200,6 +196,8 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                 btnLimparCamposActionPerformed(evt);
             }
         });
+
+        jdcDataVencimento.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,15 +226,16 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel5)))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(txtCedente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                                            .addComponent(txtCodigoBarras))
+                                        .addGap(661, 661, 661))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtIDboleto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtIDboleto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCodigoBarras)
-                                            .addComponent(txtDataVencimento)
-                                            .addComponent(txtCedente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(135, 135, 135)
@@ -245,14 +244,14 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addComponent(btnInserirDados, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnCadastrarBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnExcluirBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(697, Short.MAX_VALUE))
+                .addComponent(btnInserirDados, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCadastrarBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,11 +268,11 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(txtDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -282,9 +281,9 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInserirDados)
-                    .addComponent(btnExcluirBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCadastrarBoleto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -293,7 +292,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                         .addComponent(jpMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblHoraAtualSistema))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -301,16 +300,21 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInserirDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirDadosActionPerformed
-        //IDBoleto.setEnabled(true);
+        txtIDboleto.setEnabled(true);
         txtCedente.setEnabled(true);
         txtCodigoBarras.setEnabled(true);
-        txtDataVencimento.setEnabled(true);
+        jdcDataVencimento.setEnabled(true);
         txtValorPagar.setEnabled(true);
+
+        btnCadastrarBoleto.setEnabled(true);
+        btnLimparCampos.setEnabled(true);
+        
+        txtIDboleto.requestFocus();
     }//GEN-LAST:event_btnInserirDadosActionPerformed
 
-    private void btnExcluirBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirBoletoActionPerformed
+    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
 
-    }//GEN-LAST:event_btnExcluirBoletoActionPerformed
+    }//GEN-LAST:event_btnActionPerformed
 
     private void btnCadastrarBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarBoletoActionPerformed
         if (txtIDboleto.getText().equals("")) {
@@ -331,9 +335,9 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (txtDataVencimento.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor digitar a data de vencimento!");
-            txtDataVencimento.requestFocusInWindow();
+        if (jdcDataVencimento.getDate() == null) {
+            JOptionPane.showMessageDialog(rootPane, "Favor escolher a data de vencimento!");
+            jdcDataVencimento.requestFocusInWindow();
             return;
         }
 
@@ -343,7 +347,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
             return;
         }
 
-        Boletos mBoletos = new Boletos(Integer.parseInt(txtIDboleto.getText()), txtCedente.getText(), Double.parseDouble(txtCodigoBarras.getText()), Utilidades.StringtoDate(txtDataVencimento.getText()), Float.parseFloat(txtValorPagar.getText()));
+        Boletos mBoletos = new Boletos(Integer.parseInt(txtIDboleto.getText()), txtCedente.getText(), Double.parseDouble(txtCodigoBarras.getText()), jdcDataVencimento.getDate(), Float.parseFloat(txtValorPagar.getText()));
 
         String msg;
         msg = dadosDB.cadastrarBoletoBoticario(mBoletos);
@@ -355,21 +359,21 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
         txtCedente.setText("");
         txtCodigoBarras.setText("");
-        txtDataVencimento.setText("");
         txtValorPagar.setText("");
 
         txtCedente.requestFocus();
     }//GEN-LAST:event_btnLimparCamposActionPerformed
 
     private void txtValorPagarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorPagarFocusLost
-        btnCadastrarBoleto.setEnabled(true);
+        //btnCadastrarBoleto.setEnabled(true);
     }//GEN-LAST:event_txtValorPagarFocusLost
 
     private void mostrarRegistro() {
         txtIDboleto.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 0)));
-        txtCodigoBarras.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 1)));
-        txtDataVencimento.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 2)));
-        txtValorPagar.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 3)));
+        txtCedente.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 1)));
+        txtCodigoBarras.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 2)));
+        jdcDataVencimento.setDate(Utilidades.StringtoDate((String) jtDadosRegistros.getValueAt(boletoAtual, 3)));
+        txtValorPagar.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 4)));
     }
 
     private void preencherTabela() {
@@ -382,9 +386,9 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 registro[0] = rs.getString("idboleto");
                 registro[1] = rs.getString("cedente");
-                registro[2] = rs.getString("codigodebarras");
-                registro[3] = rs.getString("datadevencimento");
-                registro[4] = rs.getString("valorapagar");
+                registro[2] = rs.getString("codigoBarras");
+                registro[3] = rs.getString("dataVencimento");
+                registro[4] = rs.getString("valorPagar");
 
                 mTabela.addRow(registro);
             }
@@ -408,7 +412,6 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
                 txtIDboleto.setText(IDBoleto);
                 txtCedente.setText(Cedente);
                 txtCodigoBarras.setText(CodigoBarras);
-                txtDataVencimento.setText(DataVencimento);
                 txtValorPagar.setText(ValorPagar);
             }
         } catch (SQLException ex) {
@@ -417,8 +420,8 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn;
     private javax.swing.JButton btnCadastrarBoleto;
-    private javax.swing.JButton btnExcluirBoleto;
     private javax.swing.JButton btnInserirDados;
     private javax.swing.JButton btnLimparCampos;
     private javax.swing.JLabel jLabel1;
@@ -429,6 +432,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private com.toedter.calendar.JDateChooser jdcDataVencimento;
     private javax.swing.JPanel jpMarcas;
     private javax.swing.JRadioButton jrbAvon;
     private javax.swing.JRadioButton jrbBoticario;
@@ -439,7 +443,6 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblHoraAtualSistema;
     private javax.swing.JTextField txtCedente;
     private javax.swing.JTextField txtCodigoBarras;
-    private javax.swing.JTextField txtDataVencimento;
     private javax.swing.JTextField txtIDboleto;
     private javax.swing.JTextField txtValorPagar;
     // End of variables declaration//GEN-END:variables

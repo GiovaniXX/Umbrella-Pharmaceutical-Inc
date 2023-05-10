@@ -59,13 +59,18 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtIDboleto" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtValorPagar" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="txtCedente" alignment="0" pref="550" max="32767" attributes="0"/>
                                           <Component id="txtCodigoBarras" max="32767" attributes="0"/>
-                                          <Component id="txtDataVencimento" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtCedente" alignment="1" min="-2" pref="519" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="661" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtIDboleto" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
+                                          <Component id="txtValorPagar" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                          <Component id="jdcDataVencimento" min="-2" pref="209" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -74,7 +79,7 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="135" pref="135" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
                       <Component id="jpMarcas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -83,14 +88,14 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="135" max="-2" attributes="0"/>
-              <Component id="btnInserirDados" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnCadastrarBoleto" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnExcluirBoleto" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnLimparCampos" min="-2" pref="117" max="-2" attributes="0"/>
-              <EmptySpace pref="697" max="32767" attributes="0"/>
+              <Component id="btnInserirDados" min="-2" pref="130" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnCadastrarBoleto" min="-2" pref="130" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btn" min="-2" pref="130" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnLimparCampos" min="-2" pref="130" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,12 +117,12 @@
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCodigoBarras" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDataVencimento" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jdcDataVencimento" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtValorPagar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -127,7 +132,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnInserirDados" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnExcluirBoleto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLimparCampos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCadastrarBoleto" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -141,7 +146,7 @@
                   <Component id="lblHoraAtualSistema" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="331" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="337" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -173,11 +178,6 @@
         <Property name="text" type="java.lang.String" value="Data de Vencimento.:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDataVencimento">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valor a Pagar.:"/>
@@ -201,9 +201,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInserirDadosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnExcluirBoleto">
+    <Component class="javax.swing.JButton" name="btn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Excluir Boleto"/>
+        <Property name="actionCommand" type="java.lang.String" value=""/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[117, 23]"/>
         </Property>
@@ -215,7 +216,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirBoletoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrarBoleto">
@@ -257,7 +258,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="356" max="32767" attributes="0"/>
+                  <EmptySpace pref="390" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -378,6 +379,7 @@
     <Component class="javax.swing.JButton" name="btnLimparCampos">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar Campos"/>
+        <Property name="enabled" type="boolean" value="false"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[117, 23]"/>
         </Property>
@@ -391,6 +393,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparCamposActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jdcDataVencimento">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

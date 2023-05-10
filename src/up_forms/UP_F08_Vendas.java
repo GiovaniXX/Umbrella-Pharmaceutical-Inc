@@ -83,7 +83,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         jLabel2.setMaximumSize(new java.awt.Dimension(61, 15));
         jLabel2.setMinimumSize(new java.awt.Dimension(61, 15));
         jLabel2.setPreferredSize(new java.awt.Dimension(61, 15));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 22, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(3, 155, 216));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -91,7 +91,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(61, 15));
         jLabel3.setMinimumSize(new java.awt.Dimension(61, 15));
         jLabel3.setPreferredSize(new java.awt.Dimension(61, 15));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(3, 155, 216));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -99,12 +99,12 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         jLabel4.setMaximumSize(new java.awt.Dimension(61, 15));
         jLabel4.setMinimumSize(new java.awt.Dimension(61, 15));
         jLabel4.setPreferredSize(new java.awt.Dimension(61, 15));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Quantidade.:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 112, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Total.:");
@@ -115,13 +115,13 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         txtData.setBorder(null);
         txtData.setEnabled(false);
         txtData.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 100, -1));
+        getContentPane().add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 100, -1));
 
         txtQuantidade.setBackground(new java.awt.Color(0, 0, 0));
         txtQuantidade.setForeground(new java.awt.Color(255, 255, 255));
         txtQuantidade.setBorder(null);
         txtQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 100, -1));
+        getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 100, -1));
 
         txtTotalQuantidade.setBackground(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,11 +141,11 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         cmbCliente.setBackground(new java.awt.Color(122, 126, 140));
         cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 250, -1));
+        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 250, -1));
 
         cmbProduto.setBackground(new java.awt.Color(122, 126, 140));
         cmbProduto.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(cmbProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 250, -1));
+        getContentPane().add(cmbProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, -1));
 
         btnAdicionar.setBackground(new java.awt.Color(0, 0, 0));
         btnAdicionar.setForeground(new java.awt.Color(3, 155, 216));
@@ -159,7 +159,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnAdicionarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        getContentPane().add(btnAdicionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, -1, -1));
 
         btnDeletar.setBackground(new java.awt.Color(0, 0, 0));
         btnDeletar.setForeground(new java.awt.Color(3, 155, 216));
@@ -173,7 +173,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnDeletarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        getContentPane().add(btnDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, -1, -1));
 
         btnDelTodos.setBackground(new java.awt.Color(0, 0, 0));
         btnDelTodos.setForeground(new java.awt.Color(3, 155, 216));
@@ -187,7 +187,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnDelTodosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnDelTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(245, 150, -1, -1));
+        getContentPane().add(btnDelTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 150, -1, -1));
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
         btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
@@ -201,7 +201,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, -1, -1));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 150, -1, -1));
 
         btnPesqCliente.setBackground(new java.awt.Color(0, 0, 0));
         btnPesqCliente.setForeground(new java.awt.Color(3, 155, 216));
@@ -215,7 +215,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnPesqClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPesqCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+        getContentPane().add(btnPesqCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, -1, -1));
 
         btnPesqProduto.setBackground(new java.awt.Color(0, 0, 0));
         btnPesqProduto.setForeground(new java.awt.Color(3, 155, 216));
@@ -229,7 +229,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 btnPesqProdutoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPesqProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+        getContentPane().add(btnPesqProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
 
         tblDetalhes.setBackground(new java.awt.Color(0, 0, 0));
         tblDetalhes.setForeground(new java.awt.Color(3, 155, 216));
