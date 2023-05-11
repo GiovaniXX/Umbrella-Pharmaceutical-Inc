@@ -1,11 +1,11 @@
 package up_forms;
 
+import up_classes.DadosDB;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import up_classes.DadosDB;
 import up_classes.Opcoes;
 import up_classes.Utilidades;
 import java.sql.ResultSet;
@@ -16,15 +16,16 @@ import up_classes.Produto;
 
 public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
-    public DadosDB dadosDB;
     private final DefaultTableModel mTabela;
-
+    
+    public DadosDB dadosDB;
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
     }
 
     public UP_F08_Vendas() {
         initComponents();
+        DadosDB db = new DadosDB();
         mTabela = new DefaultTableModel();
     }
 
@@ -332,7 +333,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             }
 
             Opcoes opcc = new Opcoes("abc", "Selecione um produto");
-            cmbProduto.addItem(opc.toString());
+            cmbProduto.addItem(opcc.toString());
             ResultSet rsPro = dadosDB.getProdutos();
 
             while (rsPro.next()) {
@@ -391,12 +392,13 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         //Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
         Opcoes opcoesSelecionadas = (Opcoes) itemSelecionado;
         Produto mProduto = dadosDB.getProduto(opcoesSelecionadas.getValor());
-        String registro[] = new String[5];
-        registro[0] = mProduto.getIdProduto();
-        registro[1] = mProduto.getDescricao();
-        registro[2] = "" + (mProduto.getPreco());
-        registro[3] = "" + quantidade;
-        registro[4] = "" + (quantidade * mProduto.getPreco());
+        String[] registro = {
+            mProduto.getIdProduto(),
+            mProduto.getDescricao(),
+            String.valueOf(mProduto.getPreco()),
+            String.valueOf(quantidade),
+            String.valueOf(quantidade * mProduto.getPreco())
+        };
         //--------------------------------------------------------------------------------------------------//
         mTabela.addRow(registro);
         cmbProduto.setSelectedIndex(0);
@@ -544,9 +546,15 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         String titulos[] = {"ID Produto", "Descricao", "Preço", "Quantidade", "Valor"};
         //String registro[] = new String[5];
-        //mTabela.addRow(registro);
+        //mTabela.addRow(registro);//
         //mTabela = new DefaultTableModel(null, titulos);
         mTabela.setColumnIdentifiers(titulos);
+        //--------------------------------------------------------------------//
+        // Você pode adicionar dados à tabela chamando addRow() no modelo
+        //Object[] rowData = {"1", "Produto 1", "10.00", "2", "20.00"};
+        //mTabela.addRow(rowData);
+        //--------------------------------------------------------------------//
+
         tblDetalhes.setModel(mTabela);
 
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();

@@ -2,8 +2,8 @@ package up_classes;
 
 public class Opcoes {
 
-    public static Object Utilidades;
-    public Object Opcoes;
+    //public static Object Utilidades;
+    //public Object Opcoes;
     
     private final String valor;
     private final String descricao;

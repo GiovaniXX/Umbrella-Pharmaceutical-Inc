@@ -98,7 +98,7 @@ public class DadosDB {
             return false;
         }
     }
-
+    //---------------------------------------------------------------------------------------------------------------------//
     public String adicionarUsuario(Usuario mUsuario) {
         String query = "INSERT INTO tbusuarios (idUsuario, nome, snome, senha, chave, idPerfil) VALUES (?, ?, ?, ?, ?, ?)";
         try (var ps = cnn.prepareStatement(query)) {
@@ -121,7 +121,7 @@ public class DadosDB {
     }
 
     public String adicionarProduto(Produto mProduto) {
-        String query = "INSERT INTO tbprodutos (id_produto, descricao, preco, imposto, anotacao) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO tbprodutos (idProduto, descricao, preco, idImposto, notas) VALUES (?, ?, ?, ?, ?)";
         try (var ps = cnn.prepareStatement(query)) {
             ps.setInt(1, Integer.parseInt(mProduto.getIdProduto()));
             ps.setString(2, mProduto.getDescricao());
@@ -160,7 +160,7 @@ public class DadosDB {
             return "Cliente não pode ser cadastrado devido a um erro de comunicação com o SGBD!";
         }
     }
-
+    //------------------------------------------------------------------------------------------------------------------//
     //------------------------------------------------------------------------------------------------------------------//
     public String cadastrarBoletoBoticario(Boletos mBoletos) {
         String query = "INSERT INTO tbboticario (idboleto, cedente, codigoBarras, dataVencimento, valorPagamento) VALUES (?, ?, ?, ?, ?)";
