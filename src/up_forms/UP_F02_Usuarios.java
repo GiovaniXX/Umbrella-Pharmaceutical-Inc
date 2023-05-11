@@ -118,8 +118,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jLabel7.setText("Perfil.:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 40, -1));
 
-        txtIDUsuario.setBackground(new java.awt.Color(122, 126, 140));
-        txtIDUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtIDUsuario.setBackground(new java.awt.Color(30, 30, 30));
+        txtIDUsuario.setForeground(new java.awt.Color(2, 154, 184));
         txtIDUsuario.setBorder(null);
         txtIDUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
         txtIDUsuario.setDisabledTextColor(new java.awt.Color(174, 146, 144));
@@ -127,8 +127,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtIDUsuario.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtIDUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 50, -1));
 
-        txtNome.setBackground(new java.awt.Color(122, 126, 140));
-        txtNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtNome.setBackground(new java.awt.Color(30, 30, 30));
+        txtNome.setForeground(new java.awt.Color(2, 154, 184));
         txtNome.setBorder(null);
         txtNome.setCaretColor(new java.awt.Color(255, 255, 255));
         txtNome.setDisabledTextColor(new java.awt.Color(174, 146, 144));
@@ -136,8 +136,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtNome.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 310, -1));
 
-        txtSNome.setBackground(new java.awt.Color(122, 126, 140));
-        txtSNome.setForeground(new java.awt.Color(255, 255, 255));
+        txtSNome.setBackground(new java.awt.Color(30, 30, 30));
+        txtSNome.setForeground(new java.awt.Color(2, 154, 184));
         txtSNome.setBorder(null);
         txtSNome.setCaretColor(new java.awt.Color(255, 255, 255));
         txtSNome.setDisabledTextColor(new java.awt.Color(174, 146, 144));
@@ -145,14 +145,14 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtSNome.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtSNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 310, -1));
 
-        jpfSenha.setBackground(new java.awt.Color(122, 126, 140));
-        jpfSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jpfSenha.setBackground(new java.awt.Color(30, 30, 30));
+        jpfSenha.setForeground(new java.awt.Color(2, 154, 184));
         jpfSenha.setBorder(null);
         jpfSenha.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 310, -1));
 
-        jpfConfirmarSenha.setBackground(new java.awt.Color(122, 126, 140));
-        jpfConfirmarSenha.setForeground(new java.awt.Color(255, 255, 255));
+        jpfConfirmarSenha.setBackground(new java.awt.Color(30, 30, 30));
+        jpfConfirmarSenha.setForeground(new java.awt.Color(2, 154, 184));
         jpfConfirmarSenha.setBorder(null);
         jpfConfirmarSenha.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(jpfConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 310, -1));
@@ -311,7 +311,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 280, 1350, 460));
 
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));

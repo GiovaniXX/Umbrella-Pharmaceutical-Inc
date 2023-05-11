@@ -1,5 +1,6 @@
 package up_forms;
 
+import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -29,6 +30,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
     public UP_F03_Produtos() {
         initComponents();
+        // Cria um novo objeto Color com os valores RGB 30, 30 e 30
+        Color corDeFundo = new Color(30, 30, 30);
+
+        // Define a cor de fundo padrão para todos os componentes
+        txtIDProduto.setBackground(corDeFundo);
+        txtDescricao.setBackground(corDeFundo);
+        txtPreco.setBackground(corDeFundo);
+        txtAnotacao.setBackground(corDeFundo);
     }
 
     @SuppressWarnings("unchecked")
@@ -114,28 +123,19 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(700, 80, 50, 16);
 
-        txtIDProduto.setBackground(new java.awt.Color(122, 126, 140));
-        txtIDProduto.setForeground(new java.awt.Color(255, 255, 255));
         txtIDProduto.setBorder(null);
-        txtIDProduto.setCaretColor(new java.awt.Color(255, 255, 255));
         txtIDProduto.setEnabled(false);
         txtIDProduto.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtIDProduto);
         txtIDProduto.setBounds(520, 20, 50, 22);
 
-        txtDescricao.setBackground(new java.awt.Color(122, 126, 140));
-        txtDescricao.setForeground(new java.awt.Color(255, 255, 255));
         txtDescricao.setBorder(null);
-        txtDescricao.setCaretColor(new java.awt.Color(255, 255, 255));
         txtDescricao.setEnabled(false);
         txtDescricao.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtDescricao);
         txtDescricao.setBounds(520, 50, 310, 22);
 
-        txtPreco.setBackground(new java.awt.Color(122, 126, 140));
-        txtPreco.setForeground(new java.awt.Color(255, 255, 255));
         txtPreco.setBorder(null);
-        txtPreco.setCaretColor(new java.awt.Color(255, 255, 255));
         txtPreco.setEnabled(false);
         txtPreco.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtPreco);
@@ -279,9 +279,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(cmbImposto);
         cmbImposto.setBounds(760, 77, 70, 22);
 
-        txtAnotacao.setBackground(new java.awt.Color(122, 126, 140));
         txtAnotacao.setColumns(20);
-        txtAnotacao.setForeground(new java.awt.Color(255, 255, 255));
         txtAnotacao.setRows(5);
         jScrollPane2.setViewportView(txtAnotacao);
 
@@ -338,10 +336,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblTabela);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(3, 280, 1350, 410);
+        jScrollPane1.setBounds(0, 270, 1350, 410);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
@@ -368,6 +366,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtPreco.setEnabled(true);
         txtAnotacao.setEnabled(true);
         cmbImposto.setEnabled(true);
+
+        txtIDProduto.setBackground(new Color(2, 154, 184));
+        txtDescricao.setBackground(new Color(2, 154, 184));
+        txtPreco.setBackground(new Color(2, 154, 184));
+        txtAnotacao.setBackground(new Color(2, 154, 184));
 
         txtIDProduto.setText("");
         txtDescricao.setText("");
@@ -478,6 +481,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtPreco.setEnabled(false);
         cmbImposto.setEnabled(false);
         txtAnotacao.setEnabled(false);
+
+        txtIDProduto.setBackground(new Color(30, 30, 30));
+        txtDescricao.setBackground(new Color(30, 30, 30));
+        txtPreco.setBackground(new Color(30, 30, 30));
+        txtAnotacao.setBackground(new Color(30, 30, 30));
 
         txtIDProduto.setText(ID);
         txtDescricao.setText(Descricao);
