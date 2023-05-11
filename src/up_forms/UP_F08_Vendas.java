@@ -17,7 +17,7 @@ import up_classes.Produto;
 public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     public DadosDB dadosDB;
-    private DefaultTableModel mTabela;
+    private final DefaultTableModel mTabela;
 
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
@@ -25,6 +25,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     public UP_F08_Vendas() {
         initComponents();
+        mTabela = new DefaultTableModel();
     }
 
     @SuppressWarnings("unchecked")
@@ -330,16 +331,16 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 cmbCliente.addItem(opc.toString());
             }
 
-            opc = new Opcoes("abc", "Selecione um produto");
+            Opcoes opcc = new Opcoes("abc", "Selecione um produto");
             cmbProduto.addItem(opc.toString());
             ResultSet rsPro = dadosDB.getProdutos();
 
             while (rsPro.next()) {
 
-                opc = new Opcoes(
+                opcc = new Opcoes(
                         rsPro.getString("idProduto"),
                         rsPro.getString("descricao"));
-                cmbProduto.addItem(opc.toString());
+                cmbProduto.addItem(opcc.toString());
             }
 
             txtData.setText(Utilidades.formatDate(new Date()));
@@ -379,15 +380,24 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             txtQuantidade.requestFocusInWindow();
             return;
         }
-
-        Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        //--------------------------------------------------------------------------------------------------//
+        Object itemSelecionado = cmbProduto.getSelectedItem();
+        if (!(itemSelecionado instanceof Opcoes)) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um produto válido!");
+            cmbProduto.requestFocusInWindow();
+            return;
+        }
+        //--------------------------------------------------------------------------------------------------//
+        //Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        Opcoes opcoesSelecionadas = (Opcoes) itemSelecionado;
+        Produto mProduto = dadosDB.getProduto(opcoesSelecionadas.getValor());
         String registro[] = new String[5];
         registro[0] = mProduto.getIdProduto();
         registro[1] = mProduto.getDescricao();
         registro[2] = "" + (mProduto.getPreco());
         registro[3] = "" + quantidade;
         registro[4] = "" + (quantidade * mProduto.getPreco());
-
+        //--------------------------------------------------------------------------------------------------//
         mTabela.addRow(registro);
         cmbProduto.setSelectedIndex(0);
         txtQuantidade.setText("");
@@ -481,20 +491,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             Opcoes selectedOption = new Opcoes(rta, rta);
             cmbCliente.setSelectedItem(selectedOption);
 
-            //if (((Opcoes) cmbCliente.getItemAt(i)).getValor().equals(rta)) {
-            //cmbCliente.setSelectedIndex(i);
-            /*A mensagem de erro "tipos incompatíveis: String não pode ser convertida em Opcoes" indica que o programa está
-            tentando atribuir um valor String a um objeto do tipo "Opcoes", o que não é permitido.           
-            No trecho de código fornecido, parece que a variável "rta" é uma String que armazena o valor selecionado na caixa 
-            de diálogo "UP_F09_Pesquisar_Cliente". O programa então tenta casar este valor com a propriedade "valor" de um objeto
-            do tipo "Opcoes" em um loop.
-            O problema pode ser que o programa está tentando definir o item selecionado em um componente JComboBox para um valor 
-            String (rta), enquanto o tipo esperado do item selecionado é um objeto do tipo "Opcoes". Para resolver este erro, 
-            pode ser necessário converter o valor String de "rta" para um objeto "Opcoes" antes de defini-lo como o item 
-            selecionado no JComboBox.
-            A solução foi criar um novo objeto "Opcoes" usando o valor String de "rta" e defini-lo 
-            como o item selecionado no JComboBox:
-            Não usar as duas linhas de código comentadas acima, permanece ali apenas para fins de compreenção*/
             return;
         }
     }//GEN-LAST:event_btnPesqClienteActionPerformed
@@ -512,20 +508,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             Opcoes selectedOption = new Opcoes(rta, rta);
             cmbProduto.setSelectedItem(selectedOption);
 
-            //if (((Opcoes) cmbProduto.getItemAt(i)).getValor().equals(rta)) {
-            //cmbProduto.setSelectedIndex(i);
-            /*A mensagem de erro "tipos incompatíveis: String não pode ser convertida em Opcoes" indica que o programa está
-            tentando atribuir um valor String a um objeto do tipo "Opcoes", o que não é permitido.           
-            No trecho de código fornecido, parece que a variável "rta" é uma String que armazena o valor selecionado na caixa 
-            de diálogo "UP_F09_Pesquisar_Produto". O programa então tenta casar este valor com a propriedade "valor" de um objeto
-            do tipo "Opcoes" em um loop.
-            O problema pode ser que o programa está tentando definir o item selecionado em um componente JComboBox para um valor 
-            String (rta), enquanto o tipo esperado do item selecionado é um objeto do tipo "Opcoes". Para resolver este erro, 
-            pode ser necessário converter o valor String de "rta" para um objeto "Opcoes" antes de defini-lo como o item 
-            selecionado no JComboBox.          
-            A solução foi criar um novo objeto "Opcoes" usando o valor String de "rta" e defini-lo 
-            como o item selecionado no JComboBox:
-            Não usar as duas linhas de código comentadas acima, permanece ali apenas para fins de compreenção*/
             return;
         }
     }//GEN-LAST:event_btnPesqProdutoActionPerformed
@@ -561,9 +543,10 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     private void preencherTabela() {
         String titulos[] = {"ID Produto", "Descricao", "Preço", "Quantidade", "Valor"};
-        String registro[] = new String[5];
+        //String registro[] = new String[5];
         //mTabela.addRow(registro);
-        mTabela = new DefaultTableModel(null, titulos);
+        //mTabela = new DefaultTableModel(null, titulos);
+        mTabela.setColumnIdentifiers(titulos);
         tblDetalhes.setModel(mTabela);
 
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
@@ -598,8 +581,4 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         } catch (Exception e) {
         }
     }
-
-    /*private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
-    }*/
 }
