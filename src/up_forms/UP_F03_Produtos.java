@@ -434,7 +434,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             }
         }
 
-        Produto mProduto = new Produto(txtIDProduto.getText(), txtDescricao.getText(), preco, cmbImposto.getSelectedIndex(), txtAnotacao.getText());
+        Produto mProduto = new Produto(Integer.parseInt(txtIDProduto.getText()), txtDescricao.getText(), preco, cmbImposto.getSelectedIndex(), txtAnotacao.getText());
 
         String msg;
         if (novo) {

@@ -123,9 +123,9 @@ public class DadosDB {
     public String adicionarProduto(Produto mProduto) {
         String query = "INSERT INTO tbprodutos (idProduto, descricao, preco, idImposto, notas) VALUES (?, ?, ?, ?, ?)";
         try (var ps = cnn.prepareStatement(query)) {
-            ps.setInt(1, Integer.parseInt(mProduto.getIdProduto()));
+            ps.setInt(1, mProduto.getIdProduto());
             ps.setString(2, mProduto.getDescricao());
-            ps.setDouble(3, mProduto.getPreco());
+            ps.setFloat(3, mProduto.getPreco());
             ps.setDouble(4, mProduto.getImposto());
             ps.setString(5, mProduto.getAnotacao());
             ps.executeUpdate();
@@ -233,10 +233,10 @@ public class DadosDB {
         String sql = "UPDATE tbprodutos SET descricao = ?, preco = ?, idImposto = ?, notas = ? WHERE idProduto = ?";
         try (var ps = cnn.prepareStatement(sql)) {
             ps.setString(1, mProduto.getDescricao());
-            ps.setDouble(2, mProduto.getPreco());
+            ps.setFloat(2, mProduto.getPreco());
             ps.setInt(3, mProduto.getImposto());
             ps.setString(4, mProduto.getAnotacao());
-            ps.setInt(5, Integer.parseInt(mProduto.getIdProduto()));
+            ps.setInt(5, mProduto.getIdProduto());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 return "Produto editado com sucesso";
@@ -479,9 +479,9 @@ public class DadosDB {
 
             if (rs.next()) {
                 mProduto = new Produto(
-                        rs.getString("idProduto"),
+                        rs.getInt("idProduto"),
                         rs.getString("descricao"),
-                        rs.getInt("preco"),
+                        rs.getFloat("preco"),
                         rs.getInt("idImposto"),
                         rs.getString("notas"));
             }

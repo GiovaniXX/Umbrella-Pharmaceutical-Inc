@@ -393,11 +393,11 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         Opcoes opcoesSelecionadas = (Opcoes) itemSelecionado;
         Produto mProduto = dadosDB.getProduto(opcoesSelecionadas.getValor());
         String[] registro = {
-            mProduto.getIdProduto(),
+            //mProduto.getIdProduto(),
             mProduto.getDescricao(),
             String.valueOf(mProduto.getPreco()),
             String.valueOf(quantidade),
-            String.valueOf(quantidade * mProduto.getPreco())
+            String.valueOf(quantidade * mProduto.getPreco()),
         };
         //--------------------------------------------------------------------------------------------------//
         mTabela.addRow(registro);
