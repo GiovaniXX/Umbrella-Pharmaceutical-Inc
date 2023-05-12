@@ -407,7 +407,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         tblDetalhes.setModel(mTabela);
         preencherTabela();
-        totalGeral();
+        totalGeral();       
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
