@@ -8,8 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
-import up_classes.TabelaColorida;
 import up_classes.Utilidades;
 
 public class UP_F02_Usuarios extends javax.swing.JInternalFrame {

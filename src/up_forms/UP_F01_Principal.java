@@ -2,22 +2,19 @@ package up_forms;
 
 import java.awt.Desktop;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import up_classes.DadosDB;
 
 public class UP_F01_Principal extends javax.swing.JFrame {
 
-    private int perfil;
-    private String senha;
-    private String chave;
-    private String usuario;
-    private DadosDB dadosDB;
+    public int perfil;
+    public String senha;
+    public String chave;
+    public String usuario;
+    public DadosDB dadosDB;
 
     public void setPerfil(int perfil) {
         this.perfil = perfil;

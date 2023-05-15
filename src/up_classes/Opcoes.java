@@ -5,8 +5,8 @@ public class Opcoes {
     //public static Object Utilidades;
     //public Object Opcoes;
     
-    private final String valor;
-    private final String descricao;
+    public final String valor;
+    public final String descricao;
 
     public Opcoes(String valor, String descricao) {
         this.valor = valor;

@@ -9,7 +9,7 @@ import up_classes.DadosDB;
 
 public class UP_F07_Info extends javax.swing.JInternalFrame {
 
-    private DadosDB dadosDB;
+    public DadosDB dadosDB;
 
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
