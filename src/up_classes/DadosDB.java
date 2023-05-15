@@ -127,8 +127,7 @@ public class DadosDB {
             ps.setString(2, mProduto.getDescricao());
             ps.setFloat(3, mProduto.getPreco());
             ps.setDouble(4, mProduto.getImposto());
-            ps.setString(5, mProduto.getAnotacao());
-            ps.executeUpdate();
+            ps.setString(5, mProduto.getAnotacao());           
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 1) {
                 return "Produto cadastrado com sucesso!";
@@ -142,7 +141,7 @@ public class DadosDB {
     }
 
     public String adicionarCliente(Cliente mCliente) {
-        String query = "INSERT INTO tbclientes (id_cliente, id_tipo, nome, sobrenome, endereco, telefone, id_cidade, data_nascimento, data_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO tbclientes (idClientes, idTipo, nome, snome, endereco, telefone, idCidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (var ps = cnn.prepareStatement(query)) {
             ps.setString(1, mCliente.getIdCliente());
             ps.setInt(2, mCliente.getIdTipo());

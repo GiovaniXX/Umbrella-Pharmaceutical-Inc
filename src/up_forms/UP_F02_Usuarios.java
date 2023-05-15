@@ -41,11 +41,13 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         txtIDUsuario = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtSNome = new javax.swing.JTextField();
         jpfSenha = new javax.swing.JPasswordField();
         jpfConfirmarSenha = new javax.swing.JPasswordField();
+        jPasswordField1 = new javax.swing.JPasswordField();
         btnPrimeiro = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
         btnProximo = new javax.swing.JButton();
@@ -116,6 +118,10 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jLabel7.setText("Perfil.:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, 40, -1));
 
+        jLabel1.setForeground(new java.awt.Color(3, 155, 216));
+        jLabel1.setText("Conf Chave.:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 180, -1, -1));
+
         txtIDUsuario.setBackground(new java.awt.Color(30, 30, 30));
         txtIDUsuario.setForeground(new java.awt.Color(2, 154, 184));
         txtIDUsuario.setBorder(null);
@@ -155,6 +161,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jpfConfirmarSenha.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(jpfConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 310, -1));
 
+        jPasswordField1.setBackground(new java.awt.Color(30, 30, 30));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 310, -1));
+
         btnPrimeiro.setBackground(new java.awt.Color(0, 0, 0));
         btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
         btnPrimeiro.setText("Primeiro");
@@ -165,7 +174,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnPrimeiroActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPrimeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 180, 73, 25));
+        getContentPane().add(btnPrimeiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 220, 73, 25));
 
         btnAnterior.setBackground(new java.awt.Color(0, 0, 0));
         btnAnterior.setForeground(new java.awt.Color(3, 155, 216));
@@ -177,7 +186,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnAnteriorActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 180, 73, 25));
+        getContentPane().add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, 73, 25));
 
         btnProximo.setBackground(new java.awt.Color(0, 0, 0));
         btnProximo.setForeground(new java.awt.Color(3, 155, 216));
@@ -189,7 +198,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnProximoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 180, 73, 25));
+        getContentPane().add(btnProximo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 220, 73, 25));
 
         btnUltimo.setBackground(new java.awt.Color(0, 0, 0));
         btnUltimo.setForeground(new java.awt.Color(3, 155, 216));
@@ -201,7 +210,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnUltimoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnUltimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 180, 73, 25));
+        getContentPane().add(btnUltimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 220, 73, 25));
 
         btnNovo.setBackground(new java.awt.Color(0, 0, 0));
         btnNovo.setForeground(new java.awt.Color(3, 155, 216));
@@ -213,7 +222,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnNovoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 73, 25));
+        getContentPane().add(btnNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 73, 25));
 
         btnEditar.setBackground(new java.awt.Color(0, 0, 0));
         btnEditar.setForeground(new java.awt.Color(3, 155, 216));
@@ -225,7 +234,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnEditarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 210, 73, 25));
+        getContentPane().add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 250, 73, 25));
 
         btnSalvar.setBackground(new java.awt.Color(0, 0, 0));
         btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
@@ -238,7 +247,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnSalvarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 73, 25));
+        getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 250, 73, 25));
 
         btnExcluir.setBackground(new java.awt.Color(0, 0, 0));
         btnExcluir.setForeground(new java.awt.Color(3, 155, 216));
@@ -250,7 +259,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnExcluirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 210, 73, 25));
+        getContentPane().add(btnExcluir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 250, 73, 25));
 
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0));
         btnCancelar.setForeground(new java.awt.Color(3, 155, 216));
@@ -262,7 +271,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 73, 25));
+        getContentPane().add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 73, 25));
 
         btnPesquisar.setBackground(new java.awt.Color(0, 0, 0));
         btnPesquisar.setForeground(new java.awt.Color(3, 155, 216));
@@ -274,7 +283,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 btnPesquisarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 73, 25));
+        getContentPane().add(btnPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 73, 25));
 
         cmbPerfil.setBackground(new java.awt.Color(122, 126, 140));
         cmbPerfil.setForeground(new java.awt.Color(255, 255, 255));
@@ -306,7 +315,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jtTabela.setShowGrid(false);
         jScrollPane1.setViewportView(jtTabela);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 280, 1350, 460));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 320, 1350, 420));
 
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -409,7 +418,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 return;
             }
         }
-        String chave = null;
+        //String chave = null;
+        String chave = "";
 
         Usuario mUsuario = new Usuario(txtIDUsuario.getText(), txtNome.getText(), txtSNome.getText(), senha, chave, cmbPerfil.getSelectedIndex());
 
@@ -635,12 +645,14 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JComboBox<String> cmbPerfil;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField jpfConfirmarSenha;
     private javax.swing.JPasswordField jpfSenha;
