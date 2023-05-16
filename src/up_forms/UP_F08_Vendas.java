@@ -18,7 +18,8 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     private final DefaultTableModel mTabela;
     
-    public DadosDB dadosDB;
+    public DadosDB dadosDB = new DadosDB();
+    //public DadosDB dadosDB;
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
     }
