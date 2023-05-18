@@ -20,7 +20,7 @@ public class DadosDB {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Properties props = new Properties();
-            props.load(new FileInputStream("E:/PROJETOS DEV-GIOVANI/PROJETOS NETBEANS/NetBeans Projects 2022/Umbrella_Pharmaceutical_Inc/config.properties"));
+            props.load(new FileInputStream("E:/PROJETOS JAVA 2023/Umbrella_Pharmaceutical_Inc/config.properties"));
             String dbUrl = props.getProperty("db.url");
             String dbUser = props.getProperty("db.user");
             String dbPassword = props.getProperty("db.password");
