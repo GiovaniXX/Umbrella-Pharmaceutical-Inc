@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -33,7 +34,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        cnn = ddb.cnn;                       
+                        cnn = ddb.cnn;
                         if (cnn != null && !cnn.isClosed()) { // Adiciona verificação se a conexão está ativa
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
                         } else {
@@ -220,11 +221,14 @@ public class UP_F00_Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
-        if (!dadosDB.validarUsuario(textField_User.getText(),
-                new String(passwordField_AccessCode.getPassword()),
-                new String(passwordField_SecurityKey.getPassword()))) {
-            String message = "<html><font color='red'><b>Houve um erro com a validação com o banco de dados.!</b></font></html>";
-            JOptionPane.showMessageDialog(rootPane, message, "ERROR.!", JOptionPane.ERROR_MESSAGE);
+        String usuario = textField_User.getText();
+        String senha = new String(passwordField_AccessCode.getPassword());
+        String chave = new String(passwordField_SecurityKey.getPassword());
+
+        // Verifica se algum dos campos está em branco
+        if (usuario.isEmpty() || senha.isEmpty() || chave.isEmpty()) {
+            String message = "<html><font color='red'><b>Por favor, preencha todos os campos!</b></font></html>";
+            JOptionPane.showMessageDialog(rootPane, message, "Erro", JOptionPane.ERROR_MESSAGE);
 
             textField_User.setText("");
             passwordField_AccessCode.setText("");
@@ -232,15 +236,44 @@ public class UP_F00_Login extends javax.swing.JFrame {
             textField_User.requestFocusInWindow();
             return;
         }
-        UP_F01_Principal ufp = new UP_F01_Principal();
-        this.setVisible(false);
-        ufp.setDadosDB(dadosDB);
-        ufp.setPerfil(dadosDB.getPerfil(textField_User.getText()));
-        ufp.setSenha(new String(passwordField_AccessCode.getPassword()));
-        ufp.setChave(new String(passwordField_SecurityKey.getPassword()));
-        ufp.setUsuario(textField_User.getText());
-        ufp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        ufp.setVisible(true);
+
+        // Validação com o banco de dados
+        if (!dadosDB.validarUsuario(usuario, senha, chave)) {
+            String message = "<html><font color='orange'><b>Houve um erro na validação com o banco de dados!</b></font></html>";
+            JOptionPane.showMessageDialog(rootPane, message, "Erro", JOptionPane.ERROR_MESSAGE);
+
+            textField_User.setText("");
+            passwordField_AccessCode.setText("");
+            passwordField_SecurityKey.setText("");
+            textField_User.requestFocusInWindow();
+            return;
+        }
+
+        // Mensagem de sucesso por 2 segundos
+        String successMessage = "<html><font color='green'><b>Conexão bem-sucedida!</b></font></html>";
+        JOptionPane pane = new JOptionPane(successMessage, JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = pane.createDialog(rootPane, "Sucesso");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        Timer timer = new Timer(2000, (e) -> {
+            dialog.dispose();
+
+            // Resto do código quando a validação é bem-sucedida
+            UP_F01_Principal ufp = new UP_F01_Principal();
+            this.setVisible(false);
+            ufp.setDadosDB(dadosDB);
+            ufp.setPerfil(dadosDB.getPerfil(usuario));
+            ufp.setSenha(senha);
+            ufp.setChave(chave);
+            ufp.setUsuario(usuario);
+            ufp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            ufp.setVisible(true);
+
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
