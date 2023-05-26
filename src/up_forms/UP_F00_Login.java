@@ -224,7 +224,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         if (!dadosDB.validarUsuario(textField_User.getText(),
                 new String(passwordField_AccessCode.getPassword()),
                 new String(passwordField_SecurityKey.getPassword()))) {
-            String message = "<html><font color='red'><b>VALIDAÇÃO COM O BANCO DE DADOS NEGADO.!</b></font></html>";
+            String message = "<html><font color='red'><b>Houve um erro com a validação com o banco de dados.!</b></font></html>";
             JOptionPane.showMessageDialog(rootPane, message, "ERROR.!", JOptionPane.ERROR_MESSAGE);
 
             textField_User.setText("");
