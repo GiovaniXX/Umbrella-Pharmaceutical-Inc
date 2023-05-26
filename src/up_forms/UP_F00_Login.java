@@ -227,7 +227,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         // Verifica se algum dos campos está em branco
         if (usuario.isEmpty() || senha.isEmpty() || chave.isEmpty()) {
-            String message = "<html><font color='orange'><b>Por favor, preencha todos os campos!</b></font></html>";
+            String message = "<html><font color='orange'><b>Preencha todos os campos!</b></font></html>";
             showMessageWithDuration(message, "Aviso", JOptionPane.WARNING_MESSAGE, 2000);
 
             textField_User.setText("");

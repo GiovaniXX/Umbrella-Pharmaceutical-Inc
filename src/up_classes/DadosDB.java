@@ -20,27 +20,40 @@ public class DadosDB {
     public static Connection cnn;
 
     public DadosDB() {
+        cnn = getConnection();
+    }
+
+    private Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
+
             Properties props = new Properties();
             props.load(new FileInputStream("E:/PROJETOS JAVA 2023/Umbrella_Pharmaceutical_Inc/config.properties"));
             String dbUrl = props.getProperty("db.url");
             String dbUser = props.getProperty("db.user");
             String dbPassword = props.getProperty("db.password");
-            cnn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-        } catch (ClassNotFoundException | SQLException | IOException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+
+            return DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+        } catch (ClassNotFoundException | IOException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao carregar o driver ou ler as propriedades", ex);
+            return null;
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao estabelecer a conexão com o banco de dados", ex);
+            return null;
         }
     }
 
     public boolean validarUsuario(String usuario, String senha, String chave) {
         String sql = "SELECT 1 FROM tbusuarios WHERE idUsuario = ? AND senha = ? AND chave = ?";
-        try (var ps = cnn.prepareStatement(sql)) {
-            ps.setString(1, usuario);
-            ps.setString(2, senha);
-            ps.setString(3, chave);
-            try (ResultSet rs = ps.executeQuery()) {
-                return rs.next();
+
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, usuario);
+            statement.setString(2, senha);
+            statement.setString(3, chave);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next();
             }
         } catch (SQLException ex) {
             Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -50,7 +63,7 @@ public class DadosDB {
 
     public int getPerfil(String usuario) {
         String sql = "SELECT idPerfil FROM tbusuarios WHERE idUsuario = ?";
-        try (var ps = cnn.prepareStatement(sql)) {
+        try (PreparedStatement ps = cnn.prepareStatement(sql)) {
             ps.setString(1, usuario);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
@@ -58,7 +71,7 @@ public class DadosDB {
                 }
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao obter o perfil do usuário", ex);
         }
         return -1;
     }
