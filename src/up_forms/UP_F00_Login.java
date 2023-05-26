@@ -227,8 +227,8 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         // Verifica se algum dos campos está em branco
         if (usuario.isEmpty() || senha.isEmpty() || chave.isEmpty()) {
-            String message = "<html><font color='red'><b>Por favor, preencha todos os campos!</b></font></html>";
-            JOptionPane.showMessageDialog(rootPane, message, "Erro", JOptionPane.ERROR_MESSAGE);
+            String message = "<html><font color='orange'><b>Por favor, preencha todos os campos!</b></font></html>";
+            showMessageWithDuration(message, "Aviso", JOptionPane.WARNING_MESSAGE, 2000);
 
             textField_User.setText("");
             passwordField_AccessCode.setText("");
@@ -239,8 +239,8 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         // Validação com o banco de dados
         if (!dadosDB.validarUsuario(usuario, senha, chave)) {
-            String message = "<html><font color='orange'><b>Houve um erro na validação com o banco de dados!</b></font></html>";
-            JOptionPane.showMessageDialog(rootPane, message, "Erro", JOptionPane.ERROR_MESSAGE);
+            String errorMessage = "<html><font color='red'><b>Houve um erro na validação com o banco de dados!</b></font></html>";
+            showMessageWithDuration(errorMessage, "Erro", JOptionPane.ERROR_MESSAGE, 2000);
 
             textField_User.setText("");
             passwordField_AccessCode.setText("");
@@ -249,26 +249,28 @@ public class UP_F00_Login extends javax.swing.JFrame {
             return;
         }
 
-        // Mensagem de sucesso por 2 segundos
         String successMessage = "<html><font color='green'><b>Conexão bem-sucedida!</b></font></html>";
-        JOptionPane pane = new JOptionPane(successMessage, JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = pane.createDialog(rootPane, "Sucesso");
+        showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 2000);
+
+        // Resto do código quando a validação é bem-sucedida
+        UP_F01_Principal ufp = new UP_F01_Principal();
+        this.setVisible(false);
+        ufp.setDadosDB(dadosDB);
+        ufp.setPerfil(dadosDB.getPerfil(usuario));
+        ufp.setSenha(senha);
+        ufp.setChave(chave);
+        ufp.setUsuario(usuario);
+        ufp.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        ufp.setVisible(true);
+    }
+
+    private void showMessageWithDuration(String message, String title, int messageType, int duration) {
+        JOptionPane pane = new JOptionPane(message, messageType);
+        JDialog dialog = pane.createDialog(rootPane, title);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        Timer timer = new Timer(2000, (e) -> {
+        Timer timer = new Timer(duration, (e) -> {
             dialog.dispose();
-
-            // Resto do código quando a validação é bem-sucedida
-            UP_F01_Principal ufp = new UP_F01_Principal();
-            this.setVisible(false);
-            ufp.setDadosDB(dadosDB);
-            ufp.setPerfil(dadosDB.getPerfil(usuario));
-            ufp.setSenha(senha);
-            ufp.setChave(chave);
-            ufp.setUsuario(usuario);
-            ufp.setExtendedState(JFrame.MAXIMIZED_BOTH);
-            ufp.setVisible(true);
-
         });
         timer.setRepeats(false);
         timer.start();
