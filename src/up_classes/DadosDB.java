@@ -26,7 +26,6 @@ public class DadosDB {
     private Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-
             Properties props = new Properties();
             props.load(new FileInputStream("E:/PROJETOS JAVA 2023/Umbrella_Pharmaceutical_Inc/config.properties"));
             String dbUrl = props.getProperty("db.url");
@@ -45,9 +44,7 @@ public class DadosDB {
 
     public boolean validarUsuario(String usuario, String senha, String chave) {
         String sql = "SELECT 1 FROM tbusuarios WHERE idUsuario = ? AND senha = ? AND chave = ?";
-
         try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
-
             statement.setString(1, usuario);
             statement.setString(2, senha);
             statement.setString(3, chave);
@@ -63,9 +60,9 @@ public class DadosDB {
 
     public int getPerfil(String usuario) {
         String sql = "SELECT idPerfil FROM tbusuarios WHERE idUsuario = ?";
-        try (PreparedStatement ps = cnn.prepareStatement(sql)) {
-            ps.setString(1, usuario);
-            try (ResultSet rs = ps.executeQuery()) {
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, usuario);
+            try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     return rs.getInt("idPerfil");
                 }
@@ -293,10 +290,11 @@ public class DadosDB {
     public ResultSet getUsuarios() {
         try {
             String sql = "SELECT * FROM tbusuarios";
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            return statement.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao obter os usuários", ex);
+
             return null;
         }
     }
@@ -304,12 +302,10 @@ public class DadosDB {
     public ResultSet getClientes() {
         try {
             String sql = "SELECT * FROM tbclientes";
-
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            return statement.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao obter os clientes", ex);
 
             return null;
         }
@@ -318,12 +314,10 @@ public class DadosDB {
     public ResultSet getProdutos() {
         try {
             String sql = "SELECT * FROM tbprodutos";
-
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            return statement.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao obter os produtos", ex);
 
             return null;
         }
@@ -332,27 +326,46 @@ public class DadosDB {
     public ResultSet getVendas() {
         try {
             String sql = "SELECT * FROM tbvendas";
-
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-
+            PreparedStatement statement = cnn.prepareStatement(sql);
+            return statement.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao obter as vendas", ex);
 
             return null;
         }
+
+//        try {
+//            String sql = "SELECT * FROM tbvendas";
+//
+//            Statement st = cnn.createStatement();
+//            return st.executeQuery(sql);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+//
+//            return null;
+//        }
     }
 
     public ResultSet getConsulta(String sql) {
         try {
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-
+            PreparedStatement statement = cnn.prepareStatement(sql);
+            return statement.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, "Erro ao executar consulta", ex);
 
             return null;
         }
+
+//        try {
+//            Statement st = cnn.createStatement();
+//            return st.executeQuery(sql);
+//
+//        } catch (SQLException ex) {
+//            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+//
+//            return null;
+//        }
     }
 
     public int numeroUsuarios() {

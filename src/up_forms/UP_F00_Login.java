@@ -250,7 +250,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         }
 
         String successMessage = "<html><font color='green'><b>Conexão bem-sucedida!</b></font></html>";
-        showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 2000);
+        showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 1000);
 
         // Resto do código quando a validação é bem-sucedida
         UP_F01_Principal ufp = new UP_F01_Principal();
