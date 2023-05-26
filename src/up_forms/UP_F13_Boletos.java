@@ -320,42 +320,6 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem no WhatsApp: " + ex.getMessage());
         }
-        /*
-        * O código abaixo comentado envia mensagens automáticamente sem chamar
-        * a url, ao utilizar a biblioteca Twilio para enviar mensagens pelo
-        * WhatsApp, você estará enviando mensagens diretamente através da API
-        * do Twilio, sem a necessidade de abrir URLs externas.
-         */
-//        try {
-//            String url = "https://api.whatsapp.com/send";
-//            URL obj = new URL(url);
-//            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-//
-//            // Configurar a conexão HTTP para o método POST
-//            con.setRequestMethod("POST");
-//            con.setDoOutput(true);
-//
-//            // Parâmetros para enviar para a API do WhatsApp
-//            String parametros = "phone=" + numero + "&text=" + URLEncoder.encode(mensagem, StandardCharsets.UTF_8);
-//
-//            // Enviar os dados da requisição
-//            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
-//                wr.writeBytes(parametros);
-//                wr.flush();
-//            }
-//
-//            // Verificar a resposta da API do WhatsApp
-//            int responseCode = con.getResponseCode();
-//            if (responseCode == HttpURLConnection.HTTP_OK) {
-//                // A mensagem foi enviada com sucesso
-//                JOptionPane.showMessageDialog(this, "Mensagem enviada com sucesso pelo WhatsApp.");
-//            } else {
-//                // Ocorreu um erro ao enviar a mensagem
-//                JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem pelo WhatsApp. Código de resposta: " + responseCode);
-//            }
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem no WhatsApp: " + ex.getMessage());
-//        }
     }
 
     private void enviarBoletoWhatsApp() {

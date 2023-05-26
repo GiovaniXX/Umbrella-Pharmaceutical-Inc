@@ -33,8 +33,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        cnn = ddb.cnn;
-                        //if (cnn != null) {
+                        cnn = ddb.cnn;                       
                         if (cnn != null && !cnn.isClosed()) { // Adiciona verificação se a conexão está ativa
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
                         } else {
