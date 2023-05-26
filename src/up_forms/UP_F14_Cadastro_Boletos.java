@@ -1,27 +1,21 @@
 package up_forms;
 
-//import com.formdev.flatlaf.IntelliJTheme;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.event.ActionEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Boletos;
 import up_classes.DadosDB;
 import up_classes.Utilidades;
 
 public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
 
-    private DadosDB dadosDB;
-    private final int boletoAtual = 0;
-    private DefaultTableModel mTabela;
-
-    private String IDBoleto;
-    private String Cedente;
-    private String CodigoBarras;
-    private String DataVencimento;
-    private String ValorPagar;
+    private final Timer timer;
+    public DadosDB dadosDB;
 
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
@@ -29,6 +23,18 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
 
     public UP_F14_Cadastro_Boletos() {
         initComponents();
+        timer = new Timer(1000, (ActionEvent e) -> {
+            atualizarDataHoraAtual();
+        });
+        timer.start();
+        atualizarDataHoraAtual();
+    }
+
+    private void atualizarDataHoraAtual() {
+        SimpleDateFormat formatoDataHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date dataHoraAtual = new Date();
+        String dataHoraAtualFormatada = formatoDataHora.format(dataHoraAtual);
+        jLabel_DataHoraAtualSistema.setText(dataHoraAtualFormatada);
     }
 
     @SuppressWarnings("unchecked")
@@ -36,30 +42,26 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtCedente = new javax.swing.JTextField();
+        jTextField_Cedente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtCodigoBarras = new javax.swing.JTextField();
+        jTextField_CodigoBarras = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtValorPagar = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        btnInserirDados = new javax.swing.JButton();
-        btn = new javax.swing.JButton();
-        btnCadastrarBoleto = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jpMarcas = new javax.swing.JPanel();
-        jrbBoticario = new javax.swing.JRadioButton();
-        jrbEudora = new javax.swing.JRadioButton();
-        jrbAvon = new javax.swing.JRadioButton();
-        jrbNatura = new javax.swing.JRadioButton();
-        jrbGolfran = new javax.swing.JRadioButton();
+        jTextField_ValorPagamento = new javax.swing.JTextField();
+        jButton_CadastrarBoletosBancoDados = new javax.swing.JButton();
+        jButton_ExcluirBoletos = new javax.swing.JButton();
+        jButton_LimparCampos = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtDadosRegistros = new javax.swing.JTable();
+        jTable_Tabela = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        txtIDboleto = new javax.swing.JTextField();
         lblHoraAtualSistema = new javax.swing.JLabel();
-        btnLimparCampos = new javax.swing.JButton();
-        jdcDataVencimento = new com.toedter.calendar.JDateChooser();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel_DataHoraAtualSistema = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jComboBox_Empresas = new javax.swing.JComboBox<>();
+        jTextField_DataVencimento = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField_Situacao = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical™ Cadastro de Boletos Bancarios");
@@ -69,96 +71,45 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Cedente.:");
 
-        txtCedente.setEnabled(false);
+        jTextField_Cedente.setEnabled(false);
 
         jLabel2.setText("Código de Barras.:");
 
-        txtCodigoBarras.setEnabled(false);
+        jTextField_CodigoBarras.setEnabled(false);
 
-        jLabel3.setText("Data de Vencimento.:");
+        jLabel3.setText("Data Vencimento.:");
 
-        jLabel4.setText("Valor a Pagar.:");
+        jLabel4.setText("Valor Pagamento.:");
 
-        txtValorPagar.setEnabled(false);
-        txtValorPagar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtValorPagarFocusLost(evt);
-            }
-        });
+        jTextField_ValorPagamento.setEnabled(false);
 
-        btnInserirDados.setText("Inserir Dados");
-        btnInserirDados.addActionListener(new java.awt.event.ActionListener() {
+        jButton_CadastrarBoletosBancoDados.setText("Cadastrar Boletos Banco Dados");
+        jButton_CadastrarBoletosBancoDados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInserirDadosActionPerformed(evt);
+                jButton_CadastrarBoletosBancoDadosActionPerformed(evt);
             }
         });
 
-        btn.setActionCommand("");
-        btn.setEnabled(false);
-        btn.setMaximumSize(new java.awt.Dimension(117, 23));
-        btn.setMinimumSize(new java.awt.Dimension(117, 23));
-        btn.setPreferredSize(new java.awt.Dimension(117, 23));
-        btn.addActionListener(new java.awt.event.ActionListener() {
+        jButton_ExcluirBoletos.setText("Excluir Boleto");
+        jButton_ExcluirBoletos.setEnabled(false);
+        jButton_ExcluirBoletos.setMaximumSize(new java.awt.Dimension(117, 23));
+        jButton_ExcluirBoletos.setMinimumSize(new java.awt.Dimension(117, 23));
+        jButton_ExcluirBoletos.setPreferredSize(new java.awt.Dimension(117, 23));
+        jButton_ExcluirBoletos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
+                jButton_ExcluirBoletosActionPerformed(evt);
             }
         });
 
-        btnCadastrarBoleto.setText("Cadastrar Boleto");
-        btnCadastrarBoleto.setEnabled(false);
-        btnCadastrarBoleto.addActionListener(new java.awt.event.ActionListener() {
+        jButton_LimparCampos.setText("Limpar Campos");
+        jButton_LimparCampos.setEnabled(false);
+        jButton_LimparCampos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarBoletoActionPerformed(evt);
+                jButton_LimparCamposActionPerformed(evt);
             }
         });
 
-        jpMarcas.setBorder(javax.swing.BorderFactory.createTitledBorder("Marcas"));
-
-        jrbBoticario.setText("Boticário");
-
-        jrbEudora.setText("Eudora");
-
-        jrbAvon.setText("Avon");
-
-        jrbNatura.setText("Natura");
-
-        jrbGolfran.setText("Golfran");
-
-        javax.swing.GroupLayout jpMarcasLayout = new javax.swing.GroupLayout(jpMarcas);
-        jpMarcas.setLayout(jpMarcasLayout);
-        jpMarcasLayout.setHorizontalGroup(
-            jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMarcasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jrbAvon)
-                    .addGroup(jpMarcasLayout.createSequentialGroup()
-                        .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbBoticario)
-                            .addComponent(jrbEudora))
-                        .addGap(18, 18, 18)
-                        .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jrbNatura)
-                            .addComponent(jrbGolfran))))
-                .addContainerGap(390, Short.MAX_VALUE))
-        );
-        jpMarcasLayout.setVerticalGroup(
-            jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMarcasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbBoticario)
-                    .addComponent(jrbGolfran))
-                .addGap(16, 16, 16)
-                .addGroup(jpMarcasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrbEudora)
-                    .addComponent(jrbNatura))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jrbAvon)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jtDadosRegistros.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -168,282 +119,232 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
             new String [] {
                 "ID Boleto", "Cedente", "Código de Barras", "Data de Vencimento", "Valor a Pagar"
             }
-        ));
-        jScrollPane1.setViewportView(jtDadosRegistros);
-        if (jtDadosRegistros.getColumnModel().getColumnCount() > 0) {
-            jtDadosRegistros.getColumnModel().getColumn(0).setMinWidth(100);
-            jtDadosRegistros.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jtDadosRegistros.getColumnModel().getColumn(0).setMaxWidth(100);
-            jtDadosRegistros.getColumnModel().getColumn(3).setMinWidth(150);
-            jtDadosRegistros.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jtDadosRegistros.getColumnModel().getColumn(3).setMaxWidth(150);
-            jtDadosRegistros.getColumnModel().getColumn(4).setMinWidth(100);
-            jtDadosRegistros.getColumnModel().getColumn(4).setPreferredWidth(100);
-            jtDadosRegistros.getColumnModel().getColumn(4).setMaxWidth(100);
-        }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jLabel5.setText("ID Boleto.:");
-
-        txtIDboleto.setEnabled(false);
-
-        btnLimparCampos.setText("Limpar Campos");
-        btnLimparCampos.setEnabled(false);
-        btnLimparCampos.setMaximumSize(new java.awt.Dimension(117, 23));
-        btnLimparCampos.setMinimumSize(new java.awt.Dimension(117, 23));
-        btnLimparCampos.setPreferredSize(new java.awt.Dimension(117, 23));
-        btnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparCamposActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane1.setViewportView(jTable_Tabela);
+        if (jTable_Tabela.getColumnModel().getColumnCount() > 0) {
+            jTable_Tabela.getColumnModel().getColumn(0).setResizable(false);
+            jTable_Tabela.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(1).setResizable(false);
+            jTable_Tabela.getColumnModel().getColumn(2).setResizable(false);
+            jTable_Tabela.getColumnModel().getColumn(3).setResizable(false);
+            jTable_Tabela.getColumnModel().getColumn(3).setPreferredWidth(150);
+            jTable_Tabela.getColumnModel().getColumn(4).setResizable(false);
+            jTable_Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+        }
 
-        jdcDataVencimento.setEnabled(false);
+        jLabel5.setText("Empresas.:");
+
+        jLabel6.setText("Data Hora Atual.:");
+
+        jLabel_DataHoraAtualSistema.setPreferredSize(new java.awt.Dimension(0, 16));
+
+        jComboBox_Empresas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma opção", "Boticario", "Natura", "Eudora", "Golfran" }));
+
+        jLabel7.setText("Situação.:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblHoraAtualSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jLabel5))
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
+                                    .addComponent(jTextField_Cedente, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+                                    .addComponent(jTextField_CodigoBarras))
+                                .addGap(661, 661, 661))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel_DataHoraAtualSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBox_Empresas, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField_DataVencimento))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jLabel5)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtCedente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
-                                            .addComponent(txtCodigoBarras))
-                                        .addGap(661, 661, 661))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtIDboleto, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(jpMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField_ValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 1001, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1163, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblHoraAtualSistema, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(btnInserirDados, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCadastrarBoleto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton_CadastrarBoletosBancoDados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_LimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton_ExcluirBoletos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField_Situacao, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel_DataHoraAtualSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtIDboleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Empresas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCedente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jTextField_Cedente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField_CodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jdcDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextField_DataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtValorPagar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_ValorPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInserirDados)
-                    .addComponent(btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarBoleto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpMarcas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblHoraAtualSistema))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                        .addGap(188, 188, 188)
+                        .addComponent(lblHoraAtualSistema)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField_Situacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton_CadastrarBoletosBancoDados)
+                            .addComponent(jButton_LimparCampos)
+                            .addComponent(jButton_ExcluirBoletos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInserirDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInserirDadosActionPerformed
-        txtIDboleto.setEnabled(true);
-        txtCedente.setEnabled(true);
-        txtCodigoBarras.setEnabled(true);
-        jdcDataVencimento.setEnabled(true);
-        txtValorPagar.setEnabled(true);
-
-        btnCadastrarBoleto.setEnabled(true);
-        btnLimparCampos.setEnabled(true);
-        
-        txtIDboleto.requestFocus();
-    }//GEN-LAST:event_btnInserirDadosActionPerformed
-
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-
-    }//GEN-LAST:event_btnActionPerformed
-
-    private void btnCadastrarBoletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarBoletoActionPerformed
-        if (txtIDboleto.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor inserir um número de ID do boleto!");
-            txtIDboleto.requestFocusInWindow();
-            return;
-        }
-
-        if (txtCedente.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor digitar o cedente!");
-            txtCedente.requestFocusInWindow();
-            return;
-        }
-
-        if (txtCodigoBarras.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor digitar um código de barras!");
-            txtCodigoBarras.requestFocusInWindow();
-            return;
-        }
-
-        if (jdcDataVencimento.getDate() == null) {
-            JOptionPane.showMessageDialog(rootPane, "Favor escolher a data de vencimento!");
-            jdcDataVencimento.requestFocusInWindow();
-            return;
-        }
-
-        if (txtValorPagar.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor digitar o valor a ser pago!");
-            txtValorPagar.requestFocusInWindow();
-            return;
-        }
-
-        Boletos mBoletos = new Boletos(Integer.parseInt(txtIDboleto.getText()), txtCedente.getText(), Double.parseDouble(txtCodigoBarras.getText()), jdcDataVencimento.getDate(), Float.parseFloat(txtValorPagar.getText()));
-
-        String msg;
-        msg = dadosDB.cadastrarBoletoBoticario(mBoletos);
-        JOptionPane.showMessageDialog(rootPane, msg);
-
-        preencherTabela();
-    }//GEN-LAST:event_btnCadastrarBoletoActionPerformed
-
-    private void btnLimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparCamposActionPerformed
-        txtCedente.setText("");
-        txtCodigoBarras.setText("");
-        txtValorPagar.setText("");
-
-        txtCedente.requestFocus();
-    }//GEN-LAST:event_btnLimparCamposActionPerformed
-
-    private void txtValorPagarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtValorPagarFocusLost
-        //btnCadastrarBoleto.setEnabled(true);
-    }//GEN-LAST:event_txtValorPagarFocusLost
-
-    private void mostrarRegistro() {
-        txtIDboleto.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 0)));
-        txtCedente.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 1)));
-        txtCodigoBarras.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 2)));
-        jdcDataVencimento.setDate(Utilidades.StringtoDate((String) jtDadosRegistros.getValueAt(boletoAtual, 3)));
-        txtValorPagar.setText(Utilidades.objectToString(jtDadosRegistros.getValueAt(boletoAtual, 4)));
-    }
-
-    private void preencherTabela() {
+    private void jButton_CadastrarBoletosBancoDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CadastrarBoletosBancoDadosActionPerformed
         try {
-            String titulos[] = {"ID Boleto", "Cedente", "Código de Barras", "Data de Vencimento", "Valor a Pagar"};
-            String registro[] = new String[5];
-            mTabela = new DefaultTableModel(null, titulos);
-            ResultSet rs = dadosDB.getBoletos();
+            String cedente = jTextField_Cedente.getText();
+            double codigoBarras = Utilidades.convertStringToDouble(Utilidades.extractNumber(jTextField_CodigoBarras.getText()));
+            Date dataVencimento = Utilidades.convertStringToDate(jTextField_DataVencimento.getText());
+            float valorPagamento = (float) Utilidades.parseFloatWithComma(jTextField_ValorPagamento.getText());
+            String situacao = jTextField_Situacao.getText();
 
-            while (rs.next()) {
-                registro[0] = rs.getString("idboleto");
-                registro[1] = rs.getString("cedente");
-                registro[2] = rs.getString("codigoBarras");
-                registro[3] = rs.getString("dataVencimento");
-                registro[4] = rs.getString("valorPagar");
+            DadosDB dadosDB = new DadosDB();
 
-                mTabela.addRow(registro);
+            // Obter a opção selecionada no jComboBox_Empresas
+            String empresaSelecionada = (String) jComboBox_Empresas.getSelectedItem();
+
+            // Verificar se nenhuma empresa foi selecionada
+            if (empresaSelecionada == null || empresaSelecionada.isEmpty()) {
+                // Exibir mensagem de erro ao usuário
+                JOptionPane.showMessageDialog(this, "Selecione uma empresa primeiro.");
+                return;
             }
-            jtDadosRegistros.setModel(mTabela);
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F14_Cadastro_Boletos.class.getName()).log(Level.SEVERE, null, ex);
 
-        }
-    }
-
-    private void carregarPrimeiroRegistro() {
-        ResultSet rs = dadosDB.getBoletos();
-        try {
-            if (rs.next()) {
-                IDBoleto = rs.getString("IDBoletos");
-                Cedente = rs.getString("Cedente");
-                CodigoBarras = rs.getString("CodigoBarras");
-                DataVencimento = rs.getString("DataVencimento");
-                ValorPagar = rs.getString("ValorPagar");
-
-                txtIDboleto.setText(IDBoleto);
-                txtCedente.setText(Cedente);
-                txtCodigoBarras.setText(CodigoBarras);
-                txtValorPagar.setText(ValorPagar);
+            // Chamar o método apropriado com base na empresa selecionada
+            switch (empresaSelecionada) {
+                case "Avon" -> {
+                    DadosDB.cadastrarInformacoesAvon(cedente, codigoBarras, dataVencimento, valorPagamento, situacao);
+                    DadosDB.atualizarTabelaAvon((DefaultTableModel) jTable_Tabela.getModel());
+                }
+                case "Boticário" -> {
+                    DadosDB.cadastrarInformacoesBoticario(cedente, codigoBarras, dataVencimento, valorPagamento, situacao);
+                    DadosDB.atualizarTabelaBoticario((DefaultTableModel) jTable_Tabela.getModel());
+                }
+                case "Eudora" -> {
+                    DadosDB.cadastrarInformacoesEudora(cedente, codigoBarras, dataVencimento, valorPagamento, situacao);
+                    DadosDB.atualizarTabelaEudora((DefaultTableModel) jTable_Tabela.getModel());
+                }
+                case "Golfran" -> {
+                    DadosDB.cadastrarInformacoesGolfran(cedente, codigoBarras, dataVencimento, valorPagamento, situacao);
+                    DadosDB.atualizarTabelaGolfran((DefaultTableModel) jTable_Tabela.getModel());
+                }
+                case "Natura" -> {
+                    DadosDB.cadastrarInformacoesNatura(cedente, codigoBarras, dataVencimento, valorPagamento, situacao);
+                    DadosDB.atualizarTabelaNatura((DefaultTableModel) jTable_Tabela.getModel());
+                }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F14_Cadastro_Boletos.class.getName()).log(Level.SEVERE, null, ex);
+            // Exibir mensagem de sucesso ao usuário
+            JOptionPane.showMessageDialog(this, "Boleto cadastrado com sucesso!");
+        } catch (ParseException ex) {
+            Logger.getLogger(UP_F13_Boletos.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }//GEN-LAST:event_jButton_CadastrarBoletosBancoDadosActionPerformed
+
+    private void jButton_ExcluirBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ExcluirBoletosActionPerformed
+
+    }//GEN-LAST:event_jButton_ExcluirBoletosActionPerformed
+
+    private void jButton_LimparCamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LimparCamposActionPerformed
+        jTextField_Cedente.setText("");
+        jTextField_CodigoBarras.setText("");
+        jTextField_DataVencimento.setText("");
+        jTextField_ValorPagamento.setText("");
+    }//GEN-LAST:event_jButton_LimparCamposActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
-    private javax.swing.JButton btnCadastrarBoleto;
-    private javax.swing.JButton btnInserirDados;
-    private javax.swing.JButton btnLimparCampos;
+    private javax.swing.JButton jButton_CadastrarBoletosBancoDados;
+    private javax.swing.JButton jButton_ExcluirBoletos;
+    private javax.swing.JButton jButton_LimparCampos;
+    private javax.swing.JComboBox<String> jComboBox_Empresas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel_DataHoraAtualSistema;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private com.toedter.calendar.JDateChooser jdcDataVencimento;
-    private javax.swing.JPanel jpMarcas;
-    private javax.swing.JRadioButton jrbAvon;
-    private javax.swing.JRadioButton jrbBoticario;
-    private javax.swing.JRadioButton jrbEudora;
-    private javax.swing.JRadioButton jrbGolfran;
-    private javax.swing.JRadioButton jrbNatura;
-    private javax.swing.JTable jtDadosRegistros;
+    private javax.swing.JTable jTable_Tabela;
+    private javax.swing.JTextField jTextField_Cedente;
+    private javax.swing.JTextField jTextField_CodigoBarras;
+    private javax.swing.JTextField jTextField_DataVencimento;
+    private javax.swing.JTextField jTextField_Situacao;
+    private javax.swing.JTextField jTextField_ValorPagamento;
     private javax.swing.JLabel lblHoraAtualSistema;
-    private javax.swing.JTextField txtCedente;
-    private javax.swing.JTextField txtCodigoBarras;
-    private javax.swing.JTextField txtIDboleto;
-    private javax.swing.JTextField txtValorPagar;
     // End of variables declaration//GEN-END:variables
 }

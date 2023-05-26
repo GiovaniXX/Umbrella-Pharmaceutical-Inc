@@ -1,9 +1,62 @@
 package up_forms;
 
+import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
+import up_classes.DadosDB;
+
 public class UP_F13_Boletos extends javax.swing.JInternalFrame {
+
+    private final Timer timer;
 
     public UP_F13_Boletos() {
         initComponents();
+        timer = new Timer(1000, (ActionEvent e) -> {
+            atualizarDataHoraAtual();
+        });
+        timer.start();
+        atualizarDataHoraAtual();
+
+        jTextField_DigiteCodigoBarras.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_DigiteCodigoBarras.setText("");
+            }
+        });
+
+        jRadioButton_Data.addItemListener((java.awt.event.ItemEvent evt) -> {
+            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+                jDateChooser_Data.setEnabled(true);
+                jTextField_DigiteCodigoBarras.setEnabled(false);
+            } else {
+                jDateChooser_Data.setEnabled(false);
+            }
+        });
+
+        jRadioButton_CodigoBarras.addItemListener((java.awt.event.ItemEvent evt) -> {
+            if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+                jTextField_DigiteCodigoBarras.setEnabled(true);
+                jDateChooser_Data.setEnabled(false);
+            } else {
+                jTextField_DigiteCodigoBarras.setEnabled(false);
+            }
+        });
+    }
+
+    private void atualizarDataHoraAtual() {
+        SimpleDateFormat formatoDataHora = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date dataHoraAtual = new Date();
+        String dataHoraAtualFormatada = formatoDataHora.format(dataHoraAtual);
+        jLabel_DataHoraAtualSistema.setText(dataHoraAtualFormatada);
     }
 
     @SuppressWarnings("unchecked")
@@ -12,25 +65,20 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jComboBox_PesquisarBoletoBancario = new javax.swing.JComboBox<>();
+        jButton_Pesquisar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jSeparator2 = new javax.swing.JSeparator();
+        jRadioButton_Data = new javax.swing.JRadioButton();
+        jRadioButton_CodigoBarras = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jTable_Tabela = new javax.swing.JTable();
+        jCheckBox_Vencer = new javax.swing.JCheckBox();
+        jCheckBox_Pagos = new javax.swing.JCheckBox();
         jSeparator3 = new javax.swing.JSeparator();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField2 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        jDateChooser_Data = new com.toedter.calendar.JDateChooser();
+        jTextField_DigiteCodigoBarras = new javax.swing.JTextField();
+        jLabel_DataHoraAtualSistema = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setTitle(".:Umbrella Pharmaceutical™ Controle de Boletos Bancarios");
         setMaximumSize(new java.awt.Dimension(1920, 1080));
@@ -41,15 +89,20 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Boleto.:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesquisar Boleto Bancario" }));
+        jComboBox_PesquisarBoletoBancario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesquisar Boleto Bancario", "Boticario", "Natura", "Eudora", "Golfran" }));
 
-        jButton1.setText("Pesquisar");
+        jButton_Pesquisar.setText("Pesquisar");
+        jButton_Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_PesquisarActionPerformed(evt);
+            }
+        });
 
-        jRadioButton1.setText("Por data");
+        jRadioButton_Data.setText("Data");
 
-        jRadioButton2.setText("Por código de barras");
+        jRadioButton_CodigoBarras.setText("Código de Barras");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -60,62 +113,37 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
                 "ID Boleto", "Cedente", "Código de Barras", "Data de Vencimento", "Valor a Pagar"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(0).setMaxWidth(100);
-            jTable1.getColumnModel().getColumn(3).setMinWidth(150);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(150);
-            jTable1.getColumnModel().getColumn(3).setMaxWidth(150);
-            jTable1.getColumnModel().getColumn(4).setMinWidth(100);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(100);
-            jTable1.getColumnModel().getColumn(4).setMaxWidth(100);
+        jScrollPane1.setViewportView(jTable_Tabela);
+        if (jTable_Tabela.getColumnModel().getColumnCount() > 0) {
+            jTable_Tabela.getColumnModel().getColumn(0).setMinWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(0).setMaxWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(3).setMinWidth(150);
+            jTable_Tabela.getColumnModel().getColumn(3).setPreferredWidth(150);
+            jTable_Tabela.getColumnModel().getColumn(3).setMaxWidth(150);
+            jTable_Tabela.getColumnModel().getColumn(4).setMinWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(4).setPreferredWidth(100);
+            jTable_Tabela.getColumnModel().getColumn(4).setMaxWidth(100);
         }
 
-        jCheckBox1.setText("A Vencer");
+        jCheckBox_Vencer.setText("A Vencer");
 
-        jCheckBox2.setText("Pagos");
+        jCheckBox_Pagos.setText("Pagos");
+        jCheckBox_Pagos.setEnabled(false);
 
-        jTextField2.setText("Digite o código de barras aqui");
+        jDateChooser_Data.setEnabled(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Marcas"));
+        jTextField_DigiteCodigoBarras.setText("Digite o código de barras");
+        jTextField_DigiteCodigoBarras.setEnabled(false);
 
-        jRadioButton3.setText("Boticário");
+        jLabel_DataHoraAtualSistema.setPreferredSize(new java.awt.Dimension(0, 16));
 
-        jRadioButton4.setText("Natura");
-
-        jRadioButton5.setText("Eudora");
-
-        jRadioButton6.setText("Golfran");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton5))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton6)))
-        );
+        jButton1.setText("Enviar Registros para o WhatsApp");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,38 +154,38 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addComponent(jScrollPane1)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField1)
-                                    .addComponent(jComboBox1, 0, 300, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(jCheckBox2))
-                                .addGap(89, 89, 89)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 823, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBox_PesquisarBoletoBancario, 0, 300, Short.MAX_VALUE)
+                            .addComponent(jLabel_DataHoraAtualSistema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton_Pesquisar)
+                        .addGap(0, 852, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jDateChooser_Data, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox_Vencer)
+                            .addComponent(jCheckBox_Pagos))
+                        .addGap(902, 902, 902))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRadioButton_Data)
+                            .addComponent(jRadioButton_CodigoBarras)
+                            .addComponent(jTextField_DigiteCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,63 +194,195 @@ public class UP_F13_Boletos extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel_DataHoraAtualSistema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jComboBox_PesquisarBoletoBancario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Pesquisar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jRadioButton_Data)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(jDateChooser_Data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton_CodigoBarras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jCheckBox_Vencer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox2))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jCheckBox_Pagos)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField_DigiteCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(9, 9, 9)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_PesquisarActionPerformed
+        try {
+            DadosDB dadosDB = new DadosDB();
+            String empresaSelecionada = (String) jComboBox_PesquisarBoletoBancario.getSelectedItem();
+
+            String coluna = "";
+            String valor = "";
+
+            if (empresaSelecionada.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Selecione uma empresa primeiro.");
+                return;
+            }
+
+            // Verificar opção selecionada
+            if (jRadioButton_Data.isSelected()) {
+                coluna = "dataVencimento";
+                // Defina o valor com a data selecionada, convertida para o formato correto
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                valor = dateFormat.format(jDateChooser_Data.getDate());
+            } else if (jRadioButton_CodigoBarras.isSelected()) {
+                coluna = "codigoBarras";
+                valor = jTextField_DigiteCodigoBarras.getText();
+            }
+
+            // Verificar checkboxes selecionados
+            if (jCheckBox_Vencer.isSelected()) {
+                // Adicionar condição para boletos a vencer
+                coluna = "dataVencimento";
+
+                // Obter a data atual e subtrair um dia
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_MONTH, -1);
+                Date dataVencimento = calendar.getTime();
+
+                // Definir o valor com a data de vencimento
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                valor = dateFormat.format(dataVencimento);
+            } else if (jCheckBox_Pagos.isSelected()) {
+                // Adicionar condição para boletos pagos
+                coluna = "dataVencimento";
+
+                // Obter a data atual e adicionar um dia
+                Calendar calendar = Calendar.getInstance();
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                Date dataPagamento = calendar.getTime();
+
+                // Definir o valor com a data de pagamento
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                valor = dateFormat.format(dataPagamento);
+            }
+
+            // Realizar a pesquisa no banco de dados
+            DefaultTableModel tableModel = dadosDB.pesquisarNoBanco(empresaSelecionada.toLowerCase(), coluna, valor);
+
+            // Exibir os registros na tabela
+            jTable_Tabela.setModel(tableModel);
+        } catch (HeadlessException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao pesquisar no banco de dados: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton_PesquisarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        enviarBoletoWhatsApp();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton jButton_Pesquisar;
+    private javax.swing.JCheckBox jCheckBox_Pagos;
+    private javax.swing.JCheckBox jCheckBox_Vencer;
+    private javax.swing.JComboBox<String> jComboBox_PesquisarBoletoBancario;
+    private com.toedter.calendar.JDateChooser jDateChooser_Data;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JLabel jLabel_DataHoraAtualSistema;
+    private javax.swing.JRadioButton jRadioButton_CodigoBarras;
+    private javax.swing.JRadioButton jRadioButton_Data;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTable_Tabela;
+    private javax.swing.JTextField jTextField_DigiteCodigoBarras;
     // End of variables declaration//GEN-END:variables
+
+    private void enviarMensagemWhatsApp(String numero, String mensagem) {
+        try {
+            String url = "https://api.whatsapp.com/send?phone=" + numero + "&text=" + URLEncoder.encode(mensagem, StandardCharsets.UTF_8);
+            java.awt.Desktop.getDesktop().browse(URI.create(url));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem no WhatsApp: " + ex.getMessage());
+        }
+        /*
+        * O código abaixo comentado envia mensagens automáticamente sem chamar
+        * a url, ao utilizar a biblioteca Twilio para enviar mensagens pelo
+        * WhatsApp, você estará enviando mensagens diretamente através da API
+        * do Twilio, sem a necessidade de abrir URLs externas.
+         */
+//        try {
+//            String url = "https://api.whatsapp.com/send";
+//            URL obj = new URL(url);
+//            HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+//
+//            // Configurar a conexão HTTP para o método POST
+//            con.setRequestMethod("POST");
+//            con.setDoOutput(true);
+//
+//            // Parâmetros para enviar para a API do WhatsApp
+//            String parametros = "phone=" + numero + "&text=" + URLEncoder.encode(mensagem, StandardCharsets.UTF_8);
+//
+//            // Enviar os dados da requisição
+//            try (DataOutputStream wr = new DataOutputStream(con.getOutputStream())) {
+//                wr.writeBytes(parametros);
+//                wr.flush();
+//            }
+//
+//            // Verificar a resposta da API do WhatsApp
+//            int responseCode = con.getResponseCode();
+//            if (responseCode == HttpURLConnection.HTTP_OK) {
+//                // A mensagem foi enviada com sucesso
+//                JOptionPane.showMessageDialog(this, "Mensagem enviada com sucesso pelo WhatsApp.");
+//            } else {
+//                // Ocorreu um erro ao enviar a mensagem
+//                JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem pelo WhatsApp. Código de resposta: " + responseCode);
+//            }
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem no WhatsApp: " + ex.getMessage());
+//        }
+    }
+
+    private void enviarBoletoWhatsApp() {
+        int selectedRow = jTable_Tabela.getSelectedRow();
+        if (selectedRow != -1) {
+            // Obter os dados do boleto selecionado na tabela
+            String idBoleto = jTable_Tabela.getValueAt(selectedRow, 0).toString();
+            String cedente = jTable_Tabela.getValueAt(selectedRow, 1).toString();
+            String codigoBarras = jTable_Tabela.getValueAt(selectedRow, 2).toString();
+            String dataVencimento = jTable_Tabela.getValueAt(selectedRow, 3).toString();
+            String valorPagar = jTable_Tabela.getValueAt(selectedRow, 4).toString();
+
+            // Formatar a mensagem a ser enviada
+            String mensagem = "Boleto a vencer:\n\n"
+                    + "ID do Boleto: " + idBoleto + "\n"
+                    + "Cedente: " + cedente + "\n"
+                    + "Código de Barras: " + codigoBarras + "\n"
+                    + "Data de Vencimento: " + dataVencimento + "\n"
+                    + "Valor a Pagar: " + valorPagar;
+
+            // Número de telefone para onde irá mensagem
+            String numeroCliente = "+5549999573756";
+
+            // Enviar a mensagem pelo WhatsApp
+            enviarMensagemWhatsApp(numeroCliente, mensagem);
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione um boleto na tabela.");
+        }
+    }
 }

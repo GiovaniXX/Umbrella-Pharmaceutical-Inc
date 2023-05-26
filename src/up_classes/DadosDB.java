@@ -1,20 +1,23 @@
 package up_classes;
 
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 public class DadosDB {
 
-    public Connection cnn;
+    public static Connection cnn;
 
     public DadosDB() {
         try {
@@ -98,7 +101,7 @@ public class DadosDB {
             return false;
         }
     }
-    //---------------------------------------------------------------------------------------------------------------------//
+
     public String adicionarUsuario(Usuario mUsuario) {
         String query = "INSERT INTO tbusuarios (idUsuario, nome, snome, senha, chave, idPerfil) VALUES (?, ?, ?, ?, ?, ?)";
         try (var ps = cnn.prepareStatement(query)) {
@@ -127,7 +130,7 @@ public class DadosDB {
             ps.setString(2, mProduto.getDescricao());
             ps.setFloat(3, mProduto.getPreco());
             ps.setDouble(4, mProduto.getImposto());
-            ps.setString(5, mProduto.getAnotacao());           
+            ps.setString(5, mProduto.getAnotacao());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected == 1) {
                 return "Produto cadastrado com sucesso!";
@@ -159,30 +162,7 @@ public class DadosDB {
             return "Cliente não pode ser cadastrado devido a um erro de comunicação com o SGBD!";
         }
     }
-    //------------------------------------------------------------------------------------------------------------------//
-    //------------------------------------------------------------------------------------------------------------------//
-    public String cadastrarBoletoBoticario(Boletos mBoletos) {
-        String query = "INSERT INTO tbboticario (idboleto, cedente, codigoBarras, dataVencimento, valorPagamento) VALUES (?, ?, ?, ?, ?)";
-        try (var ps = cnn.prepareStatement(query)) {
-            ps.setInt(1, (mBoletos.getIDBoleto()));
-            ps.setString(2, mBoletos.getCedente());
-            ps.setDouble(3, mBoletos.getCodigoBarras());
-            ps.setDate(4, (java.sql.Date) mBoletos.getDataVencimento());
-            ps.setFloat(5, mBoletos.getValorpagar());
-            ps.executeUpdate();
-            int rowsAffected = ps.executeUpdate();
-            if (rowsAffected == 1) {
-                return "Boleto cadastrado com sucesso!";
-            } else {
-                return "Boleto não pode ser cadastrado!";
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Não foi possível cadastrar o boleto", ex);
-            return "Boleto não pode ser cadastrado devido a um erro de comunicação com o SGBD!";
-        }
-    }
 
-    //-----------------------------------------------------------------------------------------------------------------//
     public String editarUsuario(Usuario mUsuario) {
         String sql = "UPDATE tbusuario SET nome = ?, snome = ?, senha = ?, chave = ?, idPerfil = ? WHERE idUsuario = ?";
         try (var ps = cnn.prepareStatement(sql)) {
@@ -297,26 +277,6 @@ public class DadosDB {
         }
     }
 
-    //---------------------------------------------------------------------------------------------------//
-    public String deletarBoleto(String IDBoleto) {
-        String sql = "DELETE FROM tbboticario WHERE idboleto = ?";
-        try (var ps = cnn.prepareStatement(sql)) {
-            ps.setString(1, IDBoleto);
-            int result = ps.executeUpdate();
-
-            if (result > 0) {
-                return "Boleto deletado com sucesso!";
-            } else {
-                return "Não foi possível deletar este boleto!";
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-            return "Não foi possível deletar este boleto!";
-        }
-    }
-
-    //---------------------------------------------------------------------------------------------------//
     public ResultSet getUsuarios() {
         try {
             String sql = "SELECT * FROM tbusuarios";
@@ -369,22 +329,6 @@ public class DadosDB {
             return null;
         }
     }
-
-    //-----------------------------------------------------------------------------------------------------//
-    public ResultSet getBoletos() {
-        try {
-            String sql = "SELECT * FROM tbboticario";
-
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-
-        } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-
-            return null;
-        }
-    }
-    //-----------------------------------------------------------------------------------------------------//
 
     public ResultSet getConsulta(String sql) {
         try {
@@ -450,25 +394,6 @@ public class DadosDB {
         }
     }
 
-    //-----------------------------------------------------------------------------------------------------//
-    public int numeroBoletos() {
-        try {
-            String sql = "SELECT COUNT(*) AS num FROM tbboticario";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
-            if (rs.next()) {
-                return rs.getInt("num");
-            } else {
-                return 0;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        }
-    }
-    //-----------------------------------------------------------------------------------------------------//
-
     public Produto getProduto(String idProduto) {
         try {
             Produto mProduto = null;
@@ -507,25 +432,6 @@ public class DadosDB {
             return 1;
         }
     }
-
-    //---------------------------------------------------------------------------------------------------//
-    public int getNumeroBoleto() {
-        try {
-            String sql = "SELECT MAX(idboleto) AS FROM tbboticario";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-
-            if (rs.next()) {
-                return rs.getInt("num") + 1;
-            } else {
-                return 1;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-            return 1;
-        }
-    }
-    //---------------------------------------------------------------------------------------------------//
 
     public void adicionarVendas(int idVenda, String idCliente, Date fdata) {
         try {
@@ -572,5 +478,222 @@ public class DadosDB {
         } catch (SQLException ex) {
             Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------//
+    public static void cadastrarInformacoesAvon(String cedente, double codigoBarras, Date dataVencimento, float valorPagamento, String situacao) {
+        String query = "INSERT INTO avon (cedente, codigoBarras, dataVencimento, valorPagamento, situacao) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.setDate(3, new java.sql.Date(dataVencimento.getTime()));
+            statement.setFloat(4, valorPagamento);
+            statement.setString(5, situacao);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void cadastrarInformacoesBoticario(String cedente, double codigoBarras, Date dataVencimento, float valorPagamento, String situacao) {
+        String query = "INSERT INTO boticario (cedente, codigoBarras, dataVencimento, valorPagamento, situacao) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.setDate(3, new java.sql.Date(dataVencimento.getTime()));
+            statement.setFloat(4, valorPagamento);
+            statement.setString(5, situacao);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void cadastrarInformacoesEudora(String cedente, double codigoBarras, Date dataVencimento, float valorPagamento, String situacao) {
+        String query = "INSERT INTO eudora (cedente, codigoBarras, dataVencimento, valorPagamento, situacao) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.setDate(3, new java.sql.Date(dataVencimento.getTime()));
+            statement.setFloat(4, valorPagamento);
+            statement.setString(5, situacao);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void cadastrarInformacoesGolfran(String cedente, double codigoBarras, Date dataVencimento, float valorPagamento, String situacao) {
+        String query = "INSERT INTO golfran (cedente, codigoBarras, dataVencimento, valorPagamento, situacao) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.setDate(3, new java.sql.Date(dataVencimento.getTime()));
+            statement.setFloat(4, valorPagamento);
+            statement.setString(5, situacao);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void cadastrarInformacoesNatura(String cedente, double codigoBarras, Date dataVencimento, float valorPagamento, String situacao) {
+        String query = "INSERT INTO natura (cedente, codigoBarras, dataVencimento, valorPagamento, situacao) VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.setDate(3, new java.sql.Date(dataVencimento.getTime()));
+            statement.setFloat(4, valorPagamento);
+            statement.setString(5, situacao);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void excluirBoleto(String cedente, double codigoBarras) {
+        String query = "DELETE FROM boletos WHERE cedente = ? AND codigoBarras = ?";
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            statement.setString(1, cedente);
+            statement.setDouble(2, codigoBarras);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void atualizarTabelaAvon(DefaultTableModel tableModel) {
+        // Consulte o banco de dados para obter os registros da tabela avon
+        String query = "SELECT * FROM avon";
+        atualizarTabela(query, tableModel);
+    }
+
+    public static void atualizarTabelaBoticario(DefaultTableModel tableModel) {
+        // Consulte o banco de dados para obter os registros da tabela boticario
+        String query = "SELECT * FROM boticario";
+        atualizarTabela(query, tableModel);
+    }
+
+    public static void atualizarTabelaNatura(DefaultTableModel tableModel) {
+        // Consulte o banco de dados para obter os registros da tabela natura
+        String query = "SELECT * FROM natura";
+        atualizarTabela(query, tableModel);
+    }
+
+    public static void atualizarTabelaEudora(DefaultTableModel tableModel) {
+        // Consulte o banco de dados para obter os registros da tabela eudora
+        String query = "SELECT * FROM eudora";
+        atualizarTabela(query, tableModel);
+    }
+
+    public static void atualizarTabelaGolfran(DefaultTableModel tableModel) {
+        // Consulte o banco de dados para obter os registros da tabela golfran
+        String query = "SELECT * FROM golfran";
+        atualizarTabela(query, tableModel);
+    }
+
+    private static void atualizarTabela(String query, DefaultTableModel tableModel) {
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            tableModel.setRowCount(0);
+
+            while (resultSet.next()) {
+                int idboleto = resultSet.getInt("idboleto");
+                String cedente = resultSet.getString("cedente");
+                double codigoBarras = resultSet.getDouble("codigoBarras");
+                Date dataVencimento = resultSet.getDate("dataVencimento");
+                float valorPagamento = resultSet.getFloat("valorPagamento");
+                String situacao = resultSet.getString("situacao");
+
+                Object[] rowData = {idboleto, cedente, codigoBarras, dataVencimento, valorPagamento, situacao};
+                tableModel.addRow(rowData);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public DefaultTableModel pesquisarNoBanco(String tabela, String coluna, String valor) {
+        DefaultTableModel tableModel = new DefaultTableModel();
+
+        String query = "SELECT * FROM " + tabela;
+        boolean hasCondition = false;
+
+        if (!coluna.isEmpty() && !valor.isEmpty()) {
+            if (coluna.equals("dataVencimento") && valor.equals("A vencer")) {
+                // Adicionar condição para boletos a vencer
+                query += " WHERE dataVencimento <= ?";
+                hasCondition = true;
+            } else if (coluna.equals("status") && valor.equals("Pagos")) {
+                // Adicionar condição para boletos pagos (data de pagamento um dia após a data de vencimento)
+                query += " WHERE dataVencimento <= DATE_ADD(CURDATE(), INTERVAL 1 DAY)";
+                hasCondition = true;
+            } else {
+                query += " WHERE " + coluna + " = ?";
+                hasCondition = true;
+            }
+        }
+
+        try {
+            PreparedStatement statement = cnn.prepareStatement(query);
+
+            if (hasCondition) {
+                if (coluna.equals("dataVencimento") && valor.equals("A vencer")) {
+                    // Definir o valor com a data de vencimento atual
+                    Date dataVencimento = new Date();
+                    statement.setDate(1, new java.sql.Date(dataVencimento.getTime()));
+                } else {
+                    statement.setString(1, valor);
+                }
+            }
+
+            ResultSet resultSet = statement.executeQuery();
+
+            // Obtenha os metadados do ResultSet para criar as colunas do modelo da tabela
+            ResultSetMetaData metaData = (ResultSetMetaData) resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            for (int column = 1; column <= columnCount; column++) {
+                tableModel.addColumn(metaData.getColumnLabel(column));
+            }
+
+            // Preencha o modelo da tabela com os dados do ResultSet
+            while (resultSet.next()) {
+                Object[] rowData = new Object[columnCount];
+                for (int column = 1; column <= columnCount; column++) {
+                    rowData[column - 1] = resultSet.getObject(column);
+                }
+                tableModel.addRow(rowData);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return tableModel;
     }
 }

@@ -376,17 +376,17 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblSairMouseClicked
 
     private void SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SistemaActionPerformed
-        UP_F06_Sobre sobre = new UP_F06_Sobre();
-        sobre.setDadosDB(dadosDB);
-        dpnDesk.add(sobre);
-        sobre.show();
+        UP_F06_Sobre ufs = new UP_F06_Sobre();
+        ufs.setDadosDB(dadosDB);
+        dpnDesk.add(ufs);
+        ufs.show();
     }//GEN-LAST:event_SistemaActionPerformed
 
     private void DevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevActionPerformed
-        UP_F07_Info info = new UP_F07_Info();
-        info.setDadosDB(dadosDB);
-        dpnDesk.add(info);
-        info.show();
+        UP_F07_Info ufi = new UP_F07_Info();
+        ufi.setDadosDB(dadosDB);
+        dpnDesk.add(ufi);
+        ufi.show();
     }//GEN-LAST:event_DevActionPerformed
 
     private void CadastroBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastroBoletosActionPerformed
