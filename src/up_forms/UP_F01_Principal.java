@@ -397,7 +397,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_CadastroBoletosActionPerformed
 
     private void PesquisarBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarBoletosActionPerformed
-        // TODO add your handling code here:
+        UP_F13_Pesquisar_Boletos ufpb = new UP_F13_Pesquisar_Boletos();
+        ufpb.setDadosDB(dadosDB);
+        dpnDesk.add(ufpb);
+        ufpb.show();
     }//GEN-LAST:event_PesquisarBoletosActionPerformed
 
     private void openFacebookProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFacebookProfileActionPerformed

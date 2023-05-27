@@ -333,18 +333,6 @@ public class DadosDB {
 
             return null;
         }
-
-//        try {
-//            String sql = "SELECT * FROM tbvendas";
-//
-//            Statement st = cnn.createStatement();
-//            return st.executeQuery(sql);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-//
-//            return null;
-//        }
     }
 
     public ResultSet getConsulta(String sql) {
@@ -356,16 +344,6 @@ public class DadosDB {
 
             return null;
         }
-
-//        try {
-//            Statement st = cnn.createStatement();
-//            return st.executeQuery(sql);
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(DadosDB.class.getName()).log(Level.SEVERE, null, ex);
-//
-//            return null;
-//        }
     }
 
     public int numeroUsuarios() {

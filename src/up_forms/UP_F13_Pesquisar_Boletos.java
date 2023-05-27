@@ -14,11 +14,16 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import up_classes.DadosDB;
 
-public class UP_F13_Boletos extends javax.swing.JInternalFrame {
+public class UP_F13_Pesquisar_Boletos extends javax.swing.JInternalFrame {
 
     private final Timer timer;
+    public DadosDB dadosDB;
 
-    public UP_F13_Boletos() {
+    public void setDadosDB(DadosDB dadosDB) {
+        this.dadosDB = dadosDB;
+    }
+
+    public UP_F13_Pesquisar_Boletos() {
         initComponents();
         timer = new Timer(1000, (ActionEvent e) -> {
             atualizarDataHoraAtual();

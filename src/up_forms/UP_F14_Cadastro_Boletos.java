@@ -309,7 +309,7 @@ public class UP_F14_Cadastro_Boletos extends javax.swing.JInternalFrame {
             // Exibir mensagem de sucesso ao usuário
             JOptionPane.showMessageDialog(this, "Boleto cadastrado com sucesso!");
         } catch (ParseException ex) {
-            Logger.getLogger(UP_F13_Boletos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UP_F13_Pesquisar_Boletos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton_CadastrarBoletosBancoDadosActionPerformed
 
