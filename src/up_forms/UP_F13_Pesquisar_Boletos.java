@@ -85,6 +85,7 @@ public class UP_F13_Pesquisar_Boletos extends javax.swing.JInternalFrame {
         jLabel_DataHoraAtualSistema = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
         setTitle(".:Umbrella Pharmaceutical™ Controle de Boletos Bancarios");
         setMaximumSize(new java.awt.Dimension(1920, 1080));
         setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -118,6 +119,7 @@ public class UP_F13_Pesquisar_Boletos extends javax.swing.JInternalFrame {
                 "ID Boleto", "Cedente", "Código de Barras", "Data de Vencimento", "Valor a Pagar"
             }
         ));
+        jTable_Tabela.setMinimumSize(new java.awt.Dimension(500, 80));
         jScrollPane1.setViewportView(jTable_Tabela);
         if (jTable_Tabela.getColumnModel().getColumnCount() > 0) {
             jTable_Tabela.getColumnModel().getColumn(0).setMinWidth(100);
