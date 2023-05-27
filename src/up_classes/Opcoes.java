@@ -2,8 +2,8 @@ package up_classes;
 
 public class Opcoes {
 
-    public String valor;
-    public String descricao;
+    private String valor;
+    private String descricao;
 
     public Opcoes(String valor, String descricao) {
         this.valor = valor;

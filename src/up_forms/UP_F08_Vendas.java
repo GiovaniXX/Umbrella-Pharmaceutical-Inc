@@ -17,8 +17,9 @@ import up_classes.Produto;
 public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     private final DefaultTableModel mTabela;
-    
+
     public DadosDB dadosDB = new DadosDB();
+
     //public DadosDB dadosDB;
     public void setDadosDB(DadosDB dadosDB) {
         this.dadosDB = dadosDB;
@@ -26,7 +27,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     public UP_F08_Vendas() {
         initComponents();
-        DadosDB db = new DadosDB();
+        DadosDB dadosDB = new DadosDB();
         mTabela = new DefaultTableModel();
     }
 
@@ -362,45 +363,41 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (txtQuantidade.getText().equals("")) {
+        String quantidadeText = txtQuantidade.getText();
+        if (quantidadeText.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Entre com uma quantidade!");
             txtQuantidade.requestFocusInWindow();
             return;
         }
 
-        if (!Utilidades.isNumeric(txtQuantidade.getText())) {
+        if (!Utilidades.isNumeric(quantidadeText)) {
             JOptionPane.showMessageDialog(rootPane, "Entre somente com números!");
             txtQuantidade.setText("");
             txtQuantidade.requestFocusInWindow();
             return;
         }
 
-        int quantidade = Integer.parseInt(txtQuantidade.getText());
+        int quantidade = Integer.parseInt(quantidadeText);
         if (quantidade <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Entre somente com números acima de zero!");
             txtQuantidade.setText("");
             txtQuantidade.requestFocusInWindow();
             return;
         }
-        //--------------------------------------------------------------------------------------------------//
-        Object itemSelecionado = cmbProduto.getSelectedItem();
-        if (!(itemSelecionado instanceof Opcoes)) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione um produto válido!");
-            cmbProduto.requestFocusInWindow();
-            return;
-        }
-        //--------------------------------------------------------------------------------------------------//
+
+        Opcoes opcoesSelecionadas = (Opcoes) cmbProduto.getSelectedItem();
+        String valorSelecionado = opcoesSelecionadas.getValor();
+
         //Produto mProduto = dadosDB.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
-        Opcoes opcoesSelecionadas = (Opcoes) itemSelecionado;
-        Produto mProduto = dadosDB.getProduto(opcoesSelecionadas.getValor());
-        String[] registro = {
-            //mProduto.getIdProduto(),
-            mProduto.getDescricao(),
-            String.valueOf(mProduto.getPreco()),
-            String.valueOf(quantidade),
-            String.valueOf(quantidade * mProduto.getPreco()),
-        };
-        //--------------------------------------------------------------------------------------------------//
+        Produto mProduto = dadosDB.getProduto(valorSelecionado);
+        String idProduto = String.valueOf(mProduto.getIdProduto());
+        String descricao = mProduto.getDescricao();
+        String preco = String.valueOf(mProduto.getPreco());
+        String quantidadeString = String.valueOf(quantidade);
+        String valorTotal = String.valueOf(quantidade * mProduto.getPreco());
+
+        String[] registro = {idProduto, descricao, preco, quantidadeString, valorTotal};
+
         mTabela.addRow(registro);
         cmbProduto.setSelectedIndex(0);
         txtQuantidade.setText("");
@@ -408,7 +405,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         tblDetalhes.setModel(mTabela);
         preencherTabela();
-        totalGeral();       
+        totalGeral();
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -546,15 +543,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     private void preencherTabela() {
         String titulos[] = {"ID Produto", "Descricao", "Preço", "Quantidade", "Valor"};
-        //String registro[] = new String[5];
-        //mTabela.addRow(registro);//
-        //mTabela = new DefaultTableModel(null, titulos);
+        String registro[] = new String[5];
+        mTabela.addRow(registro);
         mTabela.setColumnIdentifiers(titulos);
-        //--------------------------------------------------------------------//
-        // Você pode adicionar dados à tabela chamando addRow() no modelo
-        //Object[] rowData = {"1", "Produto 1", "10.00", "2", "20.00"};
-        //mTabela.addRow(rowData);
-        //--------------------------------------------------------------------//
 
         tblDetalhes.setModel(mTabela);
 
