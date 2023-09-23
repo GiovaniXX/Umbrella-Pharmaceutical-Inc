@@ -375,16 +375,9 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 "ID", "Identificação", "Nome", "Sobrenome", "Endereço", "Telefone", "Cidade", "Data Nascimento", "Data Cadastro"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -678,7 +671,13 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         String cliente = JOptionPane.showInputDialog("Insira o código do cliente");
-        if (cliente.equals("")) {
+
+        if (cliente == null) {
+            return;
+        }
+
+        if (cliente.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "O código do cliente é obrigatório para a pesquisa");
             return;
         }
 
@@ -686,8 +685,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(rootPane, "Este cliente não existe!");
             return;
         }
-        int num = tblTabela.getRowCount();
 
+        int num = tblTabela.getRowCount();
         for (int i = 0; i < num; i++) {
             if (Utilidades.objectToString(tblTabela.getValueAt(i, 0)).equals(cliente)) {
                 clienteAtual = i;
@@ -768,11 +767,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
     private String tipo(int tipo) {
         return switch (tipo) {
-            case 1 ->
+            case 0 ->
                 "CNH";
-            case 2 ->
+            case 1 ->
                 "RG";
-            case 3 ->
+            case 2 ->
                 "CPF";
             default ->
                 "Não definido!";
@@ -781,17 +780,21 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
     private int tipo(String tipo) {
         return switch (tipo) {
-            case "CNH" ->
+            case "Identificacao" ->
+                0;
+            case "CPF" ->
                 1;
             case "RG" ->
                 2;
             default ->
-                3;
+                2;
         };
     }
 
     private String cidade(int cidade) {
         return switch (cidade) {
+            case 0 ->
+                "Selecione a cidade";
             case 1 ->
                 "Lages";
             case 2 ->

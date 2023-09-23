@@ -6257,13 +6257,13 @@
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="9" rowCount="0">
-                <Column editable="false" title="ID" type="java.lang.Integer"/>
-                <Column editable="false" title="Identifica&#xe7;&#xe3;o" type="java.lang.String"/>
-                <Column editable="false" title="Nome" type="java.lang.String"/>
-                <Column editable="false" title="Sobrenome" type="java.lang.String"/>
-                <Column editable="false" title="Endere&#xe7;o" type="java.lang.String"/>
-                <Column editable="false" title="Telefone" type="java.lang.String"/>
-                <Column editable="false" title="Cidade" type="java.lang.String"/>
+                <Column editable="false" title="ID" type="java.lang.Object"/>
+                <Column editable="false" title="Identifica&#xe7;&#xe3;o" type="java.lang.Object"/>
+                <Column editable="false" title="Nome" type="java.lang.Object"/>
+                <Column editable="false" title="Sobrenome" type="java.lang.Object"/>
+                <Column editable="false" title="Endere&#xe7;o" type="java.lang.Object"/>
+                <Column editable="false" title="Telefone" type="java.lang.Object"/>
+                <Column editable="false" title="Cidade" type="java.lang.Object"/>
                 <Column editable="false" title="Data Nascimento" type="java.lang.Object"/>
                 <Column editable="false" title="Data Cadastro" type="java.lang.Object"/>
               </Table>
