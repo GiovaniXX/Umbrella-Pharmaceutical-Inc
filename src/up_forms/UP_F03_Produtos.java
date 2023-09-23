@@ -598,7 +598,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    public void mostrarRegistro() {
+    private void mostrarRegistro() {
         txtIDProduto.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 0)));
         txtDescricao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 1)));
         txtPreco.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 2)));

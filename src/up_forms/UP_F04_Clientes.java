@@ -700,7 +700,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    public void mostrarRegistro() {
+    private void mostrarRegistro() {
         txtIDCliente.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 0)));
         cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
         txtNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 2)));
@@ -712,7 +712,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataCadastro.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 8)));
     }
 
-    public void preencherTabela() {
+    private void preencherTabela() {
         try {
             String titulos[] = {"ID Cliente", "Tipo", "Nome", "S-Nome", "Endereco", "Telefone", "Cidade", "D-Nascimento", "D-Cadastro"};
             String registro[] = new String[9];
@@ -847,18 +847,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
-
-    public void setClienteAtual(int indiceDesejado) {
-        clienteAtual = indiceDesejado;
-    }
-
-    public Object getTxtIDCliente() {
-        return txtIDCliente;
-    }
-
-    public Object getCmbIdentificacao() {
-        return cmbIdentificacao;
-    }
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
