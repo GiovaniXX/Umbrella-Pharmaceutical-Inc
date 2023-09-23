@@ -53,23 +53,17 @@ public class Dados {
      */
     public Boolean validarUsuario(String usuario, String senha, String chave) {
         try {
-            String sql = "select (1) from usuarios where idUsuario='"
-                    + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
+            String sql = "select (1) from usuarios where idUsuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
-            return rs.next();
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-            return false;
-        } finally {
-            // Fecha a conexão no bloco finally para garantir que seja fechada mesmo em caso de exceção
-            if (cnn != null) {
-                try {
-                    cnn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao fechar a conexão", ex);
-                }
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
             }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
+            return false;
         }
     }
 

@@ -55,6 +55,10 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         cmbVendaInicial = new javax.swing.JComboBox<>();
         cmbVendaFinal = new javax.swing.JComboBox<>();
         cmbCliente = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -87,45 +91,46 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         jLabel2.setMaximumSize(new java.awt.Dimension(44, 20));
         jLabel2.setMinimumSize(new java.awt.Dimension(44, 20));
         jLabel2.setPreferredSize(new java.awt.Dimension(44, 20));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 60, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 60, -1));
 
         jLabel3.setForeground(new java.awt.Color(3, 155, 216));
         jLabel3.setText("Data Inicial.:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, -1, -1));
 
         jLabel4.setForeground(new java.awt.Color(3, 155, 216));
         jLabel4.setText("data Final.:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setText("Venda Inicial.:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(3, 155, 216));
         jLabel6.setText("Venda Final.:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(3, 155, 216));
         jLabel7.setText("Cliente.:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 280, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, -1, -1));
 
         txtArquivo.setBackground(new java.awt.Color(122, 126, 140));
         txtArquivo.setForeground(new java.awt.Color(255, 255, 255));
+        txtArquivo.setText("arquivo");
         txtArquivo.setBorder(null);
         txtArquivo.setMinimumSize(new java.awt.Dimension(71, 22));
         txtArquivo.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 590, 20));
+        getContentPane().add(txtArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 590, 20));
 
-        btnSelecao.setBackground(new java.awt.Color(0, 0, 0));
+        btnSelecao.setBackground(new java.awt.Color(112, 126, 140));
         btnSelecao.setForeground(new java.awt.Color(3, 155, 216));
-        btnSelecao.setText("...");
+        btnSelecao.setText("Seleção");
         btnSelecao.setBorder(null);
         btnSelecao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSelecaoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSelecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 180, 60, 20));
+        getContentPane().add(btnSelecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 60, 20));
 
         btnGerarRelatorio.setBackground(new java.awt.Color(0, 0, 0));
         btnGerarRelatorio.setForeground(new java.awt.Color(3, 155, 216));
@@ -136,7 +141,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 btnGerarRelatorioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGerarRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 310, 160, 25));
+        getContentPane().add(btnGerarRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 160, 25));
 
         RadioData.setBackground(new java.awt.Color(122, 126, 140));
         RadioData.setForeground(new java.awt.Color(3, 155, 216));
@@ -152,7 +157,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioDataActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioData, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, -1, -1));
+        getContentPane().add(RadioData, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 160, -1));
 
         RadioNumeroVenda.setBackground(new java.awt.Color(122, 126, 140));
         RadioNumeroVenda.setForeground(new java.awt.Color(3, 155, 216));
@@ -167,7 +172,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioNumeroVendaActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioNumeroVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+        getContentPane().add(RadioNumeroVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
 
         RadioCliente.setBackground(new java.awt.Color(122, 126, 140));
         RadioCliente.setForeground(new java.awt.Color(3, 155, 216));
@@ -182,7 +187,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 220, -1, -1));
+        getContentPane().add(RadioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
 
         RadioTodasVendas.setBackground(new java.awt.Color(122, 126, 140));
         RadioTodasVendas.setForeground(new java.awt.Color(3, 155, 216));
@@ -197,7 +202,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioTodasVendasActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioTodasVendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, -1, -1));
+        getContentPane().add(RadioTodasVendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 160, -1));
 
         RadioSelecaoVendas.setBackground(new java.awt.Color(122, 126, 140));
         RadioSelecaoVendas.setForeground(new java.awt.Color(3, 155, 216));
@@ -211,32 +216,36 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioSelecaoVendasActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioSelecaoVendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 220, 160, -1));
+        getContentPane().add(RadioSelecaoVendas, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 160, -1));
 
         dchDataInicial.setBackground(new java.awt.Color(122, 126, 140));
         dchDataInicial.setForeground(new java.awt.Color(255, 255, 255));
         dchDataInicial.setEnabled(false);
-        getContentPane().add(dchDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 150, -1));
+        getContentPane().add(dchDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 150, -1));
 
         dchDataFinal.setBackground(new java.awt.Color(122, 126, 140));
         dchDataFinal.setForeground(new java.awt.Color(255, 255, 255));
         dchDataFinal.setEnabled(false);
-        getContentPane().add(dchDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, 150, -1));
+        getContentPane().add(dchDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 150, -1));
 
         cmbVendaInicial.setBackground(new java.awt.Color(122, 126, 140));
         cmbVendaInicial.setForeground(new java.awt.Color(255, 255, 255));
         cmbVendaInicial.setEnabled(false);
-        getContentPane().add(cmbVendaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 280, 180, -1));
+        getContentPane().add(cmbVendaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 180, -1));
 
         cmbVendaFinal.setBackground(new java.awt.Color(122, 126, 140));
         cmbVendaFinal.setForeground(new java.awt.Color(255, 255, 255));
         cmbVendaFinal.setEnabled(false);
-        getContentPane().add(cmbVendaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 180, -1));
+        getContentPane().add(cmbVendaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 180, -1));
 
         cmbCliente.setBackground(new java.awt.Color(122, 126, 140));
         cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
         cmbCliente.setEnabled(false);
-        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, 160, -1));
+        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 160, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 590, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 590, -1));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 590, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 600, -1));
 
         jLabel1.setBackground(new java.awt.Color(50, 0, 1));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
@@ -265,13 +274,6 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_RadioDataActionPerformed
-
-    private void RadioNumeroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioNumeroVendaActionPerformed
-        habilitarCampos();
-
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-    }//GEN-LAST:event_RadioNumeroVendaActionPerformed
 
     private void RadioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioClienteActionPerformed
         habilitarCampos();
@@ -401,6 +403,13 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnSelecaoActionPerformed
 
+    private void RadioNumeroVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioNumeroVendaActionPerformed
+        habilitarCampos();
+
+        int id = evt.getID();
+        System.out.println("ID do evento: " + id);
+    }//GEN-LAST:event_RadioNumeroVendaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RadioCliente;
@@ -424,6 +433,10 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField txtArquivo;
     // End of variables declaration//GEN-END:variables
 
