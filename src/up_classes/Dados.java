@@ -172,7 +172,7 @@ public class Dados {
 
     public String adicionarUsuario(Usuario mUsuario) {
         try {
-            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, idPerfil) VALUES ('"
+            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, Perfil) VALUES ('"
                     + mUsuario.getNome() + "', '"
                     + mUsuario.getSobrenome() + "', '"
                     + mUsuario.getSenha() + "', '"
