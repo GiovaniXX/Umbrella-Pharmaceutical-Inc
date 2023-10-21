@@ -53,18 +53,33 @@ public class Dados {
      */
     public Boolean validarUsuario(String usuario, String senha, String chave) {
         try {
-            String sql = "select (1) from usuarios where idusuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
-            if (rs.next()) {
-                return true;
-            } else {
-                return false;
-            }
+            String sql = "SELECT 1 FROM usuarios WHERE idusuario = ? AND senha = ? AND chave = ?";
+            PreparedStatement preparedStatement = cnn.prepareStatement(sql);
+            preparedStatement.setString(1, usuario);
+            preparedStatement.setString(2, senha);
+            preparedStatement.setString(3, chave);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            return rs.next();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
             return false;
         }
+
+//        try {
+//            String sql = "select (1) from usuarios where idusuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
+//            Statement st = cnn.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            if (rs.next()) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        } catch (SQLException e) {
+//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
+//            return false;
+//        }
     }
 
     public int getPerfil(String usuario) {
@@ -73,10 +88,10 @@ public class Dados {
         ResultSet rs = null;
 
         try {
-            // Estabeleçe a conexão com o banco de dados aqui (substituir as informações de conexão apropriadas)
+            // Estabeleça a conexão com o banco de dados aqui (substitua as informações de conexão apropriadas)
             cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx387@$$gVc");
 
-            String sql = "select perfil from usuarios where idusuario=?";
+            String sql = "SELECT perfil FROM usuarios WHERE idusuario=?";
             st = cnn.prepareStatement(sql);
             st.setString(1, usuario);
 
@@ -88,84 +103,102 @@ public class Dados {
                 return -1;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao obter perfil do usuário", e);
             return -1;
         } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (st != null) {
-                    st.close();
-                }
-                if (cnn != null) {
-                    cnn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            closeResources(cnn, st, rs);
         }
-    }
-//    public int getPerfil(String usuario) {
+
+//        Connection cnn = null;
+//        PreparedStatement st = null;
+//        ResultSet rs = null;
+//
 //        try {
-//            String sql = "select perfil from usuarios where idUsuario='"
-//                    + usuario + "'";
-//            Statement st = cnn.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
+//            // Estabeleçe a conexão com o banco de dados aqui (substituir as informações de conexão apropriadas)
+//            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx387@$$gVc");
+//
+//            String sql = "select perfil from usuarios where idusuario=?";
+//            st = cnn.prepareStatement(sql);
+//            st.setString(1, usuario);
+//
+//            rs = st.executeQuery();
+//
 //            if (rs.next()) {
 //                return rs.getInt("perfil");
 //            } else {
 //                return -1;
-//
 //            }
 //        } catch (SQLException e) {
-//            Logger.getLogger(Dados.class
-//                    .getName()).log(Level.SEVERE, null, e);
+//            e.printStackTrace();
 //            return -1;
+//        } finally {
+//            try {
+//                if (rs != null) {
+//                    rs.close();
+//                }
+//                if (st != null) {
+//                    st.close();
+//                }
+//                if (cnn != null) {
+//                    cnn.close();
+//                }
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
 //        }
-//    }
+    }
+
+    private void closeResources(Connection cnn, PreparedStatement st, ResultSet rs) {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            if (st != null) {
+                st.close();
+            }
+            if (cnn != null) {
+                cnn.close();
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(getClass().getName()).log(Level.WARNING, "Erro ao fechar recursos", e);
+        }
+    }
 
     public boolean existeUsuario(String usuario) {
         try {
-            String sql = "select (1) from usuarios where idusuario ='"
-                    + usuario + "'";
+            String sql = "select (1) from usuarios where idusuario ='" + usuario + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             return rs.next();
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
     }
 
     public boolean existeCliente(String cliente) {
         try {
-            String sql = "select (1) from clientes where idcliente ='"
-                    + cliente + "'";
+            String sql = "select (1) from clientes where idcliente ='" + cliente + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             return rs.next();
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
     }
 
     public boolean existeProduto(String produto) {
         try {
-            String sql = "select (1) from produtos where idproduto ='"
-                    + produto + "'";
+            String sql = "select (1) from produtos where idproduto ='" + produto + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             return rs.next();
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
         }
     }
@@ -183,8 +216,7 @@ public class Dados {
             return "Usuario cadastrado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível cadastrar este usuário";
         }
     }
@@ -202,8 +234,7 @@ public class Dados {
             return "Produto cadastrado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível cadastrar este usuário";
         }
     }
@@ -225,8 +256,7 @@ public class Dados {
             return "Cliente cadastrado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível cadastrar este cliente";
         }
     }
@@ -245,8 +275,7 @@ public class Dados {
             return "Usuario editado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este usuário";
         }
     }
@@ -265,8 +294,7 @@ public class Dados {
             return "Produto editado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este produto";
         }
     }
@@ -289,8 +317,7 @@ public class Dados {
             return "Cliente editado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este cliente";
         }
     }
@@ -303,8 +330,7 @@ public class Dados {
             return "Usuário deletado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este usuário";
         }
     }
@@ -317,8 +343,7 @@ public class Dados {
             return "Cliente deletado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este cliente";
         }
     }
@@ -331,8 +356,7 @@ public class Dados {
             return "Produto deletado com sucesso";
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este produto";
         }
     }
@@ -344,8 +368,7 @@ public class Dados {
             return st.executeQuery(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -357,8 +380,7 @@ public class Dados {
             return st.executeQuery(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -370,8 +392,7 @@ public class Dados {
             return st.executeQuery(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -382,8 +403,7 @@ public class Dados {
             return st.executeQuery(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -395,8 +415,7 @@ public class Dados {
             return st.executeQuery(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -413,8 +432,7 @@ public class Dados {
 
             }
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return 0;
         }
     }
@@ -431,8 +449,7 @@ public class Dados {
 
             }
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return 0;
         }
     }
@@ -449,8 +466,7 @@ public class Dados {
 
             }
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return 0;
         }
     }
@@ -473,8 +489,7 @@ public class Dados {
             return mProduto;
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
@@ -492,8 +507,7 @@ public class Dados {
 
             }
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return 1;
         }
     }
@@ -508,8 +522,7 @@ public class Dados {
             st.executeUpdate(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -527,8 +540,7 @@ public class Dados {
             st.executeUpdate(sql);
 
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class
-                    .getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -538,8 +550,7 @@ public class Dados {
                 cnn.close();
 
             } catch (SQLException ex) {
-                Logger.getLogger(Dados.class
-                        .getName()).log(Level.SEVERE, "Erro ao fechar a conexão", ex);
+                Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao fechar a conexão", ex);
             }
         }
     }
