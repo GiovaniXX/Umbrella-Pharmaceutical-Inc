@@ -66,20 +66,6 @@ public class Dados {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
             return false;
         }
-
-//        try {
-//            String sql = "select (1) from usuarios where idusuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
-//            Statement st = cnn.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//            if (rs.next()) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } catch (SQLException e) {
-//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
-//            return false;
-//        }
     }
 
     public int getPerfil(String usuario) {
@@ -108,46 +94,21 @@ public class Dados {
         } finally {
             closeResources(cnn, st, rs);
         }
-
-//        Connection cnn = null;
-//        PreparedStatement st = null;
-//        ResultSet rs = null;
-//
-//        try {
-//            // Estabeleçe a conexão com o banco de dados aqui (substituir as informações de conexão apropriadas)
-//            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx387@$$gVc");
-//
-//            String sql = "select perfil from usuarios where idusuario=?";
-//            st = cnn.prepareStatement(sql);
-//            st.setString(1, usuario);
-//
-//            rs = st.executeQuery();
-//
-//            if (rs.next()) {
-//                return rs.getInt("perfil");
-//            } else {
-//                return -1;
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            return -1;
-//        } finally {
-//            try {
-//                if (rs != null) {
-//                    rs.close();
-//                }
-//                if (st != null) {
-//                    st.close();
-//                }
-//                if (cnn != null) {
-//                    cnn.close();
-//                }
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
     }
 
+    /**
+     * Utilizei Logger para registrar exceções com níveis adequados de
+     * severidade.
+     *
+     * Movi a lógica de fechamento de recursos para um método separado
+     * (closeResources) para evitar duplicação de código.
+     *
+     * A exceção no fechamento de recursos também é registrada adequadamente com
+     * o Logger.
+     *
+     * Evitei o uso de Throwable.printStackTrace(), o que é uma prática de
+     * tratamento de exceções mais apropriada em código profissional.
+     */
     private void closeResources(Connection cnn, PreparedStatement st, ResultSet rs) {
         try {
             if (rs != null) {
