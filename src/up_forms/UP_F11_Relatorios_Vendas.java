@@ -373,7 +373,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
             opc = new Opcoes("Developer: GvC", "Selecione uma venda");
             cmbVendaInicial.addItem(opc);
             cmbVendaFinal.addItem(opc);
-            ResultSet rsFat = dados.getFatura();
+            ResultSet rsFat = dados.getVenda();
 
             while (rsFat.next()) {
                 opc = new Opcoes(

@@ -353,7 +353,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         Produto mProduto = dados.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
 
         String registro[] = new String[5];
-        registro[0] = mProduto.getIdProduto();
+        registro[0] = Utilidades.intToString(mProduto.getIdProduto());
         registro[1] = mProduto.getDescricao();
         registro[2] = String.valueOf(mProduto.getPreco());
         registro[3] = String.valueOf(qtde);
@@ -401,8 +401,8 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        int numeroFatura = dados.getNumeroFatura();
-        dados.adicionarFatura(numeroFatura, ((Opcoes) cmbCliente.getSelectedItem()).getValor(), new Date());
+        int numeroFatura = dados.getNumeroVenda();
+        dados.adicionarVenda(numeroFatura, ((Opcoes) cmbCliente.getSelectedItem()).getValor(), new Date());
 
         int numero = tblTabela.getRowCount();
 

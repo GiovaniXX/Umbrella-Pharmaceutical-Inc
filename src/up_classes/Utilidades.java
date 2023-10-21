@@ -103,6 +103,21 @@ public class Utilidades {
     public static Date convertLongToDate(long timestamp) {
         return new Date(timestamp);
     }
+
+    public static int stringToInt(String str) {
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            // Trate aqui o caso em que a conversão falha, por exemplo, lançando uma exceção personalizada ou retornando um valor padrão.
+            // Neste exemplo, estamos lançando a exceção NumberFormatException.
+            throw new NumberFormatException("A string não é um número válido: " + str);
+        }
+    }
+
+    public static String intToString(int numero) {
+        return String.valueOf(numero);
+    }
+
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001

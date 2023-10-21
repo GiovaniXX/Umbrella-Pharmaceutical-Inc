@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Cliente {
 
-    private String idcliente;
+    private int idcliente;
     private int tipo;
     private String nome;
     private String sobrenome;
@@ -14,7 +14,7 @@ public class Cliente {
     private Date dataNascimento;
     private Date dataCadastro;
 
-    public Cliente(String idcliente, int tipo, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataNascimento, Date dataCadastro) {
+    public Cliente(int idcliente, int tipo, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataNascimento, Date dataCadastro) {
         this.idcliente = idcliente;
         this.tipo = tipo;
         this.nome = nome;
@@ -26,11 +26,11 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
-    public String getIdcliente() {
+    public int getIdcliente() {
         return idcliente;
     }
 
-    public void setIdcliente(String idCliente) {
+    public void setIdcliente(int idCliente) {
         this.idcliente = idCliente;
     }
 

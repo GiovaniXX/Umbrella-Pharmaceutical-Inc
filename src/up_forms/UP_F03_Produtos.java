@@ -416,7 +416,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         Produto mProduto = new Produto(
-                txtIDProduto.getText(),
+                Utilidades.stringToInt(txtIDProduto.getText()),
                 txtDescricao.getText(),
                 preco,
                 cmbImposto.getSelectedIndex(),

@@ -51,9 +51,9 @@ public class Relatorio {
             while (registro) {
                 tabela = new PdfPTable(2);
                 tabela.addCell("Venda #:");
-                tabela.addCell(rs.getString("idFatura"));
+                tabela.addCell(rs.getString("idvenda"));
                 tabela.addCell("ID Cliente");
-                tabela.addCell(rs.getString("idCliente"));
+                tabela.addCell(rs.getString("idcliente"));
                 tabela.addCell("Nome Cliente");
                 tabela.addCell(rs.getString("nomeFull"));
                 tabela.addCell("Data");
@@ -84,7 +84,7 @@ public class Relatorio {
                 int faturaAtual = rs.getInt("idFatura");
                 while (registro && faturaAtual == rs.getInt("idFatura")) {
                     tabela = new PdfPTable(6);
-                    tabela.addCell(rs.getString("idLinha"));
+                    tabela.addCell(rs.getString("linha"));
                     tabela.addCell(rs.getString("idProduto"));
                     tabela.addCell(rs.getString("descricao"));
                     tabela.addCell(rs.getString("preco"));

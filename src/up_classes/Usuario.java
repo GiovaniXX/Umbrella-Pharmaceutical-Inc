@@ -2,14 +2,14 @@ package up_classes;
 
 public class Usuario {
 
-    private String idusuario;
+    private int idusuario;
     private String nome;
     private String sobrenome;
     private String senha;
     private String chave;
     private int perfil;
 
-    public Usuario(String idusuario, String nome, String sobrenome, String senha, String chave, int perfil) {
+    public Usuario(int idusuario, String nome, String sobrenome, String senha, String chave, int perfil) {
         this.idusuario = idusuario;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -18,11 +18,11 @@ public class Usuario {
         this.perfil = perfil;
     }
 
-    public String getIdusuario() {
+    public int getIdusuario() {
         return idusuario;
     }
 
-    public void setIdsuario(String idusuario) {
+    public void setIdsuario(int idusuario) {
         this.idusuario = idusuario;
     }
 

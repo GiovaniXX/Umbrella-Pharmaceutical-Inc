@@ -21,7 +21,7 @@ public class Dados {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Properties props = new Properties();
-            props.load(new FileInputStream("E:/PROJETOS JAVA 2023/NetBeans/Umbrella_Pharmaceutical_Inc/config.properties"));
+            props.load(new FileInputStream("E:\\Projetos java\\Umbrella_Pharmaceutical_Inc\\config.properties"));
             String dbUrl = props.getProperty("db.url");
             String dbUser = props.getProperty("db.user");
             String dbPassword = props.getProperty("db.password");
@@ -53,7 +53,7 @@ public class Dados {
      */
     public Boolean validarUsuario(String usuario, String senha, String chave) {
         try {
-            String sql = "select (1) from usuarios where idUsuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
+            String sql = "select (1) from usuarios where idusuario='" + usuario + "' and senha ='" + senha + "' and chave ='" + chave + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
@@ -73,10 +73,10 @@ public class Dados {
         ResultSet rs = null;
 
         try {
-            // Estabeleçe a conexão com o banco de dados aqui (substitua as informações de conexão apropriadas)
-            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "PerfectWorld2023@$");
+            // Estabeleçe a conexão com o banco de dados aqui (substituir as informações de conexão apropriadas)
+            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx387@$$gVc");
 
-            String sql = "select perfil from usuarios where idUsuario=?";
+            String sql = "select perfil from usuarios where idusuario=?";
             st = cnn.prepareStatement(sql);
             st.setString(1, usuario);
 
@@ -127,7 +127,7 @@ public class Dados {
 
     public boolean existeUsuario(String usuario) {
         try {
-            String sql = "select (1) from usuarios where idUsuario ='"
+            String sql = "select (1) from usuarios where idusuario ='"
                     + usuario + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -142,7 +142,7 @@ public class Dados {
 
     public boolean existeCliente(String cliente) {
         try {
-            String sql = "select (1) from clientes where idCliente ='"
+            String sql = "select (1) from clientes where idcliente ='"
                     + cliente + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -157,7 +157,7 @@ public class Dados {
 
     public boolean existeProduto(String produto) {
         try {
-            String sql = "select (1) from produtos where idProduto ='"
+            String sql = "select (1) from produtos where idproduto ='"
                     + produto + "'";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -237,7 +237,7 @@ public class Dados {
                     + "nome = '" + mUsuario.getNome() + "', "
                     + "sobrenome = '" + mUsuario.getSobrenome() + "', "
                     + "senha = '" + mUsuario.getSenha() + "', "
-                    + "idPerfil = '" + mUsuario.getPerfil() + "' "
+                    + "Perfil = '" + mUsuario.getPerfil() + "' "
                     + "WHERE idUsuario = '" + mUsuario.getIdusuario() + "'";
 
             Statement st = cnn.createStatement();
@@ -363,9 +363,9 @@ public class Dados {
         }
     }
 
-    public ResultSet getFatura() {
+    public ResultSet getVenda() {
         try {
-            String sql = "select * from fatura";
+            String sql = "select * from vendas";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
 
@@ -464,7 +464,7 @@ public class Dados {
 
             if (rs.next()) {
                 mProduto = new Produto(
-                        rs.getString("idproduto"),
+                        Utilidades.stringToInt(rs.getString("idproduto")),
                         rs.getString("descricao"),
                         rs.getInt("preco"),
                         rs.getInt("imposto"),
@@ -479,9 +479,9 @@ public class Dados {
         }
     }
 
-    public int getNumeroFatura() {
+    public int getNumeroVenda() {
         try {
-            String sql = "SELECT MAX(idFatura) as numero FROM fatura";
+            String sql = "SELECT MAX(idvenda) as numero FROM vendas";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -498,11 +498,11 @@ public class Dados {
         }
     }
 
-    public void adicionarFatura(int idFatura, String idCliente, Date data) {
+    public void adicionarVenda(int idvenda, String idcliente, Date data) {
         try {
-            String sql = "INSERT INTO fatura VALUES ("
-                    + idFatura + ", '"
-                    + idCliente + "', '"
+            String sql = "INSERT INTO vendas VALUES ("
+                    + idvenda + ", '"
+                    + idcliente + "', '"
                     + Utilidades.formatDate(data) + "')";
             Statement st = cnn.createStatement();
             st.executeUpdate(sql);
@@ -513,12 +513,12 @@ public class Dados {
         }
     }
 
-    public void adicionarDetalheFatura(int idFatura, int idLinha, String idProduto, String descricao, int preco, int quantidade) {
+    public void adicionarDetalheFatura(int idvenda, int Linha, String Produto, String descricao, int preco, int quantidade) {
         try {
-            String sql = "INSERT INTO detalhefatura (idFatura, idLinha, idProduto, descricao, preco, quantidade) VALUES ("
-                    + idFatura + ", "
-                    + idLinha + ", '"
-                    + idProduto + "', '"
+            String sql = "INSERT INTO detalhevendas (idvenda, Linha, Produto, descricao, preco, quantidade) VALUES ("
+                    + idvenda + ", "
+                    + Linha + ", '"
+                    + Produto + "', '"
                     + descricao + "', "
                     + preco + ", "
                     + quantidade + ")";

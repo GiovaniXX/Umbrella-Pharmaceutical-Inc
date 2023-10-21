@@ -2,13 +2,13 @@ package up_classes;
 
 public class Produto {
 
-    private String idproduto;
+    private int idproduto;
     private String descricao;
-    private int preco;
+    private double preco;
     private int imposto;
     private String anotacao;
 
-    public Produto(String idproduto, String descricao, int preco, int imposto, String anotacao) {
+    public Produto(int idproduto, String descricao, double preco, int imposto, String anotacao) {
         this.idproduto = idproduto;
         this.descricao = descricao;
         this.preco = preco;
@@ -16,11 +16,11 @@ public class Produto {
         this.imposto = imposto;
     }
 
-    public String getIdProduto() {
+    public int getIdProduto() {
         return idproduto;
     }
 
-    public void setIdProduto(String idproduto) {
+    public void setIdProduto(int idproduto) {
         this.idproduto = idproduto;
     }
 
@@ -32,11 +32,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public int getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(int preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 

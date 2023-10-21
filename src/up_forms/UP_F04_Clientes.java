@@ -500,7 +500,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         Cliente mCliente = new Cliente(
-                txtIDCliente.getText(),
+                Utilidades.stringToInt(txtIDCliente.getText()),
                 cmbIdentificacao.getSelectedIndex(),
                 txtNome.getText(),
                 txtSNome.getText(),
@@ -720,12 +720,12 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
             while (rs.next()) {
                 registro[0] = rs.getString("idcliente");
-                registro[1] = tipo(rs.getInt("tipo"));
+                registro[1] = tipo(rs.getInt("idtipo"));
                 registro[2] = rs.getString("nome");
                 registro[3] = rs.getString("sobrenome");
                 registro[4] = rs.getString("endereco");
                 registro[5] = rs.getString("telefone");
-                registro[6] = cidade(rs.getInt("cidade"));
+                registro[6] = cidade(rs.getInt("idcidade"));
                 registro[7] = rs.getString("dataNascimento");
                 registro[8] = rs.getString("dataCadastro");
                 mTabela.addRow(registro);
