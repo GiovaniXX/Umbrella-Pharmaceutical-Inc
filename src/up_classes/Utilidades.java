@@ -25,7 +25,7 @@ public class Utilidades {
     }
 
     public static Date convertStringToDate(String dateString) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = sdf.parse(dateString);
         return date;
     }
@@ -49,13 +49,8 @@ public class Utilidades {
     }
 
     public static int objectToInt(Object obj) {
-        String str = objectToString(obj);
-        if (str.isEmpty()) {
-            // Lide com o caso em que a String está vazia (por exemplo, retorne um valor padrão ou lance uma exceção)
-            throw new NumberFormatException("A String está vazia e não pode ser convertida em um número inteiro.");
-        }
-
-        return Integer.parseInt(str);
+        int NumInt = Integer.parseInt(objectToString(obj));
+        return NumInt;
     }
 
     public static double objectToDouble(Object obj) {
@@ -113,8 +108,6 @@ public class Utilidades {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            // Trate aqui o caso em que a conversão falha, por exemplo, lançando uma exceção personalizada ou retornando um valor padrão.
-            // Neste exemplo, estamos lançando a exceção NumberFormatException.
             throw new NumberFormatException("A string não é um número válido: " + str);
         }
     }

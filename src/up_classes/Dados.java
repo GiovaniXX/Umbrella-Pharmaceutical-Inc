@@ -127,11 +127,11 @@ public class Dados {
 
     public boolean existeUsuario(String usuario) {
         try {
-            String sql = "select (1) from usuarios where idusuario ='" + usuario + "'";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT 1 FROM usuarios WHERE idusuario = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, usuario);
+            ResultSet rs = pstmt.executeQuery();
             return rs.next();
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
@@ -140,11 +140,11 @@ public class Dados {
 
     public boolean existeCliente(String cliente) {
         try {
-            String sql = "select (1) from clientes where idcliente ='" + cliente + "'";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT 1 FROM clientes WHERE idcliente = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, cliente);
+            ResultSet rs = pstmt.executeQuery();
             return rs.next();
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
@@ -153,11 +153,11 @@ public class Dados {
 
     public boolean existeProduto(String produto) {
         try {
-            String sql = "select (1) from produtos where idproduto ='" + produto + "'";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT 1 FROM produtos WHERE idproduto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, produto);
+            ResultSet rs = pstmt.executeQuery();
             return rs.next();
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return false;
@@ -166,16 +166,15 @@ public class Dados {
 
     public String adicionarUsuario(Usuario mUsuario) {
         try {
-            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, Perfil) VALUES ('"
-                    + mUsuario.getNome() + "', '"
-                    + mUsuario.getSobrenome() + "', '"
-                    + mUsuario.getSenha() + "', '"
-                    + mUsuario.getPerfil() + "')";
+            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, perfil) VALUES (?, ?, ?, ?)";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, mUsuario.getNome());
+            pstmt.setString(2, mUsuario.getSobrenome());
+            pstmt.setString(3, mUsuario.getSenha());
+            pstmt.setInt(4, mUsuario.getPerfil());
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
-            return "Usuario cadastrado com sucesso";
-
+            pstmt.executeUpdate();
+            return "Usuário cadastrado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível cadastrar este usuário";
@@ -184,38 +183,36 @@ public class Dados {
 
     public String adicionarProduto(Produto mProduto) {
         try {
-            String sql = "INSERT INTO produtos (descricao, preco, imposto, anotacao) VALUES ('"
-                    + mProduto.getDescricao() + "', '"
-                    + mProduto.getPreco() + ", "
-                    + mProduto.getImposto() + ", '"
-                    + mProduto.getAnotacao() + "')";
+            String sql = "INSERT INTO produtos (descricao, preco, imposto, anotacao) VALUES (?, ?, ?, ?)";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, mProduto.getDescricao());
+            pstmt.setDouble(2, mProduto.getPreco());
+            pstmt.setDouble(3, mProduto.getImposto());
+            pstmt.setString(4, mProduto.getAnotacao());
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            pstmt.executeUpdate();
             return "Produto cadastrado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-            return "Não foi possível cadastrar este usuário";
+            return "Não foi possível cadastrar este produto";
         }
     }
 
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (tipo, nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES ('"
-                    + mCliente.getTipo() + "', '"
-                    + mCliente.getNome() + "', '"
-                    + mCliente.getSobrenome() + ", "
-                    + mCliente.getEndereco() + ", '"
-                    + mCliente.getTelefone() + ", '"
-                    + mCliente.getCidade() + ", '"
-                    + Utilidades.formatDate(mCliente.getDataNascimento()) + ", '"
-                    + Utilidades.formatDate(mCliente.getDataCadastro()) + "')";
+            String sql = "INSERT INTO clientes (tipo, nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, mCliente.getTipo());
+            pstmt.setString(2, mCliente.getNome());
+            pstmt.setString(3, mCliente.getSobrenome());
+            pstmt.setString(4, mCliente.getEndereco());
+            pstmt.setString(5, mCliente.getTelefone());
+            pstmt.setInt(6, mCliente.getCidade());
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataNascimento().getTime()));
+            pstmt.setDate(8, new java.sql.Date(mCliente.getDataCadastro().getTime()));
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            pstmt.executeUpdate();
             return "Cliente cadastrado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível cadastrar este cliente";
@@ -224,17 +221,17 @@ public class Dados {
 
     public String editarUsuario(Usuario mUsuario) {
         try {
-            String sql = "UPDATE usuarios SET "
-                    + "nome = '" + mUsuario.getNome() + "', "
-                    + "sobrenome = '" + mUsuario.getSobrenome() + "', "
-                    + "senha = '" + mUsuario.getSenha() + "', "
-                    + "Perfil = '" + mUsuario.getPerfil() + "' "
-                    + "WHERE idUsuario = '" + mUsuario.getIdusuario() + "'";
+            String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, senha = ?, perfil = ? WHERE idusuario = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, mUsuario.getNome());
+            pstmt.setString(2, mUsuario.getSobrenome());
+            pstmt.setString(3, mUsuario.getSenha());
+            pstmt.setInt(4, mUsuario.getPerfil());
+            pstmt.setInt(5, mUsuario.getIdusuario());
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
-            return "Usuario editado com sucesso";
+            pstmt.executeUpdate();
 
+            return "Usuário editado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este usuário";
@@ -243,17 +240,17 @@ public class Dados {
 
     public String editarProduto(Produto mProduto) {
         try {
-            String sql = "UPDATE produtos SET "
-                    + "descricao = '" + mProduto.getDescricao() + "', "
-                    + "preco = '" + mProduto.getPreco() + "', "
-                    + "imposto = '" + mProduto.getImposto() + "', "
-                    + "anotacao = '" + mProduto.getAnotacao() + "' "
-                    + "WHERE idProduto = '" + mProduto.getIdProduto() + "'";
+            String sql = "UPDATE produtos SET descricao = ?, preco = ?, imposto = ?, anotacao = ? WHERE idproduto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, mProduto.getDescricao());
+            pstmt.setDouble(2, mProduto.getPreco());
+            pstmt.setDouble(3, mProduto.getImposto());
+            pstmt.setString(4, mProduto.getAnotacao());
+            pstmt.setInt(5, mProduto.getIdProduto());
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            pstmt.executeUpdate();
+
             return "Produto editado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este produto";
@@ -262,21 +259,21 @@ public class Dados {
 
     public String editarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (tipo, nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES ('"
-                    + mCliente.getTipo() + "', '"
-                    + mCliente.getNome() + "', '"
-                    + mCliente.getSobrenome() + ", "
-                    + mCliente.getEndereco() + ", '"
-                    + mCliente.getTelefone() + ", '"
-                    + mCliente.getCidade() + ", '"
-                    + Utilidades.formatDate(mCliente.getDataNascimento()) + ", '"
-                    + Utilidades.formatDate(mCliente.getDataCadastro()) + "', "
-                    + "where idCliente = '" + mCliente.getIdcliente() + "'";
+            String sql = "UPDATE clientes SET tipo = ?, nome = ?, sobrenome = ?, endereco = ?, telefone = ?, cidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, mCliente.getTipo());
+            pstmt.setString(2, mCliente.getNome());
+            pstmt.setString(3, mCliente.getSobrenome());
+            pstmt.setString(4, mCliente.getEndereco());
+            pstmt.setString(5, mCliente.getTelefone());
+            pstmt.setInt(6, mCliente.getCidade());
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataNascimento().getTime()));
+            pstmt.setDate(8, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setInt(9, mCliente.getIdcliente());
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            pstmt.executeUpdate();
+
             return "Cliente editado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este cliente";
@@ -285,11 +282,11 @@ public class Dados {
 
     public String deletarUsuario(String usuario) {
         try {
-            String sql = "delete from usuarios where idUsuario = '" + usuario + "'";
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            String sql = "DELETE FROM usuarios WHERE idusuario = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, usuario);
+            pstmt.executeUpdate();
             return "Usuário deletado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este usuário";
@@ -298,11 +295,11 @@ public class Dados {
 
     public String deletarCliente(String cliente) {
         try {
-            String sql = "delete from clientes where idCliente = '" + cliente + "'";
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            String sql = "DELETE FROM clientes WHERE idcliente = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, cliente);
+            pstmt.executeUpdate();
             return "Cliente deletado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este cliente";
@@ -311,11 +308,11 @@ public class Dados {
 
     public String deletarProduto(String produto) {
         try {
-            String sql = "delete from produtos where idProduto = '" + produto + "'";
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
+            String sql = "DELETE FROM produtos WHERE idproduto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, produto);
+            pstmt.executeUpdate();
             return "Produto deletado com sucesso";
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este produto";
@@ -324,10 +321,9 @@ public class Dados {
 
     public ResultSet getUsuarios() {
         try {
-            String sql = "select * from usuarios";
+            String sql = "SELECT * FROM usuarios";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -336,10 +332,9 @@ public class Dados {
 
     public ResultSet getClientes() {
         try {
-            String sql = "select * from clientes";
+            String sql = "SELECT * FROM clientes";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -348,10 +343,9 @@ public class Dados {
 
     public ResultSet getVenda() {
         try {
-            String sql = "select * from vendas";
+            String sql = "SELECT * FROM vendas";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -362,7 +356,6 @@ public class Dados {
         try {
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -371,10 +364,9 @@ public class Dados {
 
     public ResultSet getProdutos() {
         try {
-            String sql = "select * from produtos";
+            String sql = "SELECT * FROM produtos";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -383,14 +375,13 @@ public class Dados {
 
     public int numeroUsuarios() {
         try {
-            String sql = "select count(*) as num from usuarios";
+            String sql = "SELECT COUNT(*) AS num FROM usuarios";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 return rs.getInt("num");
             } else {
                 return 0;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -400,14 +391,13 @@ public class Dados {
 
     public int numeroClientes() {
         try {
-            String sql = "select count(*) as num from clientes";
+            String sql = "SELECT COUNT(*) AS num FROM clientes";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 return rs.getInt("num");
             } else {
                 return 0;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -417,14 +407,13 @@ public class Dados {
 
     public int numeroProdutos() {
         try {
-            String sql = "select count(*) as num from produtos";
+            String sql = "SELECT COUNT(*) AS num FROM produtos";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             if (rs.next()) {
                 return rs.getInt("num");
             } else {
                 return 0;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -435,9 +424,10 @@ public class Dados {
     public Produto getProduto(String idProduto) {
         try {
             Produto mProduto = null;
-            String sql = "select * from produtos " + "where idProduto = '" + idProduto + "'";
-            Statement st = cnn.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            String sql = "SELECT * FROM produtos WHERE idproduto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, idProduto);
+            ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 mProduto = new Produto(
@@ -448,7 +438,6 @@ public class Dados {
                         rs.getString("anotacao"));
             }
             return mProduto;
-
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
             return null;
@@ -457,7 +446,7 @@ public class Dados {
 
     public int getNumeroVenda() {
         try {
-            String sql = "SELECT MAX(idvenda) as numero FROM vendas";
+            String sql = "SELECT MAX(idvenda) AS numero FROM vendas";
             Statement st = cnn.createStatement();
             ResultSet rs = st.executeQuery(sql);
 
@@ -465,7 +454,6 @@ public class Dados {
                 return rs.getInt("numero") + 1;
             } else {
                 return 1;
-
             }
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -473,33 +461,31 @@ public class Dados {
         }
     }
 
-    public void adicionarVenda(int idvenda, String idcliente, Date data) {
+    public void adicionarVenda(int idvenda, int cliente, Date data) {
         try {
-            String sql = "INSERT INTO vendas VALUES ("
-                    + idvenda + ", '"
-                    + idcliente + "', '"
-                    + Utilidades.formatDate(data) + "')";
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
-
+            String sql = "INSERT INTO vendas VALUES (?, ?, ?)";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, idvenda);
+            pstmt.setInt(2, cliente);
+            pstmt.setDate(3, new java.sql.Date(data.getTime()));
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    public void adicionarDetalheFatura(int idvenda, int Linha, String Produto, String descricao, int preco, int quantidade) {
+    public void adicionarDetalheFatura(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
         try {
-            String sql = "INSERT INTO detalhevendas (idvenda, Linha, Produto, descricao, preco, quantidade) VALUES ("
-                    + idvenda + ", "
-                    + Linha + ", '"
-                    + Produto + "', '"
-                    + descricao + "', "
-                    + preco + ", "
-                    + quantidade + ")";
+            String sql = "INSERT INTO detalhevendas (idvenda, linha, produto, descricao, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, idvenda);
+            pstmt.setInt(2, linha);
+            pstmt.setInt(3, produto);
+            pstmt.setString(4, descricao);
+            pstmt.setDouble(5, preco);
+            pstmt.setInt(6, quantidade);
 
-            Statement st = cnn.createStatement();
-            st.executeUpdate(sql);
-
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }

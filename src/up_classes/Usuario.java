@@ -10,7 +10,6 @@ public class Usuario {
     private int perfil;
 
     public Usuario(int idusuario, String nome, String sobrenome, String senha, String chave, int perfil) {
-        this.idusuario = idusuario;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.senha = senha;
@@ -22,7 +21,7 @@ public class Usuario {
         return idusuario;
     }
 
-    public void setIdsuario(int idusuario) {
+    public void setIdusuario(int idusuario) {
         this.idusuario = idusuario;
     }
 
