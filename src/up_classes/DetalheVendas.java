@@ -2,34 +2,32 @@ package up_classes;
 
 import java.util.Date;
 
-public class Venda {
+public class DetalheVendas {
 
-    private int id;
+    private int idvenda;
     private int linha;
-    private String produto;
+    private int produto;
     private String descricao;
-    private float preco;
+    private double preco;
     private int quantidade;
-    private String informacao;
     private Date data;
 
-    public Venda(int id, int linha, String produto, String descricao, float preco, int quantidade, String informacao, Date data) {
-        this.id = id;
+    public DetalheVendas(int idvenda, int linha, int produto, String descricao, double preco, int quantidade, Date data) {
+        this.idvenda = idvenda;
         this.linha = linha;
         this.produto = produto;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.informacao = informacao;
         this.data = data;
     }
 
-    public int getId() {
-        return id;
+    public int getIdvenda() {
+        return idvenda;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdvenda(int idvenda) {
+        this.idvenda = idvenda;
     }
 
     public int getLinha(int linha) {
@@ -40,11 +38,11 @@ public class Venda {
         this.linha = linha;
     }
 
-    public String getProduto() {
+    public int getProduto() {
         return produto;
     }
 
-    public void setProduto(String produto) {
+    public void setProduto(int produto) {
         this.produto = produto;
     }
 
@@ -56,11 +54,11 @@ public class Venda {
         this.descricao = descricao;
     }
 
-    public float getPreco() {
+    public double getPreco() {
         return preco;
     }
 
-    public void setPreco(float preco) {
+    public void setPreco(double preco) {
         this.preco = preco;
     }
 
@@ -70,14 +68,6 @@ public class Venda {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public String getInformacao() {
-        return informacao;
-    }
-
-    public void setInformacao(String informacao) {
-        this.informacao = informacao;
     }
 
     public Date getData() {
