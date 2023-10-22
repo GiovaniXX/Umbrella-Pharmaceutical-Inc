@@ -292,7 +292,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 opc = new Opcoes(
                         rsCli.getString("idCliente"),
                         rsCli.getString("nome") + ""
-                        + rsCli.getString("sobreNome"));
+                        + rsCli.getString("sobrenome"));
                 cmbCliente.addItem(opc);
             }
 

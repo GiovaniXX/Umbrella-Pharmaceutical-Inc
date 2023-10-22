@@ -19,11 +19,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel mTabela;
 
-    private String ID;
-    private String Descricao;
-    private String Preco;
-    private String Imposto;
-    private String Anotacao;
+    private String id;
+    private String descricao;
+    private String preco;
+    private String imposto;
+    private String anotacao;
 
     public void setDados(Dados dados) {
         this.dados = dados;
@@ -476,11 +476,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         cmbImposto.setEnabled(false);
         jtaAnotacao.setEnabled(false);
 
-        txtIDProduto.setText(ID);
-        txtDescricao.setText(Descricao);
-        txtPreco.setText(Preco);
-        cmbImposto.setSelectedItem(Imposto);
-        jtaAnotacao.setText(Anotacao);
+        txtIDProduto.setText(id);
+        txtDescricao.setText(descricao);
+        txtPreco.setText(preco);
+        cmbImposto.setSelectedItem(imposto);
+        jtaAnotacao.setText(anotacao);
 
         carregarPrimeiroRegistro();
 
@@ -642,17 +642,17 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         ResultSet rs = dados.getProdutos();
         try {
             if (rs.next()) {
-                ID = rs.getString("ID");
-                Descricao = rs.getString("Descricao");
-                Preco = rs.getString("Preco");
-                Imposto = rs.getString("Imposto");
-                Anotacao = rs.getString("Anotacao");
+                id = rs.getString("idproduto");
+                descricao = rs.getString("descricao");
+                preco = rs.getString("preco");
+                imposto = rs.getString("imposto");
+                anotacao = rs.getString("anotacao");
 
-                txtIDProduto.setText(ID);
-                txtDescricao.setText(Descricao);
-                txtPreco.setText(Preco);
-                cmbImposto.setSelectedItem(Imposto);
-                jtaAnotacao.setText(Anotacao);
+                txtIDProduto.setText(id);
+                txtDescricao.setText(descricao);
+                txtPreco.setText(preco);
+                cmbImposto.setSelectedItem(imposto);
+                jtaAnotacao.setText(anotacao);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UP_F03_Produtos.class.getName()).log(Level.SEVERE, null, ex);

@@ -18,15 +18,15 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel mTabela;
 
-    private String ID;
-    private String Identificacao;
-    private String Nome;
-    private String Sobrenome;
-    private String Endereco;
-    private String Telefone;
-    private String Cidade;
-    private String DataNascimento;
-    private String DataCadastro;
+    private String id;
+    private String identificacao;
+    private String nome;
+    private String sobrenome;
+    private String endereco;
+    private String telefone;
+    private String cidade;
+    private String dataNascimento;
+    private String dataCadastro;
 
     public void setDados(Dados dados) {
         this.dados = dados;
@@ -567,11 +567,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataCadastro.setEnabled(false);
         jdcDataNascimento.setEnabled(false);
 
-        txtIDCliente.setText(ID);
-        txtNome.setText(Nome);
-        txtSNome.setText(Sobrenome);
-        txtEndereco.setText(Endereco);
-        txtTelefone.setText(Telefone);
+        txtIDCliente.setText(id);
+        txtNome.setText(nome);
+        txtSNome.setText(sobrenome);
+        txtEndereco.setText(endereco);
+        txtTelefone.setText(telefone);
 
         carregarPrimeiroRegistro();
 
@@ -720,12 +720,12 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
             while (rs.next()) {
                 registro[0] = rs.getString("idcliente");
-                registro[1] = tipo(rs.getInt("idtipo"));
+                registro[1] = tipo(rs.getInt("tipo"));
                 registro[2] = rs.getString("nome");
                 registro[3] = rs.getString("sobrenome");
                 registro[4] = rs.getString("endereco");
                 registro[5] = rs.getString("telefone");
-                registro[6] = cidade(rs.getInt("idcidade"));
+                registro[6] = cidade(rs.getInt("cidade"));
                 registro[7] = rs.getString("dataNascimento");
                 registro[8] = rs.getString("dataCadastro");
                 mTabela.addRow(registro);
@@ -740,25 +740,25 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         ResultSet rs = (ResultSet) dados.getClientes();
         try {
             if (rs.next()) {
-                ID = rs.getString("ID");
-                Identificacao = rs.getString("Identificacao");
-                Nome = rs.getString("Nome");
-                Sobrenome = rs.getString("Sobrenome");
-                Endereco = rs.getString("Endereco");
-                Telefone = rs.getString("Telefone");
-                Cidade = rs.getString("Cidade");
-                DataNascimento = rs.getString("DataNascimento");
-                DataCadastro = rs.getString("DataCadastro");
+                id = rs.getString("idcliente");
+                identificacao = rs.getString("tipo");
+                nome = rs.getString("nome");
+                sobrenome = rs.getString("sobrenome");
+                endereco = rs.getString("endereco");
+                telefone = rs.getString("telefone");
+                cidade = rs.getString("cidade");
+                dataNascimento = rs.getString("dataNascimento");
+                dataCadastro = rs.getString("dataCadastro");
 
-                txtIDCliente.setText(ID);
-                cmbIdentificacao.setSelectedItem(Identificacao);
-                txtNome.setText(Nome);
-                txtSNome.setText(Sobrenome);
-                txtEndereco.setText(Endereco);
-                txtTelefone.setText(Telefone);
-                cmbCidade.setSelectedItem(Cidade);
-                jdcDataNascimento.setDateFormatString(DataNascimento);
-                jdcDataCadastro.setDateFormatString(DataCadastro);
+                txtIDCliente.setText(id);
+                cmbIdentificacao.setSelectedItem(identificacao);
+                txtNome.setText(nome);
+                txtSNome.setText(sobrenome);
+                txtEndereco.setText(endereco);
+                txtTelefone.setText(telefone);
+                cmbCidade.setSelectedItem(cidade);
+                jdcDataNascimento.setDateFormatString(dataNascimento);
+                jdcDataCadastro.setDateFormatString(dataCadastro);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UP_F04_Clientes.class.getName()).log(Level.SEVERE, null, ex);

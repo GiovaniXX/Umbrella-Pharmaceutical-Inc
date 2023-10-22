@@ -17,10 +17,10 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel tableModel;
 
-    private String ID;
-    private String Nome;
-    private String Sobrenome;
-    private String Perfil;
+    private String id;
+    private String nome;
+    private String sobrenome;
+    private String perfil;
 
     public void setDados(Dados dados) {
         this.dados = dados;
@@ -720,15 +720,15 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         ResultSet rs = dados.getUsuarios();
         try {
             if (rs.next()) {
-                ID = rs.getString("ID");
-                Nome = rs.getString("Nome");
-                Sobrenome = rs.getString("Sobrenome");
-                Perfil = rs.getString("Perfil");
+                id = rs.getString("idusuario");
+                nome = rs.getString("nome");
+                sobrenome = rs.getString("sobrenome");
+                perfil = rs.getString("perfil");
 
-                txtIdusuario.setText(ID);
-                txtNome.setText(Nome);
-                txtSNome.setText(Sobrenome);
-                cmbPerfil.setSelectedItem(Perfil);
+                txtIdusuario.setText(id);
+                txtNome.setText(nome);
+                txtSNome.setText(sobrenome);
+                cmbPerfil.setSelectedItem(perfil);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
