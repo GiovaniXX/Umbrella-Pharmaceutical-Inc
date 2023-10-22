@@ -450,11 +450,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if (txtIDCliente.getText().equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Insira um número de ID");
-            txtIDCliente.requestFocusInWindow();
-            return;
-        }
+//        if (txtIDCliente.getText().equals("")) {
+//            JOptionPane.showMessageDialog(rootPane, "Insira um número de ID");
+//            txtIDCliente.requestFocusInWindow();
+//            return;
+//        }
 
         if (cmbIdentificacao.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione a identificação");

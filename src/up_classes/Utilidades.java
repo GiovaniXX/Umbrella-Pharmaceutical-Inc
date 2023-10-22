@@ -49,8 +49,13 @@ public class Utilidades {
     }
 
     public static int objectToInt(Object obj) {
-        int NumInt = Integer.parseInt(objectToString(obj));
-        return NumInt;
+        String str = objectToString(obj);
+        if (str.isEmpty()) {
+            // Lide com o caso em que a String está vazia (por exemplo, retorne um valor padrão ou lance uma exceção)
+            throw new NumberFormatException("A String está vazia e não pode ser convertida em um número inteiro.");
+        }
+
+        return Integer.parseInt(str);
     }
 
     public static double objectToDouble(Object obj) {

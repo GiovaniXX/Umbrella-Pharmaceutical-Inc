@@ -491,7 +491,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
 
         Usuario mUsuario = new Usuario(
-                Utilidades.stringToInt(txtIdusuario.getText()),
+                Utilidades.objectToInt(txtIdusuario.getText()),
                 txtNome.getText(),
                 txtSNome.getText(),
                 senha,
