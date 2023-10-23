@@ -403,68 +403,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        if (cmbCliente.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
-//            cmbCliente.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (cmbProduto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione um produto para a venda");
-//            cmbProduto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        int total = Integer.parseInt(txtTotalQuantidade.getText());
-//        System.out.println("Total: " + total);
-//        if (total == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione a quantidade do produto");
-//            txtQuantidade.requestFocusInWindow();
-//            return;
-//        }
-//
-//        if (tblTabela.getRowCount() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "A venda precisa estar adicionada na tabela antes de salvar");
-//            return;
-//        }
-//
-//        int resposta = JOptionPane.showConfirmDialog(rootPane, "Realizar esta venda?");
-//        if (resposta != JOptionPane.YES_OPTION) {
-//            return;
-//        }
-//
-//        int numeroVenda = dados.getNumeroVenda();
-//        Opcoes clienteSelecionado = (Opcoes) cmbCliente.getSelectedItem();
-//        Date dataVenda = new Date();
-//
-//        // Adicionar a venda
-//        //dados.adicionarVenda(numeroVenda, clienteSelecionado.getValor(), dataVenda);
-//        int valorCliente = Integer.parseInt(clienteSelecionado.getValor());
-//        dados.adicionarVenda(numeroVenda, valorCliente, dataVenda);
-//
-//        int numeroLinhasTabela = tblTabela.getRowCount();
-//
-//        for (int i = 0; i < numeroLinhasTabela; i++) {
-//            int col1 = Utilidades.objectToInt(tblTabela.getValueAt(i, 0));
-//            String col2 = Utilidades.objectToString(tblTabela.getValueAt(i, 1));
-//            int col3 = Utilidades.objectToInt(tblTabela.getValueAt(i, 2));
-//            int col4 = Utilidades.objectToInt(tblTabela.getValueAt(i, 3));
-//
-//            // Adicionar detalhes da venda
-//            dados.adicionarDetalheVenda(numeroVenda, i, col1, col2, col3, col4);
-//        }
-//
-//        JOptionPane.showMessageDialog(rootPane, "Venda " + numeroVenda + " realizada com sucesso!");
-//
-//        // Limpar campos e tabela
-//        cmbCliente.setSelectedIndex(0);
-//        limparTabela();
-//        total();
-//        cmbCliente.requestFocusInWindow();
-//
-//        int id = evt.getID();
-//        System.out.println("ID do evento: " + id);
-
         if (cmbCliente.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
             cmbCliente.requestFocusInWindow();

@@ -137,7 +137,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(txtPreco);
         txtPreco.setBounds(520, 80, 70, 22);
 
-        btnPrimeiro.setBackground(new java.awt.Color(30, 30, 30));
+        btnPrimeiro.setBackground(new java.awt.Color(122, 0, 0));
         btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
         btnPrimeiro.setText("Primeiro");
         btnPrimeiro.setBorder(null);
@@ -701,7 +701,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    public javax.swing.JComboBox<String> cmbImposto;
+    private javax.swing.JComboBox<String> cmbImposto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -711,10 +711,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jtaAnotacao;
-    public javax.swing.JTable tblTabela;
-    public javax.swing.JTextField txtDescricao;
-    public javax.swing.JTextField txtIDProduto;
-    public javax.swing.JTextField txtPreco;
+    private javax.swing.JTable tblTabela;
+    private javax.swing.JTextField txtDescricao;
+    private javax.swing.JTextField txtIDProduto;
+    private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 
     /*private void setIcon() {

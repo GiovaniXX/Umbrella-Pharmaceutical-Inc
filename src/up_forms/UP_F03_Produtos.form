@@ -167,7 +167,7 @@
     <Component class="javax.swing.JButton" name="btnPrimeiro">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="1e" green="1e" red="1e" type="rgb"/>
+          <Color blue="0" green="0" red="7a" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d8" green="9b" red="3" type="rgb"/>

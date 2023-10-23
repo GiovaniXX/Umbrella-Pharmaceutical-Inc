@@ -450,12 +450,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        if (txtIDCliente.getText().equals("")) {
-//            JOptionPane.showMessageDialog(rootPane, "Insira um número de ID");
-//            txtIDCliente.requestFocusInWindow();
-//            return;
-//        }
-
         if (cmbIdentificacao.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione a identificação");
             cmbIdentificacao.requestFocusInWindow();
@@ -480,11 +474,12 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
 
-//        if (jdcDataCadastro.getDate().after(new Date())) {
-//            JOptionPane.showMessageDialog(rootPane, "Insira a data de cadastro");
-//            jdcDataCadastro.requestFocusInWindow();
-//            return;
-//        }
+        if (jdcDataCadastro.getDate().after(new Date())) {
+            JOptionPane.showMessageDialog(rootPane, "Insira a data de cadastro");
+            jdcDataCadastro.requestFocusInWindow();
+            return;
+        }
+
         if (novo) {
             if (dados.existeCliente(txtIDCliente.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este cliente já existe");
