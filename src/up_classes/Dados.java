@@ -97,6 +97,9 @@ public class Dados {
     }
 
     /**
+     * GvC-Desenvolvimentos™
+     * Programmer: Giovani V. Chaves
+     *
      * Utilizei Logger para registrar exceções com níveis adequados de
      * severidade.
      *
@@ -474,7 +477,7 @@ public class Dados {
         }
     }
 
-    public void adicionarDetalheFatura(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
+    public void adicionarDetalheVenda(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
         try {
             String sql = "INSERT INTO detalhevendas (idvenda, linha, produto, descricao, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);

@@ -414,8 +414,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         String senha = new String(jpfSenha.getPassword());
-        String chave = new String(jpfChave.getPassword());
         String confirmarSenha = new String(jpfConfirmarSenha.getPassword());
+        String chave = new String(jpfChave.getPassword());
         String confirmarChave = new String(jpfConfirmarChave.getPassword());
 
         if (cmbPerfil.getSelectedIndex() == 0) {
@@ -491,7 +491,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
 
         Usuario mUsuario = new Usuario(
-                txtIdusuario.getText(),//----------
+                //txtIdusuario.getText(),
+                Utilidades.objectToInt(txtIdusuario.getText()),
                 txtNome.getText(),
                 txtSNome.getText(),
                 senha,

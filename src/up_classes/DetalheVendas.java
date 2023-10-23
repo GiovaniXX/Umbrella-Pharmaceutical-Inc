@@ -87,8 +87,8 @@ public class DetalheVendas {
 //        return data.toString();
 //    }
 //
-//    float getValorTotal() {
-//        return (float) (preco * quantidade);
+//    double getValorTotal() {
+//        return (double) (preco * quantidade);
 //    }
 }
 /**
