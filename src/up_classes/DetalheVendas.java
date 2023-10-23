@@ -82,14 +82,6 @@ public class DetalheVendas {
     public String toString() {
         return "descricao";
     }
-
-//    String getDataVenda() {
-//        return data.toString();
-//    }
-//
-//    double getValorTotal() {
-//        return (double) (preco * quantidade);
-//    }
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001

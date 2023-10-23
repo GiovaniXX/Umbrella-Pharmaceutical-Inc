@@ -124,13 +124,13 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         txtQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 100, -1));
 
-        txtTotalQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotalQuantidade.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, 110, -1));
 
-        txtTotalValor.setForeground(new java.awt.Color(255, 255, 255));
+        txtTotalValor.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalValor.setPreferredSize(new java.awt.Dimension(71, 22));
@@ -285,39 +285,70 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         try {
-            Opcoes opc = new Opcoes("Developer: GvC", "Selecione um cliente");
-            cmbCliente.addItem(opc);
-            ResultSet rsCli = dados.getClientes();
+            // Preencher o ComboBox de Clientes
+            cmbCliente.addItem(new Opcoes("@Developer: GvC", "Selecione um cliente"));
+            ResultSet rsClientes = dados.getClientes();
 
-            while (rsCli.next()) {
-                opc = new Opcoes(
-                        rsCli.getString("idcliente"),
-                        rsCli.getString("nome") + ""
-                        + rsCli.getString("sobrenome"));
-                cmbCliente.addItem(opc);
+            while (rsClientes.next()) {
+                String idCliente = rsClientes.getString("idcliente");
+                String nomeCompleto = rsClientes.getString("nome") + " " + rsClientes.getString("sobrenome");
+                cmbCliente.addItem(new Opcoes(idCliente, nomeCompleto));
             }
 
-            opc = new Opcoes("Developer: GvC", "Selecione um produto");
-            cmbProduto.addItem(opc);
-            ResultSet rsPro = dados.getProdutos();
+            // Preencher o ComboBox de Produtos
+            cmbProduto.addItem(new Opcoes("@Developer: GvC", "Selecione um produto"));
+            ResultSet rsProdutos = dados.getProdutos();
 
-            while (rsPro.next()) {
-                opc = new Opcoes(
-                        rsPro.getString("idproduto"),
-                        rsPro.getString("descricao"));
-                cmbProduto.addItem(opc);
+            while (rsProdutos.next()) {
+                String idProduto = rsProdutos.getString("idproduto");
+                String descricao = rsProdutos.getString("descricao");
+                cmbProduto.addItem(new Opcoes(idProduto, descricao));
             }
 
+            // Configurar os campos de data e valores iniciais
             txtData.setText(Utilidades.formatDate(new Date()));
             txtTotalQuantidade.setText("0");
             txtTotalValor.setText("0");
 
+            // Preencher a tabela
             preencherTabela();
 
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
 
+//            Opcoes opc = new Opcoes("@Developer: GvC", "Selecione um cliente");
+//            cmbCliente.addItem(opc);
+//            ResultSet rsCli = dados.getClientes();
+//
+//            while (rsCli.next()) {
+//                opc = new Opcoes(
+//                        rsCli.getString("idcliente"),
+//                        rsCli.getString("nome") + ""
+//                        + rsCli.getString("sobrenome"));
+//                cmbCliente.addItem(opc);
+//            }
+//
+//            opc = new Opcoes("@Developer: GvC", "Selecione um produto");
+//            cmbProduto.addItem(opc);
+//            ResultSet rsPro = dados.getProdutos();
+//
+//            while (rsPro.next()) {
+//                opc = new Opcoes(
+//                        rsPro.getString("idproduto"),
+//                        rsPro.getString("descricao"));
+//                cmbProduto.addItem(opc);
+//            }
+//
+//            txtData.setText(Utilidades.formatDate(new Date()));
+//            txtTotalQuantidade.setText("0");
+//            txtTotalValor.setText("0");
+//
+//            preencherTabela();
+//
+//        } catch (SQLException e) {
+//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+//        }
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_formInternalFrameOpened
@@ -372,6 +403,68 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+//        if (cmbCliente.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
+//            cmbCliente.requestFocusInWindow();
+//            return;
+//        }
+//
+//        if (cmbProduto.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Selecione um produto para a venda");
+//            cmbProduto.requestFocusInWindow();
+//            return;
+//        }
+//
+//        int total = Integer.parseInt(txtTotalQuantidade.getText());
+//        System.out.println("Total: " + total);
+//        if (total == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Selecione a quantidade do produto");
+//            txtQuantidade.requestFocusInWindow();
+//            return;
+//        }
+//
+//        if (tblTabela.getRowCount() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "A venda precisa estar adicionada na tabela antes de salvar");
+//            return;
+//        }
+//
+//        int resposta = JOptionPane.showConfirmDialog(rootPane, "Realizar esta venda?");
+//        if (resposta != JOptionPane.YES_OPTION) {
+//            return;
+//        }
+//
+//        int numeroVenda = dados.getNumeroVenda();
+//        Opcoes clienteSelecionado = (Opcoes) cmbCliente.getSelectedItem();
+//        Date dataVenda = new Date();
+//
+//        // Adicionar a venda
+//        //dados.adicionarVenda(numeroVenda, clienteSelecionado.getValor(), dataVenda);
+//        int valorCliente = Integer.parseInt(clienteSelecionado.getValor());
+//        dados.adicionarVenda(numeroVenda, valorCliente, dataVenda);
+//
+//        int numeroLinhasTabela = tblTabela.getRowCount();
+//
+//        for (int i = 0; i < numeroLinhasTabela; i++) {
+//            int col1 = Utilidades.objectToInt(tblTabela.getValueAt(i, 0));
+//            String col2 = Utilidades.objectToString(tblTabela.getValueAt(i, 1));
+//            int col3 = Utilidades.objectToInt(tblTabela.getValueAt(i, 2));
+//            int col4 = Utilidades.objectToInt(tblTabela.getValueAt(i, 3));
+//
+//            // Adicionar detalhes da venda
+//            dados.adicionarDetalheVenda(numeroVenda, i, col1, col2, col3, col4);
+//        }
+//
+//        JOptionPane.showMessageDialog(rootPane, "Venda " + numeroVenda + " realizada com sucesso!");
+//
+//        // Limpar campos e tabela
+//        cmbCliente.setSelectedIndex(0);
+//        limparTabela();
+//        total();
+//        cmbCliente.requestFocusInWindow();
+//
+//        int id = evt.getID();
+//        System.out.println("ID do evento: " + id);
+
         if (cmbCliente.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
             cmbCliente.requestFocusInWindow();
@@ -404,14 +497,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         int numeroVenda = dados.getNumeroVenda();
 
-        System.out.println("Número da venda: " + numeroVenda);
-        Opcoes clienteSelecionado = (Opcoes) cmbCliente.getSelectedItem();
-        System.out.println("Cliente selecionado: " + clienteSelecionado);
+        int cliente = Integer.parseInt(((Opcoes) cmbCliente.getSelectedItem()).getValor());
+        dados.adicionarVenda(numeroVenda, cliente, new Date());
 
-        int valorCliente = Integer.parseInt(clienteSelecionado.getValor());
-        dados.adicionarVenda(numeroVenda, valorCliente, new Date());
-
-        //dados.adicionarVenda(numeroVenda, clienteSelecionado.getValor(), new Date());
         //dados.adicionarVenda(numeroVenda, ((Opcoes) cmbCliente.getSelectedItem()).getValor(), new Date());
         int numero = tblTabela.getRowCount();
 

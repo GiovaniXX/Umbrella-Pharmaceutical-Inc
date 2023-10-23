@@ -55,12 +55,6 @@ public class Produto {
     public void setAnotacao(String anotacao) {
         this.anotacao = anotacao;
     }
-
-    @Override
-    public String toString() {
-        return "Produto{" + "descricao=" + descricao + '}';
-    }
-
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
