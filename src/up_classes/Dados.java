@@ -97,8 +97,7 @@ public class Dados {
     }
 
     /**
-     * GvC-Desenvolvimentos™
-     * Programmer: Giovani V. Chaves
+     * GvC-Desenvolvimentos™ Programmer: Giovani V. Chaves
      *
      * Utilizei Logger para registrar exceções com níveis adequados de
      * severidade.
@@ -169,12 +168,13 @@ public class Dados {
 
     public String adicionarUsuario(Usuario mUsuario) {
         try {
-            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, perfil) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, chave, perfil) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mUsuario.getNome());
             pstmt.setString(2, mUsuario.getSobrenome());
             pstmt.setString(3, mUsuario.getSenha());
-            pstmt.setInt(4, mUsuario.getPerfil());
+            pstmt.setString(4, mUsuario.getChave());
+            pstmt.setInt(5, mUsuario.getPerfil());
 
             pstmt.executeUpdate();
             return "Usuário cadastrado com sucesso";

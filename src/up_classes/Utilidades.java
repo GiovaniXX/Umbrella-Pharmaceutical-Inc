@@ -48,9 +48,22 @@ public class Utilidades {
         return dateFormat.format(date);
     }
 
+    /*
     public static int objectToInt(Object obj) {
         int NumInt = Integer.parseInt(objectToString(obj));
         return NumInt;
+    }
+     */
+    public static int objectToInt(Object obj) {
+        String strValue = objectToString(obj);
+        if (strValue != null && !strValue.isEmpty()) {
+            try {
+                return Integer.parseInt(strValue);
+            } catch (NumberFormatException e) {
+                System.err.println("Erro na conversão para int: " + e.getMessage());
+            }
+        }
+        return 0;
     }
 
     public static double objectToDouble(Object obj) {
