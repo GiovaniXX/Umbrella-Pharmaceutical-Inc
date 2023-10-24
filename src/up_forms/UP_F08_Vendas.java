@@ -25,6 +25,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
     public UP_F08_Vendas() {
         initComponents();
+        Dados dados = new Dados();
     }
 
     @SuppressWarnings("unchecked")
@@ -127,12 +128,14 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         txtTotalQuantidade.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtTotalQuantidade.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 630, 110, -1));
 
         txtTotalValor.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txtTotalValor.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalValor.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 630, 110, -1));
 
@@ -319,38 +322,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
 
-//            Opcoes opc = new Opcoes("@Developer: GvC", "Selecione um cliente");
-//            cmbCliente.addItem(opc);
-//            ResultSet rsCli = dados.getClientes();
-//
-//            while (rsCli.next()) {
-//                opc = new Opcoes(
-//                        rsCli.getString("idcliente"),
-//                        rsCli.getString("nome") + ""
-//                        + rsCli.getString("sobrenome"));
-//                cmbCliente.addItem(opc);
-//            }
-//
-//            opc = new Opcoes("@Developer: GvC", "Selecione um produto");
-//            cmbProduto.addItem(opc);
-//            ResultSet rsPro = dados.getProdutos();
-//
-//            while (rsPro.next()) {
-//                opc = new Opcoes(
-//                        rsPro.getString("idproduto"),
-//                        rsPro.getString("descricao"));
-//                cmbProduto.addItem(opc);
-//            }
-//
-//            txtData.setText(Utilidades.formatDate(new Date()));
-//            txtTotalQuantidade.setText("0");
-//            txtTotalValor.setText("0");
-//
-//            preencherTabela();
-//
-//        } catch (SQLException e) {
-//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-//        }
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_formInternalFrameOpened
@@ -394,6 +365,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         registro[4] = String.valueOf(qtde * mProduto.getPreco());
         mTabela.addRow(registro);
 
+        cmbCliente.setSelectedIndex(0);
         cmbProduto.setSelectedIndex(0);
         txtQuantidade.setText("");
         cmbProduto.requestFocusInWindow();
@@ -418,7 +390,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
 
         int total = Integer.parseInt(txtTotalQuantidade.getText());
-        System.out.println("Total: " + total);
+        //System.out.println("Total: " + total);
         if (total == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione a quantidade do produto");
             txtQuantidade.requestFocusInWindow();
@@ -430,17 +402,14 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        int resposta = JOptionPane.showConfirmDialog(rootPane, "Realizar está venda?");
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Realizar esta venda?");
         if (resposta != 0) {
             return;
         }
 
         int numeroVenda = dados.getNumeroVenda();
-
         int cliente = Integer.parseInt(((Opcoes) cmbCliente.getSelectedItem()).getValor());
         dados.adicionarVenda(numeroVenda, cliente, new Date());
-
-        //dados.adicionarVenda(numeroVenda, ((Opcoes) cmbCliente.getSelectedItem()).getValor(), new Date());
         int numero = tblTabela.getRowCount();
 
         for (int i = 0; i < numero; i++) {

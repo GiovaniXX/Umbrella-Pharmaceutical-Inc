@@ -344,6 +344,17 @@ public class Dados {
         }
     }
 
+    public ResultSet getProdutos() {
+        try {
+            String sql = "SELECT * FROM produtos";
+            Statement st = cnn.createStatement();
+            return st.executeQuery(sql);
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
     public ResultSet getVenda() {
         try {
             String sql = "SELECT * FROM vendas";
@@ -357,17 +368,6 @@ public class Dados {
 
     public ResultSet getConsulta(String sql) {
         try {
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-    }
-
-    public ResultSet getProdutos() {
-        try {
-            String sql = "SELECT * FROM produtos";
             Statement st = cnn.createStatement();
             return st.executeQuery(sql);
         } catch (SQLException e) {
