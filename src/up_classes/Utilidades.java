@@ -16,6 +16,30 @@ public class Utilidades {
         }
     }
 
+    public static boolean isNumeric2(String str) {
+        if (str == null || str.isEmpty()) {
+            return false;
+        }
+
+        try {
+            //Double.parseDouble(str);
+            Double.valueOf(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static Double parseDouble(String Numero) {
+        try {
+            //Double valor = Double.parseDouble(Numero);
+            Double valor = Double.valueOf(Numero);
+            return valor;
+        } catch (NumberFormatException nfe) {
+            return null; // Retorna null se a conversão falhar
+        }
+    }
+
     public static double convertStringToDouble(String str) {
         try {
             return Double.parseDouble(str);
@@ -48,12 +72,6 @@ public class Utilidades {
         return dateFormat.format(date);
     }
 
-    /*
-    public static int objectToInt(Object obj) {
-        int NumInt = Integer.parseInt(objectToString(obj));
-        return NumInt;
-    }
-     */
     public static int objectToInt(Object obj) {
         String strValue = objectToString(obj);
         if (strValue != null && !strValue.isEmpty()) {

@@ -11,8 +11,8 @@ Class Use (0,153,153)
 Constructor Declaration (0,213,156)
 Constructor Use (0,213,156)
 
-Field Declaration (152,47,41)
-Field Use (152,47,41)
+Field Declaration (236,121,158)
+Field Use (236,121,158)
 
 Identifier (152,130,44)
 
@@ -22,6 +22,6 @@ Local Variable Use (255,220,16)
 Method declaration (177,214,50)
 Method Use (177,214,50)
 
-Parameter Declaration (236,121,158)
-parameter Use (236,121,158)
+Parameter Declaration (209,15,117)
+parameter Use (209,15,117)
 

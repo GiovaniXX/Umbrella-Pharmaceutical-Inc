@@ -42,7 +42,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtIDProduto = new javax.swing.JTextField();
+        txtIdproduto = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
         btnPrimeiro = new javax.swing.JButton();
@@ -116,13 +116,13 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(700, 80, 50, 16);
 
-        txtIDProduto.setBackground(new java.awt.Color(30, 30, 30));
-        txtIDProduto.setForeground(new java.awt.Color(3, 155, 216));
-        txtIDProduto.setBorder(null);
-        txtIDProduto.setEnabled(false);
-        txtIDProduto.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtIDProduto);
-        txtIDProduto.setBounds(520, 20, 50, 22);
+        txtIdproduto.setBackground(new java.awt.Color(30, 30, 30));
+        txtIdproduto.setForeground(new java.awt.Color(3, 155, 216));
+        txtIdproduto.setBorder(null);
+        txtIdproduto.setEnabled(false);
+        txtIdproduto.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(txtIdproduto);
+        txtIdproduto.setBounds(520, 20, 50, 22);
 
         txtDescricao.setBackground(new java.awt.Color(30, 30, 30));
         txtDescricao.setForeground(new java.awt.Color(3, 155, 216));
@@ -360,14 +360,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jtaAnotacao.setEnabled(true);
         cmbImposto.setEnabled(true);
 
-        txtIDProduto.setText("");
+        txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
         jtaAnotacao.setText("");
         cmbImposto.setSelectedIndex(0);
 
         novo = true;
-        txtIDProduto.requestFocus();
+        txtIdproduto.requestFocus();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -392,13 +392,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (!Utilidades.isNumeric(txtPreco.getText())) {
+        if (!Utilidades.isNumeric2(txtPreco.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Insira somente números");
             txtPreco.requestFocusInWindow();
             return;
         }
 
-        int preco = Integer.parseInt(txtPreco.getText());
+        //int preco = Integer.parseInt(txtPreco.getText());
+        double preco = Double.parseDouble(txtPreco.getText());
         if (preco <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Insira somente números acima de zero");
             txtPreco.requestFocusInWindow();
@@ -406,21 +407,21 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         if (novo) {
-            if (dados.existeProduto(txtIDProduto.getText())) {
+            if (dados.existeProduto(txtIdproduto.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este produto já existe");
-                txtIDProduto.requestFocusInWindow();
+                txtIdproduto.requestFocusInWindow();
                 return;
             }
         } else {
-            if (!dados.existeProduto(txtIDProduto.getText())) {
+            if (!dados.existeProduto(txtIdproduto.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este produto ainda não existe");
-                txtIDProduto.requestFocusInWindow();
+                txtIdproduto.requestFocusInWindow();
                 return;
             }
         }
 
         Produto mProduto = new Produto(
-                Utilidades.stringToInt(txtIDProduto.getText()),
+                Utilidades.objectToInt(txtIdproduto.getText()),
                 txtDescricao.getText(),
                 preco,
                 cmbImposto.getSelectedIndex(),
@@ -444,13 +445,13 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
 
-        txtIDProduto.setEnabled(false);
+        txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
         cmbImposto.setEnabled(false);
         jtaAnotacao.setEnabled(false);
 
-        txtIDProduto.setText("");
+        txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
         cmbImposto.setSelectedIndex(0);
@@ -474,13 +475,13 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
 
-        txtIDProduto.setEnabled(false);
+        txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
         cmbImposto.setEnabled(false);
         jtaAnotacao.setEnabled(false);
 
-        txtIDProduto.setText(id);
+        txtIdproduto.setText(id);
         txtDescricao.setText(descricao);
         txtPreco.setText(preco);
         cmbImposto.setSelectedItem(imposto);
@@ -568,7 +569,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
         String msg;
-        msg = dados.deletarProduto(txtIDProduto.getText());
+        msg = dados.deletarProduto(txtIdproduto.getText());
         JOptionPane.showMessageDialog(rootPane, msg);
         produtoAtual = 0;
         preencherTabela();
@@ -603,7 +604,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        txtIDProduto.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 0)));
+        txtIdproduto.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 0)));
         txtDescricao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 1)));
         txtPreco.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 2)));
         jtaAnotacao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 3)));
@@ -652,7 +653,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 imposto = rs.getString("imposto");
                 anotacao = rs.getString("anotacao");
 
-                txtIDProduto.setText(id);
+                txtIdproduto.setText(id);
                 txtDescricao.setText(descricao);
                 txtPreco.setText(preco);
                 cmbImposto.setSelectedItem(imposto);
@@ -717,7 +718,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea jtaAnotacao;
     private javax.swing.JTable tblTabela;
     private javax.swing.JTextField txtDescricao;
-    private javax.swing.JTextField txtIDProduto;
+    private javax.swing.JTextField txtIdproduto;
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 
