@@ -36,7 +36,7 @@ public class Utilidades {
             Double valor = Double.valueOf(Numero);
             return valor;
         } catch (NumberFormatException nfe) {
-            return null; // Retorna null se a conversão falhar
+            return null;
         }
     }
 
@@ -76,7 +76,9 @@ public class Utilidades {
         String strValue = objectToString(obj);
         if (strValue != null && !strValue.isEmpty()) {
             try {
-                return Integer.parseInt(strValue);
+                double doubleValue = Double.parseDouble(strValue);
+                int intValue = (int) Math.round(doubleValue);
+                return intValue;
             } catch (NumberFormatException e) {
                 System.err.println("Erro na conversão para int: " + e.getMessage());
             }
@@ -135,13 +137,6 @@ public class Utilidades {
         return new Date(timestamp);
     }
 
-//    public static int stringToInt(String str) {
-//        try {
-//            return Integer.parseInt(str);
-//        } catch (NumberFormatException e) {
-//            throw new NumberFormatException("A string nao e um numero valido: " + str);
-//        }
-//    }
     public static int stringToInt(String str) {
         try {
             double doubleValue = Double.parseDouble(str);
