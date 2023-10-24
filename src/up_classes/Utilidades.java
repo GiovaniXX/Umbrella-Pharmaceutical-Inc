@@ -129,6 +129,18 @@ public class Utilidades {
         return String.valueOf(numero);
     }
 
+    public static double stringToDouble(String str) {
+        try {
+            return Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("A string não é um número válido: " + str);
+        }
+    }
+
+    public static String doubleToString(double valor) {
+        return Double.toString(valor);
+    }
+
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001

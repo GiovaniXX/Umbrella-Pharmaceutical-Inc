@@ -117,6 +117,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel7.setBounds(700, 80, 50, 16);
 
         txtIDProduto.setBackground(new java.awt.Color(30, 30, 30));
+        txtIDProduto.setForeground(new java.awt.Color(3, 155, 216));
         txtIDProduto.setBorder(null);
         txtIDProduto.setEnabled(false);
         txtIDProduto.setPreferredSize(new java.awt.Dimension(71, 22));
@@ -124,6 +125,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIDProduto.setBounds(520, 20, 50, 22);
 
         txtDescricao.setBackground(new java.awt.Color(30, 30, 30));
+        txtDescricao.setForeground(new java.awt.Color(3, 155, 216));
         txtDescricao.setBorder(null);
         txtDescricao.setEnabled(false);
         txtDescricao.setPreferredSize(new java.awt.Dimension(71, 22));
@@ -131,6 +133,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtDescricao.setBounds(520, 50, 310, 22);
 
         txtPreco.setBackground(new java.awt.Color(30, 30, 30));
+        txtPreco.setForeground(new java.awt.Color(3, 155, 216));
         txtPreco.setBorder(null);
         txtPreco.setEnabled(false);
         txtPreco.setPreferredSize(new java.awt.Dimension(71, 22));
@@ -269,7 +272,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnPesquisar.setBounds(680, 230, 73, 25);
 
         cmbImposto.setBackground(new java.awt.Color(30, 30, 30));
-        cmbImposto.setForeground(new java.awt.Color(255, 255, 255));
+        cmbImposto.setForeground(new java.awt.Color(3, 155, 216));
         cmbImposto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "5%", "10%", "15%" }));
         cmbImposto.setEnabled(false);
         getContentPane().add(cmbImposto);
@@ -277,6 +280,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         jtaAnotacao.setBackground(new java.awt.Color(30, 30, 30));
         jtaAnotacao.setColumns(20);
+        jtaAnotacao.setForeground(new java.awt.Color(3, 155, 216));
         jtaAnotacao.setRows(5);
         jScrollPane2.setViewportView(jtaAnotacao);
 
@@ -376,14 +380,28 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (txtDescricao.getText().equals("")) {
+        if (txtDescricao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira uma descricao");
             txtDescricao.requestFocusInWindow();
             return;
         }
 
-        if (txtPreco.getText().equals("")) {
+        if (txtPreco.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira o preço");
+            txtPreco.requestFocusInWindow();
+            return;
+        }
+
+        String precoTexto = txtPreco.getText();
+        try {
+            double preco = Double.parseDouble(precoTexto);
+            if (preco <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "Insira somente números acima de zero");
+                txtPreco.requestFocusInWindow();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Insira um valor numérico válido para o preço");
             txtPreco.requestFocusInWindow();
             return;
         }
