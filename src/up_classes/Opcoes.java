@@ -20,7 +20,7 @@ public class Opcoes {
 
     @Override
     public String toString() {
-        return "descricao";
+        return descricao;
     }
 }
 /**

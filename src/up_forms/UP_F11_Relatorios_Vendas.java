@@ -292,7 +292,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
             String arquivo = txtArquivo.getText() + ".pdf";
 
             //@formatter off
-            String sql = "SELECT fatura.idFatura, fatura.idCliente, CONCAT(nome, sobreNome) AS nomeFull, data, idLinha, idProduto, descricao, preco, quantidade, preco*detalhefatura.quantidade AS valor FROM fatura INNER JOIN clientes ON fatura.idCliente = clientes.idCliente INNER JOIN detalhefatura ON fatura.idFatura = detalhefatura.idFatura ";
+            String sql = "SELECT vendas.idvenda, vendas.cliente, CONCAT(nome, sobrenome) AS nomeFull, data, linha, produto, descricao, preco, quantidade, preco*detalhevendas.quantidade AS valor FROM vendas INNER JOIN clientes ON vendas.cliente = clientes.idcliente INNER JOIN detalhevendas ON vendas.idvenda = detalhevendas.idvenda ";
             //@formatter on
 
             String filtro = "";
@@ -305,7 +305,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                         cmbCliente.requestFocusInWindow();
                         return;
                     }
-                    filtro = "WHERE fatura.idCliente ='" + ((Opcoes) cmbCliente.getSelectedItem()).getValor() + "'";
+                    filtro = "WHERE vendas.cliente ='" + ((Opcoes) cmbCliente.getSelectedItem()).getValor() + "'";
                 }
                 if (RadioNumeroVenda.isSelected()) {
                     if (cmbVendaInicial.getSelectedIndex() == 0) {
@@ -320,7 +320,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                             return;
                         }
                         //@formatter off
-                        filtro = "WHERE fatura.idFatura >= " + ((Opcoes) cmbVendaInicial.getSelectedItem()).getValor() + " AND fatura.idFatura <= " + ((Opcoes) cmbVendaFinal.getSelectedItem()).getValor();
+                        filtro = "WHERE vendas.idvenda >= " + ((Opcoes) cmbVendaInicial.getSelectedItem()).getValor() + " AND vendas.idvenda <= " + ((Opcoes) cmbVendaFinal.getSelectedItem()).getValor();
                         //@formatter on
                     }
                     if (RadioData.isSelected()) {
@@ -363,7 +363,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
 
             while (rsCli.next()) {
                 opc = new Opcoes(
-                        rsCli.getString("idCliente"),
+                        rsCli.getString("idcliente"),
                         rsCli.getString("nome") + ""
                         + rsCli.getString("sobreNome"));
                 cmbCliente.addItem(opc);
@@ -377,8 +377,8 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
 
             while (rsFat.next()) {
                 opc = new Opcoes(
-                        rsFat.getString("idFatura"),
-                        rsFat.getString("idFatura"));
+                        rsFat.getString("idvenda"),
+                        rsFat.getString("idvenda"));
                 cmbVendaInicial.addItem(opc);
                 cmbVendaFinal.addItem(opc);
             }

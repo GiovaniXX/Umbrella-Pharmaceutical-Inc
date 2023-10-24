@@ -138,10 +138,12 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         cmbCliente.setBackground(new java.awt.Color(30, 30, 30));
         cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
+        cmbCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 250, -1));
 
         cmbProduto.setBackground(new java.awt.Color(30, 30, 30));
         cmbProduto.setForeground(new java.awt.Color(255, 255, 255));
+        cmbProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(cmbProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, -1));
 
         btnAdicionar.setBackground(new java.awt.Color(122, 0, 0));
@@ -290,9 +292,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             ResultSet rsClientes = dados.getClientes();
 
             while (rsClientes.next()) {
-                String idCliente = rsClientes.getString("idcliente");
+                String idcliente = rsClientes.getString("idcliente");
                 String nomeCompleto = rsClientes.getString("nome") + " " + rsClientes.getString("sobrenome");
-                cmbCliente.addItem(new Opcoes(idCliente, nomeCompleto));
+                cmbCliente.addItem(new Opcoes(idcliente, nomeCompleto));
             }
 
             // Preencher o ComboBox de Produtos
@@ -300,9 +302,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             ResultSet rsProdutos = dados.getProdutos();
 
             while (rsProdutos.next()) {
-                String idProduto = rsProdutos.getString("idproduto");
+                String idproduto = rsProdutos.getString("idproduto");
                 String descricao = rsProdutos.getString("descricao");
-                cmbProduto.addItem(new Opcoes(idProduto, descricao));
+                cmbProduto.addItem(new Opcoes(idproduto, descricao));
             }
 
             // Configurar os campos de data e valores iniciais
@@ -490,6 +492,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 }
             }
         } catch (Exception e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
         }
 
         int id = evt.getID();
@@ -566,7 +569,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void preencherTabela() {
-        String titulos[] = {"ID", "Descricao", "Preco", "Quantidade", "Valor"};
+        String titulos[] = {"ID Venda", "Descricao", "Preco", "Quantidade", "Valor"};
         String registro[] = new String[5];
         mTabela = new DefaultTableModel(null, titulos);
 
@@ -578,7 +581,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         tblTabela.getColumnModel().getColumn(3).setCellRenderer(dtcr);
         tblTabela.getColumnModel().getColumn(4).setCellRenderer(dtcr);
 
-        //mTabela.addRow(registro);
+        mTabela.addRow(registro);
     }
 
     private void total() {
@@ -600,7 +603,8 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
                 modelo.removeRow(0);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao limpar a tabela", e);
+
         }
     }
 }
