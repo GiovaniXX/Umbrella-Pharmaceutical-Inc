@@ -392,20 +392,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        String precoTexto = txtPreco.getText();
-        try {
-            double preco = Double.parseDouble(precoTexto);
-            if (preco <= 0) {
-                JOptionPane.showMessageDialog(rootPane, "Insira somente números acima de zero");
-                txtPreco.requestFocusInWindow();
-                return;
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(rootPane, "Insira um valor numérico válido para o preço");
-            txtPreco.requestFocusInWindow();
-            return;
-        }
-
         if (!Utilidades.isNumeric(txtPreco.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Insira somente números");
             txtPreco.requestFocusInWindow();
@@ -621,14 +607,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtDescricao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 1)));
         txtPreco.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 2)));
         jtaAnotacao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 3)));
-        //cmbImposto.setSelectedIndex(imposto(Utilidades.objectToString(tblTabela.getValueAt(proAtual, 4))));
-        int index = imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4)));
+        cmbImposto.setSelectedIndex(imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4))));
+        //int index = imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4)));
 
-        if (index >= 0 && index < cmbImposto.getItemCount()) {
-            cmbImposto.setSelectedIndex(index);
-        } else {
-            cmbImposto.setSelectedIndex(0);
-        }
+//        if (index >= 0 && index < cmbImposto.getItemCount()) {
+//            cmbImposto.setSelectedIndex(index);
+//        } else {
+//            cmbImposto.setSelectedIndex(0);
+//        }
     }
 
     private void preencherTabela() {

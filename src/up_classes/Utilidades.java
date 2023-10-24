@@ -121,7 +121,7 @@ public class Utilidades {
         try {
             return Integer.parseInt(str);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("A string não é um número válido: " + str);
+            throw new NumberFormatException("A string nao e um numero valido: " + str);
         }
     }
 
@@ -133,14 +133,13 @@ public class Utilidades {
         try {
             return Double.parseDouble(str);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("A string não é um número válido: " + str);
+            throw new NumberFormatException("A string nao e um numero valido: " + str);
         }
     }
 
     public static String doubleToString(double valor) {
         return Double.toString(valor);
     }
-
 }
 /**
  * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
