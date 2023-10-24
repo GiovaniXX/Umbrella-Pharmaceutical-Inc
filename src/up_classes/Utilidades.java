@@ -135,11 +135,22 @@ public class Utilidades {
         return new Date(timestamp);
     }
 
+//    public static int stringToInt(String str) {
+//        try {
+//            return Integer.parseInt(str);
+//        } catch (NumberFormatException e) {
+//            throw new NumberFormatException("A string nao e um numero valido: " + str);
+//        }
+//    }
     public static int stringToInt(String str) {
         try {
-            return Integer.parseInt(str);
+            double doubleValue = Double.parseDouble(str);
+            if (doubleValue < Integer.MIN_VALUE || doubleValue > Integer.MAX_VALUE) {
+                throw new NumberFormatException("O número está fora do intervalo válido para um inteiro.");
+            }
+            return (int) doubleValue;
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("A string nao e um numero valido: " + str);
+            throw new NumberFormatException("A string não é um número válido: " + str);
         }
     }
 

@@ -49,7 +49,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtIDCliente = new javax.swing.JTextField();
+        txtIdcliente = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtSNome = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
@@ -166,14 +166,14 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(780, 170, 80, 16);
 
-        txtIDCliente.setBackground(new java.awt.Color(30, 30, 30));
-        txtIDCliente.setForeground(new java.awt.Color(255, 255, 255));
-        txtIDCliente.setBorder(null);
-        txtIDCliente.setCaretColor(new java.awt.Color(255, 255, 255));
-        txtIDCliente.setEnabled(false);
-        txtIDCliente.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtIDCliente);
-        txtIDCliente.setBounds(530, 5, 50, 22);
+        txtIdcliente.setBackground(new java.awt.Color(30, 30, 30));
+        txtIdcliente.setForeground(new java.awt.Color(255, 255, 255));
+        txtIdcliente.setBorder(null);
+        txtIdcliente.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtIdcliente.setEnabled(false);
+        txtIdcliente.setPreferredSize(new java.awt.Dimension(71, 22));
+        getContentPane().add(txtIdcliente);
+        txtIdcliente.setBounds(530, 5, 50, 22);
 
         txtNome.setBackground(new java.awt.Color(30, 30, 30));
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
@@ -432,7 +432,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataCadastro.setEnabled(true);
         jdcDataNascimento.setEnabled(true);
 
-        txtIDCliente.setText("");
+        txtIdcliente.setText("");
         cmbIdentificacao.setSelectedIndex(0);
         txtNome.setText("");
         txtSNome.setText("");
@@ -443,7 +443,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataNascimento.setDate(new Date());
 
         novo = true;
-        txtIDCliente.requestFocus();
+        txtIdcliente.requestFocus();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -456,13 +456,13 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (txtNome.getText().equals("")) {
+        if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira o nome");
             txtNome.requestFocusInWindow();
             return;
         }
 
-        if (txtSNome.getText().equals("")) {
+        if (txtSNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira o sobre-nome");
             txtSNome.requestFocusInWindow();
             return;
@@ -481,21 +481,21 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         if (novo) {
-            if (dados.existeCliente(txtIDCliente.getText())) {
+            if (dados.existeCliente(txtIdcliente.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este cliente já existe");
-                txtIDCliente.requestFocusInWindow();
+                txtIdcliente.requestFocusInWindow();
                 return;
             }
         } else {
-            if (!dados.existeCliente(txtIDCliente.getText())) {
+            if (!dados.existeCliente(txtIdcliente.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este cliente ainda não existe");
-                txtIDCliente.requestFocusInWindow();
+                txtIdcliente.requestFocusInWindow();
                 return;
             }
         }
 
         Cliente mCliente = new Cliente(
-                Utilidades.stringToInt(txtIDCliente.getText()),
+                Utilidades.objectToInt(txtIdcliente.getText()),
                 cmbIdentificacao.getSelectedIndex(),
                 txtNome.getText(),
                 txtSNome.getText(),
@@ -524,7 +524,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
 
-        txtIDCliente.setEnabled(false);
+        txtIdcliente.setEnabled(false);
         cmbIdentificacao.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
@@ -552,7 +552,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(false);
         btnCancelar.setEnabled(false);
 
-        txtIDCliente.setEnabled(false);
+        txtIdcliente.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
         txtEndereco.setEnabled(false);
@@ -562,7 +562,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataCadastro.setEnabled(false);
         jdcDataNascimento.setEnabled(false);
 
-        txtIDCliente.setText(id);
+        txtIdcliente.setText(id);
         txtNome.setText(nome);
         txtSNome.setText(sobrenome);
         txtEndereco.setText(endereco);
@@ -654,7 +654,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
         String msg;
-        msg = dados.deletarCliente(txtIDCliente.getText());
+        msg = dados.deletarCliente(txtIdcliente.getText());
         JOptionPane.showMessageDialog(rootPane, msg);
         clienteAtual = 0;
         preencherTabela();
@@ -695,7 +695,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        txtIDCliente.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 0)));
+        txtIdcliente.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 0)));
         cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
         txtNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 2)));
         txtSNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 3)));
@@ -745,7 +745,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 dataNascimento = rs.getString("dataNascimento");
                 dataCadastro = rs.getString("dataCadastro");
 
-                txtIDCliente.setText(id);
+                txtIdcliente.setText(id);
                 cmbIdentificacao.setSelectedItem(identificacao);
                 txtNome.setText(nome);
                 txtSNome.setText(sobrenome);
@@ -840,7 +840,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jdcDataNascimento;
     private javax.swing.JTable tblTabela;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtIDCliente;
+    private javax.swing.JTextField txtIdcliente;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSNome;
     private javax.swing.JTextField txtTelefone;

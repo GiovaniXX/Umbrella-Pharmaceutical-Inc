@@ -398,7 +398,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        //int preco = Integer.parseInt(txtPreco.getText());
         double preco = Double.parseDouble(txtPreco.getText());
         if (preco <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Insira somente números acima de zero");
