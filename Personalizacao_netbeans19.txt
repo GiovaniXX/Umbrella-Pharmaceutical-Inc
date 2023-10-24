@@ -1,0 +1,22 @@
+Cores personalizadas para a sintax do netbeans 19
+
+Class declaration (0,153,153)
+Class Use (0,153,153)
+
+Constructor Declaration (0,213,156)
+Constructor Use (0,213,156)
+
+Field Declaration (152,47,41)
+Field Use (152,47,41)
+
+Identifier (209,4,82)
+
+Local Variable Declaration (255,203,37)
+Local Variable Use (255,220,16)
+
+Method declaration (177,72,101)
+Method Use (177,72,101)
+
+Parameter Declaration (236,121,158)
+parameter Use (236,121,158)
+

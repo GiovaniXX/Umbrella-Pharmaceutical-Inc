@@ -364,7 +364,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         try {
             browser.browse(new URI(LINKEDIN_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Facebook", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
@@ -377,7 +377,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         try {
             browser.browse(new URI(LINKEDIN_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do GitHub", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
@@ -403,7 +403,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         try {
             browser.browse(new URI(LINKEDIN_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
-            JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não foi possível abrir a página inicial do Whatsapp", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
