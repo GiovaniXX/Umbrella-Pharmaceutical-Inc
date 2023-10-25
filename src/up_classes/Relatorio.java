@@ -53,7 +53,7 @@ public class Relatorio {
                 tabela.addCell("Venda #:");
                 tabela.addCell(rs.getString("idvenda"));
                 tabela.addCell("ID Cliente");
-                tabela.addCell(rs.getString("idcliente"));
+                tabela.addCell(rs.getString("cliente"));
                 tabela.addCell("Nome Cliente");
                 tabela.addCell(rs.getString("nomeFull"));
                 tabela.addCell("Data");
@@ -81,11 +81,11 @@ public class Relatorio {
                 paragraph.add(tabela);
                 document.add(paragraph);
 
-                int faturaAtual = rs.getInt("idFatura");
-                while (registro && faturaAtual == rs.getInt("idFatura")) {
+                int vendaAtual = rs.getInt("idvenda");
+                while (registro && vendaAtual == rs.getInt("idvenda")) {
                     tabela = new PdfPTable(6);
                     tabela.addCell(rs.getString("linha"));
-                    tabela.addCell(rs.getString("idProduto"));
+                    tabela.addCell(rs.getString("produto"));
                     tabela.addCell(rs.getString("descricao"));
                     tabela.addCell(rs.getString("preco"));
                     tabela.addCell(rs.getString("quantidade"));
