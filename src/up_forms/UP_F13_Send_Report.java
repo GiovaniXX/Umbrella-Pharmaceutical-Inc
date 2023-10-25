@@ -48,6 +48,9 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
         lblArquivo.setForeground(new java.awt.Color(255, 255, 255));
         lblArquivo.setText("Arquivo.:");
         getContentPane().add(lblArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+
+        txtArquivo.setBackground(new java.awt.Color(122, 0, 0));
+        txtArquivo.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(txtArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 450, -1));
 
         btnSearch.setBackground(new java.awt.Color(122, 0, 0));
@@ -102,7 +105,7 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
 
     private void enviarArquivoPDFWhatsApp() {
         String numeroCliente = "+5549999367954"; // Substitua pelo número de telefone correto
-        String mensagem = "Mensagem de exemplo"; // Substitua pela mensagem desejada
+        String mensagem = "Relatório de venda"; // Substitua pela mensagem desejada
         String caminhoArquivoPDF = "E:\\Projetos java\\Umbrella_Pharmaceutical_Inc\\arquivo.pdf"; // Substitua pelo caminho do arquivo PDF desejado
 
         if (caminhoArquivoPDF != null) {
