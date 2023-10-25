@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class Relatorio {
 
-    public static void relatorioFatura(String arquivo, ResultSet rs) {
+    public static void relatorioVenda(String arquivo, ResultSet rs) {
         com.itextpdf.text.Document document = new com.itextpdf.text.Document();
         try {
             PdfWriter.getInstance((com.itextpdf.text.Document) document, new FileOutputStream(arquivo));

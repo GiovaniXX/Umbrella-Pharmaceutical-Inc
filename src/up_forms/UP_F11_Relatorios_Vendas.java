@@ -342,7 +342,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                     }
                 }
                 sql = sql + filtro;
-                Relatorio.relatorioFatura(arquivo, dados.getConsulta(sql));
+                Relatorio.relatorioVenda(arquivo, dados.getConsulta(sql));
                 JOptionPane.showMessageDialog(rootPane, "Relatório gerado com sucesso!");
             }
 
