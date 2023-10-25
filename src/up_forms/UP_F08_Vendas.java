@@ -365,11 +365,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         registro[4] = String.valueOf(qtde * mProduto.getPreco());
         mTabela.addRow(registro);
 
-        cmbCliente.setSelectedIndex(0);
-        cmbProduto.setSelectedIndex(0);
-        txtQuantidade.setText("");
-        cmbProduto.requestFocusInWindow();
-
         total();
 
         int id = evt.getID();
@@ -390,7 +385,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
 
         int total = Integer.parseInt(txtTotalQuantidade.getText());
-        //System.out.println("Total: " + total);
         if (total == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione a quantidade do produto");
             txtQuantidade.requestFocusInWindow();
@@ -422,9 +416,12 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(rootPane, "Venda:" + numeroVenda + "Realizada com sucesso!");
 
         cmbCliente.setSelectedIndex(0);
+        cmbProduto.setSelectedIndex(0);
+        txtQuantidade.setText("");
+        cmbCliente.requestFocusInWindow();
+
         limparTabela();
         total();
-        cmbCliente.requestFocusInWindow();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
