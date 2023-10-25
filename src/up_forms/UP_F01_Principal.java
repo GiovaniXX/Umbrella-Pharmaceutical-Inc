@@ -69,6 +69,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Movimentos = new javax.swing.JMenu();
         NovaVenda = new javax.swing.JMenuItem();
         RelatorioVenda = new javax.swing.JMenuItem();
+        SendReport = new javax.swing.JMenuItem();
         SocialNetwork = new javax.swing.JMenu();
         openFacebookProfile = new javax.swing.JMenuItem();
         openGitHubProfile = new javax.swing.JMenuItem();
@@ -190,6 +191,14 @@ public class UP_F01_Principal extends javax.swing.JFrame {
             }
         });
         Movimentos.add(RelatorioVenda);
+
+        SendReport.setText("Send Report");
+        SendReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SendReportActionPerformed(evt);
+            }
+        });
+        Movimentos.add(SendReport);
 
         Menu.add(Movimentos);
 
@@ -418,6 +427,17 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         System.out.println("Profile do Whatsapp executado com sucesso.!");
     }//GEN-LAST:event_openWhatsUpProfileActionPerformed
 
+    private void SendReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendReportActionPerformed
+        UP_F13_Send_Report ufsr = new UP_F13_Send_Report();
+        ufsr.setDados(dados);
+        dpnDesk.add(ufsr);
+        ufsr.show();
+
+        int id = evt.getID();
+        System.out.println("ID do evento: " + id);
+        System.out.println("Form send report chamado com sucesso.!");
+    }//GEN-LAST:event_SendReportActionPerformed
+
     // @formatter:off
     public static void main(String args[]) {
         try {
@@ -452,6 +472,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Produtos;
     private javax.swing.JMenuItem RelatorioVenda;
     private javax.swing.JMenuItem Sair;
+    private javax.swing.JMenuItem SendReport;
     private javax.swing.JMenuItem Sistema;
     private javax.swing.JMenu SocialNetwork;
     private javax.swing.JMenuItem Usuarios;
