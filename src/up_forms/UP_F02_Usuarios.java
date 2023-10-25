@@ -410,6 +410,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt novo executado com sucesso.!");
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -529,6 +530,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt salvar executado com sucesso.!");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -563,6 +565,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt cancelar executado com sucesso.!");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -590,6 +593,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt editar executado com sucesso.!");
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -606,6 +610,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt primeiro executado com sucesso.!");
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
@@ -614,6 +619,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt ultimo executado com sucesso.!");
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
@@ -625,6 +631,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt proximo executado com sucesso.!");
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
@@ -636,6 +643,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt anterior executado com sucesso.!");
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -652,6 +660,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt excluir executado com sucesso.!");
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -682,6 +691,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("evt pesquisar executado com sucesso.!");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {

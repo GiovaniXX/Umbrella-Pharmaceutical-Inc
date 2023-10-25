@@ -285,7 +285,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-        System.out.println("Form Usuarios chamado com sucesso.!");
+        System.out.println("Form usuarios chamado com sucesso.!");
 
     }//GEN-LAST:event_UsuariosActionPerformed
 
@@ -297,7 +297,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-        System.out.println("Form Produtos chamado com sucesso.!");
+        System.out.println("Form produtos chamado com sucesso.!");
     }//GEN-LAST:event_ProdutosActionPerformed
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
@@ -308,7 +308,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-        System.out.println("Form Cliente chamado com sucesso.!");
+        System.out.println("Form cliente chamado com sucesso.!");
     }//GEN-LAST:event_ClientesActionPerformed
 
     private void SairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SairActionPerformed
@@ -326,6 +326,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Form nova venda chamado com sucesso.!");
     }//GEN-LAST:event_NovaVendaActionPerformed
 
     private void RelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelatorioVendaActionPerformed
@@ -336,6 +337,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Form relatório de venda chamado com sucesso.!");
     }//GEN-LAST:event_RelatorioVendaActionPerformed
 
     private void SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SistemaActionPerformed
@@ -346,6 +348,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Form sistema chamado com sucesso.!");
     }//GEN-LAST:event_SistemaActionPerformed
 
     private void DevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevActionPerformed
@@ -356,6 +359,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Form dev chamado com sucesso.!");
     }//GEN-LAST:event_DevActionPerformed
 
     private void openFacebookProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFacebookProfileActionPerformed
@@ -369,6 +373,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Profile do Facebbok executado com sucesso.!");
     }//GEN-LAST:event_openFacebookProfileActionPerformed
 
     private void openGitHubProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openGitHubProfileActionPerformed
@@ -382,6 +387,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Profile do GitHub executado com sucesso.!");
     }//GEN-LAST:event_openGitHubProfileActionPerformed
 
     private void openLinkedinProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openLinkedinProfileActionPerformed
@@ -395,6 +401,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Profile do Linkedin executado com sucesso.!");
     }//GEN-LAST:event_openLinkedinProfileActionPerformed
 
     private void openWhatsUpProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWhatsUpProfileActionPerformed
@@ -408,6 +415,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Profile do Whatsapp executado com sucesso.!");
     }//GEN-LAST:event_openWhatsUpProfileActionPerformed
 
     // @formatter:off

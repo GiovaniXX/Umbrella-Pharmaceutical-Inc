@@ -251,7 +251,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
             return;
         }
 
-        String successMessage = "<html><font color='green'><b>Conexão bem-sucedida!</b></font></html>";
+        String successMessage = "<html><font color='green'><b>Conexão bem sucedida!</b></font></html>";
         showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 1000);
 
         // Resto do código quando a validação é bem-sucedida
@@ -293,8 +293,6 @@ public class UP_F00_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOutActionPerformed
 
     public static void main(String args[]) {
-        Dados sgbd = new Dados();
-
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
