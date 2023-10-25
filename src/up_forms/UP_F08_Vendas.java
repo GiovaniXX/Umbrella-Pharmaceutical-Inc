@@ -24,8 +24,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }
 
     public UP_F08_Vendas() {
-        initComponents();
-        Dados dados = new Dados();
+        initComponents();       
     }
 
     @SuppressWarnings("unchecked")
