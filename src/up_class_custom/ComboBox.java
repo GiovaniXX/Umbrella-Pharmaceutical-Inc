@@ -72,16 +72,30 @@ public class ComboBox<E> extends JComboBox<E> {
 
     private static class ScrollBarCustom {
 
-        public ScrollBarCustom() {
+        private int unitIncrement;
+        private Color foregroundColor;
 
+        public ScrollBarCustom() {
+            // Defina o valor padrão desejado
+            this.unitIncrement = 0;
+            // Defina a cor padrão desejada
+            this.foregroundColor = Color.BLACK;
         }
 
-        private void setUnitIncrement(int i) {
+        public int getUnitIncrement() {
+            return unitIncrement;
+        }
 
+        private void setUnitIncrement(int unitIncrement) {
+            this.unitIncrement = unitIncrement;
+        }
+
+        public Color getForegroundColor() {
+            return foregroundColor;
         }
 
         private void setForeground(Color color) {
-
+            this.foregroundColor = color;
         }
     }
 
@@ -290,16 +304,3 @@ public class ComboBox<E> extends JComboBox<E> {
         }
     }
 }
-
-/**
-* This is a custom implementation of a JComboBox in Java. It sets a custom UI with animations, custom colors, and custom text. 
-* Additionally, it provides custom focus and mouse listeners to adjust the appearance of the component and add additional functionality.
-* The most notable changes in the class include:
-* Changing the background color of the component
-* Adding an empty border to the component
-* Adding a custom UI that animates the label text
-* Adding custom listeners to respond to focus changes and mouse events
-* Customizing the colors of the component and the colors of the scrollbar
-* Overriding the default renderer to change the appearance of the items in the dropdown list
-* This class also creates a ScrollBarCustom class which is never called in the code, it seems like an incomplete class.
-*/

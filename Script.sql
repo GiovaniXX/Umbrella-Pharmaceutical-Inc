@@ -143,3 +143,11 @@ VALUES
     (1, 'Cliente A', 'Sobrenome A', 'Endereço A', 'Telefone A', '1', '1990-01-15', CURRENT_TIMESTAMP),
     (2, 'Cliente B', 'Sobrenome B', 'Endereço B', 'Telefone B', '1', '1985-05-20', CURRENT_TIMESTAMP),
     (1, 'Cliente C', 'Sobrenome C', 'Endereço C', 'Telefone C', '1', '1995-11-10', CURRENT_TIMESTAMP);
+
+-- Alterar o tipo de dados do campo dataCadastro de timestamp para date
+ALTER TABLE clientes
+MODIFY COLUMN dataCadastro DATE;
+
+-- Converter os valores de timestamp para date
+UPDATE clientes
+SET dataCadastro = DATE(dataCadastro);
