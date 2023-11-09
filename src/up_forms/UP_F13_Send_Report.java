@@ -30,7 +30,7 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
         lblArquivo = new javax.swing.JLabel();
         txtArquivo = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        btnSend = new javax.swing.JButton();
+        myButton_SendRecordWhatsApp = new up_class_custom.MyButton();
         lblIcon = new javax.swing.JLabel();
 
         setClosable(true);
@@ -48,7 +48,7 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
 
         lblArquivo.setForeground(new java.awt.Color(255, 255, 255));
         lblArquivo.setText("Arquivo.:");
-        getContentPane().add(lblArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
+        getContentPane().add(lblArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 145, -1, -1));
 
         txtArquivo.setBackground(new java.awt.Color(122, 0, 0));
         txtArquivo.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,14 +63,17 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 140, -1, -1));
 
-        btnSend.setBackground(new java.awt.Color(122, 0, 0));
-        btnSend.setText("Send");
-        btnSend.addActionListener(new java.awt.event.ActionListener() {
+        myButton_SendRecordWhatsApp.setColor(new java.awt.Color(122, 0, 0));
+        myButton_SendRecordWhatsApp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        myButton_SendRecordWhatsApp.setLabel("Send Record to WhatsApp");
+        myButton_SendRecordWhatsApp.setPreferredSize(new java.awt.Dimension(253, 32));
+        myButton_SendRecordWhatsApp.setRadius(50);
+        myButton_SendRecordWhatsApp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSendActionPerformed(evt);
+                myButton_SendRecordWhatsAppActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSend, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 210, -1));
+        getContentPane().add(myButton_SendRecordWhatsApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 212, 440, 60));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
@@ -93,13 +96,17 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
         System.out.println("evt search executado com sucesso.!");
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
-        enviarArquivoPDFWhatsApp();
+    private void myButton_SendRecordWhatsAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_SendRecordWhatsAppActionPerformed
+        if (txtArquivo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, selecione um arquivo primeiro.", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+            enviarArquivoPDFWhatsApp();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-        System.out.println("evt send executado com sucesso.!");
-    }//GEN-LAST:event_btnSendActionPerformed
+            int id = evt.getID();
+            System.out.println("ID do evento: " + id);
+            System.out.println("evt Send Record WhatsApp executado com sucesso.!");
+        }
+    }//GEN-LAST:event_myButton_SendRecordWhatsAppActionPerformed
 
     private void enviarArquivoPDFWhatsApp() {
         String numeroCliente = "+5549999367954"; // Substitua pelo número de telefone correto
@@ -122,11 +129,11 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton btnSend;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblArquivo;
     private javax.swing.JLabel lblIcon;
     private javax.swing.JLabel lblSendWhatsapp;
+    private up_class_custom.MyButton myButton_SendRecordWhatsApp;
     private javax.swing.JTextField txtArquivo;
     // End of variables declaration//GEN-END:variables
 }
