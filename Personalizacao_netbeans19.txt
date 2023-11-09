@@ -17,7 +17,7 @@ Field Use (236,121,158)
 Identifier (152,130,44)
 
 Local Variable Declaration (255,203,37)
-Local Variable Use (255,220,16)
+Local Variable Use (255,203,37)
 
 Method declaration (177,214,50)
 Method Use (177,214,50)

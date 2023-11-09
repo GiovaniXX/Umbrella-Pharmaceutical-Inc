@@ -41,6 +41,7 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSendWhatsapp.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblSendWhatsapp.setForeground(new java.awt.Color(255, 255, 255));
         lblSendWhatsapp.setText("Send Report to Whatsapp");
         getContentPane().add(lblSendWhatsapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 270, -1));
@@ -73,9 +74,6 @@ public class UP_F13_Send_Report extends javax.swing.JInternalFrame {
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        lblIcon.setMaximumSize(new java.awt.Dimension(1366, 768));
-        lblIcon.setMinimumSize(new java.awt.Dimension(1366, 768));
-        lblIcon.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
