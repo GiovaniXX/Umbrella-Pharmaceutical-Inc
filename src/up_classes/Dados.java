@@ -477,9 +477,9 @@ public class Dados {
         }
     }
 
-    public void adicionarDetalheVenda(int idvenda, int linha, int produto, String descricao, double preco, int quantidade, String cedente, Date dataVenda, float valorPagamento, String situacao, String formaPagamento) {
+    public void adicionarDetalheVenda(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
         try {
-            String sql = "INSERT INTO detalhevendas (idvenda, linha, produto, descricao, preco, quantidade, cedente, dataVenda, valorPagamento, situacao, formaPagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO detalhevendas (idvenda, linha, produto, descricao, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setInt(1, idvenda);
             pstmt.setInt(2, linha);
@@ -487,12 +487,6 @@ public class Dados {
             pstmt.setString(4, descricao);
             pstmt.setDouble(5, preco);
             pstmt.setInt(6, quantidade);
-            pstmt.setString(7, cedente);
-            pstmt.setDate(8, (java.sql.Date) dataVenda);
-            pstmt.setFloat(9, valorPagamento);
-            pstmt.setString(10, situacao);
-            pstmt.setString(11, formaPagamento);
-
             pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);

@@ -87,11 +87,15 @@ public class Utilidades {
     }
 
     public static double objectToDouble(Object obj) {
+        if (obj == null) {
+            return 0.0; // Ou qualquer outro valor padrão que faça sentido no seu contexto
+        }
+
         String str = obj.toString();
-        double NumDoule = Double.parseDouble(str);
-        return NumDoule;
+        double numDouble = Double.parseDouble(str);
+        return numDouble;
     }
-    
+
     public static float objectToFloat(Object obj) {
         String str = obj.toString();
         float NumFloat = Float.parseFloat(str);

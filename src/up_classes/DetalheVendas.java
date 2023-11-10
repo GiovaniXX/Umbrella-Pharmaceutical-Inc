@@ -1,7 +1,5 @@
 package up_classes;
 
-import java.util.Date;
-
 public class DetalheVendas {
 
     private int idvenda;
@@ -10,24 +8,14 @@ public class DetalheVendas {
     private String descricao;
     private double preco;
     private int quantidade;
-    private String cedente;
-    private Date dataVenda;
-    private float valorPagamento;
-    private String situacao;
-    private String formaPagamento;
 
-    public DetalheVendas(int idvenda, int linha, int produto, String descricao, double preco, int quantidade, String cedente, Date dataVenda, float valorPagamento, String situacao, String formaPagamento) {
+    public DetalheVendas(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
         this.idvenda = idvenda;
         this.linha = linha;
         this.produto = produto;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.cedente = cedente;
-        this.dataVenda = dataVenda;
-        this.valorPagamento = valorPagamento;
-        this.situacao = situacao;
-        this.formaPagamento = formaPagamento;
     }
 
     public int getIdvenda() {
@@ -76,46 +64,6 @@ public class DetalheVendas {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public String getCedente() {
-        return cedente;
-    }
-
-    public void setCedente(String cedente) {
-        this.cedente = cedente;
-    }
-
-    public Date getDataVenda() {
-        return dataVenda;
-    }
-
-    public void setDataVenda(Date dataVenda) {
-        this.dataVenda = dataVenda;
-    }
-
-    public float getValorPagamento() {
-        return valorPagamento;
-    }
-
-    public void setValorPagamento(float valorPagamento) {
-        this.valorPagamento = valorPagamento;
-    }
-
-    public String getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
     }
 }
 /**

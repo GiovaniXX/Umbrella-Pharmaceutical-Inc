@@ -159,9 +159,10 @@ ADD COLUMN valorPagamento FLOAT,
 ADD COLUMN situacao VARCHAR(50),
 ADD COLUMN formaPagamento VARCHAR(50);
 
-ALTER TABLE produtos
+-- Apaga colunas das tabelas
+ALTER TABLE detalhevendas
 DROP COLUMN cedente,
-DROP COLUMN dataVencimento,
+DROP COLUMN dataVenda,
 DROP COLUMN valorPagamento,
 DROP COLUMN situacao,
 DROP COLUMN formaPagamento;

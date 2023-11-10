@@ -21,7 +21,7 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
 
     public UP_F13_Enviar_Relatorios_Vendas() {
         initComponents();
-        preencherTelefonesClientes();
+        //preencherTelefonesClientes();
     }
 
     @SuppressWarnings("unchecked")
@@ -85,14 +85,14 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
 
             },
             new String [] {
-                "ID Venda", "Linha", "Produto", "Descrição", "Preço", "Quantidade", "Cedente", "Data Venda", "Valor", "Situação"
+                "ID", "Linha", "Produto", "Descrição", "Preco", "Quantidade", "Cedente", "Data Venda", "Valor Pagamento", "Situação", "Forma Pagamento"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -111,21 +111,21 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         tblTabela.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tblTabela);
         if (tblTabela.getColumnModel().getColumnCount() > 0) {
-            tblTabela.getColumnModel().getColumn(0).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(0).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(0).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(1).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(1).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(1).setMaxWidth(100);
+            tblTabela.getColumnModel().getColumn(0).setMinWidth(50);
+            tblTabela.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblTabela.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblTabela.getColumnModel().getColumn(1).setMinWidth(50);
+            tblTabela.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tblTabela.getColumnModel().getColumn(1).setMaxWidth(50);
             tblTabela.getColumnModel().getColumn(4).setMinWidth(100);
             tblTabela.getColumnModel().getColumn(4).setPreferredWidth(100);
             tblTabela.getColumnModel().getColumn(4).setMaxWidth(100);
             tblTabela.getColumnModel().getColumn(5).setMinWidth(100);
             tblTabela.getColumnModel().getColumn(5).setPreferredWidth(100);
             tblTabela.getColumnModel().getColumn(5).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(8).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(8).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(8).setMaxWidth(100);
+            tblTabela.getColumnModel().getColumn(10).setMinWidth(100);
+            tblTabela.getColumnModel().getColumn(10).setPreferredWidth(100);
+            tblTabela.getColumnModel().getColumn(10).setMaxWidth(100);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1340, 390));
