@@ -405,13 +405,13 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         dados.adicionarVenda(numeroVenda, cliente, new Date());
         int numero = tblTabela.getRowCount();
 
-        for (int i = 0; i < numero; i++) {
-            dados.adicionarDetalheVenda(numeroVenda, i,
-                    Utilidades.objectToInt(tblTabela.getValueAt(i, 0)),
-                    Utilidades.objectToString(tblTabela.getValueAt(i, 1)),
-                    Utilidades.objectToInt(tblTabela.getValueAt(i, 2)),
-                    Utilidades.objectToInt(tblTabela.getValueAt(i, 3)));
-        }
+//        for (int i = 0; i < numero; i++) {
+//            dados.adicionarDetalheVenda(numeroVenda, i,
+//                    Utilidades.objectToInt(tblTabela.getValueAt(i, 0)),
+//                    Utilidades.objectToString(tblTabela.getValueAt(i, 1)),
+//                    Utilidades.objectToInt(tblTabela.getValueAt(i, 2)),
+//                    Utilidades.objectToInt(tblTabela.getValueAt(i, 3)));
+//        }
         JOptionPane.showMessageDialog(rootPane, "Venda:" + numeroVenda + "Realizada com sucesso!");
 
         cmbCliente.setSelectedIndex(0);

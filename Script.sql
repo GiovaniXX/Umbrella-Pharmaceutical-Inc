@@ -151,3 +151,20 @@ MODIFY COLUMN dataCadastro DATE;
 -- Converter os valores de timestamp para date
 UPDATE clientes
 SET dataCadastro = DATE(dataCadastro);
+
+ALTER TABLE detalhevendas
+ADD COLUMN cedente VARCHAR(255),
+ADD COLUMN dataVencimento DATE,
+ADD COLUMN valorPagamento FLOAT,
+ADD COLUMN situacao VARCHAR(50),
+ADD COLUMN formaPagamento VARCHAR(50);
+
+ALTER TABLE produtos
+DROP COLUMN cedente,
+DROP COLUMN dataVencimento,
+DROP COLUMN valorPagamento,
+DROP COLUMN situacao,
+DROP COLUMN formaPagamento;
+
+ALTER TABLE detalhevendas
+CHANGE COLUMN dataVencimento dataVenda DATE;
