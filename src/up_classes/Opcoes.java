@@ -2,16 +2,16 @@ package up_classes;
 
 public class Opcoes {
 
-    private final String valor;
+    private final String preco;
     private final String descricao;
 
-    public Opcoes(String valor, String descricao) {
-        this.valor = valor;
+    public Opcoes(String preco, String descricao) {
+        this.preco = preco;
         this.descricao = descricao;
     }
 
-    public String getValor() {
-        return valor;
+    public String getPreco() {
+        return preco;
     }
 
     public String getDescricao() {

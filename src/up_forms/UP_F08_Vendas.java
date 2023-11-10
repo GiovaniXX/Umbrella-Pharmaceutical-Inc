@@ -36,6 +36,8 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         txtData = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         txtTotalQuantidade = new javax.swing.JTextField();
@@ -108,8 +110,18 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Total.:");
+        jLabel6.setText("Total Geral.:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, -1, 20));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Quantidade");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 690, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Valor");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 690, -1, -1));
 
         txtData.setBackground(new java.awt.Color(30, 30, 30));
         txtData.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,14 +141,14 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         txtTotalQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalQuantidade.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 710, 110, -1));
+        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 710, 110, -1));
 
         txtTotalValor.setForeground(new java.awt.Color(0, 0, 0));
         txtTotalValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalValor.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalValor.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 710, 110, -1));
+        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 110, -1));
 
         cmbCliente.setBackground(new java.awt.Color(30, 30, 30));
         cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -273,7 +285,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             tblTabela.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1370, 510));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1370, 490));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -348,7 +360,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        Produto mProduto = dados.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getValor());
+        Produto mProduto = dados.getProduto(((Opcoes) cmbProduto.getSelectedItem()).getPreco());
 
         String registro[] = new String[5];
         registro[0] = Utilidades.intToString(mProduto.getIdProduto());
@@ -358,7 +370,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         registro[4] = String.valueOf(qtde * mProduto.getPreco());
         mTabela.addRow(registro);
 
-        total();
+        totalGeral();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -395,7 +407,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
 
         int numeroVenda = dados.getNumeroVenda();
-        int cliente = Integer.parseInt(((Opcoes) cmbCliente.getSelectedItem()).getValor());
+        int cliente = Integer.parseInt(((Opcoes) cmbCliente.getSelectedItem()).getPreco());
         dados.adicionarVenda(numeroVenda, cliente, new Date());
         int numero = tblTabela.getRowCount();
 
@@ -415,7 +427,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         cmbCliente.requestFocusInWindow();
 
         limparTabela();
-        total();
+        totalGeral();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -427,7 +439,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
         limparTabela();
-        total();
+        totalGeral();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -444,10 +456,10 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             int linha = tblTabela.getRowCount();
             for (int i = 0; i < linha; i++) {
                 String tabela = Utilidades.objectToString(tblTabela.getValueAt(i, 0));
-                String combo = ((Opcoes) cmbProduto.getSelectedItem()).getValor();
+                String combo = ((Opcoes) cmbProduto.getSelectedItem()).getPreco();
                 if (tabela.equals(combo)) {
                     modelo.removeRow(0);
-                    total();
+                    totalGeral();
                     return;
                 }
             }
@@ -469,7 +481,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
         for (int i = 0; i < cmbCliente.getItemCount(); i++) {
-            if (((Opcoes) cmbCliente.getItemAt(i)).getValor().equals(rta)) {
+            if (((Opcoes) cmbCliente.getItemAt(i)).getPreco().equals(rta)) {
                 cmbCliente.setSelectedIndex(i);
                 return;
             }
@@ -489,7 +501,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
         for (int i = 0; i < cmbProduto.getItemCount(); i++) {
-            if (((Opcoes) cmbProduto.getItemAt(i)).getValor().equals(rta)) {
+            if (((Opcoes) cmbProduto.getItemAt(i)).getPreco().equals(rta)) {
                 cmbProduto.setSelectedIndex(i);
                 return;
             }
@@ -520,6 +532,8 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTabela;
     private javax.swing.JTextField txtData;
@@ -545,7 +559,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         mTabela.addRow(registro);
     }
 
-    private void total() {
+    private void totalGeral() {
         int numero = tblTabela.getRowCount();
         int somaQuantidade = 0;
         double somaValor = 0;

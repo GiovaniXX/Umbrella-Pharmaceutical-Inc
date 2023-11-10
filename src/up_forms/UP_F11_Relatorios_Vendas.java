@@ -305,7 +305,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                         cmbCliente.requestFocusInWindow();
                         return;
                     }
-                    filtro = "WHERE vendas.cliente ='" + ((Opcoes) cmbCliente.getSelectedItem()).getValor() + "'";
+                    filtro = "WHERE vendas.cliente ='" + ((Opcoes) cmbCliente.getSelectedItem()).getPreco() + "'";
                 }
                 if (RadioNumeroVenda.isSelected()) {
                     if (cmbVendaInicial.getSelectedIndex() == 0) {
@@ -320,7 +320,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                             return;
                         }
                         //@formatter off
-                        filtro = "WHERE vendas.idvenda >= " + ((Opcoes) cmbVendaInicial.getSelectedItem()).getValor() + " AND vendas.idvenda <= " + ((Opcoes) cmbVendaFinal.getSelectedItem()).getValor();
+                        filtro = "WHERE vendas.idvenda >= " + ((Opcoes) cmbVendaInicial.getSelectedItem()).getPreco() + " AND vendas.idvenda <= " + ((Opcoes) cmbVendaFinal.getSelectedItem()).getPreco();
                         //@formatter on
                     }
                     if (RadioData.isSelected()) {
