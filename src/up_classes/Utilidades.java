@@ -91,6 +91,12 @@ public class Utilidades {
         double NumDoule = Double.parseDouble(str);
         return NumDoule;
     }
+    
+    public static float objectToFloat(Object obj) {
+        String str = obj.toString();
+        float NumFloat = Float.parseFloat(str);
+        return NumFloat;
+    }
 
     public static boolean objectToBoolean(Object obj) {
         String CadBool = objectToString(obj);

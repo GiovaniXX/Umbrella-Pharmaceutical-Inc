@@ -11,6 +11,10 @@ public class Methods {
     private Dados dados;
     private JComboBox<String> jComboBox_Telefones;
 
+    public Methods(Dados dados) {
+        this.dados = dados;
+    }
+
     private void preencherTelefonesClientes() throws SQLException {
         // Obtenha os telefones dos clientes do banco de dados
         ResultSet telefonesClientes = dados.getTelefonesClientes();

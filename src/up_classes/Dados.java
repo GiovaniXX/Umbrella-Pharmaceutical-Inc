@@ -525,7 +525,7 @@ public class Dados {
         return cnn;
     }
 
-    ResultSet getTelefonesClientes() throws SQLException {
+    ResultSet getTelefonesClientes() {
         try {
             String sql = "SELECT telefone FROM clientes";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
@@ -533,8 +533,8 @@ public class Dados {
             return pstmt.executeQuery();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao obter telefones de clientes", e);
-            throw e; // Re-throw a exceção para que a classe chamadora possa tratá-la
         }
+        return null;
     }
 }
 /**

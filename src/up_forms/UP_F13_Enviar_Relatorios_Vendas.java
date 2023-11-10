@@ -21,7 +21,7 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
 
     public UP_F13_Enviar_Relatorios_Vendas() {
         initComponents();
-        //preencherTelefonesClientes();
+        preencherTelefonesClientes();
     }
 
     @SuppressWarnings("unchecked")
@@ -47,12 +47,13 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSendWhatsapp.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblSendWhatsapp.setForeground(new java.awt.Color(102, 0, 0));
+        lblSendWhatsapp.setForeground(new java.awt.Color(255, 255, 255));
         lblSendWhatsapp.setText("Send Report to Whatsapp");
         getContentPane().add(lblSendWhatsapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 270, -1));
 
         myButton_SearchSales.setBackground(new java.awt.Color(122, 0, 0));
+        myButton_SearchSales.setForeground(new java.awt.Color(255, 255, 255));
         myButton_SearchSales.setText("Search for Sales");
         myButton_SearchSales.setColor(new java.awt.Color(122, 0, 0));
         myButton_SearchSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -64,6 +65,7 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         });
         getContentPane().add(myButton_SearchSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 440, 60));
 
+        myButton_SendSalesReportsWhatsApp.setForeground(new java.awt.Color(255, 255, 255));
         myButton_SendSalesReportsWhatsApp.setText("Send Sales Reports WhatsApp");
         myButton_SendSalesReportsWhatsApp.setColor(new java.awt.Color(122, 0, 0));
         myButton_SendSalesReportsWhatsApp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -130,10 +132,11 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 270, -1));
 
         jComboBox_Telefones.setBackground(new java.awt.Color(102, 0, 0));
+        jComboBox_Telefones.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jComboBox_Telefones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Telefones:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
