@@ -365,9 +365,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         String registro[] = new String[5];
         registro[0] = Utilidades.intToString(mProduto.getIdProduto());
         registro[1] = mProduto.getDescricao();
-        registro[2] = String.valueOf(mProduto.getPreco());
-        registro[3] = String.valueOf(qtde);
-        registro[4] = String.valueOf(qtde * mProduto.getPreco());
+        registro[2] = Utilidades.intToString((int) mProduto.getPreco());
+        registro[3] = Utilidades.intToString(qtde);
+        registro[4] = Utilidades.doubleToString(qtde * mProduto.getPreco());
         mTabela.addRow(registro);
 
         totalGeral();
@@ -545,6 +545,10 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         String titulos[] = {"Produto", "Descricao", "Preco", "Quantidade"};
         String registro[] = new String[4];
+        
+//        String titulos[] = {"ID Venda", "Produto", "Descricao", "Preco", "Quantidade"};
+//        String registro[] = new String[5];
+        
         mTabela = new DefaultTableModel(null, titulos);
 
         tblTabela.setModel(mTabela);
@@ -555,6 +559,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         tblTabela.getColumnModel().getColumn(1).setCellRenderer(dtcr);
         tblTabela.getColumnModel().getColumn(2).setCellRenderer(dtcr);
         tblTabela.getColumnModel().getColumn(3).setCellRenderer(dtcr);
+//        tblTabela.getColumnModel().getColumn(4).setCellRenderer(dtcr);
 
         mTabela.addRow(registro);
     }
@@ -566,6 +571,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         for (int i = 0; i < numero; i++) {
             somaQuantidade += Utilidades.objectToInt(tblTabela.getValueAt(i, 3));
             somaValor += Utilidades.objectToDouble(tblTabela.getValueAt(i, 2));
+            //somaValor += Utilidades.objectToDouble(tblTabela.getValueAt(i, 4));
         }
         txtTotalQuantidade.setText(String.valueOf(somaQuantidade));
         txtTotalValor.setText(String.valueOf(somaValor));
