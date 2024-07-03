@@ -40,7 +40,7 @@ CREATE TABLE vendas (
 
 CREATE TABLE detalheVendas (
     idvenda INT AUTO_INCREMENT PRIMARY KEY,
-    idlinha INT AUTO_INCREMENT PRIMARY KEY,
+    idlinha INT NOT NULL,
     idproduto INT NOT NULL,
     descricao VARCHAR(255),
     preco DOUBLE NOT NULL,
@@ -62,13 +62,13 @@ ADD FOREIGN KEY (idvenda) REFERENCES vendas(idvenda);
 ALTER TABLE detalheVendas
 ADD FOREIGN KEY (idproduto) REFERENCES produtos(idproduto);
 
-insert into clientes(idcliente,idTipo,nome,sobrenome,endereco,telefone,idcidade,dataNascimento,dataCadastro)
-values(1,1,'Giovani','Chaves','Marechal Rondon 387','999367954',1,'1971-12-10','20203-02-20');
+INSERT INTO clientes(idcliente, idTipo, nome, sobrenome, endereco, telefone, idcidade, dataNascimento, dataCadastro)
+VALUES (1, 1, 'Giovani', 'Chaves', 'Marechal Rondon 387', '999367954', 1, '1971-12-10', '2023-02-20');
 
 INSERT INTO usuarios (nome, sobrenome, senha, chave, idperfil)
 VALUES ('Giovani', 'Chaves', '123', 'remake', 1);
 
-INSERT INTO usuarios (nome, sobrenome, senha, chave, perfil) 
+INSERT INTO usuarios (nome, sobrenome, senha, chave, idperfil) 
 VALUES ('Adriane', 'Fernandes', '1234', 'teste', 2);
 
 
