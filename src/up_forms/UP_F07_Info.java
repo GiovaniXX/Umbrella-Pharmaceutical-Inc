@@ -28,8 +28,6 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
         openFacebookProfile = new javax.swing.JLabel();
         JSP = new javax.swing.JScrollPane();
         Informacao = new javax.swing.JTextArea();
-        WhatsUp = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         MSN = new javax.swing.JLabel();
         Grau = new javax.swing.JLabel();
         Curso = new javax.swing.JLabel();
@@ -38,7 +36,11 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
         Logo_Linkedin = new javax.swing.JLabel();
         Logo_GitHub = new javax.swing.JLabel();
         Logo_Facebook = new javax.swing.JLabel();
-        DIO = new javax.swing.JLabel();
+        GvC_Developer = new javax.swing.JLabel();
+        Avanade = new javax.swing.JLabel();
+        Cognizant = new javax.swing.JLabel();
+        GTF = new javax.swing.JLabel();
+        Java_Developer = new javax.swing.JLabel();
         NTTData = new javax.swing.JLabel();
         Uniasselvi = new javax.swing.JLabel();
         TelaFundo = new javax.swing.JLabel();
@@ -58,7 +60,7 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
                 openLinkedinProfileMouseClicked(evt);
             }
         });
-        getContentPane().add(openLinkedinProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 530, 50, -1));
+        getContentPane().add(openLinkedinProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, 50, -1));
 
         openGitHubProfile.setForeground(new java.awt.Color(0, 0, 0));
         openGitHubProfile.setText("GitHub");
@@ -68,7 +70,7 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
                 openGitHubProfileMouseClicked(evt);
             }
         });
-        getContentPane().add(openGitHubProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 500, 50, -1));
+        getContentPane().add(openGitHubProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, 50, -1));
 
         openFacebookProfile.setForeground(new java.awt.Color(0, 0, 0));
         openFacebookProfile.setText("Facebook");
@@ -78,29 +80,22 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
                 openFacebookProfileMouseClicked(evt);
             }
         });
-        getContentPane().add(openFacebookProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 470, 60, -1));
+        getContentPane().add(openFacebookProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 60, -1));
 
         Informacao.setEditable(false);
         Informacao.setBackground(new java.awt.Color(13, 154, 172));
         Informacao.setColumns(20);
         Informacao.setForeground(new java.awt.Color(0, 0, 0));
         Informacao.setRows(5);
-        Informacao.setText(" Me chamo Giovani V. Chaves\n\n Aqui mostro algumas de minhas certificações, principalmente na Línguagem Java.\n Também desenvolvo em C#.\n\n Sou formado em Desenvolvimentos de Sistemas e Web Designer, com um bom conhecimento em\n HTML5, CSS3 e JavaScript.\n\n No presente momento, estou cursando Engenharia de Software (Bacharelado).\n com previsão de formação em 2027.\n\nJoinvile, 27 de agosto de 2023");
+        Informacao.setText(" Me chamo Giovani V. Chaves\n\n Aqui mostro algumas de minhas certificações, principalmente na Línguagem Java.\n Também desenvolvo em C#.\n\n Sou formado em Desenvolvimentos de Sistemas e Web Designer, com um bom conhecimento em\n HTML5, CSS3 e JavaScript.\n\n No presente momento, estou cursando Engenharia de Software (Bacharelado).\n com previsão de formação em 2027.\n\nJoinvile, 03 de Julho de 2024");
         JSP.setViewportView(Informacao);
 
-        getContentPane().add(JSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 620, 410));
-
-        WhatsUp.setForeground(new java.awt.Color(0, 0, 0));
-        WhatsUp.setText("(49) 9 9936-7954");
-        getContentPane().add(WhatsUp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 606, -1, -1));
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/whatsapp.png"))); // NOI18N
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 597, -1, -1));
+        getContentPane().add(JSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 710, 410));
 
         MSN.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         MSN.setForeground(new java.awt.Color(0, 0, 0));
         MSN.setText("My Social Networks");
-        getContentPane().add(MSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 420, -1, -1));
+        getContentPane().add(MSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, -1, -1));
 
         Grau.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         Grau.setForeground(new java.awt.Color(29, 29, 27));
@@ -123,18 +118,31 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
 
         Logo_Linkedin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/linkedin1.png"))); // NOI18N
         Logo_Linkedin.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(Logo_Linkedin, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 520, 40, -1));
+        getContentPane().add(Logo_Linkedin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 600, 40, -1));
 
         Logo_GitHub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/github1.png"))); // NOI18N
         Logo_GitHub.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(Logo_GitHub, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 490, 40, -1));
+        getContentPane().add(Logo_GitHub, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 40, -1));
 
         Logo_Facebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/facebook2.png"))); // NOI18N
         Logo_Facebook.setPreferredSize(new java.awt.Dimension(32, 32));
-        getContentPane().add(Logo_Facebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 40, -1));
+        getContentPane().add(Logo_Facebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 40, -1));
 
-        DIO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/DIO.jpg"))); // NOI18N
-        getContentPane().add(DIO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, -1));
+        GvC_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Developer.png"))); // NOI18N
+        GvC_Developer.setText("jLabel1");
+        getContentPane().add(GvC_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 200, 90));
+
+        Avanade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Avanade.jpg"))); // NOI18N
+        getContentPane().add(Avanade, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
+
+        Cognizant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Cognizant.jpg"))); // NOI18N
+        getContentPane().add(Cognizant, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 220, -1, -1));
+
+        GTF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/GFT.jpg"))); // NOI18N
+        getContentPane().add(GTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 430, -1, -1));
+
+        Java_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/DIO.jpg"))); // NOI18N
+        getContentPane().add(Java_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, -1));
 
         NTTData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/NTT_DATA.jpg"))); // NOI18N
         getContentPane().add(NTTData, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
@@ -146,7 +154,7 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 774));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 730));
         TelaFundo.getAccessibleContext().setAccessibleName("");
 
         setBounds(0, 0, 1366, 768);
@@ -193,12 +201,16 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Avanade;
     private javax.swing.JLabel Chapeu;
+    private javax.swing.JLabel Cognizant;
     private javax.swing.JLabel Curso;
-    private javax.swing.JLabel DIO;
+    private javax.swing.JLabel GTF;
     private javax.swing.JLabel Grau;
+    private javax.swing.JLabel GvC_Developer;
     private javax.swing.JTextArea Informacao;
     private javax.swing.JScrollPane JSP;
+    private javax.swing.JLabel Java_Developer;
     private javax.swing.JLabel Logo_Facebook;
     private javax.swing.JLabel Logo_GitHub;
     private javax.swing.JLabel Logo_Linkedin;
@@ -207,8 +219,6 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel TelaFundo;
     private javax.swing.JLabel Uniasselvi;
-    private javax.swing.JLabel WhatsUp;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel openFacebookProfile;
     private javax.swing.JLabel openGitHubProfile;
     private javax.swing.JLabel openLinkedinProfile;

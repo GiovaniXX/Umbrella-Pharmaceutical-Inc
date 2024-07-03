@@ -8,7 +8,7 @@ import up_classes.Dados;
 
 public class Methods {
 
-    private Dados dados;
+    private final Dados dados;
     private JComboBox<String> jComboBox_Telefones;
 
     public Methods(Dados dados) {

@@ -100,7 +100,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value=" Sistema Desenvolvido na l&#xed;nguagem Java&#xa;&#xa;  Este software tem como finalidade cadastrar usu&#xe1;rios, &#xa;  clientes e produtos em uma base de dados,&#xa;  fazendo a inser&#xe7;&#xe3;o, busca e pesquisa dos mesmos,&#xa; com a finaliza&#xe7;&#xe3;o de vendas e gera&#xe7;&#xe3;o de relat&#xf3;rios das &#xa; devidas vendas.&#xa;&#xa; Desenvolvido por.: Giovani V. Chaves&#xa;&#xa;GvC - Desenvolvimentos&#xae;&#xa;2023&#xa9; Todos os Direitos reservados&#xa;&#xa;&#xa;"/>
+                <Property name="text" type="java.lang.String" value=" Sistema Desenvolvido na l&#xed;nguagem Java&#xa;&#xa;  Este software tem como finalidade cadastrar usu&#xe1;rios, &#xa;  clientes e produtos em uma base de dados,&#xa;  fazendo a inser&#xe7;&#xe3;o, busca e pesquisa dos mesmos,&#xa; com a finaliza&#xe7;&#xe3;o de vendas e gera&#xe7;&#xe3;o de relat&#xf3;rios das &#xa; devidas vendas, sendo as mesmas enviadas atrav&#xe9;s do&#xa; WhatsApp&#xa;&#xa; Desenvolvido por.: Giovani V. Chaves&#xa;&#xa;GvC - Desenvolvimentos&#xae;&#xa;2024&#xa9; Todos os Direitos reservados&#xa;&#xa;&#xa;"/>
               </Properties>
             </Component>
           </SubComponents>

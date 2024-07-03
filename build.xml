@@ -10,6 +10,14 @@
 <project name="Umbrella_Pharmaceutical_Inc" default="default" basedir=".">
     <description>Builds, tests, and runs the project Umbrella_Pharmaceutical_Inc.</description>
     <import file="nbproject/build-impl.xml"/>
+	
+	<!-- Adicione a configuração do javac aqui -->
+    <target name="-pre-compile">
+        <property name="javac.source" value="22"/>
+        <property name="javac.target" value="22"/>
+        <property name="javac.compilerargs" value="--enable-preview"/>
+    </target>
+
     <!--
 
     There exist several targets which are by default empty and which can be 

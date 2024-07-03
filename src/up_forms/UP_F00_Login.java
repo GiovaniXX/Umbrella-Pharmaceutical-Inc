@@ -3,6 +3,8 @@ package up_forms;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import java.util.logging.Logger;
+//import java.util.logging.Level;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JDialog;
@@ -254,7 +256,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         String successMessage = "<html><font color='green'><b>Conexão bem sucedida!</b></font></html>";
         showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 1000);
 
-        // Resto do código quando a validação é bem-sucedida
+        // ↓ Continuação do fluxo do código quando a validação é bem-sucedida ↓
         UP_F01_Principal ufp = new UP_F01_Principal();
         this.setVisible(false);
         // Define os valores usando os métodos adequados (que você deve definir na classe UP_F01_Principal)       

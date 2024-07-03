@@ -19,14 +19,24 @@ public class Dados {
 
     public Dados() {
         try {
+            // Carrega o driver connector do MySQL Server - MySQL Workbench
             Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Carrega o driver JDBC do SQL Server - SSMS (Sql server management studio)
+            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            // Carrega as propriedades de configuração
             Properties props = new Properties();
-            props.load(new FileInputStream("E:\\Projetos java\\Umbrella_Pharmaceutical_Inc\\config.properties"));
+            props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella_Pharmaceutical_Inc\\config.properties"));
+            //props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella_Pharmaceutical_Inc\\SSMS-config.properties"));
+
+            // Obtém as propriedades do arquivo
             String dbUrl = props.getProperty("db.url");
             String dbUser = props.getProperty("db.user");
             String dbPassword = props.getProperty("db.password");
 
+            // Estabelece a conexão com o banco de dados
             cnn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            //cnn = DriverManager.getConnection(dbUrl);
         } catch (ClassNotFoundException | IOException ex) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao carregar o driver ou ler as propriedades", ex);
             cnn = null;
@@ -75,16 +85,16 @@ public class Dados {
 
         try {
             // Estabeleça a conexão com o banco de dados aqui (substitua as informações de conexão apropriadas)
-            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx387@$$gVc");
+            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx355@$Y");
 
-            String sql = "SELECT perfil FROM usuarios WHERE idusuario=?";
+            String sql = "SELECT idperfil FROM usuarios WHERE idusuario=?";
             st = cnn.prepareStatement(sql);
             st.setString(1, usuario);
 
             rs = st.executeQuery();
 
             if (rs.next()) {
-                return rs.getInt("perfil");
+                return rs.getInt("idperfil");
             } else {
                 return -1;
             }

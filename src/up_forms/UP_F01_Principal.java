@@ -287,10 +287,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
-        UP_F02_Usuarios mUsuarios = new UP_F02_Usuarios();
-        mUsuarios.setDados(dados);
-        dpnDesk.add(mUsuarios);
-        mUsuarios.show();
+        UP_F02_Usuarios ufu = new UP_F02_Usuarios();
+        ufu.setDados(dados);
+        dpnDesk.add(ufu);
+        ufu.show();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -299,10 +299,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void ProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProdutosActionPerformed
-        UP_F03_Produtos msProdutos = new UP_F03_Produtos();
-        msProdutos.setDados(dados);
-        dpnDesk.add(msProdutos);
-        msProdutos.show();
+        UP_F03_Produtos ufp = new UP_F03_Produtos();
+        ufp.setDados(dados);
+        dpnDesk.add(ufp);
+        ufp.show();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -310,10 +310,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_ProdutosActionPerformed
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
-        UP_F04_Clientes msClientes = new UP_F04_Clientes();
-        msClientes.setDados(dados);
-        dpnDesk.add(msClientes);
-        msClientes.show();
+        UP_F04_Clientes ufc = new UP_F04_Clientes();
+        ufc.setDados(dados);
+        dpnDesk.add(ufc);
+        ufc.show();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -372,24 +372,24 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_DevActionPerformed
 
     private void openFacebookProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFacebookProfileActionPerformed
-        final String LINKEDIN_PROFILE_URL = "https://www.facebook.com/giovani.chaves.52";
+        final String FACEBOOK_PROFILE_URL = "https://www.facebook.com/giovani.chaves.52";
         Desktop browser = Desktop.getDesktop();
         try {
-            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+            browser.browse(new URI(FACEBOOK_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Facebook", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-        System.out.println("Profile do Facebbok executado com sucesso.!");
+        System.out.println("Profile do Facebook executado com sucesso.!");
     }//GEN-LAST:event_openFacebookProfileActionPerformed
 
     private void openGitHubProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openGitHubProfileActionPerformed
-        final String LINKEDIN_PROFILE_URL = "https://github.com/GiovaniXX";
+        final String GITHUB_PROFILE_URL = "https://github.com/GiovaniXX";
         Desktop browser = Desktop.getDesktop();
         try {
-            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+            browser.browse(new URI(GITHUB_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do GitHub", "Erro", JOptionPane.ERROR_MESSAGE);
         }
@@ -414,10 +414,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_openLinkedinProfileActionPerformed
 
     private void openWhatsUpProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openWhatsUpProfileActionPerformed
-        final String LINKEDIN_PROFILE_URL = "https://www.whatsapp.com/?lang=pt_br";
+        final String WHATSAPP_PROFILE_URL = "https://www.whatsapp.com/?lang=pt_br";
         Desktop browser = Desktop.getDesktop();
         try {
-            browser.browse(new URI(LINKEDIN_PROFILE_URL));
+            browser.browse(new URI(WHATSAPP_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(this, "Não foi possível abrir a página inicial do Whatsapp", "Erro", JOptionPane.ERROR_MESSAGE);
         }

@@ -45,7 +45,7 @@ public class UP_F06_Sobre extends javax.swing.JInternalFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setRows(5);
-        jTextArea1.setText(" Sistema Desenvolvido na línguagem Java\n\n  Este software tem como finalidade cadastrar usuários, \n  clientes e produtos em uma base de dados,\n  fazendo a inserção, busca e pesquisa dos mesmos,\n com a finalização de vendas e geração de relatórios das \n devidas vendas.\n\n Desenvolvido por.: Giovani V. Chaves\n\nGvC - Desenvolvimentos®\n2023© Todos os Direitos reservados\n\n\n");
+        jTextArea1.setText(" Sistema Desenvolvido na línguagem Java\n\n  Este software tem como finalidade cadastrar usuários, \n  clientes e produtos em uma base de dados,\n  fazendo a inserção, busca e pesquisa dos mesmos,\n com a finalização de vendas e geração de relatórios das \n devidas vendas, sendo as mesmas enviadas através do\n WhatsApp\n\n Desenvolvido por.: Giovani V. Chaves\n\nGvC - Desenvolvimentos®\n2024© Todos os Direitos reservados\n\n\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 720, 280));
