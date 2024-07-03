@@ -628,7 +628,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 registro[0] = rs.getString("idProduto");
                 registro[1] = rs.getString("descricao");
                 registro[2] = rs.getString("preco");
-                registro[3] = imposto(rs.getInt("imposto"));
+                registro[3] = imposto(rs.getInt("idimposto"));
                 registro[4] = rs.getString("anotacao");
                 mTabela.addRow(registro);
             }
@@ -649,7 +649,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 id = rs.getString("idproduto");
                 descricao = rs.getString("descricao");
                 preco = rs.getString("preco");
-                imposto = rs.getString("imposto");
+                imposto = rs.getString("idimposto");
                 anotacao = rs.getString("anotacao");
 
                 txtIdproduto.setText(id);

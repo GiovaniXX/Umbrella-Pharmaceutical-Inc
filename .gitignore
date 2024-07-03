@@ -1,3 +1,8 @@
 /dist/
 /build/
 /nbproject/private/
+confi.properties
+MySQL-Workbench.sql
+SSMS.sql
+SSMS-config.properties
+

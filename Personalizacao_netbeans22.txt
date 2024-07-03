@@ -1,0 +1,27 @@
+Vá em Tools-> Options-> Fonts & Colors...
+Profile: FlatLaf dark...
+Em syntax
+Language: Java
+
+Cores personalizadas para a syntax do netbeans 22
+
+Class declaration (0,153,153)
+Class Use (0,153,153)
+
+Constructor Declaration (0,213,156)
+Constructor Use (0,213,156)
+
+Field Declaration (236,121,158)
+Field Use (236,121,158)
+
+Identifier (152,130,44)
+
+Local Variable Declaration (255,203,37)
+Local Variable Use (255,203,37)
+
+Method declaration (177,214,50)
+Method Use (177,214,50)
+
+Parameter Declaration (209,15,117)
+parameter Use (209,15,117)
+

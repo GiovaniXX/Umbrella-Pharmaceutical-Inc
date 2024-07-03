@@ -716,7 +716,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 registro[0] = rs.getString("idusuario");
                 registro[1] = rs.getString("nome");
                 registro[2] = rs.getString("sobrenome");
-                registro[3] = perfil(rs.getInt("perfil"));
+                registro[3] = perfil(rs.getInt("idperfil"));
 
                 tableModel.addRow(registro);
             }
@@ -733,7 +733,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 id = rs.getString("idusuario");
                 nome = rs.getString("nome");
                 sobrenome = rs.getString("sobrenome");
-                perfil = rs.getString("perfil");
+                perfil = rs.getString("idperfil");
 
                 txtIdusuario.setText(id);
                 txtNome.setText(nome);
