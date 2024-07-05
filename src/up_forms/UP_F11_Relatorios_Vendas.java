@@ -99,19 +99,19 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
 
         jLabel4.setForeground(new java.awt.Color(3, 155, 216));
         jLabel4.setText("data Final.:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 210, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setText("Venda Inicial.:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(3, 155, 216));
         jLabel6.setText("Venda Final.:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(3, 155, 216));
         jLabel7.setText("Cliente.:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 430, -1, -1));
 
         txtArquivo.setBackground(new java.awt.Color(122, 126, 140));
         txtArquivo.setForeground(new java.awt.Color(255, 255, 255));
@@ -119,7 +119,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         txtArquivo.setBorder(null);
         txtArquivo.setMinimumSize(new java.awt.Dimension(71, 22));
         txtArquivo.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 590, 20));
+        getContentPane().add(txtArquivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 510, 20));
 
         btnSelecao.setBackground(new java.awt.Color(112, 126, 140));
         btnSelecao.setForeground(new java.awt.Color(3, 155, 216));
@@ -130,9 +130,9 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 btnSelecaoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSelecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 50, 60, 20));
+        getContentPane().add(btnSelecao, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 50, 60, 20));
 
-        btnGerarRelatorio.setBackground(new java.awt.Color(0, 0, 0));
+        btnGerarRelatorio.setBackground(new java.awt.Color(255, 0, 102));
         btnGerarRelatorio.setForeground(new java.awt.Color(3, 155, 216));
         btnGerarRelatorio.setText("Gerar Relatorio");
         btnGerarRelatorio.setBorder(null);
@@ -141,7 +141,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 btnGerarRelatorioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGerarRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 430, 160, 25));
+        getContentPane().add(btnGerarRelatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 160, 25));
 
         RadioData.setBackground(new java.awt.Color(122, 126, 140));
         RadioData.setForeground(new java.awt.Color(3, 155, 216));
@@ -172,7 +172,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioNumeroVendaActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioNumeroVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+        getContentPane().add(RadioNumeroVenda, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 160, -1));
 
         RadioCliente.setBackground(new java.awt.Color(122, 126, 140));
         RadioCliente.setForeground(new java.awt.Color(3, 155, 216));
@@ -187,7 +187,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 RadioClienteActionPerformed(evt);
             }
         });
-        getContentPane().add(RadioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, -1, -1));
+        getContentPane().add(RadioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 390, 160, -1));
 
         RadioTodasVendas.setBackground(new java.awt.Color(122, 126, 140));
         RadioTodasVendas.setForeground(new java.awt.Color(3, 155, 216));
@@ -221,31 +221,31 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
         dchDataInicial.setBackground(new java.awt.Color(122, 126, 140));
         dchDataInicial.setForeground(new java.awt.Color(255, 255, 255));
         dchDataInicial.setEnabled(false);
-        getContentPane().add(dchDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 150, -1));
+        getContentPane().add(dchDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 160, -1));
 
         dchDataFinal.setBackground(new java.awt.Color(122, 126, 140));
         dchDataFinal.setForeground(new java.awt.Color(255, 255, 255));
         dchDataFinal.setEnabled(false);
-        getContentPane().add(dchDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 210, 150, -1));
+        getContentPane().add(dchDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 210, 180, -1));
 
         cmbVendaInicial.setBackground(new java.awt.Color(122, 126, 140));
         cmbVendaInicial.setForeground(new java.awt.Color(255, 255, 255));
         cmbVendaInicial.setEnabled(false);
-        getContentPane().add(cmbVendaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 180, -1));
+        getContentPane().add(cmbVendaInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 320, 160, -1));
 
         cmbVendaFinal.setBackground(new java.awt.Color(122, 126, 140));
         cmbVendaFinal.setForeground(new java.awt.Color(255, 255, 255));
         cmbVendaFinal.setEnabled(false);
-        getContentPane().add(cmbVendaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 320, 180, -1));
+        getContentPane().add(cmbVendaFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 330, 180, -1));
 
         cmbCliente.setBackground(new java.awt.Color(122, 126, 140));
         cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
         cmbCliente.setEnabled(false);
-        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 430, 160, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 590, 10));
+        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 160, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, 590, 0));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 590, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 590, -1));
-        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 600, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, 590, -1));
 
         jLabel1.setBackground(new java.awt.Color(50, 0, 1));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N

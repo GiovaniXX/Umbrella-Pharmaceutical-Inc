@@ -169,7 +169,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setBackground(new java.awt.Color(30, 30, 30));
         txtIdcliente.setForeground(new java.awt.Color(255, 255, 255));
         txtIdcliente.setBorder(null);
-        txtIdcliente.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtIdcliente.setCaretColor(new java.awt.Color(3, 155, 216));
         txtIdcliente.setEnabled(false);
         txtIdcliente.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtIdcliente);
@@ -178,7 +178,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtNome.setBackground(new java.awt.Color(30, 30, 30));
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setBorder(null);
-        txtNome.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtNome.setCaretColor(new java.awt.Color(3, 155, 216));
         txtNome.setEnabled(false);
         txtNome.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtNome);

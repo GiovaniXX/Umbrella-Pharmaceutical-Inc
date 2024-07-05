@@ -178,7 +178,7 @@ public class Dados {
 
     public String adicionarUsuario(Usuario mUsuario) {
         try {
-            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, chave, perfil) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO usuarios (nome, sobrenome, senha, chave, idperfil) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mUsuario.getNome());
             pstmt.setString(2, mUsuario.getSobrenome());
@@ -196,7 +196,7 @@ public class Dados {
 
     public String adicionarProduto(Produto mProduto) {
         try {
-            String sql = "INSERT INTO produtos (descricao, preco, imposto, anotacao) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO produtos (descricao, preco, idimposto, anotacao) VALUES (?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mProduto.getDescricao());
             pstmt.setDouble(2, mProduto.getPreco());
@@ -213,7 +213,7 @@ public class Dados {
 
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (tipo, nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (idtipo, nome, sobrenome, endereco, telefone, idcidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setInt(1, mCliente.getTipo());
             pstmt.setString(2, mCliente.getNome());
@@ -234,7 +234,7 @@ public class Dados {
 
     public String editarUsuario(Usuario mUsuario) {
         try {
-            String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, senha = ?, perfil = ? WHERE idusuario = ?";
+            String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, senha = ?, idperfil = ? WHERE idusuario = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mUsuario.getNome());
             pstmt.setString(2, mUsuario.getSobrenome());
@@ -253,7 +253,7 @@ public class Dados {
 
     public String editarProduto(Produto mProduto) {
         try {
-            String sql = "UPDATE produtos SET descricao = ?, preco = ?, imposto = ?, anotacao = ? WHERE idproduto = ?";
+            String sql = "UPDATE produtos SET descricao = ?, preco = ?, idimposto = ?, anotacao = ? WHERE idproduto = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mProduto.getDescricao());
             pstmt.setDouble(2, mProduto.getPreco());
@@ -272,7 +272,7 @@ public class Dados {
 
     public String editarCliente(Cliente mCliente) {
         try {
-            String sql = "UPDATE clientes SET tipo = ?, nome = ?, sobrenome = ?, endereco = ?, telefone = ?, cidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
+            String sql = "UPDATE clientes SET idtipo = ?, nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setInt(1, mCliente.getTipo());
             pstmt.setString(2, mCliente.getNome());
@@ -447,7 +447,7 @@ public class Dados {
                         Utilidades.stringToInt(rs.getString("idproduto")),
                         rs.getString("descricao"),
                         rs.getInt("preco"),
-                        rs.getInt("imposto"),
+                        rs.getInt("idimposto"),
                         rs.getString("anotacao"));
             }
             return mProduto;
