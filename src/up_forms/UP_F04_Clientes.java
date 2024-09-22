@@ -696,33 +696,32 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
     private void mostrarRegistro() {
         txtIdcliente.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 0)));
-        cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
-        txtNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 2)));
-        txtSNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 3)));
-        txtEndereco.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 4)));
-        txtTelefone.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 5)));
-        cmbCidade.setSelectedIndex(cidade(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 6))));
-        jdcDataNascimento.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 7)));
-        jdcDataCadastro.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 8)));
+        //cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
+        txtNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1)));
+        txtSNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 2)));
+        txtEndereco.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 3)));
+        txtTelefone.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 4)));
+        cmbCidade.setSelectedIndex(cidade(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 5))));
+        jdcDataNascimento.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 6)));
+        jdcDataCadastro.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 7)));
     }
 
     private void preencherTabela() {
         try {
-            String titulos[] = {"ID Cliente", "Tipo", "Nome", "S-Nome", "Endereco", "Telefone", "Cidade", "D-Nascimento", "D-Cadastro"};
-            String registro[] = new String[9];
+            String titulos[] = {"ID Cliente", "Nome", "S-Nome", "Endereco", "Telefone", "Cidade", "D-Nascimento", "D-Cadastro"};
+            String registro[] = new String[8];
             mTabela = new DefaultTableModel(null, titulos);
             ResultSet rs = dados.getClientes();
 
             while (rs.next()) {
                 registro[0] = rs.getString("idcliente");
-                registro[1] = tipo(rs.getInt("idtipo"));
-                registro[2] = rs.getString("nome");
-                registro[3] = rs.getString("sobrenome");
-                registro[4] = rs.getString("endereco");
-                registro[5] = rs.getString("telefone");
-                registro[6] = cidade(rs.getInt("idcidade"));
-                registro[7] = rs.getString("dataNascimento");
-                registro[8] = rs.getString("dataCadastro");
+                registro[1] = rs.getString("nome");
+                registro[2] = rs.getString("sobrenome");
+                registro[3] = rs.getString("endereco");
+                registro[4] = rs.getString("telefone");
+                registro[5] = cidade(rs.getInt("cidade"));
+                registro[6] = rs.getString("dataNascimento");
+                registro[7] = rs.getString("dataCadastro");
                 mTabela.addRow(registro);
             }
             tblTabela.setModel(mTabela);
@@ -736,12 +735,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         try {
             if (rs.next()) {
                 id = rs.getString("idcliente");
-                identificacao = rs.getString("idtipo");
                 nome = rs.getString("nome");
                 sobrenome = rs.getString("sobrenome");
                 endereco = rs.getString("endereco");
                 telefone = rs.getString("telefone");
-                cidade = rs.getString("idcidade");
+                cidade = rs.getString("cidade");
                 dataNascimento = rs.getString("dataNascimento");
                 dataCadastro = rs.getString("dataCadastro");
 

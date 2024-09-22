@@ -606,8 +606,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 0)));
         txtDescricao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 1)));
         txtPreco.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 2)));
-        jtaAnotacao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 3)));
-        cmbImposto.setSelectedIndex(imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4))));
+        //jtaAnotacao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 3)));
+        //cmbImposto.setSelectedIndex(imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4))));
         //int index = imposto(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4)));
 
 //        if (index >= 0 && index < cmbImposto.getItemCount()) {
@@ -619,8 +619,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
     private void preencherTabela() {
         try {
-            String titulos[] = {"ID Produto", "Descricao", "Preco", "Imposto", "Anotacao"};
-            String registro[] = new String[5];
+            String titulos[] = {"ID Produto", "Descricao", "Preco"};
+            String registro[] = new String[3];
             mTabela = new DefaultTableModel(null, titulos);
             ResultSet rs = dados.getProdutos();
 
@@ -628,8 +628,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 registro[0] = rs.getString("idProduto");
                 registro[1] = rs.getString("descricao");
                 registro[2] = rs.getString("preco");
-                registro[3] = imposto(rs.getInt("idimposto"));
-                registro[4] = rs.getString("anotacao");
+                //registro[3] = imposto(rs.getInt("idimposto"));
+                //registro[3] = rs.getString("anotacao");
                 mTabela.addRow(registro);
             }
 
@@ -649,14 +649,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 id = rs.getString("idproduto");
                 descricao = rs.getString("descricao");
                 preco = rs.getString("preco");
-                imposto = rs.getString("idimposto");
-                anotacao = rs.getString("anotacao");
+                //imposto = rs.getString("idimposto");
+                //anotacao = rs.getString("anotacao");
 
                 txtIdproduto.setText(id);
                 txtDescricao.setText(descricao);
                 txtPreco.setText(preco);
-                cmbImposto.setSelectedItem(imposto);
-                jtaAnotacao.setText(anotacao);
+                //cmbImposto.setSelectedItem(imposto);
+                //jtaAnotacao.setText(anotacao);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UP_F03_Produtos.class.getName()).log(Level.SEVERE, null, ex);

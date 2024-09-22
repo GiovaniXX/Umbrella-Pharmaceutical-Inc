@@ -26,7 +26,7 @@ public class Dados {
             //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             // Carrega as propriedades de configuração
             Properties props = new Properties();
-            props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella_Pharmaceutical_Inc\\config.properties"));
+            props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella-Pharmaceutical-Inc\\config.properties"));
             //props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella_Pharmaceutical_Inc\\SSMS-config.properties"));
 
             // Obtém as propriedades do arquivo
