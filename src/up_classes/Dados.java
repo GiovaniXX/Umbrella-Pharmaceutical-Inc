@@ -196,12 +196,13 @@ public class Dados {
 
     public String adicionarProduto(Produto mProduto) {
         try {
-            String sql = "INSERT INTO produtos (descricao, preco, idimposto, anotacao) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO produtos (produto, preco, descricao) VALUES (?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setString(1, mProduto.getDescricao());
+            pstmt.setString(1, mProduto.getProduto());
             pstmt.setDouble(2, mProduto.getPreco());
-            pstmt.setDouble(3, mProduto.getImposto());
-            pstmt.setString(4, mProduto.getAnotacao());
+            pstmt.setString(3, mProduto.getDescricao());
+            //pstmt.setDouble(3, mProduto.getImposto());
+            //pstmt.setString(4, mProduto.getAnotacao());
 
             pstmt.executeUpdate();
             return "Produto cadastrado com sucesso";
@@ -213,7 +214,7 @@ public class Dados {
 
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (idtipo, nome, sobrenome, endereco, telefone, idcidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setInt(1, mCliente.getTipo());
             pstmt.setString(2, mCliente.getNome());
@@ -253,13 +254,14 @@ public class Dados {
 
     public String editarProduto(Produto mProduto) {
         try {
-            String sql = "UPDATE produtos SET descricao = ?, preco = ?, idimposto = ?, anotacao = ? WHERE idproduto = ?";
+            String sql = "UPDATE produtos SET descricao = ?, preco = ? WHERE idproduto = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mProduto.getDescricao());
-            pstmt.setDouble(2, mProduto.getPreco());
-            pstmt.setDouble(3, mProduto.getImposto());
-            pstmt.setString(4, mProduto.getAnotacao());
-            pstmt.setInt(5, mProduto.getIdProduto());
+            pstmt.setString(2, mProduto.getProduto());
+            pstmt.setDouble(3, mProduto.getPreco());
+            //pstmt.setDouble(3, mProduto.getImposto());
+            //pstmt.setString(4, mProduto.getAnotacao());
+            pstmt.setInt(4, mProduto.getIdProduto());
 
             pstmt.executeUpdate();
 
@@ -445,10 +447,11 @@ public class Dados {
             if (rs.next()) {
                 mProduto = new Produto(
                         Utilidades.stringToInt(rs.getString("idproduto")),
-                        rs.getString("descricao"),
+                        rs.getString("produto"),
                         rs.getInt("preco"),
-                        rs.getInt("idimposto"),
-                        rs.getString("anotacao"));
+                        rs.getString("descricao"));
+                //rs.getInt("idimposto"),
+                //rs.getString("anotacao"));
             }
             return mProduto;
         } catch (SQLException e) {

@@ -20,10 +20,9 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private DefaultTableModel mTabela;
 
     private String id;
-    private String descricao;
+    private String produto;
     private String preco;
-    private String imposto;
-    private String anotacao;
+    private String descricao;
 
     public void setDados(Dados dados) {
         this.dados = dados;
@@ -107,12 +106,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Anotação.:");
+        jLabel5.setEnabled(false);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(440, 110, 70, 16);
 
         jLabel7.setForeground(new java.awt.Color(3, 155, 216));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("Imposto.:");
+        jLabel7.setEnabled(false);
         getContentPane().add(jLabel7);
         jLabel7.setBounds(700, 80, 50, 16);
 
@@ -282,6 +283,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jtaAnotacao.setColumns(20);
         jtaAnotacao.setForeground(new java.awt.Color(3, 155, 216));
         jtaAnotacao.setRows(5);
+        jtaAnotacao.setEnabled(false);
         jScrollPane2.setViewportView(jtaAnotacao);
 
         getContentPane().add(jScrollPane2);
@@ -294,14 +296,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Descricao", "Preco", "Imposto", "Anotacao"
+                "ID", "Produto", "Preco", "Descricao"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -324,9 +326,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             tblTabela.getColumnModel().getColumn(2).setMinWidth(100);
             tblTabela.getColumnModel().getColumn(2).setPreferredWidth(100);
             tblTabela.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(3).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(3).setMaxWidth(100);
         }
 
         getContentPane().add(jScrollPane1);
@@ -374,11 +373,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        if (cmbImposto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione o imposto");
-            cmbImposto.requestFocusInWindow();
-            return;
-        }
+//        if (cmbImposto.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Selecione o imposto");
+//            cmbImposto.requestFocusInWindow();
+//            return;
+//        }
 
         if (txtDescricao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira uma descricao");
@@ -421,16 +420,17 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         Produto mProduto = new Produto(
                 Utilidades.objectToInt(txtIdproduto.getText()),
-                txtDescricao.getText(),
                 preco,
-                cmbImposto.getSelectedIndex(),
-                jtaAnotacao.getText());
+                txtDescricao.getText()
+        );
+
         String msg;
         if (novo) {
             msg = dados.adicionarProduto(mProduto);
         } else {
             msg = dados.editarProduto(mProduto);
         }
+
         JOptionPane.showMessageDialog(rootPane, msg);
 
         btnPrimeiro.setEnabled(true);
@@ -447,14 +447,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
-        cmbImposto.setEnabled(false);
-        jtaAnotacao.setEnabled(false);
+        //cmbImposto.setEnabled(false);
+        //jtaAnotacao.setEnabled(false);
 
         txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
-        cmbImposto.setSelectedIndex(0);
-        jtaAnotacao.setText("");
+        //cmbImposto.setSelectedIndex(0);
+        //jtaAnotacao.setText("");
 
         preencherTabela();
 
@@ -477,14 +477,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
-        cmbImposto.setEnabled(false);
-        jtaAnotacao.setEnabled(false);
+        //cmbImposto.setEnabled(false);
+        //jtaAnotacao.setEnabled(false);
 
         txtIdproduto.setText(id);
         txtDescricao.setText(descricao);
         txtPreco.setText(preco);
-        cmbImposto.setSelectedItem(imposto);
-        jtaAnotacao.setText(anotacao);
+        //cmbImposto.setSelectedItem(imposto);
+        //jtaAnotacao.setText(anotacao);
 
         carregarPrimeiroRegistro();
 
@@ -506,11 +506,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
-        jtaAnotacao.setEnabled(true);
-        cmbImposto.setEnabled(true);
+        //jtaAnotacao.setEnabled(true);
+        //cmbImposto.setEnabled(true);
 
         novo = false;
-        jtaAnotacao.requestFocus();
+        //jtaAnotacao.requestFocus();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);

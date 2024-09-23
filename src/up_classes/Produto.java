@@ -3,17 +3,24 @@ package up_classes;
 public class Produto {
 
     private int idproduto;
-    private String descricao;
+    private String produto;
     private double preco;
-    private int imposto;
-    private String anotacao;
+    private String descricao;
 
-    public Produto(int idproduto, String descricao, double preco, int imposto, String anotacao) {
+    // Construtor completo (original)
+    public Produto(int idproduto, String produto, double preco, String descricao) {
         this.idproduto = idproduto;
-        this.descricao = descricao;
+        this.produto = produto;
         this.preco = preco;
-        this.anotacao = anotacao;
-        this.imposto = imposto;
+        this.descricao = descricao;
+    }
+
+    // Construtor sobrecarregado (sem 'produto')
+    public Produto(int idproduto, double preco, String descricao) {
+        this.idproduto = idproduto;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.produto = ""; // Ou um valor padrão, se necessário
     }
 
     public int getIdProduto() {
@@ -24,12 +31,12 @@ public class Produto {
         this.idproduto = idproduto;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getProduto() {
+        return produto;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setProduto(String produto) {
+        this.produto = produto;
     }
 
     public double getPreco() {
@@ -40,20 +47,12 @@ public class Produto {
         this.preco = preco;
     }
 
-    public int getImposto() {
-        return imposto;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setImposto(int imposto) {
-        this.imposto = imposto;
-    }
-
-    public String getAnotacao() {
-        return anotacao;
-    }
-
-    public void setAnotacao(String anotacao) {
-        this.anotacao = anotacao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
 /**
