@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingConstants;
+import up_classes.Cliente;
 import up_classes.Produto;
 import up_classes.Dados;
 
@@ -273,8 +274,22 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
+        // Obter o cliente selecionado
+        String clienteSelecionado = (String) cmbCliente.getSelectedItem();
+        Cliente cliente = dados.getClientePorNome(clienteSelecionado);
+        if (cliente == null) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente não encontrado: " + clienteSelecionado);
+            return;
+        }
+
         // Obter o produto selecionado
-        Produto produto = dados.getProdutoPorNome((String) cmbProduto.getSelectedItem());
+        String produtoSelecionado = (String) cmbProduto.getSelectedItem();
+        System.out.println("Produto selecionado: " + produtoSelecionado); // Debug
+        Produto produto = dados.getProdutoPorNome(produtoSelecionado);
+        if (produto == null) {
+            JOptionPane.showMessageDialog(rootPane, "Produto não encontrado: " + produtoSelecionado);
+            return;
+        }
 
         // Verificar a quantidade
         if (txtQuantidade.getText().isEmpty() || !Utilidades.isNumeric(txtQuantidade.getText())) {
@@ -309,7 +324,12 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         int numeroVenda = dados.getNumeroVenda();
         int idCliente = dados.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
-        dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date());
+
+        totalGeral(); // Atualiza os valores totais
+        double valorVenda = Double.parseDouble(txtTotalValor.getText()); // Obtém o valor total da venda
+        int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText()); // Obtém a quantidade total
+
+        dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
 
         // Salvar detalhes da venda
         for (int i = 0; i < tblTabela.getRowCount(); i++) {
@@ -321,6 +341,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
         limparTabela();
+        totalGeral();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -432,7 +453,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
             ResultSet rsClientes = dados.getClientes();
             while (rsClientes.next()) {
-                cmbCliente.addItem(rsClientes.getString("nome") + " - ID: " + rsClientes.getInt("idcliente"));  // Exibe o nome e o ID
+                cmbCliente.addItem(rsClientes.getString("nome"));  // Exibe apenas o nome
             }
         } catch (SQLException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
@@ -447,7 +468,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
             ResultSet rsProdutos = dados.getProdutos();
             while (rsProdutos.next()) {
-                cmbProduto.addItem(rsProdutos.getString("produto") + " - ID: " + rsProdutos.getInt("idproduto"));  // Exibe o nome e o ID
+                cmbProduto.addItem(rsProdutos.getString("produto"));  // Exibe apenas o nome
             }
         } catch (SQLException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);

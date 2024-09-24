@@ -462,13 +462,15 @@ public class Dados {
         }
     }
 
-    public void adicionarVenda(int idVenda, int idCliente, Date data) {
+    public void adicionarVenda(int idVenda, int idCliente, Date data, double preco, int quantidade) {
         try {
-            String sql = "INSERT INTO vendas (idvenda, idcliente, data) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO vendas (idvenda, idcliente, data, preco, quantidade) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setInt(1, idVenda);                      // Para idVenda
             pstmt.setInt(2, idCliente);                    // Para idCliente
             pstmt.setDate(3, new java.sql.Date(data.getTime())); // Para data
+            pstmt.setDouble(4, preco);                     // Para preco
+            pstmt.setInt(5, quantidade);                   // Para quantidade
             pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -547,20 +549,41 @@ public class Dados {
         return cliente;
     }
 
-    // Método para buscar produto pelo nome
-    public Produto getProdutoPorNome(String nomeProduto) {
+    // Método para buscar produto pelo Id
+    public Produto getProdutoPorId(int idProduto) {
         for (Produto produto : listaDeProdutos) {
-            if (produto.getDescricao().equalsIgnoreCase(nomeProduto)) {
+            if (produto.getIdProduto() == idProduto) {
                 return produto;
             }
         }
         // Log opcional se necessário
-        Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado: " + nomeProduto);
+        Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado");
         return null; // Retorna null se o produto não for encontrado
     }
+
+    // Método para buscar produto pelo nome
+    public Produto getProdutoPorNome(String nomeProduto) {
+        Produto produto = null;
+        try {
+            String sql = "SELECT * FROM produtos WHERE produto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, nomeProduto);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    produto = new Produto(
+                            rs.getInt("idproduto"),
+                            rs.getString("produto"),
+                            rs.getDouble("preco"),
+                            rs.getString("descricao")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao buscar produto por nome", e);
+        }
+        if (produto == null) {
+            Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado");
+        }
+        return produto;
+    }
 }
-/**
- * 01000100 01100101 01110110
- *
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101001
- */
