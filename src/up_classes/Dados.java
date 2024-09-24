@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 
 public class Dados {
 
+    private ArrayList<Produto> listaDeProdutos;
     public Connection cnn;
 
     public Dados() {
@@ -44,6 +46,8 @@ public class Dados {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao estabelecer a conexão com o banco de dados", ex);
             cnn = null;
         }
+
+        listaDeProdutos = new ArrayList<>();
     }
 
     public static Connection getConnectionInstance() {
@@ -106,21 +110,6 @@ public class Dados {
         }
     }
 
-    /**
-     * GvC-Desenvolvimentos™ Programmer: Giovani V. Chaves
-     *
-     * Utilizei Logger para registrar exceções com níveis adequados de
-     * severidade.
-     *
-     * Movi a lógica de fechamento de recursos para um método separado
-     * (closeResources) para evitar duplicação de código.
-     *
-     * A exceção no fechamento de recursos também é registrada adequadamente com
-     * o Logger.
-     *
-     * Evitei o uso de Throwable.printStackTrace(), o que é uma prática de
-     * tratamento de exceções mais apropriada em código profissional.
-     */
     private void closeResources(Connection cnn, PreparedStatement st, ResultSet rs) {
         try {
             if (rs != null) {
@@ -450,8 +439,6 @@ public class Dados {
                         rs.getString("produto"),
                         rs.getInt("preco"),
                         rs.getString("descricao"));
-                //rs.getInt("idimposto"),
-                //rs.getString("anotacao"));
             }
             return mProduto;
         } catch (SQLException e) {
@@ -477,35 +464,48 @@ public class Dados {
         }
     }
 
-    public void adicionarVenda(int idvenda, int cliente, Date data) {
+    public void adicionarVenda(int idVenda, int idCliente, Date data) {
         try {
-            String sql = "INSERT INTO vendas VALUES (?, ?, ?)";
+            String sql = "INSERT INTO vendas (idvenda, idcliente, data) VALUES (?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setInt(1, idvenda);
-            pstmt.setInt(2, cliente);
-            pstmt.setDate(3, new java.sql.Date(data.getTime()));
+            pstmt.setInt(1, idVenda);                      // Para idVenda
+            pstmt.setInt(2, idCliente);                    // Para idCliente
+            pstmt.setDate(3, new java.sql.Date(data.getTime())); // Para data
             pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
-    public void adicionarDetalheVenda(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
+    public void adicionarDetalheVenda(int idVenda, int idProduto, double preco, int quantidade) {
         try {
-            String sql = "INSERT INTO detalhevendas (idvenda, linha, produto, descricao, preco, quantidade) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO detalhe_venda (idvenda, idproduto, preco, quantidade) VALUES (?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setInt(1, idvenda);
-            pstmt.setInt(2, linha);
-            pstmt.setInt(3, produto);
-            pstmt.setString(4, descricao);
-            pstmt.setDouble(5, preco);
-            pstmt.setInt(6, quantidade);
+            pstmt.setInt(1, idVenda);                       // ID da venda
+            pstmt.setInt(2, idProduto);                     // ID do produto
+            pstmt.setDouble(3, preco);                      // Preço do produto
+            pstmt.setInt(4, quantidade);                    // Quantidade
             pstmt.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
+//    public void adicionarVenda(int idvenda, String produto, String descricao, double preco, int quantidade, Date data) {
+//        try {
+//            String sql = "INSERT INTO vendas (idvenda, produto, descricao, preco, quantidade, data) VALUES (?, ?, ?, ?, ?, ?)";
+//            PreparedStatement pstmt = cnn.prepareStatement(sql);
+//            pstmt.setInt(1, idvenda);                     // Para idvenda
+//            pstmt.setString(2, produto);                  // Para produto
+//            pstmt.setString(3, descricao);                // Para descricao
+//            pstmt.setDouble(4, preco);                    // Para preco
+//            pstmt.setInt(5, quantidade);                  // Para quantidade
+//            pstmt.setDate(6, new java.sql.Date(data.getTime())); // Para data
+//            pstmt.executeUpdate();
+//        } catch (SQLException e) {
+//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//    }
     public ResultSet getDetalhesVendas() {
         try {
             String sql = "SELECT * FROM detalhevendas";
@@ -542,6 +542,16 @@ public class Dados {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao obter telefones de clientes", e);
         }
         return null;
+    }
+
+    // Método para buscar produto pelo nome
+    public Produto getProdutoPorNome(String nomeProduto) {
+        for (Produto produto : listaDeProdutos) {
+            if (produto.getDescricao().equalsIgnoreCase(nomeProduto)) {
+                return produto;
+            }
+        }
+        return null; // Retorna null se o produto não for encontrado
     }
 }
 /**

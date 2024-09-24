@@ -2,12 +2,18 @@ package up_classes;
 
 public class Opcoes {
 
+    private int id;
     private final String preco;
     private final String descricao;
 
-    public Opcoes(String preco, String descricao) {
+    public Opcoes(int id, String preco, String descricao) {
+        this.id = id;
         this.preco = preco;
         this.descricao = descricao;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPreco() {

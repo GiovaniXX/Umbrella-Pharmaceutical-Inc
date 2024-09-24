@@ -1,21 +1,23 @@
 package up_classes;
 
-public class DetalheVendas {
+import java.util.Date;
+
+public class Vendas {
 
     private int idvenda;
-    private int linha;
-    private int produto;
+    private String produto;
     private String descricao;
     private double preco;
     private int quantidade;
+    private Date data;
 
-    public DetalheVendas(int idvenda, int linha, int produto, String descricao, double preco, int quantidade) {
+    public Vendas(int idvenda, String produto, String descricao, double preco, int quantidade, Date data) {
         this.idvenda = idvenda;
-        this.linha = linha;
         this.produto = produto;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
+        this.data = data;
     }
 
     public int getIdvenda() {
@@ -26,19 +28,11 @@ public class DetalheVendas {
         this.idvenda = idvenda;
     }
 
-    public int getLinha() {
-        return linha;
-    }
-
-    public void setLinha(int linha) {
-        this.linha = linha;
-    }
-
-    public int getProduto() {
+    public String getProduto() {
         return produto;
     }
 
-    public void setProduto(int produto) {
+    public void setProduto(String produto) {
         this.produto = produto;
     }
 
@@ -64,6 +58,14 @@ public class DetalheVendas {
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
     }
 }
 /**

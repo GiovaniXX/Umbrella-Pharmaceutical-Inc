@@ -355,36 +355,37 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGerarRelatorioActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-        try {
-            Opcoes opc = new Opcoes("Developer: GvC", "Selecione um cliente");
-            cmbCliente.addItem(opc);
-            //cmbClienteFinal.addItem(opc);
-            ResultSet rsCli = dados.getClientes();
+//        try {
+//            Opcoes opc = new Opcoes("Developer: GvC", "Selecione um cliente");
+//            cmbCliente.addItem(opc);
+//            //cmbClienteFinal.addItem(opc);
+//            ResultSet rsCli = dados.getClientes();
+//
+//            while (rsCli.next()) {
+//                String idCliente = rsCli.getString("idcliente");
+//                String nomeCompleto = rsCli.getString("nome") + " " + rsCli.getString("sobreNome");
+//                opc = new Opcoes(idCliente, nomeCompleto);
+//                cmbCliente.addItem(opc);
+//                //cmbClienteFinal.addItem(opc);
+//            }
+//
+//            opc = new Opcoes("Developer: GvC", "Selecione uma venda");
+//            cmbVendaInicial.addItem(opc);
+//            cmbVendaFinal.addItem(opc);
+//            ResultSet rsFat = dados.getVenda();
+//
+//            while (rsFat.next()) {
+//                String idVenda = rsFat.getString("idvenda");
+//                opc = new Opcoes(idVenda, idVenda);
+//                cmbVendaInicial.addItem(opc);
+//                cmbVendaFinal.addItem(opc);
+//            }
+//        } catch (SQLException e) {
+//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+//        }
 
-            while (rsCli.next()) {
-                opc = new Opcoes(
-                        rsCli.getString("idcliente"),
-                        rsCli.getString("nome") + ""
-                        + rsCli.getString("sobreNome"));
-                cmbCliente.addItem(opc);
-                //cmbClienteFinal.addItem(opc);
-            }
-
-            opc = new Opcoes("Developer: GvC", "Selecione uma venda");
-            cmbVendaInicial.addItem(opc);
-            cmbVendaFinal.addItem(opc);
-            ResultSet rsFat = dados.getVenda();
-
-            while (rsFat.next()) {
-                opc = new Opcoes(
-                        rsFat.getString("idvenda"),
-                        rsFat.getString("idvenda"));
-                cmbVendaInicial.addItem(opc);
-                cmbVendaFinal.addItem(opc);
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-        }
+        preencherComboClientes();
+        preencherComboProdutos();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -421,7 +422,7 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup bgTipo;
     private javax.swing.JButton btnGerarRelatorio;
     private javax.swing.JButton btnSelecao;
-    private javax.swing.JComboBox<Opcoes> cmbCliente;
+    private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<Opcoes> cmbVendaFinal;
     private javax.swing.JComboBox<Opcoes> cmbVendaInicial;
     private com.toedter.calendar.JDateChooser dchDataFinal;
@@ -440,9 +441,6 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtArquivo;
     // End of variables declaration//GEN-END:variables
 
-    /*private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
-    }*/
     private void habilitarCampos() {
         if (RadioTodasVendas.isSelected()) {
             RadioData.setEnabled(false);
@@ -489,6 +487,65 @@ public class UP_F11_Relatorios_Vendas extends javax.swing.JInternalFrame {
                 cmbVendaFinal.setEnabled(false);
                 cmbCliente.setEnabled(true);
                 //cmbClienteFinal.setEnabled(true);
+            }
+        }
+    }
+
+    // Método para preencher o ComboBox de Clientes
+    private void preencherComboClientes() {
+        Dados dados = new Dados();  // Instancia a classe Dados para usar a conexão
+        ResultSet rsClientes = null;
+
+        try {
+            rsClientes = dados.getClientes(); // Pega os registros de clientes
+
+            // Limpa os itens existentes no ComboBox
+            cmbCliente.removeAllItems();
+
+            // Adiciona os clientes ao ComboBox
+            while (rsClientes != null && rsClientes.next()) {
+                String cliente = rsClientes.getString("nome"); // Supondo que a coluna no banco é "nome"
+                cmbCliente.addItem(cliente); // Adiciona o nome do cliente ao ComboBox
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao preencher ComboBox de clientes", ex);
+        } finally {
+            try {
+                if (rsClientes != null) {
+                    rsClientes.close();
+                }
+                dados.close(); // Fecha a conexão ao terminar
+            } catch (SQLException e) {
+                Logger.getLogger(getClass().getName()).log(Level.WARNING, "Erro ao fechar ResultSet ou conexão", e);
+            }
+        }
+    }
+
+    // Método para preencher o ComboBox de Produtos
+    private void preencherComboProdutos() {
+        Dados dados = new Dados();  // Instancia a classe Dados para usar a conexão
+        ResultSet rsProdutos = null;
+
+        try {
+            rsProdutos = dados.getProdutos(); // Pega os registros de produtos
+
+            // Limpa os itens existentes no ComboBox
+            //cmbProduto.removeAllItems();
+            // Adiciona os produtos ao ComboBox
+            while (rsProdutos != null && rsProdutos.next()) {
+                String produto = rsProdutos.getString("produto"); // Supondo que a coluna no banco é "produto"
+                //cmbProduto.addItem(produto); // Adiciona o nome do produto ao ComboBox
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao preencher ComboBox de produtos", ex);
+        } finally {
+            try {
+                if (rsProdutos != null) {
+                    rsProdutos.close();
+                }
+                dados.close(); // Fecha a conexão ao terminar
+            } catch (SQLException e) {
+                Logger.getLogger(getClass().getName()).log(Level.WARNING, "Erro ao fechar ResultSet ou conexão", e);
             }
         }
     }
