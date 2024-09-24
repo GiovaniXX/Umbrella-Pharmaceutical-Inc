@@ -68,7 +68,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Sair = new javax.swing.JMenuItem();
         Movimentos = new javax.swing.JMenu();
         NovaVenda = new javax.swing.JMenuItem();
-        RelatorioVenda = new javax.swing.JMenuItem();
         SendReport = new javax.swing.JMenuItem();
         SocialNetwork = new javax.swing.JMenu();
         openFacebookProfile = new javax.swing.JMenuItem();
@@ -76,7 +75,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         openLinkedinProfile = new javax.swing.JMenuItem();
         openWhatsUpProfile = new javax.swing.JMenuItem();
         Desenvolvedor = new javax.swing.JMenu();
-        Sistema = new javax.swing.JMenuItem();
         Dev = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -181,17 +179,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         Movimentos.add(NovaVenda);
 
-        RelatorioVenda.setBackground(new java.awt.Color(78, 103, 74));
-        RelatorioVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/file-chart-line.png"))); // NOI18N
-        RelatorioVenda.setText("Relatorio Venda");
-        RelatorioVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        RelatorioVenda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RelatorioVendaActionPerformed(evt);
-            }
-        });
-        Movimentos.add(RelatorioVenda);
-
         SendReport.setText("Send Report");
         SendReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -247,16 +234,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Menu.add(SocialNetwork);
 
         Desenvolvedor.setText("Desenvolvedor");
-
-        Sistema.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/informacoes.png"))); // NOI18N
-        Sistema.setText("Sistema");
-        Sistema.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        Sistema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SistemaActionPerformed(evt);
-            }
-        });
-        Desenvolvedor.add(Sistema);
 
         Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dev.png"))); // NOI18N
         Dev.setText("Dev");
@@ -328,7 +305,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_SairActionPerformed
 
     private void NovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovaVendaActionPerformed
-        UP_F08_Vendas ufv = new UP_F08_Vendas();
+        UP_F06_Vendas ufv = new UP_F06_Vendas();
         ufv.setDados(dados);
         dpnDesk.add(ufv);
         ufv.show();
@@ -338,30 +315,8 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         System.out.println("Form nova venda chamado com sucesso.!");
     }//GEN-LAST:event_NovaVendaActionPerformed
 
-    private void RelatorioVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelatorioVendaActionPerformed
-        UP_F11_Relatorios_Vendas ufrv = new UP_F11_Relatorios_Vendas();
-        ufrv.setDados(dados);
-        dpnDesk.add(ufrv);
-        ufrv.show();
-
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-        System.out.println("Form relatório de venda chamado com sucesso.!");
-    }//GEN-LAST:event_RelatorioVendaActionPerformed
-
-    private void SistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SistemaActionPerformed
-        UP_F06_Sobre ufs = new UP_F06_Sobre();
-        ufs.setDados(dados);
-        dpnDesk.add(ufs);
-        ufs.show();
-
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-        System.out.println("Form sistema chamado com sucesso.!");
-    }//GEN-LAST:event_SistemaActionPerformed
-
     private void DevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevActionPerformed
-        UP_F07_Info ufi = new UP_F07_Info();
+        UP_F05_Info ufi = new UP_F05_Info();
         ufi.setDados(dados);
         dpnDesk.add(ufi);
         ufi.show();
@@ -428,7 +383,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_openWhatsUpProfileActionPerformed
 
     private void SendReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendReportActionPerformed
-        UP_F13_Enviar_Relatorios_Vendas ufsr = new UP_F13_Enviar_Relatorios_Vendas();
+        UP_F07_Enviar_Relatorios_Vendas ufsr = new UP_F07_Enviar_Relatorios_Vendas();
         ufsr.setDados(dados);
         dpnDesk.add(ufsr);
         ufsr.show();
@@ -470,10 +425,8 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu Movimentos;
     private javax.swing.JMenuItem NovaVenda;
     private javax.swing.JMenuItem Produtos;
-    private javax.swing.JMenuItem RelatorioVenda;
     private javax.swing.JMenuItem Sair;
     private javax.swing.JMenuItem SendReport;
-    private javax.swing.JMenuItem Sistema;
     private javax.swing.JMenu SocialNetwork;
     private javax.swing.JMenuItem Usuarios;
     private javax.swing.JDesktopPane dpnDesk;

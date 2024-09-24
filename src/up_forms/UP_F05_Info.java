@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
 import up_classes.Dados;
 
-public class UP_F07_Info extends javax.swing.JInternalFrame {
+public class UP_F05_Info extends javax.swing.JInternalFrame {
 
     public Dados dados;
 
@@ -15,7 +15,7 @@ public class UP_F07_Info extends javax.swing.JInternalFrame {
         this.dados = dados;
     }
 
-    public UP_F07_Info() {
+    public UP_F05_Info() {
         initComponents();
     }
 

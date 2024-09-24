@@ -4,7 +4,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Opcoes;
 import up_classes.Utilidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +13,7 @@ import javax.swing.SwingConstants;
 import up_classes.Produto;
 import up_classes.Dados;
 
-public class UP_F08_Vendas extends javax.swing.JInternalFrame {
+public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     private Dados dados;
     private DefaultTableModel mTabela;
@@ -23,7 +22,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         this.dados = dados;
     }
 
-    public UP_F08_Vendas() {
+    public UP_F06_Vendas() {
         initComponents();
     }
 
@@ -31,14 +30,12 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtData = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         txtTotalQuantidade = new javax.swing.JTextField();
         txtTotalValor = new javax.swing.JTextField();
@@ -48,8 +45,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         btnDeletar = new javax.swing.JButton();
         btnDelTodos = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
-        btnPesqCliente = new javax.swing.JButton();
-        btnPesqProduto = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -78,14 +73,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel2.setForeground(new java.awt.Color(3, 155, 216));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("Data.:");
-        jLabel2.setMaximumSize(new java.awt.Dimension(61, 15));
-        jLabel2.setMinimumSize(new java.awt.Dimension(61, 15));
-        jLabel2.setPreferredSize(new java.awt.Dimension(61, 15));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(3, 155, 216));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -122,13 +109,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Valor");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 690, -1, -1));
-
-        txtData.setBackground(new java.awt.Color(30, 30, 30));
-        txtData.setForeground(new java.awt.Color(255, 255, 255));
-        txtData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txtData.setEnabled(false);
-        txtData.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtData, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 20, 100, -1));
 
         txtQuantidade.setBackground(new java.awt.Color(30, 30, 30));
         txtQuantidade.setForeground(new java.awt.Color(255, 255, 255));
@@ -216,34 +196,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, -1, -1));
 
-        btnPesqCliente.setBackground(new java.awt.Color(0, 0, 0));
-        btnPesqCliente.setForeground(new java.awt.Color(3, 155, 216));
-        btnPesqCliente.setText("Pesquisar Cliente");
-        btnPesqCliente.setBorder(null);
-        btnPesqCliente.setMaximumSize(new java.awt.Dimension(122, 25));
-        btnPesqCliente.setMinimumSize(new java.awt.Dimension(122, 25));
-        btnPesqCliente.setPreferredSize(new java.awt.Dimension(122, 25));
-        btnPesqCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesqClienteActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPesqCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, -1, -1));
-
-        btnPesqProduto.setBackground(new java.awt.Color(0, 0, 0));
-        btnPesqProduto.setForeground(new java.awt.Color(3, 155, 216));
-        btnPesqProduto.setText("Pesquisar Produto");
-        btnPesqProduto.setBorder(null);
-        btnPesqProduto.setMaximumSize(new java.awt.Dimension(122, 25));
-        btnPesqProduto.setMinimumSize(new java.awt.Dimension(122, 25));
-        btnPesqProduto.setPreferredSize(new java.awt.Dimension(122, 25));
-        btnPesqProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesqProdutoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnPesqProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 80, -1, -1));
-
         tblTabela.setBackground(new java.awt.Color(0, 0, 0));
         tblTabela.setForeground(new java.awt.Color(3, 155, 216));
         tblTabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -300,39 +252,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
-//        try {
-//            // Preencher o ComboBox de Clientes
-//            cmbCliente.addItem(new Opcoes("@Developer: GvC", "Selecione um cliente"));
-//            ResultSet rsClientes = dados.getClientes();
-//
-//            while (rsClientes.next()) {
-//                String idcliente = rsClientes.getString("idcliente");
-//                String nomeCompleto = rsClientes.getString("nome") + " " + rsClientes.getString("sobrenome");
-//                cmbCliente.addItem(new Opcoes(idcliente, nomeCompleto));
-//            }
-//
-//            // Preencher o ComboBox de Produtos
-//            cmbProduto.addItem(new Opcoes("@Developer: GvC", "Selecione um produto"));
-//            ResultSet rsProdutos = dados.getProdutos();
-//
-//            while (rsProdutos.next()) {
-//                String idproduto = rsProdutos.getString("idproduto");
-//                String descricao = rsProdutos.getString("descricao");
-//                cmbProduto.addItem(new Opcoes(idproduto, descricao));
-//            }
-//
-//            // Configurar os campos de data e valores iniciais
-//            txtData.setText(Utilidades.formatDate(new Date()));
-//            txtTotalQuantidade.setText("0");
-//            txtTotalValor.setText("0");
-//
-//            // Preencher a tabela
-//            preencherTabela();
-//
-//        } catch (SQLException e) {
-//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-//        }
-
         preencherComboClientes();
         preencherComboProdutos();
         preencherTabela();
@@ -342,6 +261,12 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
+        if (cmbCliente.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
+            cmbCliente.requestFocusInWindow();
+            return;
+        }
+
         if (cmbProduto.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
             cmbProduto.requestFocusInWindow();
@@ -370,8 +295,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-//        // Alterar para usar um método que retorne um identificador correto
-//        Produto mProduto = dados.getProduto(((String) cmbProduto.getSelectedItem()).getPreco());
         // Se cmbProduto contém Strings, use um método para buscar o Produto
         Produto mProduto = dados.getProdutoPorNome((String) cmbProduto.getSelectedItem());
 
@@ -432,7 +355,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
 
         // Obter o cliente selecionado
-        int clienteId = ((Opcoes) cmbCliente.getSelectedItem()).getId();  // Supondo que você tenha um método `getId` no objeto `Opcoes`
+        int clienteId = ((String) cmbCliente.getSelectedItem());  // Supondo que você tenha um método `getId` no objeto `Opcoes`
 
         // Obter número da venda
         int numeroVenda = dados.getNumeroVenda();
@@ -490,7 +413,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
             int linha = tblTabela.getRowCount();
             for (int i = 0; i < linha; i++) {
                 String tabela = Utilidades.objectToString(tblTabela.getValueAt(i, 0));
-                String combo = ((Opcoes) cmbProduto.getSelectedItem()).getPreco();
+                String combo = ((String) cmbProduto.getSelectedItem()).getPreco();
                 if (tabela.equals(combo)) {
                     modelo.removeRow(0);
                     totalGeral();
@@ -505,61 +428,9 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnDeletarActionPerformed
 
-    private void btnPesqClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqClienteActionPerformed
-        UP_F09_Pesquisar_Cliente ufpc = new UP_F09_Pesquisar_Cliente(null, closable);
-        ufpc.setSGBDmethods(dados);
-        ufpc.setVisible(true);
-
-        String rta = ufpc.getResposta();
-        if (rta.equals("")) {
-            return;
-        }
-        for (int i = 0; i < cmbCliente.getItemCount(); i++) {
-            // Verifica se o item é String ou Cliente, e realiza a verificação correspondente
-            if (cmbCliente.getItemAt(i).equals(rta)) {
-                cmbCliente.setSelectedIndex(i);
-                return;
-            }
-
-//            if (((String) cmbCliente.getItemAt(i)).getPreco().equals(rta)) {
-//                cmbCliente.setSelectedIndex(i);
-//                return;
-//            }
-        }
-
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-    }//GEN-LAST:event_btnPesqClienteActionPerformed
-
-    private void btnPesqProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqProdutoActionPerformed
-        UP_F10_Pesquisar_Produtos ufpp = new UP_F10_Pesquisar_Produtos(null, closable);
-        ufpp.setSGBDmethods(dados);
-        ufpp.setVisible(true);
-
-        String rta = ufpp.getResposta();
-        if (rta.equals("")) {
-            return;
-        }
-        for (int i = 0; i < cmbProduto.getItemCount(); i++) {
-            // Verifica se o item é String ou Cliente, e realiza a verificação correspondente
-            if (cmbProduto.getItemAt(i).equals(rta)) {
-                cmbProduto.setSelectedIndex(i);
-                return;
-            }
-
-//            if (((String) cmbProduto.getItemAt(i)).getPreco().equals(rta)) {
-//                cmbProduto.setSelectedIndex(i);
-//                return;
-//            }
-        }
-
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
-    }//GEN-LAST:event_btnPesqProdutoActionPerformed
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
-            new UP_F08_Vendas().setVisible(true);
+            new UP_F06_Vendas().setVisible(true);
         });
     }
 
@@ -567,13 +438,10 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnDelTodos;
     private javax.swing.JButton btnDeletar;
-    private javax.swing.JButton btnPesqCliente;
-    private javax.swing.JButton btnPesqProduto;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmbCliente;
     private javax.swing.JComboBox<String> cmbProduto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -582,7 +450,6 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblTabela;
-    private javax.swing.JTextField txtData;
     private javax.swing.JTextField txtQuantidade;
     private javax.swing.JTextField txtTotalQuantidade;
     private javax.swing.JTextField txtTotalValor;
@@ -664,7 +531,7 @@ public class UP_F08_Vendas extends javax.swing.JInternalFrame {
         }
     }
 
-// Método para preencher o ComboBox de Produtos
+    // Método para preencher o ComboBox de Produtos
     private void preencherComboProdutos() {
         Dados dados = new Dados();  // Instancia a classe Dados para usar a conexão
         ResultSet rsProdutos = null;

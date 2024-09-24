@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import up_classes.Dados;
 
-public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame {
+public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame {
 
     public Dados dados;
 
@@ -19,7 +19,7 @@ public class UP_F13_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         this.dados = dados;
     }
 
-    public UP_F13_Enviar_Relatorios_Vendas() {
+    public UP_F07_Enviar_Relatorios_Vendas() {
         initComponents();
         //preencherTelefonesClientes();
     }
