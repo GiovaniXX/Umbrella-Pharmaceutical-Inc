@@ -203,16 +203,15 @@ public class Dados {
 
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setInt(1, mCliente.getTipo());
-            pstmt.setString(2, mCliente.getNome());
-            pstmt.setString(3, mCliente.getSobrenome());
-            pstmt.setString(4, mCliente.getEndereco());
-            pstmt.setString(5, mCliente.getTelefone());
-            pstmt.setInt(6, mCliente.getCidade());
-            pstmt.setDate(7, new java.sql.Date(mCliente.getDataNascimento().getTime()));
-            pstmt.setDate(8, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setString(1, mCliente.getNome());
+            pstmt.setString(2, mCliente.getSobrenome());
+            pstmt.setString(3, mCliente.getEndereco());
+            pstmt.setString(4, mCliente.getTelefone());
+            pstmt.setInt(5, mCliente.getCidade());
+            pstmt.setDate(6, new java.sql.Date(mCliente.getDataNascimento().getTime()));
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
 
             pstmt.executeUpdate();
             return "Cliente cadastrado com sucesso";
@@ -263,17 +262,16 @@ public class Dados {
 
     public String editarCliente(Cliente mCliente) {
         try {
-            String sql = "UPDATE clientes SET idtipo = ?, nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
+            String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setInt(1, mCliente.getTipo());
-            pstmt.setString(2, mCliente.getNome());
-            pstmt.setString(3, mCliente.getSobrenome());
-            pstmt.setString(4, mCliente.getEndereco());
-            pstmt.setString(5, mCliente.getTelefone());
-            pstmt.setInt(6, mCliente.getCidade());
-            pstmt.setDate(7, new java.sql.Date(mCliente.getDataNascimento().getTime()));
-            pstmt.setDate(8, new java.sql.Date(mCliente.getDataCadastro().getTime()));
-            pstmt.setInt(9, mCliente.getIdcliente());
+            pstmt.setString(1, mCliente.getNome());
+            pstmt.setString(2, mCliente.getSobrenome());
+            pstmt.setString(3, mCliente.getEndereco());
+            pstmt.setString(4, mCliente.getTelefone());
+            pstmt.setInt(5, mCliente.getCidade());
+            pstmt.setDate(6, new java.sql.Date(mCliente.getDataNascimento().getTime()));
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setInt(8, mCliente.getIdcliente());
 
             pstmt.executeUpdate();
 
@@ -491,21 +489,6 @@ public class Dados {
         }
     }
 
-//    public void adicionarVenda(int idvenda, String produto, String descricao, double preco, int quantidade, Date data) {
-//        try {
-//            String sql = "INSERT INTO vendas (idvenda, produto, descricao, preco, quantidade, data) VALUES (?, ?, ?, ?, ?, ?)";
-//            PreparedStatement pstmt = cnn.prepareStatement(sql);
-//            pstmt.setInt(1, idvenda);                     // Para idvenda
-//            pstmt.setString(2, produto);                  // Para produto
-//            pstmt.setString(3, descricao);                // Para descricao
-//            pstmt.setDouble(4, preco);                    // Para preco
-//            pstmt.setInt(5, quantidade);                  // Para quantidade
-//            pstmt.setDate(6, new java.sql.Date(data.getTime())); // Para data
-//            pstmt.executeUpdate();
-//        } catch (SQLException e) {
-//            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-//        }
-//    }
     public ResultSet getDetalhesVendas() {
         try {
             String sql = "SELECT * FROM detalhevendas";
@@ -544,6 +527,26 @@ public class Dados {
         return null;
     }
 
+    public Cliente getClientePorNome(String nomeCliente) {
+        Cliente cliente = null;
+        try {
+            String sql = "SELECT * FROM clientes WHERE nome = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, nomeCliente);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt("idcliente"));
+                    cliente.setNome(rs.getString("nome"));
+                    // Preencher outros atributos conforme necessário
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao buscar cliente por nome", e);
+        }
+        return cliente;
+    }
+
     // Método para buscar produto pelo nome
     public Produto getProdutoPorNome(String nomeProduto) {
         for (Produto produto : listaDeProdutos) {
@@ -551,6 +554,8 @@ public class Dados {
                 return produto;
             }
         }
+        // Log opcional se necessário
+        Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado: " + nomeProduto);
         return null; // Retorna null se o produto não for encontrado
     }
 }

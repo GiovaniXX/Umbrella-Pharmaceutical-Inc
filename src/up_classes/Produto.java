@@ -7,20 +7,11 @@ public class Produto {
     private double preco;
     private String descricao;
 
-    // Construtor completo (original)
     public Produto(int idproduto, String produto, double preco, String descricao) {
         this.idproduto = idproduto;
         this.produto = produto;
         this.preco = preco;
         this.descricao = descricao;
-    }
-
-    // Construtor sobrecarregado (sem 'produto')
-    public Produto(int idproduto, double preco, String descricao) {
-        this.idproduto = idproduto;
-        this.preco = preco;
-        this.descricao = descricao;
-        this.produto = ""; // Ou um valor padrão, se necessário
     }
 
     public int getIdProduto() {

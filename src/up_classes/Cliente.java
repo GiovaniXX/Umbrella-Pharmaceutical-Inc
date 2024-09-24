@@ -5,7 +5,6 @@ import java.util.Date;
 public class Cliente {
 
     private int idcliente;
-    private int tipo;
     private String nome;
     private String sobrenome;
     private String endereco;
@@ -13,10 +12,10 @@ public class Cliente {
     private int cidade;
     private Date dataNascimento;
     private Date dataCadastro;
+    private int idCliente;
 
-    public Cliente(int idcliente, int tipo, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataNascimento, Date dataCadastro) {
+    public Cliente(int idcliente, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataNascimento, Date dataCadastro) {
         this.idcliente = idcliente;
-        this.tipo = tipo;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
@@ -26,20 +25,18 @@ public class Cliente {
         this.dataCadastro = dataCadastro;
     }
 
+    public Cliente() {
+        this.idCliente = 0; // ou outro valor padrão
+        this.nome = "";
+        // Inicializar outros atributos com valores padrão
+    }
+
     public int getIdcliente() {
         return idcliente;
     }
 
     public void setIdcliente(int idCliente) {
         this.idcliente = idCliente;
-    }
-
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -97,7 +94,12 @@ public class Cliente {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */
