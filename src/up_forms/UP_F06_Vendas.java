@@ -1,5 +1,6 @@
 package up_forms;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -28,7 +29,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         tblTabela.setModel(mTabela);
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-        dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < 6; i++) {
             tblTabela.getColumnModel().getColumn(i).setCellRenderer(dtcr);
         }
@@ -106,47 +107,49 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Total Geral.:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, 20));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Quantidade");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 690, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Valor");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 690, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, -1, -1));
 
         txtQuantidade.setBackground(new java.awt.Color(30, 30, 30));
-        txtQuantidade.setForeground(new java.awt.Color(255, 255, 255));
+        txtQuantidade.setForeground(new java.awt.Color(3, 155, 216));
         txtQuantidade.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         txtQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 100, -1));
 
-        txtTotalQuantidade.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalQuantidade.setBackground(new java.awt.Color(30, 30, 30));
+        txtTotalQuantidade.setForeground(new java.awt.Color(3, 155, 216));
         txtTotalQuantidade.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalQuantidade.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 710, 110, -1));
+        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 650, 110, -1));
 
-        txtTotalValor.setForeground(new java.awt.Color(0, 0, 0));
+        txtTotalValor.setBackground(new java.awt.Color(30, 30, 30));
+        txtTotalValor.setForeground(new java.awt.Color(3, 155, 216));
         txtTotalValor.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotalValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalValor.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalValor.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 710, 110, -1));
+        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, 110, -1));
 
         cmbCliente.setBackground(new java.awt.Color(30, 30, 30));
-        cmbCliente.setForeground(new java.awt.Color(255, 255, 255));
+        cmbCliente.setForeground(new java.awt.Color(3, 155, 216));
         cmbCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 250, -1));
+        getContentPane().add(cmbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 47, 250, -1));
 
         cmbProduto.setBackground(new java.awt.Color(30, 30, 30));
-        cmbProduto.setForeground(new java.awt.Color(255, 255, 255));
+        cmbProduto.setForeground(new java.awt.Color(3, 155, 216));
         cmbProduto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(cmbProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 250, -1));
+        getContentPane().add(cmbProduto, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 77, 250, -1));
 
         btnAdicionar.setBackground(new java.awt.Color(122, 0, 0));
         btnAdicionar.setForeground(new java.awt.Color(3, 155, 216));
@@ -204,6 +207,8 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         });
         getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, -1, -1));
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(485, 402));
+
         tblTabela.setBackground(new java.awt.Color(0, 0, 0));
         tblTabela.setForeground(new java.awt.Color(3, 155, 216));
         tblTabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -251,10 +256,13 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             tblTabela.getColumnModel().getColumn(5).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 1370, 490));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 190, 1350, 430));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel1.setMaximumSize(new java.awt.Dimension(1360, 768));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1360, 768));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1360, 768));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 740));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -301,12 +309,18 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         // Adicionar linha na tabela
         String[] registro = {
-            String.valueOf(produto.getIdProduto()), // Id
-            produto.getProduto(), // Nome do produto
-            produto.getDescricao(), // Descrição
-            String.valueOf(produto.getPreco()), // Preço
-            String.valueOf(quantidade), // Quantidade
-            new java.sql.Date(System.currentTimeMillis()).toString() // Data atual
+            // Id
+            String.valueOf(produto.getIdProduto()),
+            // Nome do produto
+            produto.getProduto(),
+            // Descrição
+            produto.getDescricao(),
+            // Preço
+            String.valueOf(produto.getPreco()),
+            // Quantidade
+            String.valueOf(quantidade),
+            // Data atual
+            new java.sql.Date(System.currentTimeMillis()).toString()
         };
 
         mTabela.addRow(registro);
@@ -325,9 +339,12 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         int numeroVenda = dados.getNumeroVenda();
         int idCliente = dados.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
 
-        totalGeral(); // Atualiza os valores totais
-        double valorVenda = Double.parseDouble(txtTotalValor.getText()); // Obtém o valor total da venda
-        int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText()); // Obtém a quantidade total
+        // Atualiza os valores totais
+        totalGeral();
+        // Obtém o valor total da venda
+        double valorVenda = Double.parseDouble(txtTotalValor.getText());
+        // Obtém a quantidade total
+        int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText());
 
         dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
 
@@ -384,13 +401,14 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
             if (linhaParaRemover != -1) {
                 mTabela.removeRow(linhaParaRemover);
-                totalGeral();  // Atualiza os totais após a exclusão
+                // Atualiza os totais após a exclusão
+                totalGeral();
                 JOptionPane.showMessageDialog(rootPane, "Produto deletado com sucesso.");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Produto não encontrado na tabela.");
             }
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar o produto.");
         }
@@ -426,6 +444,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTotalValor;
     // End of variables declaration//GEN-END:variables
 
+    // Método que cálcula o valor total
     private void totalGeral() {
         int numero = mTabela.getRowCount();
         int somaQuantidade = 0;
@@ -434,7 +453,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         for (int i = 0; i < numero; i++) {
             somaQuantidade += Integer.parseInt(mTabela.getValueAt(i, 4).toString());
             somaValor += Double.parseDouble(mTabela.getValueAt(i, 3).toString())
-                    * Integer.parseInt(mTabela.getValueAt(i, 4).toString()); // Calcula o valor total
+                    * Integer.parseInt(mTabela.getValueAt(i, 4).toString());
         }
 
         txtTotalQuantidade.setText(String.valueOf(somaQuantidade));
@@ -442,18 +461,21 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     }
 
     public void limparTabela() {
-        mTabela.setRowCount(0); // Limpa todas as linhas
+        // Limpa todas as linhas
+        mTabela.setRowCount(0);
     }
 
     // Método para preencher o ComboBox de Clientes
     private void preencherComboClientes() {
         try {
             cmbCliente.removeAllItems();
-            cmbCliente.addItem("Selecione um cliente");  // Opção padrão
+            // Opção padrão
+            cmbCliente.addItem("Selecione um cliente");
 
             ResultSet rsClientes = dados.getClientes();
             while (rsClientes.next()) {
-                cmbCliente.addItem(rsClientes.getString("nome"));  // Exibe apenas o nome
+                // Exibe apenas o nome
+                cmbCliente.addItem(rsClientes.getString("nome"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
@@ -464,11 +486,13 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     private void preencherComboProdutos() {
         try {
             cmbProduto.removeAllItems();
-            cmbProduto.addItem("Selecione um produto");  // Opção padrão
+            // Opção padrão
+            cmbProduto.addItem("Selecione um produto");
 
             ResultSet rsProdutos = dados.getProdutos();
             while (rsProdutos.next()) {
-                cmbProduto.addItem(rsProdutos.getString("produto"));  // Exibe apenas o nome
+                // Exibe apenas o nome
+                cmbProduto.addItem(rsProdutos.getString("produto"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);

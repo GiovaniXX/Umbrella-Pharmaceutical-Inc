@@ -94,34 +94,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="JSP">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="320" y="90" width="710" height="410"/>
-        </Constraint>
-      </Constraints>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="Informacao">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ac" green="9a" red="d" type="rgb"/>
-            </Property>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value=" Me chamo Giovani V. Chaves&#xa;&#xa; Aqui mostro algumas de minhas certifica&#xe7;&#xf5;es, principalmente na L&#xed;nguagem Java.&#xa; Tamb&#xe9;m desenvolvo em C#.&#xa;&#xa; Sou formado em Desenvolvimentos de Sistemas e Web Designer, com um bom conhecimento em&#xa; HTML5, CSS3 e JavaScript.&#xa;&#xa; No presente momento, estou cursando Engenharia de Software (Bacharelado).&#xa; com previs&#xe3;o de forma&#xe7;&#xe3;o em 2027.&#xa;&#xa;Joinvile, 03 de Julho de 2024"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JLabel" name="MSN">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -295,18 +267,6 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JLabel" name="Java_Developer">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/DIO.jpg"/>
-        </Property>
-      </Properties>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="4" width="-1" height="-1"/>
-        </Constraint>
-      </Constraints>
-    </Component>
     <Component class="javax.swing.JLabel" name="NTTData">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -331,6 +291,40 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Component class="javax.swing.JLabel" name="Java_Developer">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/up_images/DIO.jpg"/>
+        </Property>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="10" y="4" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane">
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="330" y="90" width="690" height="400"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JEditorPane" name="jep_Info">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cf" green="c0" red="1d" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="48" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Giovani V. Chaves - Developer&#xa;Giovani V. Chaves &#xe9; um desenvolvedor altamente capacitado com uma s&#xf3;lida forma&#xe7;&#xe3;o em Desenvolvimento de Sistemas e Web Design, obtida em um curso tecn&#xf3;logo de dois anos pela Prepara Cursos Profissionalizantes. Desde o in&#xed;cio de sua carreira, tem demonstrado grande dedica&#xe7;&#xe3;o e paix&#xe3;o pela tecnologia, investindo continuamente em sua qualifica&#xe7;&#xe3;o profissional.&#xa;Al&#xe9;m de sua forma&#xe7;&#xe3;o inicial, Giovani ampliou suas habilidades t&#xe9;cnicas por meio de uma s&#xe9;rie de bootcamps intensivos pela Digital Innovation One (DIO), especializando-se em linguagens de programa&#xe7;&#xe3;o como Java e C#, al&#xe9;m de adquirir valiosas soft skills.&#xa;Forma&#xe7;&#xf5;es e Certifica&#xe7;&#xf5;es:&#xa;.NET Developer&#xa;Cognizant Cloud Data Engineer&#xa;GFT Quality Assurance&#xa;NTT DATA Android Developer&#xa;Java Developer&#xa;Desenvolvimento Avan&#xe7;ado em Java&#xa;Arquitetura de Sistemas Avan&#xe7;ada&#xa;Desenvolvimento Integrado de Dados com SQLite no Android&#xa;Princ&#xed;pios de Pensamento Computacional com Python&#xa;Testes Unit&#xe1;rios com JUnit&#xa;Seguran&#xe7;a da Informa&#xe7;&#xe3;o com Python&#xa;Explorando Relacionamentos com MySQL Workbench&#xa;Implementando Valida&#xe7;&#xf5;es de Testes Unit&#xe1;rios com Csharp&#xa;Atualmente, Giovani est&#xe1; expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universit&#xe1;rio Leonardo da Vinci, com previs&#xe3;o de conclus&#xe3;o em 2027. Com foco na inova&#xe7;&#xe3;o e na busca por excel&#xea;ncia, ele aprimora suas habilidades t&#xe9;cnicas e de pensamento cr&#xed;tico, sendo um profissional preparado para enfrentar os desafios do mercado de tecnologia.&#xa;Seus projetos e habilidades abrangem &#xe1;reas como desenvolvimento de software robusto, testes unit&#xe1;rios, e seguran&#xe7;a da informa&#xe7;&#xe3;o. Giovani &#xe9; focado no crescimento cont&#xed;nuo e na busca de solu&#xe7;&#xf5;es inovadoras para problemas complexos, sendo um profissional valioso para qualquer equipe de tecnologia.&#xa;Lages, SC 08/09/2024"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
     <Component class="javax.swing.JLabel" name="TelaFundo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">

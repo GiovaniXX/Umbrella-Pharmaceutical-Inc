@@ -17,6 +17,32 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
     public UP_F05_Info() {
         initComponents();
+        String htmlContent = "<html>"
+                + "<body style='font-size: 8px;'>"
+                + "<h1 style='font-size: 18px;'>Giovani V. Chaves - Developer</h1>"
+                + "<p><b>Giovani V. Chaves</b> é um desenvolvedor altamente capacitado com uma sólida formação em Desenvolvimento de Sistemas e Web Design, obtida em um curso tecnólogo de dois anos pela Prepara Cursos Profissionalizantes. Desde o início de sua carreira, tem demonstrado grande dedicação e paixão pela tecnologia, investindo continuamente em sua qualificação profissional.</p>"
+                + "<p>Além de sua formação inicial, Giovani ampliou suas habilidades técnicas por meio de uma série de bootcamps intensivos pela Digital Innovation One (DIO), especializando-se em linguagens de programação como Java e C#, além de adquirir valiosas soft skills.</p>"
+                + "<h2 style='font-size: 16px;'>Formações e Certificações:</h2>"
+                + "<ul>"
+                + "<li>.NET Developer</li>"
+                + "<li>Cognizant Cloud Data Engineer</li>"
+                + "<li>GFT Quality Assurance</li>"
+                + "<li>NTT DATA Android Developer</li>"
+                + "<li>Java Developer</li>"
+                + "<li>Desenvolvimento Avançado em Java</li>"
+                + "<li>Arquitetura de Sistemas Avançada</li>"
+                + "<li>Desenvolvimento Integrado de Dados com SQLite no Android</li>"
+                + "<li>Princípios de Pensamento Computacional com Python</li>"
+                + "<li>Testes Unitários com JUnit</li>"
+                + "<li>Segurança da Informação com Python</li>"
+                + "<li>Explorando Relacionamentos com MySQL Workbench</li>"
+                + "<li>Implementando Validações de Testes Unitários com Csharp</li>"
+                + "</ul>"
+                + "<p>Atualmente, Giovani está expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universitário Leonardo da Vinci, com previsão de conclusão em 2027. Com foco na inovação e na busca por excelência, ele aprimora suas habilidades técnicas e de pensamento crítico, sendo um profissional preparado para enfrentar os desafios do mercado.</p>"
+                + "</body>"
+                + "</html>";
+        jep_Info.setContentType("text/html");
+        jep_Info.setText(htmlContent);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,8 +52,6 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         openLinkedinProfile = new javax.swing.JLabel();
         openGitHubProfile = new javax.swing.JLabel();
         openFacebookProfile = new javax.swing.JLabel();
-        JSP = new javax.swing.JScrollPane();
-        Informacao = new javax.swing.JTextArea();
         MSN = new javax.swing.JLabel();
         Grau = new javax.swing.JLabel();
         Curso = new javax.swing.JLabel();
@@ -40,9 +64,11 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         Avanade = new javax.swing.JLabel();
         Cognizant = new javax.swing.JLabel();
         GTF = new javax.swing.JLabel();
-        Java_Developer = new javax.swing.JLabel();
         NTTData = new javax.swing.JLabel();
         Uniasselvi = new javax.swing.JLabel();
+        Java_Developer = new javax.swing.JLabel();
+        jScrollPane = new javax.swing.JScrollPane();
+        jep_Info = new javax.swing.JEditorPane();
         TelaFundo = new javax.swing.JLabel();
 
         setClosable(true);
@@ -81,16 +107,6 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(openFacebookProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 60, -1));
-
-        Informacao.setEditable(false);
-        Informacao.setBackground(new java.awt.Color(13, 154, 172));
-        Informacao.setColumns(20);
-        Informacao.setForeground(new java.awt.Color(0, 0, 0));
-        Informacao.setRows(5);
-        Informacao.setText(" Me chamo Giovani V. Chaves\n\n Aqui mostro algumas de minhas certificações, principalmente na Línguagem Java.\n Também desenvolvo em C#.\n\n Sou formado em Desenvolvimentos de Sistemas e Web Designer, com um bom conhecimento em\n HTML5, CSS3 e JavaScript.\n\n No presente momento, estou cursando Engenharia de Software (Bacharelado).\n com previsão de formação em 2027.\n\nJoinvile, 03 de Julho de 2024");
-        JSP.setViewportView(Informacao);
-
-        getContentPane().add(JSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 710, 410));
 
         MSN.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         MSN.setForeground(new java.awt.Color(0, 0, 0));
@@ -141,14 +157,21 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         GTF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/GFT.jpg"))); // NOI18N
         getContentPane().add(GTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 430, -1, -1));
 
-        Java_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/DIO.jpg"))); // NOI18N
-        getContentPane().add(Java_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, -1));
-
         NTTData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/NTT_DATA.jpg"))); // NOI18N
         getContentPane().add(NTTData, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
 
         Uniasselvi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Uniasselvi.png"))); // NOI18N
         getContentPane().add(Uniasselvi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 424, -1, -1));
+
+        Java_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/DIO.jpg"))); // NOI18N
+        getContentPane().add(Java_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, -1));
+
+        jep_Info.setBackground(new java.awt.Color(29, 192, 207));
+        jep_Info.setForeground(new java.awt.Color(0, 0, 72));
+        jep_Info.setText("Giovani V. Chaves - Developer\nGiovani V. Chaves é um desenvolvedor altamente capacitado com uma sólida formação em Desenvolvimento de Sistemas e Web Design, obtida em um curso tecnólogo de dois anos pela Prepara Cursos Profissionalizantes. Desde o início de sua carreira, tem demonstrado grande dedicação e paixão pela tecnologia, investindo continuamente em sua qualificação profissional.\nAlém de sua formação inicial, Giovani ampliou suas habilidades técnicas por meio de uma série de bootcamps intensivos pela Digital Innovation One (DIO), especializando-se em linguagens de programação como Java e C#, além de adquirir valiosas soft skills.\nFormações e Certificações:\n.NET Developer\nCognizant Cloud Data Engineer\nGFT Quality Assurance\nNTT DATA Android Developer\nJava Developer\nDesenvolvimento Avançado em Java\nArquitetura de Sistemas Avançada\nDesenvolvimento Integrado de Dados com SQLite no Android\nPrincípios de Pensamento Computacional com Python\nTestes Unitários com JUnit\nSegurança da Informação com Python\nExplorando Relacionamentos com MySQL Workbench\nImplementando Validações de Testes Unitários com Csharp\nAtualmente, Giovani está expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universitário Leonardo da Vinci, com previsão de conclusão em 2027. Com foco na inovação e na busca por excelência, ele aprimora suas habilidades técnicas e de pensamento crítico, sendo um profissional preparado para enfrentar os desafios do mercado de tecnologia.\nSeus projetos e habilidades abrangem áreas como desenvolvimento de software robusto, testes unitários, e segurança da informação. Giovani é focado no crescimento contínuo e na busca de soluções inovadoras para problemas complexos, sendo um profissional valioso para qualquer equipe de tecnologia.\nLages, SC 08/09/2024");
+        jScrollPane.setViewportView(jep_Info);
+
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 690, 400));
 
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/012.jpg"))); // NOI18N
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -199,7 +222,6 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_openLinkedinProfileMouseClicked
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Avanade;
     private javax.swing.JLabel Chapeu;
@@ -208,8 +230,6 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
     private javax.swing.JLabel GTF;
     private javax.swing.JLabel Grau;
     private javax.swing.JLabel GvC_Developer;
-    private javax.swing.JTextArea Informacao;
-    private javax.swing.JScrollPane JSP;
     private javax.swing.JLabel Java_Developer;
     private javax.swing.JLabel Logo_Facebook;
     private javax.swing.JLabel Logo_GitHub;
@@ -219,11 +239,10 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
     private javax.swing.JLabel Nome;
     private javax.swing.JLabel TelaFundo;
     private javax.swing.JLabel Uniasselvi;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JEditorPane jep_Info;
     private javax.swing.JLabel openFacebookProfile;
     private javax.swing.JLabel openGitHubProfile;
     private javax.swing.JLabel openLinkedinProfile;
     // End of variables declaration//GEN-END:variables
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */
