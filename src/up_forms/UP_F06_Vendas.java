@@ -454,6 +454,3 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         }
     }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */

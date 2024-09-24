@@ -450,53 +450,56 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        // Verifica se a identificação foi selecionada
         if (cmbIdentificacao.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a identificação");
+            JOptionPane.showMessageDialog(rootPane, "Selecione a identificação.");
             cmbIdentificacao.requestFocusInWindow();
             return;
         }
 
+        // Verifica se o nome foi fornecido
         if (txtNome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Insira o nome");
+            JOptionPane.showMessageDialog(rootPane, "Insira o nome.");
             txtNome.requestFocusInWindow();
             return;
         }
 
+        // Verifica se o sobrenome foi fornecido
         if (txtSNome.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Insira o sobre-nome");
+            JOptionPane.showMessageDialog(rootPane, "Insira o sobre-nome.");
             txtSNome.requestFocusInWindow();
             return;
         }
 
-        if (jdcDataNascimento.getDate().after(new Date())) {
-            JOptionPane.showMessageDialog(rootPane, "Insira a data de nascimento");
+        // Verifica se a data de nascimento é válida
+        if (jdcDataNascimento.getDate() == null || jdcDataNascimento.getDate().after(new Date())) {
+            JOptionPane.showMessageDialog(rootPane, "Insira uma data de nascimento válida.");
             jdcDataNascimento.requestFocusInWindow();
             return;
         }
 
-        if (jdcDataCadastro.getDate().after(new Date())) {
-            JOptionPane.showMessageDialog(rootPane, "Insira a data de cadastro");
+        // Verifica se a data de cadastro é válida
+        if (jdcDataCadastro.getDate() == null || jdcDataCadastro.getDate().after(new Date())) {
+            JOptionPane.showMessageDialog(rootPane, "Insira uma data de cadastro válida.");
             jdcDataCadastro.requestFocusInWindow();
             return;
         }
 
-        if (novo) {
-            if (dados.existeCliente(txtIdcliente.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "Este cliente já existe");
-                txtIdcliente.requestFocusInWindow();
-                return;
-            }
-        } else {
-            if (!dados.existeCliente(txtIdcliente.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "Este cliente ainda não existe");
-                txtIdcliente.requestFocusInWindow();
-                return;
-            }
+        // Verifica a existência do cliente conforme o estado da operação (novo ou edição)
+        boolean clienteExistente = dados.existeCliente(txtIdcliente.getText());
+        if (novo && clienteExistente) {
+            JOptionPane.showMessageDialog(rootPane, "Este cliente já existe.");
+            txtIdcliente.requestFocusInWindow();
+            return;
+        } else if (!novo && !clienteExistente) {
+            JOptionPane.showMessageDialog(rootPane, "Este cliente ainda não existe.");
+            txtIdcliente.requestFocusInWindow();
+            return;
         }
 
+        // Cria um novo objeto Cliente
         Cliente mCliente = new Cliente(
                 Utilidades.objectToInt(txtIdcliente.getText()),
-                cmbIdentificacao.getSelectedIndex(),
                 txtNome.getText(),
                 txtSNome.getText(),
                 txtEndereco.getText(),
@@ -505,35 +508,17 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 jdcDataNascimento.getDate(),
                 jdcDataCadastro.getDate());
 
-        String msg;
-        if (novo) {
-            msg = dados.adicionarCliente(mCliente);
-        } else {
-            msg = dados.editarCliente(mCliente);
-        }
+        // Mensagem a ser exibida após a operação de adicionar ou editar
+        String msg = novo ? dados.adicionarCliente(mCliente) : dados.editarCliente(mCliente);
         JOptionPane.showMessageDialog(rootPane, msg);
 
-        btnPrimeiro.setEnabled(true);
-        btnAnterior.setEnabled(true);
-        btnProximo.setEnabled(true);
-        btnUltimo.setEnabled(true);
-        btnNovo.setEnabled(true);
-        btnEditar.setEnabled(true);
-        btnExcluir.setEnabled(true);
-        btnPesquisar.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
+        // Atualiza o estado dos botões
+        toggleButtonStatesAfterSave();
 
-        txtIdcliente.setEnabled(false);
-        cmbIdentificacao.setEnabled(false);
-        txtNome.setEnabled(false);
-        txtSNome.setEnabled(false);
-        txtEndereco.setEnabled(false);
-        txtTelefone.setEnabled(false);
-        cmbCidade.setEnabled(false);
-        jdcDataNascimento.setEnabled(false);
-        jdcDataCadastro.setEnabled(false);
+        // Limpa os campos de entrada
+        clearInputFields();
 
+        // Atualiza a tabela
         preencherTabela();
 
         int id = evt.getID();
@@ -843,7 +828,41 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+
+    // Método auxiliar para habilitar/desabilitar botões
+    private void toggleButtonStatesAfterSave() {
+        btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(true);
+        btnUltimo.setEnabled(true);
+        btnNovo.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+
+        // Desabilita os campos de entrada
+        txtIdcliente.setEnabled(false);
+        cmbIdentificacao.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtSNome.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        cmbCidade.setEnabled(false);
+        jdcDataNascimento.setEnabled(false);
+        jdcDataCadastro.setEnabled(false);
+    }
+
+    // Método auxiliar para limpar os campos de entrada
+    private void clearInputFields() {
+        txtIdcliente.setText("");
+        txtNome.setText("");
+        txtSNome.setText("");
+        txtEndereco.setText("");
+        txtTelefone.setText("");
+        cmbCidade.setSelectedIndex(0); // Reseta para a opção padrão
+        jdcDataNascimento.setDate(null); // Reseta a data
+        jdcDataCadastro.setDate(null); // Reseta a data
+    }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */

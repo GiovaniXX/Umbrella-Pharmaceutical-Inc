@@ -40,7 +40,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtIdproduto = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
         txtPreco = new javax.swing.JTextField();
@@ -54,7 +53,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
-        cmbImposto = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtaAnotacao = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -109,13 +107,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel5.setEnabled(false);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(440, 110, 70, 16);
-
-        jLabel7.setForeground(new java.awt.Color(3, 155, 216));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Imposto.:");
-        jLabel7.setEnabled(false);
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(700, 80, 50, 16);
 
         txtIdproduto.setBackground(new java.awt.Color(30, 30, 30));
         txtIdproduto.setForeground(new java.awt.Color(3, 155, 216));
@@ -272,13 +263,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(680, 230, 73, 25);
 
-        cmbImposto.setBackground(new java.awt.Color(30, 30, 30));
-        cmbImposto.setForeground(new java.awt.Color(3, 155, 216));
-        cmbImposto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0%", "5%", "10%", "15%" }));
-        cmbImposto.setEnabled(false);
-        getContentPane().add(cmbImposto);
-        cmbImposto.setBounds(760, 77, 70, 22);
-
         jtaAnotacao.setBackground(new java.awt.Color(30, 30, 30));
         jtaAnotacao.setColumns(20);
         jtaAnotacao.setForeground(new java.awt.Color(3, 155, 216));
@@ -357,13 +341,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
         jtaAnotacao.setEnabled(true);
-        cmbImposto.setEnabled(true);
 
         txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
         jtaAnotacao.setText("");
-        cmbImposto.setSelectedIndex(0);
 
         novo = true;
         txtIdproduto.requestFocus();
@@ -373,89 +355,67 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-//        if (cmbImposto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione o imposto");
-//            cmbImposto.requestFocusInWindow();
-//            return;
-//        }
-
+        // Verifica se a descrição foi fornecida
         if (txtDescricao.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Insira uma descricao");
+            JOptionPane.showMessageDialog(rootPane, "Insira uma descrição.");
             txtDescricao.requestFocusInWindow();
             return;
         }
 
+        // Verifica se o preço foi fornecido
         if (txtPreco.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Insira o preço");
+            JOptionPane.showMessageDialog(rootPane, "Insira o preço.");
             txtPreco.requestFocusInWindow();
             return;
         }
 
+        // Verifica se o preço é um número válido
         if (!Utilidades.isNumeric2(txtPreco.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Insira somente números");
+            JOptionPane.showMessageDialog(rootPane, "Insira somente números.");
             txtPreco.requestFocusInWindow();
             return;
         }
 
         double preco = Double.parseDouble(txtPreco.getText());
+
+        // Verifica se o preço é maior que zero
         if (preco <= 0) {
-            JOptionPane.showMessageDialog(rootPane, "Insira somente números acima de zero");
+            JOptionPane.showMessageDialog(rootPane, "Insira um preço acima de zero.");
             txtPreco.requestFocusInWindow();
             return;
         }
 
-        if (novo) {
-            if (dados.existeProduto(txtIdproduto.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "Este produto já existe");
-                txtIdproduto.requestFocusInWindow();
-                return;
-            }
-        } else {
-            if (!dados.existeProduto(txtIdproduto.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "Este produto ainda não existe");
-                txtIdproduto.requestFocusInWindow();
-                return;
-            }
+        // Verifica a existência do produto, conforme o estado da operação (novo ou edição)
+        boolean produtoExistente = dados.existeProduto(txtIdproduto.getText());
+        if (novo && produtoExistente) {
+            JOptionPane.showMessageDialog(rootPane, "Este produto já existe.");
+            txtIdproduto.requestFocusInWindow();
+            return;
+        } else if (!novo && !produtoExistente) {
+            JOptionPane.showMessageDialog(rootPane, "Este produto não existe.");
+            txtIdproduto.requestFocusInWindow();
+            return;
         }
 
+        // Cria um novo objeto Produto
         Produto mProduto = new Produto(
                 Utilidades.objectToInt(txtIdproduto.getText()),
+                txtDescricao.getText(), // Nome do produto
                 preco,
-                txtDescricao.getText()
+                txtDescricao.getText() // Descrição do produto (se você quiser usar a mesma)
         );
 
-        String msg;
-        if (novo) {
-            msg = dados.adicionarProduto(mProduto);
-        } else {
-            msg = dados.editarProduto(mProduto);
-        }
-
+        // Mensagem a ser exibida após a operação de adicionar ou editar
+        String msg = novo ? dados.adicionarProduto(mProduto) : dados.editarProduto(mProduto);
         JOptionPane.showMessageDialog(rootPane, msg);
 
-        btnPrimeiro.setEnabled(true);
-        btnAnterior.setEnabled(true);
-        btnProximo.setEnabled(true);
-        btnUltimo.setEnabled(true);
-        btnNovo.setEnabled(true);
-        btnEditar.setEnabled(true);
-        btnExcluir.setEnabled(true);
-        btnPesquisar.setEnabled(true);
-        btnSalvar.setEnabled(false);
-        btnCancelar.setEnabled(false);
+        // Habilita e desabilita os botões conforme a operação
+        toggleButtonStatesAfterSave();
 
-        txtIdproduto.setEnabled(false);
-        txtDescricao.setEnabled(false);
-        txtPreco.setEnabled(false);
-        //cmbImposto.setEnabled(false);
-        //jtaAnotacao.setEnabled(false);
+        // Limpa os campos de entrada
+        clearInputFields();
 
-        txtIdproduto.setText("");
-        txtDescricao.setText("");
-        txtPreco.setText("");
-        //cmbImposto.setSelectedIndex(0);
-        //jtaAnotacao.setText("");
-
+        // Atualiza a tabela
         preencherTabela();
 
         int id = evt.getID();
@@ -477,13 +437,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
-        //cmbImposto.setEnabled(false);
         //jtaAnotacao.setEnabled(false);
 
         txtIdproduto.setText(id);
         txtDescricao.setText(descricao);
         txtPreco.setText(preco);
-        //cmbImposto.setSelectedItem(imposto);
         //jtaAnotacao.setText(anotacao);
 
         carregarPrimeiroRegistro();
@@ -507,7 +465,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
         //jtaAnotacao.setEnabled(true);
-        //cmbImposto.setEnabled(true);
 
         novo = false;
         //jtaAnotacao.requestFocus();
@@ -648,36 +605,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
     }
 
-    private String imposto(int imposto) {
-        return switch (imposto) {
-            case 0 ->
-                "0%";
-            case 1 ->
-                "5%";
-            case 2 ->
-                "10%";
-            case 3 ->
-                "15%";
-            default ->
-                "Não definido!";
-        };
-    }
-
-    private int imposto(String imposto) {
-        return switch (imposto) {
-            case "0%" ->
-                0;
-            case "5%" ->
-                1;
-            case "10%" ->
-                2;
-            case "15%" ->
-                3;
-            default ->
-                0;
-        };
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
@@ -690,13 +617,11 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    private javax.swing.JComboBox<String> cmbImposto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jtaAnotacao;
@@ -706,10 +631,26 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPreco;
     // End of variables declaration//GEN-END:variables
 
-    /*private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
-    }*/
+    // Método auxiliar para habilitar/desabilitar botões
+    private void toggleButtonStatesAfterSave() {
+        btnPrimeiro.setEnabled(true);
+        btnAnterior.setEnabled(true);
+        btnProximo.setEnabled(true);
+        btnUltimo.setEnabled(true);
+        btnNovo.setEnabled(true);
+        btnEditar.setEnabled(true);
+        btnExcluir.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnSalvar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+    }
+
+    // Método auxiliar para limpar os campos de entrada
+    private void clearInputFields() {
+        txtIdproduto.setText("");
+        txtDescricao.setText("");
+        txtPreco.setText("");
+        // jtaAnotacao.setText(""); // Descomente se necessário
+    }
+
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */
