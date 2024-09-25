@@ -36,7 +36,7 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
         tblTabela = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
         jComboBox_Telefones = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel_Telefones = new javax.swing.JLabel();
         lblIcon = new javax.swing.JLabel();
 
         setClosable(true);
@@ -85,14 +85,14 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
 
             },
             new String [] {
-                "ID", "Linha", "Produto", "Descrição", "Preco", "Quantidade", "Cedente", "Data Venda", "Valor Pagamento", "Situação", "Forma Pagamento"
+                "ID", "Produto", "Descrição", "Preco", "Quantidade", "Cedente", "Data Venda", "Valor Pag", "Situação", "Forma Pag"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -114,35 +114,32 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
             tblTabela.getColumnModel().getColumn(0).setMinWidth(50);
             tblTabela.getColumnModel().getColumn(0).setPreferredWidth(50);
             tblTabela.getColumnModel().getColumn(0).setMaxWidth(50);
-            tblTabela.getColumnModel().getColumn(1).setMinWidth(50);
-            tblTabela.getColumnModel().getColumn(1).setPreferredWidth(50);
-            tblTabela.getColumnModel().getColumn(1).setMaxWidth(50);
+            tblTabela.getColumnModel().getColumn(3).setMinWidth(100);
+            tblTabela.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tblTabela.getColumnModel().getColumn(3).setMaxWidth(100);
             tblTabela.getColumnModel().getColumn(4).setMinWidth(100);
             tblTabela.getColumnModel().getColumn(4).setPreferredWidth(100);
             tblTabela.getColumnModel().getColumn(4).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(5).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(5).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(5).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(10).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(10).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(10).setMaxWidth(100);
+            tblTabela.getColumnModel().getColumn(9).setMinWidth(100);
+            tblTabela.getColumnModel().getColumn(9).setPreferredWidth(100);
+            tblTabela.getColumnModel().getColumn(9).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1340, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1340, 380));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 270, -1));
 
         jComboBox_Telefones.setBackground(new java.awt.Color(102, 0, 0));
         jComboBox_Telefones.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(jComboBox_Telefones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 270, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Telefones:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
+        jLabel_Telefones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel_Telefones.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Telefones.setText("Telefones:");
+        getContentPane().add(jLabel_Telefones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 733));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,7 +193,7 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox_Telefones;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel_Telefones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -17,7 +17,7 @@ import up_classes.Dados;
 public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     private Dados dados;
-    private final DefaultTableModel mTabela;
+    private final DefaultTableModel vTabela;
 
     public void setDados(Dados dados) {
         this.dados = dados;
@@ -25,8 +25,8 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     public UP_F06_Vendas() {
         initComponents();
-        mTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
-        tblTabela.setModel(mTabela);
+        vTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
+        tblTabela.setModel(vTabela);
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -323,7 +323,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             new java.sql.Date(System.currentTimeMillis()).toString()
         };
 
-        mTabela.addRow(registro);
+        vTabela.addRow(registro);
         totalGeral();
 
         int id = evt.getID();
@@ -391,8 +391,8 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             int linhaParaRemover = -1;
 
             // Percorre a tabela para encontrar o produto a ser deletado
-            for (int i = 0; i < mTabela.getRowCount(); i++) {
-                int idProdutoTabela = Integer.parseInt(mTabela.getValueAt(i, 0).toString());
+            for (int i = 0; i < vTabela.getRowCount(); i++) {
+                int idProdutoTabela = Integer.parseInt(vTabela.getValueAt(i, 0).toString());
                 if (idProdutoTabela == idProdutoCombo) {
                     linhaParaRemover = i;
                     break; // Encontra a primeira ocorrência
@@ -400,7 +400,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             }
 
             if (linhaParaRemover != -1) {
-                mTabela.removeRow(linhaParaRemover);
+                vTabela.removeRow(linhaParaRemover);
                 // Atualiza os totais após a exclusão
                 totalGeral();
                 JOptionPane.showMessageDialog(rootPane, "Produto deletado com sucesso.");
@@ -446,14 +446,14 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     // Método que cálcula o valor total
     private void totalGeral() {
-        int numero = mTabela.getRowCount();
+        int numero = vTabela.getRowCount();
         int somaQuantidade = 0;
         double somaValor = 0;
 
         for (int i = 0; i < numero; i++) {
-            somaQuantidade += Integer.parseInt(mTabela.getValueAt(i, 4).toString());
-            somaValor += Double.parseDouble(mTabela.getValueAt(i, 3).toString())
-                    * Integer.parseInt(mTabela.getValueAt(i, 4).toString());
+            somaQuantidade += Integer.parseInt(vTabela.getValueAt(i, 4).toString());
+            somaValor += Double.parseDouble(vTabela.getValueAt(i, 3).toString())
+                    * Integer.parseInt(vTabela.getValueAt(i, 4).toString());
         }
 
         txtTotalQuantidade.setText(String.valueOf(somaQuantidade));
@@ -462,7 +462,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     public void limparTabela() {
         // Limpa todas as linhas
-        mTabela.setRowCount(0);
+        vTabela.setRowCount(0);
     }
 
     // Método para preencher o ComboBox de Clientes

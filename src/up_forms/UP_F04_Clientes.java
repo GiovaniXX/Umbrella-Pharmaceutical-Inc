@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import up_classes.Cliente;
 import java.sql.ResultSet;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import up_classes.Dados;
 import up_classes.Utilidades;
 
@@ -16,7 +18,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private Dados dados;
     private int clienteAtual = 0;
     private boolean novo = false;
-    private DefaultTableModel mTabela;
+    private DefaultTableModel cTabela;
 
     private String id;
     private String identificacao;
@@ -34,6 +36,14 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
     public UP_F04_Clientes() {
         initComponents();
+        cTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
+        tblTabela.setModel(cTabela);
+        // Centraliza o texto nas colunas
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 6; i++) {
+            tblTabela.getColumnModel().getColumn(i).setCellRenderer(dtcr);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -397,7 +407,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 320, 1360, 380);
+        jScrollPane1.setBounds(0, 320, 1360, 360);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
@@ -406,7 +416,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-4, 0, 1370, 768);
+        jLabel1.setBounds(0, 0, 1366, 733);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -680,22 +690,22 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        txtIdcliente.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 0)));
+        txtIdcliente.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 0)));
         //cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
-        txtNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1)));
-        txtSNome.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 2)));
-        txtEndereco.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 3)));
-        txtTelefone.setText(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 4)));
+        txtNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 1)));
+        txtSNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 2)));
+        txtEndereco.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 3)));
+        txtTelefone.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 4)));
         cmbCidade.setSelectedIndex(cidade(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 5))));
-        jdcDataNascimento.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 6)));
-        jdcDataCadastro.setDate(Utilidades.objectToDate(tblTabela.getValueAt(clienteAtual, 7)));
+        jdcDataNascimento.setDate(Utilidades.objectToDate(cTabela.getValueAt(clienteAtual, 6)));
+        jdcDataCadastro.setDate(Utilidades.objectToDate(cTabela.getValueAt(clienteAtual, 7)));
     }
 
     private void preencherTabela() {
         try {
             String titulos[] = {"ID Cliente", "Nome", "S-Nome", "Endereco", "Telefone", "Cidade", "D-Nascimento", "D-Cadastro"};
             String registro[] = new String[8];
-            mTabela = new DefaultTableModel(null, titulos);
+            cTabela = new DefaultTableModel(null, titulos);
             ResultSet rs = dados.getClientes();
 
             while (rs.next()) {
@@ -707,9 +717,9 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 registro[5] = cidade(rs.getInt("cidade"));
                 registro[6] = rs.getString("dataNascimento");
                 registro[7] = rs.getString("dataCadastro");
-                mTabela.addRow(registro);
+                cTabela.addRow(registro);
             }
-            tblTabela.setModel(mTabela);
+            tblTabela.setModel(cTabela);
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }

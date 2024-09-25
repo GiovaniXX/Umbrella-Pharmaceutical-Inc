@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import up_classes.Dados;
 import up_classes.Utilidades;
 
@@ -15,7 +17,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private Dados dados;
     private int usuarioAtual = 0;
     private boolean novo = false;
-    private DefaultTableModel tableModel;
+    private DefaultTableModel uTabela;
 
     private String id;
     private String nome;
@@ -29,6 +31,15 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     public UP_F02_Usuarios() {
         initComponents();
         dados = new Dados();
+
+        uTabela = new DefaultTableModel(null, new String[]{"Id", "Nome", "Sobrenome", "Perfil"});
+        tblUsuarios.setModel(uTabela);
+        // Centraliza o texto nas colunas
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 6; i++) {
+            tblUsuarios.getColumnModel().getColumn(i).setCellRenderer(dtcr);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -339,7 +350,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Sobrenome", "Perfil"
+                "Id", "Nome", "Sobrenome", "Perfil"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -356,22 +367,19 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         tblUsuarios.setShowGrid(false);
         jScrollPane1.setViewportView(tblUsuarios);
         if (tblUsuarios.getColumnModel().getColumnCount() > 0) {
-            tblUsuarios.getColumnModel().getColumn(0).setResizable(false);
+            tblUsuarios.getColumnModel().getColumn(0).setMinWidth(50);
             tblUsuarios.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tblUsuarios.getColumnModel().getColumn(1).setResizable(false);
-            tblUsuarios.getColumnModel().getColumn(2).setResizable(false);
-            tblUsuarios.getColumnModel().getColumn(3).setResizable(false);
-            tblUsuarios.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tblUsuarios.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 360, 1350, 380));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 360, 1350, 360));
 
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, 0, 1370, -1));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 733));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -680,9 +688,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
-        int num = tableModel.getRowCount();
+        int num = uTabela.getRowCount();
         for (int i = 0; i < num; i++) {
-            if (Utilidades.objectToString(tableModel.getValueAt(i, 0)).equals(usuario)) {
+            if (Utilidades.objectToString(uTabela.getValueAt(i, 0)).equals(usuario)) {
                 usuarioAtual = i;
                 break;
             }
@@ -695,21 +703,21 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        txtIdusuario.setText(Utilidades.objectToString(tblUsuarios.getValueAt(usuarioAtual, 0)));
-        txtNome.setText(Utilidades.objectToString(tblUsuarios.getValueAt(usuarioAtual, 1)));
-        txtSNome.setText(Utilidades.objectToString(tblUsuarios.getValueAt(usuarioAtual, 2)));
+        txtIdusuario.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 0)));
+        txtNome.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 1)));
+        txtSNome.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 2)));
         jpfSenha.setText("");
         jpfChave.setText("");
         jpfConfirmarSenha.setText("");
         jpfConfirmarChave.setText("");
-        cmbPerfil.setSelectedIndex(perfil(Utilidades.objectToString(tblUsuarios.getValueAt(usuarioAtual, 3))));
+        cmbPerfil.setSelectedIndex(perfil(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 3))));
     }
 
     private void preencherTabela() {
         try {
             String titulos[] = {"ID Usuario", "Nome", "Sobrenome", "Perfil"};
             String registro[] = new String[4];
-            tableModel = new DefaultTableModel(null, titulos);
+            uTabela = new DefaultTableModel(null, titulos);
             ResultSet rs = dados.getUsuarios();
 
             while (rs.next()) {
@@ -718,9 +726,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 registro[2] = rs.getString("sobrenome");
                 registro[3] = perfil(rs.getInt("idperfil"));
 
-                tableModel.addRow(registro);
+                uTabela.addRow(registro);
             }
-            tblUsuarios.setModel(tableModel);
+            tblUsuarios.setModel(uTabela);
         } catch (SQLException ex) {
             Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -793,10 +801,4 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSNome;
     // End of variables declaration//GEN-END:variables
 
-    /*private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
-    }*/
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */

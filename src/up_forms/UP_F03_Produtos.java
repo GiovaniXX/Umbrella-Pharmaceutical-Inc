@@ -17,7 +17,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private Dados dados;
     public int produtoAtual = 0;
     private boolean novo = false;
-    private DefaultTableModel mTabela;
+    private DefaultTableModel pTabela;
 
     private String id;
     private String produto;
@@ -30,6 +30,15 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
     public UP_F03_Produtos() {
         initComponents();
+
+        pTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
+        tblTabela.setModel(pTabela);
+        // Centraliza o texto nas colunas
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 6; i++) {
+            tblTabela.getColumnModel().getColumn(i).setCellRenderer(dtcr);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -313,7 +322,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 270, 1350, 460);
+        jScrollPane1.setBounds(0, 270, 1350, 450);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -321,7 +330,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-4, 0, 1370, 768);
+        jLabel1.setBounds(0, 0, 1366, 733);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -569,19 +578,19 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         try {
             String titulos[] = {"ID Produto", "Descricao", "Preco"};
             String registro[] = new String[3];
-            mTabela = new DefaultTableModel(null, titulos);
+            pTabela = new DefaultTableModel(null, titulos);
             ResultSet rs = dados.getProdutos();
 
             while (rs.next()) {
                 registro[0] = rs.getString("idProduto");
                 registro[1] = rs.getString("descricao");
                 registro[2] = rs.getString("preco");
-                mTabela.addRow(registro);
+                pTabela.addRow(registro);
             }
-
-            tblTabela.setModel(mTabela);
+            // Centraliza as linhas da tabela
+            tblTabela.setModel(pTabela);
             DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.RIGHT);
+            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
             tblTabela.getColumnModel().getColumn(2).setCellRenderer(dtcr);
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
