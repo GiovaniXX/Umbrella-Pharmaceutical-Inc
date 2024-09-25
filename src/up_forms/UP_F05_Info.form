@@ -314,6 +314,7 @@
       <SubComponents>
         <Component class="javax.swing.JEditorPane" name="jep_Info">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cf" green="c0" red="1d" type="rgb"/>
             </Property>
