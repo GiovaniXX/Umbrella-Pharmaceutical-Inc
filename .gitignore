@@ -1,8 +1,14 @@
+# Ignore diretórios de build do NetBeans
 /dist/
 /build/
+
+# Ignore arquivos privados de configuração do NetBeans
 /nbproject/private/
-/confi.properties/
-/MySQL-Workbench.sql/
-/SSMS.sql/
-/SSMS-config.properties/
+
+# Ignore arquivos de configuração e SQL personalizados
+/confi.properties
+/MySQL-Workbench.sql
+/SSMS.sql
+/SSMS-config.properties
+
 
