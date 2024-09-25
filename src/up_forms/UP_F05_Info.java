@@ -39,10 +39,15 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
                 + "<li>Implementando Validações de Testes Unitários com Csharp</li>"
                 + "</ul>"
                 + "<p>Atualmente, Giovani está expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universitário Leonardo da Vinci, com previsão de conclusão em 2027. Com foco na inovação e na busca por excelência, ele aprimora suas habilidades técnicas e de pensamento crítico, sendo um profissional preparado para enfrentar os desafios do mercado.</p>"
+                + "<h3 style='font-size: 8px;'>Data.: 25/09/2024 - Lages sc</h3>"
                 + "</body>"
                 + "</html>";
         jep_Info.setContentType("text/html");
         jep_Info.setText(htmlContent);
+
+        // Oculta o cursor (caret) não seja exibido
+        jep_Info.getCaret().setVisible(false);
+        jep_Info.setCaretPosition(0);
     }
 
     @SuppressWarnings("unchecked")

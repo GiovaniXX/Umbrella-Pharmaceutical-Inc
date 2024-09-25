@@ -3,8 +3,6 @@ package up_forms;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.util.logging.Logger;
-//import java.util.logging.Level;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.swing.JDialog;
@@ -39,7 +37,8 @@ public class UP_F00_Login extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     try {
                         cnn = dados.cnn;
-                        if (cnn != null && !cnn.isClosed()) { // Adiciona verificação se a conexão está ativa
+                        // Adiciona verificação se a conexão está ativa
+                        if (cnn != null && !cnn.isClosed()) { 
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
                         } else {
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png")));
