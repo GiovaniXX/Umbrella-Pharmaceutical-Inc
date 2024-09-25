@@ -37,7 +37,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 4; i++) {
             tblUsuarios.getColumnModel().getColumn(i).setCellRenderer(dtcr);
         }
     }
