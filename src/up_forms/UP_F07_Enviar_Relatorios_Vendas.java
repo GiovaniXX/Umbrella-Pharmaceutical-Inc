@@ -127,7 +127,7 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
             tbl_Tabela.getColumnModel().getColumn(6).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1340, 380));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 280, 1338, 395));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N

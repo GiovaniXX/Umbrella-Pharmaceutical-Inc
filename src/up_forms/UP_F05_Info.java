@@ -78,9 +78,9 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Info");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         openLinkedinProfile.setForeground(new java.awt.Color(0, 0, 0));
@@ -183,10 +183,10 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1380, 730));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 685));
         TelaFundo.getAccessibleContext().setAccessibleName("");
 
-        setBounds(0, 0, 1366, 768);
+        setBounds(0, 0, 1360, 720);
     }// </editor-fold>//GEN-END:initComponents
 
     private void openFacebookProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openFacebookProfileMouseClicked
