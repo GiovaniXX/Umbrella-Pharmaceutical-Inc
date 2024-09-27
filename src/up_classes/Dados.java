@@ -10,13 +10,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Dados {
 
-    private ArrayList<Produto> listaDeProdutos;
+    // Lista de produtos
+    private final ArrayList<Produto> listaDeProdutos;
+    // Conexão com o banco de dados
     public Connection cnn;
 
     public Dados() {
@@ -47,9 +50,11 @@ public class Dados {
             cnn = null;
         }
 
+        // Inicializa a lista de produtos
         listaDeProdutos = new ArrayList<>();
     }
 
+    // Método para obter a instância da conexão com o banco de dados
     public static Connection getConnectionInstance() {
         Dados sgbd = new Dados();
         return sgbd.cnn;
@@ -60,10 +65,12 @@ public class Dados {
      *
      * 01101110 01101001 01000100 01100101 01110110 01000111 01101001 01101111
      *
-     * @param usuario
-     * @param senha
-     * @param chave
-     * @return
+     * Método para validar um usuário com base em seu ID, senha e chave.
+     *
+     * @param usuario O ID do usuário.
+     * @param senha A senha do usuário.
+     * @param chave A chave de validação do usuário.
+     * @return Verdadeiro se o usuário for válido, falso caso contrário.
      */
     public Boolean validarUsuario(String usuario, String senha, String chave) {
         try {
@@ -74,7 +81,7 @@ public class Dados {
             preparedStatement.setString(3, chave);
 
             ResultSet rs = preparedStatement.executeQuery();
-
+            // Retorna verdadeiro se o usuário existir
             return rs.next();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao validar usuário", e);
@@ -82,6 +89,7 @@ public class Dados {
         }
     }
 
+    // Método para obter o perfil do usuário baseado no ID do usuário
     public int getPerfil(String usuario) {
         Connection cnn = null;
         PreparedStatement st = null;
@@ -98,27 +106,34 @@ public class Dados {
             rs = st.executeQuery();
 
             if (rs.next()) {
+                // Retorna o id do perfil
                 return rs.getInt("idperfil");
             } else {
+                // Retorna -1 se o usuário não for encontrado
                 return -1;
             }
         } catch (SQLException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao obter perfil do usuário", e);
             return -1;
         } finally {
+            // Fecha recursos
             closeResources(cnn, st, rs);
         }
     }
 
+    // Método privado para fechar recursos de banco de dados
     private void closeResources(Connection cnn, PreparedStatement st, ResultSet rs) {
         try {
             if (rs != null) {
+                // Fecha ResultSet
                 rs.close();
             }
             if (st != null) {
+                // Fecha PreparedStatement
                 st.close();
             }
             if (cnn != null) {
+                // Fecha a conexão
                 cnn.close();
             }
         } catch (SQLException e) {
@@ -126,12 +141,14 @@ public class Dados {
         }
     }
 
+    // Método para verificar se um usuário existe no banco de dados
     public boolean existeUsuario(String usuario) {
         try {
             String sql = "SELECT 1 FROM usuarios WHERE idusuario = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, usuario);
             ResultSet rs = pstmt.executeQuery();
+            // Retorna verdadeiro se o usuário existir
             return rs.next();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -139,12 +156,14 @@ public class Dados {
         }
     }
 
+    // Método para verificar se um cliente existe no banco de dados
     public boolean existeCliente(String cliente) {
         try {
             String sql = "SELECT 1 FROM clientes WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, cliente);
             ResultSet rs = pstmt.executeQuery();
+            // Retorna verdadeiro se o cliente existir
             return rs.next();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -152,12 +171,14 @@ public class Dados {
         }
     }
 
+    // Método para verificar se um produto existe no banco de dados
     public boolean existeProduto(String produto) {
         try {
             String sql = "SELECT 1 FROM produtos WHERE idproduto = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, produto);
             ResultSet rs = pstmt.executeQuery();
+            // Retorna verdadeiro se o produto existir
             return rs.next();
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
@@ -165,6 +186,7 @@ public class Dados {
         }
     }
 
+    // Método para adicionar um novo usuário ao banco de dados
     public String adicionarUsuario(Usuario mUsuario) {
         try {
             String sql = "INSERT INTO usuarios (nome, sobrenome, senha, chave, idperfil) VALUES (?, ?, ?, ?, ?)";
@@ -175,14 +197,18 @@ public class Dados {
             pstmt.setString(4, mUsuario.getChave());
             pstmt.setInt(5, mUsuario.getPerfil());
 
+            // Executa a inserção
             pstmt.executeUpdate();
+            // Mensagem de sucesso
             return "Usuário cadastrado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível cadastrar este usuário";
         }
     }
 
+    // Método para adicionar um novo produto ao banco de dados
     public String adicionarProduto(Produto mProduto) {
         try {
             String sql = "INSERT INTO produtos (produto, preco, descricao) VALUES (?, ?, ?)";
@@ -190,17 +216,20 @@ public class Dados {
             pstmt.setString(1, mProduto.getProduto());
             pstmt.setDouble(2, mProduto.getPreco());
             pstmt.setString(3, mProduto.getDescricao());
-            //pstmt.setDouble(3, mProduto.getImposto());
             //pstmt.setString(4, mProduto.getAnotacao());
 
+            // Executa a inserção
             pstmt.executeUpdate();
+            // Mensagem de sucesso
             return "Produto cadastrado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível cadastrar este produto";
         }
     }
 
+    // Método para adicionar um novo cliente ao banco de dados
     public String adicionarCliente(Cliente mCliente) {
         try {
             String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -213,14 +242,18 @@ public class Dados {
             pstmt.setDate(6, new java.sql.Date(mCliente.getDataNascimento().getTime()));
             pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
 
+            // Executa a inserção
             pstmt.executeUpdate();
+            // Mensagem de sucesso
             return "Cliente cadastrado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível cadastrar este cliente";
         }
     }
 
+    // Método para editar as informações de um usuário
     public String editarUsuario(Usuario mUsuario) {
         try {
             String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, senha = ?, idperfil = ? WHERE idusuario = ?";
@@ -231,15 +264,18 @@ public class Dados {
             pstmt.setInt(4, mUsuario.getPerfil());
             pstmt.setInt(5, mUsuario.getIdusuario());
 
+            // Executa a atualização
             pstmt.executeUpdate();
-
+            // Mensagem de sucesso
             return "Usuário editado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível editar este usuário";
         }
     }
 
+    // Método para editar as informações de um produto
     public String editarProduto(Produto mProduto) {
         try {
             String sql = "UPDATE produtos SET descricao = ?, preco = ? WHERE idproduto = ?";
@@ -247,19 +283,21 @@ public class Dados {
             pstmt.setString(1, mProduto.getDescricao());
             pstmt.setString(2, mProduto.getProduto());
             pstmt.setDouble(3, mProduto.getPreco());
-            //pstmt.setDouble(3, mProduto.getImposto());
             //pstmt.setString(4, mProduto.getAnotacao());
             pstmt.setInt(4, mProduto.getIdProduto());
 
+            // Executa a atualização
             pstmt.executeUpdate();
-
+            // Mensagem de sucesso
             return "Produto editado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível editar este produto";
         }
     }
 
+    // Método para editar as informações de um cliente
     public String editarCliente(Cliente mCliente) {
         try {
             String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
@@ -273,20 +311,25 @@ public class Dados {
             pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
             pstmt.setInt(8, mCliente.getIdcliente());
 
+            // Executa a atualização
             pstmt.executeUpdate();
-
+            // Mensagem de sucesso
             return "Cliente editado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível editar este cliente";
         }
     }
 
+    // Método para excluir um usuário do banco de dados
     public String deletarUsuario(String usuario) {
         try {
             String sql = "DELETE FROM usuarios WHERE idusuario = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, usuario);
+
+            // Executa a exclusão
             pstmt.executeUpdate();
             return "Usuário deletado com sucesso";
         } catch (SQLException e) {
@@ -295,32 +338,43 @@ public class Dados {
         }
     }
 
+    // Método para excluir um cliente do banco de dados
     public String deletarCliente(String cliente) {
         try {
             String sql = "DELETE FROM clientes WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, cliente);
+
+            // Executa a exclusão
             pstmt.executeUpdate();
+            // Mensagem de sucesso
             return "Cliente deletado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível deletar este cliente";
         }
     }
 
+    // Método para excluir um produto do banco de dados
     public String deletarProduto(String produto) {
         try {
             String sql = "DELETE FROM produtos WHERE idproduto = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, produto);
+
+            // Executa a exclusão
             pstmt.executeUpdate();
+            // Mensagem de sucesso
             return "Produto deletado com sucesso";
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            // Mensagem de erro
             return "Não foi possível deletar este produto";
         }
     }
 
+    // Método para obter todos os usuários do banco de dados
     public ResultSet getUsuarios() {
         try {
             String sql = "SELECT * FROM usuarios";
@@ -353,7 +407,7 @@ public class Dados {
             return null;
         }
     }
-
+    //-------------------------------------------------------------------------------------
     public ResultSet getVenda() {
         try {
             String sql = "SELECT * FROM vendas";
@@ -517,16 +571,24 @@ public class Dados {
         return cnn;
     }
 
-    ResultSet getTelefonesClientes() {
+    // Método para obter os telefones dos clientes
+    public List<String> getTelefonesClientes() {
+        // Lista para armazenar telefones
+        List<String> telefones = new ArrayList<>();
         try {
+            // Consulta para obter telefones
             String sql = "SELECT telefone FROM clientes";
-            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            Statement stmt = cnn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
 
-            return pstmt.executeQuery();
+            while (rs.next()) {
+                // Adiciona telefone à lista
+                telefones.add(rs.getString("telefone"));
+            }
         } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao obter telefones de clientes", e);
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
-        return null;
+        return telefones; // Retorna a lista de telefones
     }
 
     public Cliente getClientePorNome(String nomeCliente) {
@@ -558,7 +620,8 @@ public class Dados {
         }
         // Log opcional se necessário
         Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado");
-        return null; // Retorna null se o produto não for encontrado
+        // Retorna null se o produto não for encontrado
+        return null;
     }
 
     // Método para buscar produto pelo nome

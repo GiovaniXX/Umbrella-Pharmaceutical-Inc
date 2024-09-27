@@ -21,7 +21,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private DefaultTableModel cTabela;
 
     private String id;
-    private String identificacao;
     private String nome;
     private String sobrenome;
     private String endereco;
@@ -55,7 +54,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -64,7 +62,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtSNome = new javax.swing.JTextField();
         txtEndereco = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
-        cmbIdentificacao = new javax.swing.JComboBox<>();
         cmbCidade = new javax.swing.JComboBox<>();
         jdcDataCadastro = new com.toedter.calendar.JDateChooser();
         jdcDataNascimento = new com.toedter.calendar.JDateChooser();
@@ -84,9 +81,9 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Clientes");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -151,12 +148,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel7);
         jLabel7.setBounds(440, 106, 80, 15);
 
-        jLabel6.setForeground(new java.awt.Color(3, 155, 216));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Identificação.:");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 135, 80, 16);
-
         jLabel8.setForeground(new java.awt.Color(3, 155, 216));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Cidade.:");
@@ -167,14 +158,14 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jLabel8.setBounds(440, 162, 80, 15);
 
         jLabel9.setForeground(new java.awt.Color(3, 155, 216));
-        jLabel9.setText("Data Nascimento.:");
+        jLabel9.setText("DNascimento.:");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(760, 150, 100, 16);
 
         jLabel10.setForeground(new java.awt.Color(3, 155, 216));
-        jLabel10.setText("Data Cadastro.:");
+        jLabel10.setText("D Cadastro.:");
         getContentPane().add(jLabel10);
-        jLabel10.setBounds(780, 170, 80, 16);
+        jLabel10.setBounds(780, 170, 64, 16);
 
         txtIdcliente.setBackground(new java.awt.Color(30, 30, 30));
         txtIdcliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,12 +209,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtTelefone.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtTelefone);
         txtTelefone.setBounds(530, 104, 510, 22);
-
-        cmbIdentificacao.setBackground(new java.awt.Color(30, 30, 30));
-        cmbIdentificacao.setForeground(new java.awt.Color(255, 255, 255));
-        cmbIdentificacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Identificação", "CNH", "RG", "CPF" }));
-        getContentPane().add(cmbIdentificacao);
-        cmbIdentificacao.setBounds(530, 133, 210, 22);
 
         cmbCidade.setBackground(new java.awt.Color(30, 30, 30));
         cmbCidade.setForeground(new java.awt.Color(255, 255, 255));
@@ -407,7 +392,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 320, 1360, 360);
+        jScrollPane1.setBounds(5, 320, 1338, 360);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
@@ -416,7 +401,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1366, 733);
+        jLabel1.setBounds(0, 0, 1366, 693);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -437,13 +422,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtSNome.setEnabled(true);
         txtEndereco.setEnabled(true);
         txtTelefone.setEnabled(true);
-        cmbIdentificacao.setEnabled(true);
         cmbCidade.setEnabled(true);
         jdcDataCadastro.setEnabled(true);
         jdcDataNascimento.setEnabled(true);
 
         txtIdcliente.setText("");
-        cmbIdentificacao.setSelectedIndex(0);
         txtNome.setText("");
         txtSNome.setText("");
         txtEndereco.setText("");
@@ -460,13 +443,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // Verifica se a identificação foi selecionada
-        if (cmbIdentificacao.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a identificação.");
-            cmbIdentificacao.requestFocusInWindow();
-            return;
-        }
-
         // Verifica se o nome foi fornecido
         if (txtNome.getText().isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Insira o nome.");
@@ -552,7 +528,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtSNome.setEnabled(false);
         txtEndereco.setEnabled(false);
         txtTelefone.setEnabled(false);
-        cmbIdentificacao.setEnabled(false);
         cmbCidade.setEnabled(false);
         jdcDataCadastro.setEnabled(false);
         jdcDataNascimento.setEnabled(false);
@@ -581,7 +556,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
 
-        cmbIdentificacao.setEnabled(true);
         txtNome.setEnabled(true);
         txtSNome.setEnabled(true);
         txtEndereco.setEnabled(true);
@@ -590,7 +564,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jdcDataCadastro.setEnabled(true);
 
         novo = false;
-        cmbIdentificacao.requestFocus();
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
@@ -690,8 +663,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        txtIdcliente.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 0)));
-        //cmbIdentificacao.setSelectedIndex(tipo(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 1))));
+        txtIdcliente.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 0)));        
         txtNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 1)));
         txtSNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 2)));
         txtEndereco.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 3)));
@@ -739,7 +711,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 dataCadastro = rs.getString("dataCadastro");
 
                 txtIdcliente.setText(id);
-                cmbIdentificacao.setSelectedItem(identificacao);
                 txtNome.setText(nome);
                 txtSNome.setText(sobrenome);
                 txtEndereco.setText(endereco);
@@ -751,32 +722,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(UP_F04_Clientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    private String tipo(int tipo) {
-        return switch (tipo) {
-            case 0 ->
-                "CNH";
-            case 1 ->
-                "RG";
-            case 2 ->
-                "CPF";
-            default ->
-                "Não definido!";
-        };
-    }
-
-    private int tipo(String tipo) {
-        return switch (tipo) {
-            case "Identificacao" ->
-                0;
-            case "CPF" ->
-                1;
-            case "RG" ->
-                2;
-            default ->
-                2;
-        };
     }
 
     private String cidade(int cidade) {
@@ -817,14 +762,12 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
     private javax.swing.JComboBox<String> cmbCidade;
-    private javax.swing.JComboBox<String> cmbIdentificacao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -854,7 +797,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         // Desabilita os campos de entrada
         txtIdcliente.setEnabled(false);
-        cmbIdentificacao.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
         txtEndereco.setEnabled(false);

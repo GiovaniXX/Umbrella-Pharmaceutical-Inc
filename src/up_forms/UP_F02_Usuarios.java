@@ -78,9 +78,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Usuarios");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -343,6 +343,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         cmbPerfil.setEnabled(false);
         getContentPane().add(cmbPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 27, 150, -1));
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(462, 402));
+
         tblUsuarios.setBackground(new java.awt.Color(0, 0, 0));
         tblUsuarios.setForeground(new java.awt.Color(3, 155, 216));
         tblUsuarios.setModel(new javax.swing.table.DefaultTableModel(
@@ -362,6 +364,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             }
         });
         tblUsuarios.setGridColor(new java.awt.Color(0, 0, 0));
+        tblUsuarios.setMinimumSize(new java.awt.Dimension(452, 402));
+        tblUsuarios.setPreferredSize(new java.awt.Dimension(452, 402));
         tblUsuarios.setSelectionBackground(new java.awt.Color(0, 0, 0));
         tblUsuarios.setSelectionForeground(new java.awt.Color(3, 155, 216));
         tblUsuarios.setShowGrid(false);
@@ -372,14 +376,14 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             tblUsuarios.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(3, 360, 1350, 360));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 360, 1340, 318));
 
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 733));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 685));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

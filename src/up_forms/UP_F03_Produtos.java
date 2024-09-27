@@ -20,7 +20,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private DefaultTableModel pTabela;
 
     private String id;
-    private String produto;
+    //private String produto;
     private String preco;
     private String descricao;
 
@@ -70,9 +70,9 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Produtos");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -282,6 +282,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(520, 110, 310, 50);
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(462, 402));
+
         tblTabela.setBackground(new java.awt.Color(0, 0, 0));
         tblTabela.setForeground(new java.awt.Color(3, 155, 216));
         tblTabela.setModel(new javax.swing.table.DefaultTableModel(
@@ -308,6 +310,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             }
         });
         tblTabela.setGridColor(new java.awt.Color(122, 126, 140));
+        tblTabela.setMinimumSize(new java.awt.Dimension(452, 402));
+        tblTabela.setPreferredSize(new java.awt.Dimension(452, 402));
         tblTabela.setSelectionBackground(new java.awt.Color(122, 126, 140));
         tblTabela.setSelectionForeground(new java.awt.Color(122, 126, 140));
         tblTabela.setShowGrid(false);
@@ -322,7 +326,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(0, 270, 1350, 450);
+        jScrollPane1.setBounds(5, 270, 1338, 410);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -330,7 +334,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1366, 733);
+        jLabel1.setBounds(0, 0, 1350, 685);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -409,9 +413,9 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         // Cria um novo objeto Produto
         Produto mProduto = new Produto(
                 Utilidades.objectToInt(txtIdproduto.getText()),
-                txtDescricao.getText(), // Nome do produto
+                txtDescricao.getText(),
                 preco,
-                txtDescricao.getText() // Descrição do produto (se você quiser usar a mesma)
+                txtDescricao.getText()
         );
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
@@ -659,7 +663,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
-        // jtaAnotacao.setText(""); // Descomente se necessário
+        // jtaAnotacao.setText(""); // Descomente se for usar
     }
 
 }

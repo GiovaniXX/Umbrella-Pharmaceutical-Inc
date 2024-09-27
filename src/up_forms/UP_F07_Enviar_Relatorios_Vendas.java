@@ -1,98 +1,100 @@
 package up_forms;
 
-import javax.swing.*;
-import javax.swing.JFileChooser;
-import java.io.File;
-import java.io.IOException;
+import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import up_classes.Dados;
+import java.sql.SQLException;
+import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame {
 
+    //    private Connection cnn;
     public Dados dados;
 
     public void setDados(Dados dados) {
         this.dados = dados;
+//        // Obtém a conexão da classe Dados
+//        this.cnn = dados.cnn;
     }
 
+    // Construtor da classe
     public UP_F07_Enviar_Relatorios_Vendas() {
         initComponents();
-        //preencherTelefonesClientes();
+        // Inicializar dados e a conexão
+        dados = new Dados(); // Cria uma nova instância de Dados
+//        this.cnn = dados.cnn; // Usa a conexão da instância de Dados       
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblSendWhatsapp = new javax.swing.JLabel();
+        lbl_Pdf_File = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        myButton_SearchSales = new up_class_custom.MyButton();
-        myButton_SendSalesReportsWhatsApp = new up_class_custom.MyButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblTabela = new javax.swing.JTable();
         jSeparator2 = new javax.swing.JSeparator();
-        jComboBox_Telefones = new javax.swing.JComboBox<>();
-        jLabel_Telefones = new javax.swing.JLabel();
+        myButton_Add_Sales = new up_class_custom.MyButton();
+        myButton_Generate_Pdf_File = new up_class_custom.MyButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbl_Tabela = new javax.swing.JTable();
         lblIcon = new javax.swing.JLabel();
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical™ Send Report");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblSendWhatsapp.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblSendWhatsapp.setForeground(new java.awt.Color(255, 255, 255));
-        lblSendWhatsapp.setText("Send Report to Whatsapp");
-        getContentPane().add(lblSendWhatsapp, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 270, -1));
+        lbl_Pdf_File.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbl_Pdf_File.setForeground(new java.awt.Color(255, 255, 255));
+        lbl_Pdf_File.setText("PDF File");
+        getContentPane().add(lbl_Pdf_File, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 30, -1, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 270, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 270, -1));
 
-        myButton_SearchSales.setBackground(new java.awt.Color(122, 0, 0));
-        myButton_SearchSales.setForeground(new java.awt.Color(255, 255, 255));
-        myButton_SearchSales.setText("Search for Sales");
-        myButton_SearchSales.setColor(new java.awt.Color(122, 0, 0));
-        myButton_SearchSales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        myButton_SearchSales.setRadius(50);
-        myButton_SearchSales.addActionListener(new java.awt.event.ActionListener() {
+        myButton_Add_Sales.setBackground(new java.awt.Color(122, 0, 0));
+        myButton_Add_Sales.setForeground(new java.awt.Color(255, 255, 255));
+        myButton_Add_Sales.setText("Add sales");
+        myButton_Add_Sales.setColor(new java.awt.Color(122, 0, 0));
+        myButton_Add_Sales.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        myButton_Add_Sales.setRadius(50);
+        myButton_Add_Sales.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton_SearchSalesActionPerformed(evt);
+                myButton_Add_SalesActionPerformed(evt);
             }
         });
-        getContentPane().add(myButton_SearchSales, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 160, 440, 60));
+        getContentPane().add(myButton_Add_Sales, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 440, 60));
 
-        myButton_SendSalesReportsWhatsApp.setForeground(new java.awt.Color(255, 255, 255));
-        myButton_SendSalesReportsWhatsApp.setText("Send Sales Reports WhatsApp");
-        myButton_SendSalesReportsWhatsApp.setColor(new java.awt.Color(122, 0, 0));
-        myButton_SendSalesReportsWhatsApp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        myButton_SendSalesReportsWhatsApp.setPreferredSize(new java.awt.Dimension(253, 32));
-        myButton_SendSalesReportsWhatsApp.setRadius(50);
-        myButton_SendSalesReportsWhatsApp.addActionListener(new java.awt.event.ActionListener() {
+        myButton_Generate_Pdf_File.setForeground(new java.awt.Color(255, 255, 255));
+        myButton_Generate_Pdf_File.setText("Generate a PDF file");
+        myButton_Generate_Pdf_File.setColor(new java.awt.Color(122, 0, 0));
+        myButton_Generate_Pdf_File.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        myButton_Generate_Pdf_File.setPreferredSize(new java.awt.Dimension(253, 32));
+        myButton_Generate_Pdf_File.setRadius(50);
+        myButton_Generate_Pdf_File.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                myButton_SendSalesReportsWhatsAppActionPerformed(evt);
+                myButton_Generate_Pdf_FileActionPerformed(evt);
             }
         });
-        getContentPane().add(myButton_SendSalesReportsWhatsApp, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 440, 60));
+        getContentPane().add(myButton_Generate_Pdf_File, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 440, 60));
 
-        tblTabela.setBackground(new java.awt.Color(0, 0, 0));
-        tblTabela.setForeground(new java.awt.Color(3, 155, 216));
-        tblTabela.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_Tabela.setBackground(new java.awt.Color(0, 0, 0));
+        tbl_Tabela.setForeground(new java.awt.Color(3, 155, 216));
+        tbl_Tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Produto", "Descrição", "Preco", "Quantidade", "Cedente", "Data Venda", "Valor Pag", "Situação", "Forma Pag"
+                "ID", "Data", "Nome do cliente", "Nome do produto", "Descrição do produto", "Quantidade", "Preco"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class, java.lang.Float.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, true, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,104 +105,93 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
                 return canEdit [columnIndex];
             }
         });
-        tblTabela.setGridColor(new java.awt.Color(0, 0, 0));
-        tblTabela.setMaximumSize(new java.awt.Dimension(685, 520));
-        tblTabela.setMinimumSize(new java.awt.Dimension(685, 520));
-        tblTabela.setPreferredSize(new java.awt.Dimension(685, 520));
-        tblTabela.setSelectionBackground(new java.awt.Color(0, 0, 0));
-        tblTabela.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(tblTabela);
-        if (tblTabela.getColumnModel().getColumnCount() > 0) {
-            tblTabela.getColumnModel().getColumn(0).setMinWidth(50);
-            tblTabela.getColumnModel().getColumn(0).setPreferredWidth(50);
-            tblTabela.getColumnModel().getColumn(0).setMaxWidth(50);
-            tblTabela.getColumnModel().getColumn(3).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(3).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(3).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(4).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(4).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(4).setMaxWidth(100);
-            tblTabela.getColumnModel().getColumn(9).setMinWidth(100);
-            tblTabela.getColumnModel().getColumn(9).setPreferredWidth(100);
-            tblTabela.getColumnModel().getColumn(9).setMaxWidth(100);
+        tbl_Tabela.setGridColor(new java.awt.Color(0, 0, 0));
+        tbl_Tabela.setMaximumSize(new java.awt.Dimension(462, 402));
+        tbl_Tabela.setMinimumSize(new java.awt.Dimension(462, 402));
+        tbl_Tabela.setPreferredSize(new java.awt.Dimension(462, 402));
+        tbl_Tabela.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        tbl_Tabela.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(tbl_Tabela);
+        if (tbl_Tabela.getColumnModel().getColumnCount() > 0) {
+            tbl_Tabela.getColumnModel().getColumn(0).setMinWidth(50);
+            tbl_Tabela.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tbl_Tabela.getColumnModel().getColumn(0).setMaxWidth(50);
+            tbl_Tabela.getColumnModel().getColumn(1).setMinWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(1).setMaxWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(5).setMinWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(5).setPreferredWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(5).setMaxWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(6).setMinWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tbl_Tabela.getColumnModel().getColumn(6).setMaxWidth(100);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 1340, 380));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 270, -1));
-
-        jComboBox_Telefones.setBackground(new java.awt.Color(102, 0, 0));
-        jComboBox_Telefones.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jComboBox_Telefones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 270, -1));
-
-        jLabel_Telefones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel_Telefones.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_Telefones.setText("Telefones:");
-        getContentPane().add(jLabel_Telefones, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
         lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 733));
+        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1355, 685));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myButton_SendSalesReportsWhatsAppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_SendSalesReportsWhatsAppActionPerformed
-        int selectedRow = tblTabela.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Selecione uma venda na tabela.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;  // Sai do método se nenhuma venda estiver selecionada
-
-        }
-
-        // Verifica se foi selecionado um número de telefone
-        if (((String) jComboBox_Telefones.getSelectedItem()).isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, selecione um número de telefone.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            return;  // Sai do método se o número de telefone não estiver selecionado
-        }
-
-        enviarRelatoriosVendaWhatsApp();
+    private void myButton_Generate_Pdf_FileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_Generate_Pdf_FileActionPerformed
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
         System.out.println("evt Send Record WhatsApp executado com sucesso.!");
-    }//GEN-LAST:event_myButton_SendSalesReportsWhatsAppActionPerformed
+    }//GEN-LAST:event_myButton_Generate_Pdf_FileActionPerformed
 
-    private void myButton_SearchSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_SearchSalesActionPerformed
+    private void myButton_Add_SalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_Add_SalesActionPerformed
+        // Criar uma instância da classe Dados
+        Dados dados = new Dados();
+
+        // Obter o ResultSet com todas as vendas
+        ResultSet vendas = dados.getVenda();
+
+        // Limpar a tabela antes de adicionar novos dados
+        DefaultTableModel model = (DefaultTableModel) tbl_Tabela.getModel();
+        model.setRowCount(0); // Limpa as linhas existentes
+
+        try {
+            // Percorrer o ResultSet e adicionar os dados à tabela
+            while (vendas != null && vendas.next()) {
+                // Tabela vendas têm colunas --> idvenda, data, idcliente, idproduto, descricao, quantidade e preco
+                int idVenda = vendas.getInt("idvenda");
+                Date data = vendas.getDate("data");
+                int idCliente = vendas.getInt("idcliente");
+                int idProduto = vendas.getInt("idproduto");
+                int descricao = vendas.getInt("descricao");
+                int quantidade = vendas.getInt("quantidade");
+                double preco = vendas.getDouble("preco");
+
+                // Adicionar a linha na tabela
+                model.addRow(new Object[]{idVenda, data, idCliente, idProduto, descricao, quantidade, preco});
+            }
+        } catch (SQLException e) {
+            // Tratar exceções se ocorrer um erro ao acessar o ResultSet
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao acessar vendas", e);
+        } finally {
+            // Fechar a conexão se necessário
+            dados.close(); // Fecha a conexão com o banco
+        }
+
+        System.out.println("Vendas carregadas com sucesso!");
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
         System.out.println("evt search executado com sucesso.!");
-    }//GEN-LAST:event_myButton_SearchSalesActionPerformed
+    }//GEN-LAST:event_myButton_Add_SalesActionPerformed
 
-    private void enviarRelatoriosVendaWhatsApp() {
-        String numeroCliente = "+5549999367954"; // Substitua pelo número de telefone correto
-        String mensagem = "Relatório de venda"; // Substitua pela mensagem desejada
-        String caminhoArquivoPDF = "E:\\Projetos java\\Umbrella_Pharmaceutical_Inc\\arquivo.pdf"; // Substitua pelo caminho do arquivo PDF desejado
-
-        if (caminhoArquivoPDF != null) {
-            try {
-                // Abra o WhatsApp Web com o número do cliente e a mensagem
-                String url = "https://api.whatsapp.com/send?phone=" + numeroCliente + "&text=" + URLEncoder.encode(mensagem, StandardCharsets.UTF_8);
-                java.awt.Desktop.getDesktop().browse(URI.create(url));
-
-                // Agora, você pode pedir ao usuário que anexe o arquivo manualmente, já que o WhatsApp Web não suporta anexos programaticamente.
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Erro ao enviar mensagem no WhatsApp: " + ex.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um arquivo para envio.");
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox_Telefones;
-    private javax.swing.JLabel jLabel_Telefones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblIcon;
-    private javax.swing.JLabel lblSendWhatsapp;
-    private up_class_custom.MyButton myButton_SearchSales;
-    private up_class_custom.MyButton myButton_SendSalesReportsWhatsApp;
-    private javax.swing.JTable tblTabela;
+    private javax.swing.JLabel lbl_Pdf_File;
+    private up_class_custom.MyButton myButton_Add_Sales;
+    private up_class_custom.MyButton myButton_Generate_Pdf_File;
+    private javax.swing.JTable tbl_Tabela;
     // End of variables declaration//GEN-END:variables
 }
