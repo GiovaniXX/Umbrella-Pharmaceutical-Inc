@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
-public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame {
+public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
     //    private Connection cnn;
     public Dados dados;
@@ -20,7 +20,7 @@ public class UP_F07_Enviar_Relatorios_Vendas extends javax.swing.JInternalFrame 
     }
 
     // Construtor da classe
-    public UP_F07_Enviar_Relatorios_Vendas() {
+    public UP_F07_Relatorios() {
         initComponents();
         // Inicializar dados e a conexão
         dados = new Dados(); // Cria uma nova instância de Dados

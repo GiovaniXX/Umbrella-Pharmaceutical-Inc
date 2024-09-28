@@ -27,12 +27,9 @@ public class Dados {
             // Carrega o driver connector do MySQL Server - MySQL Workbench
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Carrega o driver JDBC do SQL Server - SSMS (Sql server management studio)
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             // Carrega as propriedades de configuração
             Properties props = new Properties();
             props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella-Pharmaceutical-Inc\\config.properties"));
-            //props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella_Pharmaceutical_Inc\\SSMS-config.properties"));
 
             // Obtém as propriedades do arquivo
             String dbUrl = props.getProperty("db.url");
@@ -61,10 +58,6 @@ public class Dados {
     }
 
     /**
-     * 01000100 01100101 01110110
-     *
-     * 01101110 01101001 01000100 01100101 01110110 01000111 01101001 01101111
-     *
      * Método para validar um usuário com base em seu ID, senha e chave.
      *
      * @param usuario O ID do usuário.
@@ -232,15 +225,14 @@ public class Dados {
     // Método para adicionar um novo cliente ao banco de dados
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataNascimento, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataCadastro) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mCliente.getNome());
             pstmt.setString(2, mCliente.getSobrenome());
             pstmt.setString(3, mCliente.getEndereco());
             pstmt.setString(4, mCliente.getTelefone());
             pstmt.setInt(5, mCliente.getCidade());
-            pstmt.setDate(6, new java.sql.Date(mCliente.getDataNascimento().getTime()));
-            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setDate(6, new java.sql.Date(mCliente.getDataCadastro().getTime()));
 
             // Executa a inserção
             pstmt.executeUpdate();
@@ -300,16 +292,15 @@ public class Dados {
     // Método para editar as informações de um cliente
     public String editarCliente(Cliente mCliente) {
         try {
-            String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataNascimento = ?, dataCadastro = ? WHERE idcliente = ?";
+            String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mCliente.getNome());
             pstmt.setString(2, mCliente.getSobrenome());
             pstmt.setString(3, mCliente.getEndereco());
             pstmt.setString(4, mCliente.getTelefone());
             pstmt.setInt(5, mCliente.getCidade());
-            pstmt.setDate(6, new java.sql.Date(mCliente.getDataNascimento().getTime()));
-            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
-            pstmt.setInt(8, mCliente.getIdcliente());
+            pstmt.setDate(6, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setInt(7, mCliente.getIdcliente());
 
             // Executa a atualização
             pstmt.executeUpdate();
@@ -407,6 +398,7 @@ public class Dados {
             return null;
         }
     }
+
     //-------------------------------------------------------------------------------------
     public ResultSet getVenda() {
         try {

@@ -61,9 +61,9 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         setBorder(null);
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Vendas");
-        setMaximumSize(new java.awt.Dimension(1366, 768));
-        setMinimumSize(new java.awt.Dimension(1366, 768));
-        setPreferredSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1360, 720));
+        setMinimumSize(new java.awt.Dimension(1360, 720));
+        setPreferredSize(new java.awt.Dimension(1360, 720));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -262,7 +262,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1360, 768));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 740));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 695));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

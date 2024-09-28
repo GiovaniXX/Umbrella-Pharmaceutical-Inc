@@ -383,7 +383,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_openWhatsUpProfileActionPerformed
 
     private void SendReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendReportActionPerformed
-        UP_F07_Enviar_Relatorios_Vendas ufsr = new UP_F07_Enviar_Relatorios_Vendas();
+        UP_F07_Relatorios ufsr = new UP_F07_Relatorios();
         ufsr.setDados(dados);
         dpnDesk.add(ufsr);
         ufsr.show();

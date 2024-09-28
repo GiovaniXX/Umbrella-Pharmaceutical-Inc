@@ -10,18 +10,16 @@ public class Cliente {
     private String endereco;
     private String telefone;
     private int cidade;
-    private Date dataNascimento;
     private Date dataCadastro;
     private int idCliente;
 
-    public Cliente(int idcliente, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataNascimento, Date dataCadastro) {
+    public Cliente(int idcliente, String nome, String sobrenome, String endereco, String telefone, int cidade, Date dataCadastro) {
         this.idcliente = idcliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.endereco = endereco;
         this.telefone = telefone;
         this.cidade = cidade;
-        this.dataNascimento = dataNascimento;
         this.dataCadastro = dataCadastro;
     }
 
@@ -77,14 +75,6 @@ public class Cliente {
 
     public void setCidade(int cidade) {
         this.cidade = cidade;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
     }
 
     public Date getDataCadastro() {
