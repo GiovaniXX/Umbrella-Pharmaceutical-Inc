@@ -1,22 +1,26 @@
 package up_forms;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import up_classes.Dados;
 import java.sql.SQLException;
 import java.util.Date;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import up_classes.Relatorio;
 
 public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
-    //    private Connection cnn;
+    private Connection cnn;
     public Dados dados;
 
     public void setDados(Dados dados) {
         this.dados = dados;
-//        // Obtém a conexão da classe Dados
-//        this.cnn = dados.cnn;
+        // Obtém a conexão da classe Dados
+        this.cnn = dados.cnn;
     }
 
     // Construtor da classe
@@ -24,7 +28,14 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         initComponents();
         // Inicializar dados e a conexão
         dados = new Dados(); // Cria uma nova instância de Dados
-//        this.cnn = dados.cnn; // Usa a conexão da instância de Dados       
+        this.cnn = dados.cnn; // Usa a conexão da instância de Dados 
+
+        // Centraliza o texto nas colunas
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 6; i++) {
+            tbl_Tabela.getColumnModel().getColumn(i).setCellRenderer(dtcr);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -41,7 +52,7 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         lblIcon = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle(".:Umbrella Pharmaceutical™ Send Report");
+        setTitle(".:Umbrella Pharmaceutical™ Reports");
         setMaximumSize(new java.awt.Dimension(1360, 720));
         setMinimumSize(new java.awt.Dimension(1360, 720));
         setPreferredSize(new java.awt.Dimension(1360, 720));
@@ -137,10 +148,47 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myButton_Generate_Pdf_FileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_Generate_Pdf_FileActionPerformed
+        // Verifica se uma linha está selecionada na tabela
+        int linhaSelecionada = tbl_Tabela.getSelectedRow(); // minhaTabela é a sua JTable
+
+        if (linhaSelecionada == -1) {
+            // Nenhuma linha selecionada
+            System.out.println("Nenhum registro selecionado.");
+            return; // Não executa o código de geração do PDF
+        }
+
+        System.out.println("Linha selecionada: " + linhaSelecionada);
+
+        // Defina o caminho onde o PDF será salvo
+        String caminhoArquivo = "relatorio_vendas.pdf"; // Exemplo de caminho
+
+        Dados dados = null;
+
+        try {
+            // Instancia a classe Dados para realizar a consulta
+            dados = new Dados(); // Estabelece a conexão com o banco de dados
+            ResultSet rs = dados.getVendas(); // Obtém o ResultSet correto da venda
+
+            // Chama o método relatorioVenda para gerar o PDF
+            Relatorio.relatorioVenda(caminhoArquivo, rs);
+
+            System.out.println("PDF gerado com sucesso!");
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao gerar o relatório de vendas: " + e.getMessage());
+        } finally {
+            try {
+                if (dados != null) {
+                    dados.closeConnection(); // Fecha a conexão
+                }
+            } catch (SQLException e) {
+                System.out.println("Erro ao fechar a conexão com o banco de dados: " + e.getMessage());
+            }
+        }
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-        System.out.println("evt Send Record WhatsApp executado com sucesso.!");
+        System.out.println("evt Generate_Pdf_File executado com sucesso.!");
     }//GEN-LAST:event_myButton_Generate_Pdf_FileActionPerformed
 
     private void myButton_Add_SalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_Add_SalesActionPerformed
@@ -152,29 +200,34 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
         // Limpar a tabela antes de adicionar novos dados
         DefaultTableModel model = (DefaultTableModel) tbl_Tabela.getModel();
-        model.setRowCount(0); // Limpa as linhas existentes
+        // Limpa as linhas existentes
+        model.setRowCount(0);
 
         try {
             // Percorrer o ResultSet e adicionar os dados à tabela
             while (vendas != null && vendas.next()) {
-                // Tabela vendas têm colunas --> idvenda, data, idcliente, idproduto, descricao, quantidade e preco
+                // Tabela vendas têm colunas --> idvenda(pk), data, idcliente(fk), idproduto(fk), descricao, quantidade e preco
                 int idVenda = vendas.getInt("idvenda");
                 Date data = vendas.getDate("data");
                 int idCliente = vendas.getInt("idcliente");
                 int idProduto = vendas.getInt("idproduto");
-                int descricao = vendas.getInt("descricao");
+                String descricao = vendas.getString("descricao");
                 int quantidade = vendas.getInt("quantidade");
                 double preco = vendas.getDouble("preco");
 
-                // Adicionar a linha na tabela
-                model.addRow(new Object[]{idVenda, data, idCliente, idProduto, descricao, quantidade, preco});
+                // Obter os nomes do cliente e do produto
+                String nomeCliente = dados.getNomeClientePorId(idCliente);
+                String nomeProduto = dados.getNomeProdutoPorId(idProduto);
+
+                // Adicionar a linha na tabela com os nomes
+                model.addRow(new Object[]{idVenda, data, nomeCliente, nomeProduto, descricao, quantidade, preco});
             }
         } catch (SQLException e) {
             // Tratar exceções se ocorrer um erro ao acessar o ResultSet
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao acessar vendas", e);
         } finally {
             // Fechar a conexão se necessário
-            dados.close(); // Fecha a conexão com o banco
+            dados.close();
         }
 
         System.out.println("Vendas carregadas com sucesso!");

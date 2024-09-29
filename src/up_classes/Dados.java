@@ -51,6 +51,10 @@ public class Dados {
         listaDeProdutos = new ArrayList<>();
     }
 
+    public Connection getCnn() {
+        return cnn;
+    }
+
     // Método para obter a instância da conexão com o banco de dados
     public static Connection getConnectionInstance() {
         Dados sgbd = new Dados();
@@ -134,6 +138,63 @@ public class Dados {
         }
     }
 
+    // Método para fechar a conexão
+    public void closeConnection() throws SQLException {
+        if (cnn != null && !cnn.isClosed()) {
+            cnn.close();
+            System.out.println("Conexão com o banco de dados encerrada.");
+        }
+    }
+
+    // Método para obter o usuário logado
+    public Usuario getUsuarioLogado(String nomeUsuario) {
+        try {
+            String sql = "SELECT idusuario, nome, sobrenome, senha, chave, perfil FROM usuarios WHERE nome = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, nomeUsuario);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                // Cria um objeto Usuario com os dados retornados
+                Usuario usuario = new Usuario(
+                        rs.getInt("idusuario"),
+                        rs.getString("nome"),
+                        rs.getString("sobrenome"),
+                        rs.getString("senha"),
+                        rs.getString("chave"),
+                        rs.getInt("perfil")
+                );
+                return usuario;  // Retorna o objeto Usuario
+            } else {
+                throw new SQLException("Usuário não encontrado.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            return null;
+        }
+    }
+
+    // Método para obter o ID do usuário logado
+    public int getIdUsuario(int usuario) {
+        try {
+            String sql = "SELECT idusuario FROM usuarios WHERE usuario = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, usuario);  // Passa o nome do usuário ou outra identificação
+            ResultSet rs = pstmt.executeQuery();
+
+            // Se houver resultado, retorna o ID do usuário
+            if (rs.next()) {
+                return rs.getInt("idusuario");
+            } else {
+                // Caso o usuário não seja encontrado, pode lançar uma exceção ou retornar -1
+                throw new SQLException("Usuário não encontrado.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            return -1;  // Retorna um valor inválido se ocorrer erro
+        }
+    }
+
     // Método para verificar se um usuário existe no banco de dados
     public boolean existeUsuario(String usuario) {
         try {
@@ -164,19 +225,19 @@ public class Dados {
         }
     }
 
-    // Método para verificar se um produto existe no banco de dados
-    public boolean existeProduto(String produto) {
+    public boolean existeProduto(String idProduto) {
         try {
-            String sql = "SELECT 1 FROM produtos WHERE idproduto = ?";
+            String sql = "SELECT COUNT(*) FROM produtos WHERE idproduto = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setString(1, produto);
+            pstmt.setString(1, idProduto);
             ResultSet rs = pstmt.executeQuery();
-            // Retorna verdadeiro se o produto existir
-            return rs.next();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-            return false;
         }
+        return false;
     }
 
     // Método para adicionar um novo usuário ao banco de dados
@@ -399,18 +460,7 @@ public class Dados {
         }
     }
 
-    //-------------------------------------------------------------------------------------
-    public ResultSet getVenda() {
-        try {
-            String sql = "SELECT * FROM vendas";
-            Statement st = cnn.createStatement();
-            return st.executeQuery(sql);
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
-            return null;
-        }
-    }
-
+    //-------------------------------------------------------------------------------------   
     public ResultSet getConsulta(String sql) {
         try {
             Statement st = cnn.createStatement();
@@ -508,18 +558,52 @@ public class Dados {
         }
     }
 
-    public void adicionarVenda(int idVenda, int idCliente, Date data, double preco, int quantidade) {
+    public void adicionarVenda(int idVenda, int idCliente, Date data, double preco, int quantidade,
+            String produto, String descricao, int idProduto, int idUsuario) {
         try {
-            String sql = "INSERT INTO vendas (idvenda, idcliente, data, preco, quantidade) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO vendas (idvenda, idcliente, data, preco, quantidade, produto, descricao, idproduto, idusuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setInt(1, idVenda);                      // Para idVenda
-            pstmt.setInt(2, idCliente);                    // Para idCliente
+
+            // Passa os valores para cada campo da query
+            pstmt.setInt(1, idVenda);                       // Para idVenda
+            pstmt.setInt(2, idCliente);                     // Para idCliente
             pstmt.setDate(3, new java.sql.Date(data.getTime())); // Para data
-            pstmt.setDouble(4, preco);                     // Para preco
-            pstmt.setInt(5, quantidade);                   // Para quantidade
-            pstmt.executeUpdate();
+            pstmt.setDouble(4, preco);                      // Para preco
+            pstmt.setInt(5, quantidade);                    // Para quantidade
+            pstmt.setString(6, produto);                    // Para produto
+            pstmt.setString(7, descricao);                  // Para descricao
+            pstmt.setInt(8, idProduto);                     // Para idProduto
+            pstmt.setInt(9, idUsuario);                     // Para idUsuario
+
+            pstmt.executeUpdate();  // Executa a inserção
         } catch (SQLException e) {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    public ResultSet getVendas() throws SQLException {
+        String sql = "SELECT v.idvenda, c.nome AS nomeFull, v.idcliente, v.data, "
+                + "p.idproduto AS produto, p.descricao, p.preco, v.quantidade, (v.quantidade * p.preco) AS valor "
+                + "FROM vendas v "
+                + "JOIN clientes c ON v.idcliente = c.idcliente "
+                + "JOIN produtos p ON v.produto = p.idproduto "
+                + "ORDER BY v.idvenda";
+
+        // Estabelece a conexão com o banco de dados
+        PreparedStatement ps = cnn.prepareStatement(sql);
+
+        // Executa a consulta e retorna o ResultSet
+        return ps.executeQuery();
+    }
+
+    public ResultSet getVenda() {
+        try {
+            String sql = "SELECT * FROM vendas";
+            Statement st = cnn.createStatement();
+            return st.executeQuery(sql);
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            return null;
         }
     }
 
@@ -559,10 +643,6 @@ public class Dados {
         }
     }
 
-    public Connection getCnn() {
-        return cnn;
-    }
-
     // Método para obter os telefones dos clientes
     public List<String> getTelefonesClientes() {
         // Lista para armazenar telefones
@@ -581,26 +661,6 @@ public class Dados {
             Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
         }
         return telefones; // Retorna a lista de telefones
-    }
-
-    public Cliente getClientePorNome(String nomeCliente) {
-        Cliente cliente = null;
-        try {
-            String sql = "SELECT * FROM clientes WHERE nome = ?";
-            PreparedStatement pstmt = cnn.prepareStatement(sql);
-            pstmt.setString(1, nomeCliente);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    cliente = new Cliente();
-                    cliente.setIdCliente(rs.getInt("idcliente"));
-                    cliente.setNome(rs.getString("nome"));
-                    // Preencher outros atributos conforme necessário
-                }
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao buscar cliente por nome", e);
-        }
-        return cliente;
     }
 
     // Método para buscar produto pelo Id
@@ -640,5 +700,58 @@ public class Dados {
             Logger.getLogger(Dados.class.getName()).log(Level.WARNING, "Produto não encontrado");
         }
         return produto;
+    }
+
+    public String getNomeProdutoPorId(int idProduto) {
+        String nomeProduto = "";
+        try {
+            String sql = "SELECT produto FROM produtos WHERE idproduto = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, idProduto);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                nomeProduto = rs.getString("produto");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return nomeProduto;
+    }
+
+    // Método para buscar cliente pelo nome
+    public Cliente getClientePorNome(String nomeCliente) {
+        Cliente cliente = null;
+        try {
+            String sql = "SELECT * FROM clientes WHERE nome = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setString(1, nomeCliente);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    cliente = new Cliente();
+                    cliente.setIdCliente(rs.getInt("idcliente"));
+                    cliente.setNome(rs.getString("nome"));
+                    // Preencher outros atributos conforme necessário
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Erro ao buscar cliente por nome", e);
+        }
+        return cliente;
+    }
+
+    public String getNomeClientePorId(int idCliente) {
+        String nomeCliente = "";
+        try {
+            String sql = "SELECT nome FROM clientes WHERE idcliente = ?";
+            PreparedStatement pstmt = cnn.prepareStatement(sql);
+            pstmt.setInt(1, idCliente);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                nomeCliente = rs.getString("nome");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return nomeCliente;
     }
 }

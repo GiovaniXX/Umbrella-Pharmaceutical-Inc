@@ -2,7 +2,7 @@ package up_classes;
 
 import java.util.Date;
 
-public class Vendas {
+public class Venda {
 
     private int idvenda;
     private String produto;
@@ -10,14 +10,20 @@ public class Vendas {
     private double preco;
     private int quantidade;
     private Date data;
+    private int idproduto;
+    private int idcliente;
+    private int idusuario;
 
-    public Vendas(int idvenda, String produto, String descricao, double preco, int quantidade, Date data) {
+    public Venda(int idvenda, String produto, String descricao, double preco, int quantidade, Date data, int idproduto, int idcliente, int idusuario) {
         this.idvenda = idvenda;
         this.produto = produto;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
         this.data = data;
+        this.idproduto = idproduto;
+        this.idcliente = idcliente;
+        this.idusuario = idusuario;
     }
 
     public int getIdvenda() {
@@ -67,7 +73,28 @@ public class Vendas {
     public void setData(Date data) {
         this.data = data;
     }
+
+    public int getIdproduto() {
+        return idproduto;
+    }
+
+    public void setIdproduto(int idproduto) {
+        this.idproduto = idproduto;
+    }
+
+    public int getIdcliente() {
+        return idcliente;
+    }
+
+    public void setIdcliente(int idcliente) {
+        this.idcliente = idcliente;
+    }
+
+    public int getIdusuario() {
+        return idusuario;
+    }
+
+    public void setIdusuario(int idusuario) {
+        this.idusuario = idusuario;
+    }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */

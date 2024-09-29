@@ -216,7 +216,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Produto", "Descricao", "Preço", "Quantidade", "Data"
+                "Id", "Nome do produto", "Descricao do produto", "Preço", "Quantidade", "Data"
             }
         ) {
             Class[] types = new Class [] {
@@ -336,17 +336,24 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
+        // Obtém o número da venda
         int numeroVenda = dados.getNumeroVenda();
+        // Obtém o ID do cliente selecionado
         int idCliente = dados.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
-
         // Atualiza os valores totais
         totalGeral();
         // Obtém o valor total da venda
         double valorVenda = Double.parseDouble(txtTotalValor.getText());
-        // Obtém a quantidade total
+        // Obtém a quantidade total da venda
         int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText());
 
-        dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
+        // Obtém os valores dinamicamente da tabela tblTabela
+        String nomeProduto = tblTabela.getValueAt(0, 1).toString(); // Supondo que a coluna 1 é o nome do produto
+        String descricaoProduto = tblTabela.getValueAt(0, 2).toString(); // Supondo que a coluna 2 é a descrição do produto
+
+        //dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
+        dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal,
+                nomeProduto, descricaoProduto, 1, 1);
 
         // Salvar detalhes da venda
         for (int i = 0; i < tblTabela.getRowCount(); i++) {
