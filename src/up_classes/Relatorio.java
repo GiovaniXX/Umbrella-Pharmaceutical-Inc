@@ -20,88 +20,76 @@ public class Relatorio {
             PdfWriter.getInstance(document, new FileOutputStream(arquivo));
             document.open();
 
-            // Cabeçalho do relatório
+            // Cabeçalho da empresa
             String textoCabecalho = """
                            Umbrella Pharmaceutical Inc
                            Rua: Marechal Rondon 387
                            Bairro: Conta Dinheiro
-                           Relatórios de vendas
+                           RELATÓRIO DA VENDA
                            """;
             Paragraph cabecalho = new Paragraph(textoCabecalho);
             cabecalho.setAlignment(Element.ALIGN_CENTER);
             document.add(cabecalho);
 
-            document.add(new Paragraph(" "));  // Adiciona uma linha em branco
+            document.add(new Paragraph(" "));  // Linha em branco
 
-            boolean registro = rs.next();
-            int totQuantGer = 0;
-            int totValGer = 0;
+            // Adicionar informações do vendedor e data da venda
+            PdfPTable tabelaVendedor = new PdfPTable(2);
+            tabelaVendedor.setWidthPercentage(100); // Preenche a largura da página
 
-            while (registro) {
-                // Informações da venda
-                String vendaInfo = String.format("Venda #: %s\nID Cliente: %s\nNome Cliente: %s\nData: %s",
-                        rs.getString("idvenda"),
-                        rs.getString("idcliente"),
-                        rs.getString("nomeFull"),
-                        rs.getString("data"));
-                document.add(new Paragraph(vendaInfo));
-                document.add(new Paragraph(" "));  // Linha em branco
+            tabelaVendedor.addCell("VENDEDOR");
+            tabelaVendedor.addCell("DATA");
 
-                // Tabela com os produtos
-                PdfPTable tabela = new PdfPTable(5);  // Definir número de colunas
-                tabela.setWidthPercentage(100); // Preenche a largura da página
+            // Preencher os dados do vendedor e data (exemplo, você pode ajustar conforme seu ResultSet)
+            tabelaVendedor.addCell("Nome do Vendedor:");
+            tabelaVendedor.addCell("Data da Venda:");
 
-                // Adiciona os cabeçalhos da tabela
-                tabela.addCell("Id Produto");
-                tabela.addCell("Descricao");
-                tabela.addCell("Preco");
-                tabela.addCell("Quantidade");
-                tabela.addCell("Valor");
+            document.add(tabelaVendedor);
 
-                int totQuantFat = 0;
-                int totValFat = 0;
-                int vendaAtual = rs.getInt("idvenda");
+            document.add(new Paragraph(" "));  // Linha em branco
 
-                // Loop para adicionar os produtos
-                do {
-                    tabela.addCell(rs.getString("produto")); // Adiciona Id Produto
-                    tabela.addCell(rs.getString("descricao")); // Adiciona Descricao
-                    tabela.addCell(rs.getString("preco")); // Adiciona Preco
-                    tabela.addCell(rs.getString("quantidade")); // Adiciona Quantidade
-                    tabela.addCell(rs.getString("valor")); // Adiciona Valor
+            // Cabeçalhos da tabela de produtos
+            PdfPTable tabelaProdutos = new PdfPTable(new float[]{1, 2, 2, 2, 2, 1, 2});
+            tabelaProdutos.setWidthPercentage(100);  // Preenche a largura da página
 
-                    totQuantFat += rs.getInt("quantidade");
-                    totValFat += rs.getInt("valor");
+            tabelaProdutos.addCell("ID");
+            tabelaProdutos.addCell("CLIENTE");
+            tabelaProdutos.addCell("PRODUTO");
+            tabelaProdutos.addCell("DESCRIÇÃO");
+            tabelaProdutos.addCell("PREÇO");
+            tabelaProdutos.addCell("QTD.");
+            tabelaProdutos.addCell("VALOR");
 
-                } while (registro && vendaAtual == rs.getInt("idvenda") && (registro = rs.next()));
+            // Preencher os dados da venda
+            double totalVenda = 0;
 
-                // Adiciona a tabela ao documento
-                document.add(tabela);
-
-                // Adiciona o total das vendas para essa venda
-                PdfPTable tabelaTotal = new PdfPTable(5);
-                tabelaTotal.addCell(" ");
-                tabelaTotal.addCell(" ");
-                tabelaTotal.addCell("Total Vendas");
-                tabelaTotal.addCell(String.valueOf(totQuantFat));
-                tabelaTotal.addCell(String.valueOf(totValFat));
-                document.add(tabelaTotal);
-
-                // Atualiza o total geral
-                totQuantGer += totQuantFat;
-                totValGer += totValFat;
-
-                document.add(new Paragraph(" "));  // Linha em branco entre vendas
+            while (rs.next()) {
+                tabelaProdutos.addCell(rs.getString("idvenda")); // ID PRODUTO
+                tabelaProdutos.addCell(rs.getString("nome")); //NOME DO CLIENTE
+                tabelaProdutos.addCell(rs.getString("produto")); // NOME DO PRODUTO
+                tabelaProdutos.addCell(rs.getString("descricao")); // DESCRIÇÃO DO ITEM
+                tabelaProdutos.addCell(String.format("$%.2f", rs.getDouble("preco"))); // PREÇO
+                tabelaProdutos.addCell(rs.getString("quantidade")); // QTD
+                double valor = rs.getDouble("preco") * rs.getInt("quantidade");
+                tabelaProdutos.addCell(String.format("$%.2f", valor)); // VALOR
+                totalVenda += valor;
             }
 
-            // Adiciona o total geral
-            PdfPTable tabelaTotalGeral = new PdfPTable(5);
-            tabelaTotalGeral.addCell(" ");
-            tabelaTotalGeral.addCell(" ");
-            tabelaTotalGeral.addCell("Total Geral");
-            tabelaTotalGeral.addCell(String.valueOf(totQuantGer));
-            tabelaTotalGeral.addCell(String.valueOf(totValGer));
-            document.add(tabelaTotalGeral);
+            document.add(tabelaProdutos);
+
+            // Linhas em branco para separar
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph(" "));
+
+            // Tabela para os totais
+            PdfPTable tabelaTotais = new PdfPTable(2);
+            tabelaTotais.setWidthPercentage(50); // Ajuste a largura conforme necessário
+            tabelaTotais.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+            tabelaTotais.addCell("VALOR DA VENDA");
+            tabelaTotais.addCell(String.format("$%.2f", totalVenda));
+
+            document.add(tabelaTotais);
 
             document.close();
 

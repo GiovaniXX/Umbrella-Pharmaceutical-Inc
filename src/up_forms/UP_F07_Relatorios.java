@@ -1,6 +1,5 @@
 package up_forms;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,13 +13,13 @@ import up_classes.Relatorio;
 
 public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
-    private Connection cnn;
+    //private Connection cnn;
     public Dados dados;
 
     public void setDados(Dados dados) {
         this.dados = dados;
         // Obtém a conexão da classe Dados
-        this.cnn = dados.cnn;
+        //this.cnn = dados.cnn;
     }
 
     // Construtor da classe
@@ -28,7 +27,7 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         initComponents();
         // Inicializar dados e a conexão
         dados = new Dados(); // Cria uma nova instância de Dados
-        this.cnn = dados.cnn; // Usa a conexão da instância de Dados 
+        //this.cnn = dados.cnn; // Usa a conexão da instância de Dados 
 
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
@@ -148,28 +147,37 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myButton_Generate_Pdf_FileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myButton_Generate_Pdf_FileActionPerformed
-        // Verifica se uma linha está selecionada na tabela
-        int linhaSelecionada = tbl_Tabela.getSelectedRow(); // minhaTabela é a sua JTable
+        int linhaSelecionada = tbl_Tabela.getSelectedRow();
 
         if (linhaSelecionada == -1) {
             // Nenhuma linha selecionada
             System.out.println("Nenhum registro selecionado.");
-            return; // Não executa o código de geração do PDF
+            return;
         }
 
         System.out.println("Linha selecionada: " + linhaSelecionada);
 
-        // Defina o caminho onde o PDF será salvo
-        String caminhoArquivo = "relatorio_vendas.pdf"; // Exemplo de caminho
+        // Extrair os dados da linha selecionada na tabela
+        DefaultTableModel model = (DefaultTableModel) tbl_Tabela.getModel();
+        int idVenda = (int) model.getValueAt(linhaSelecionada, 0);
+        String nomeCliente = (String) model.getValueAt(linhaSelecionada, 2);
+        String nomeProduto = (String) model.getValueAt(linhaSelecionada, 3);
+        String descricao = (String) model.getValueAt(linhaSelecionada, 4);
+        int quantidade = (int) model.getValueAt(linhaSelecionada, 5);
+        double preco = (double) model.getValueAt(linhaSelecionada, 6);
+
+        // Definir o caminho onde o PDF será salvo
+        String caminhoArquivo = "relatorio_vendas.pdf";
 
         Dados dados = null;
 
         try {
-            // Instancia a classe Dados para realizar a consulta
-            dados = new Dados(); // Estabelece a conexão com o banco de dados
-            ResultSet rs = dados.getVendas(); // Obtém o ResultSet correto da venda
+            // Instanciar a classe Dados para realizar a consulta
+            dados = new Dados();
+            // Obter detalhes da venda selecionada com base no ID
+            ResultSet rs = dados.getVendaPorId(idVenda);
 
-            // Chama o método relatorioVenda para gerar o PDF
+            // Chama o método relatorioVenda para gerar o PDF, passando os dados selecionados
             Relatorio.relatorioVenda(caminhoArquivo, rs);
 
             System.out.println("PDF gerado com sucesso!");

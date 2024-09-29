@@ -581,6 +581,17 @@ public class Dados {
         }
     }
 
+    public ResultSet getVendaPorId(int idVenda) throws SQLException {
+        String query = "SELECT v.idvenda, c.nome, p.produto, v.descricao, v.quantidade, v.preco "
+                + "FROM vendas v "
+                + "JOIN clientes c ON v.idcliente = c.idcliente "
+                + "JOIN produtos p ON v.idproduto = p.idproduto "
+                + "WHERE v.idvenda = ?";
+        PreparedStatement stmt = cnn.prepareStatement(query);
+        stmt.setInt(1, idVenda);
+        return stmt.executeQuery();
+    }
+
     public ResultSet getVendas() throws SQLException {
         String sql = "SELECT v.idvenda, c.nome AS nomeFull, v.idcliente, v.data, "
                 + "p.idproduto AS produto, p.descricao, p.preco, v.quantidade, (v.quantidade * p.preco) AS valor "
