@@ -179,7 +179,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         Movimentos.add(NovaVenda);
 
-        SendReport.setText("Send Report");
+        SendReport.setText("Gerar PDF");
         SendReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SendReportActionPerformed(evt);

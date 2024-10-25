@@ -276,9 +276,15 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        // Validar cliente e produto selecionado
-        if (cmbCliente.getSelectedIndex() == 0 || cmbProduto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente e um produto");
+        // Validar cliente selecionado
+        if (cmbCliente.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
+            return;
+        }
+
+        // Validar produto selecionado
+        if (cmbProduto.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione um produto");
             return;
         }
 

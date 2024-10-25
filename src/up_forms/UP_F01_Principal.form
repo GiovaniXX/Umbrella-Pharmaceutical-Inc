@@ -143,7 +143,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SendReport">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Send Report"/>
+                <Property name="text" type="java.lang.String" value="Gerar PDF"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SendReportActionPerformed"/>
