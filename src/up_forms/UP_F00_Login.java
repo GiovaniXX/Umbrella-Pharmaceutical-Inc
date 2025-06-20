@@ -72,11 +72,11 @@ public class UP_F00_Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SGBD = new javax.swing.JLabel();
         _SGBD = new javax.swing.JLabel();
-        textField_User = new up_class_custom.TextField();
-        passwordField_AccessCode = new up_class_custom.PasswordField();
-        passwordField_SecurityKey = new up_class_custom.PasswordField();
-        btnOut = new up_class_custom.Button();
-        btnEnter = new up_class_custom.Button();
+        textField_User = new org.netbeans.modules.form.InvalidComponent();
+        passwordField_AccessCode = new org.netbeans.modules.form.InvalidComponent();
+        passwordField_SecurityKey = new org.netbeans.modules.form.InvalidComponent();
+        btnOut = new org.netbeans.modules.form.InvalidComponent();
+        btnEnter = new org.netbeans.modules.form.InvalidComponent();
         lblLogoUmbrellaCorporation = new javax.swing.JLabel();
         lbllLogoMySQL = new javax.swing.JLabel();
         User = new javax.swing.JLabel();
@@ -112,47 +112,14 @@ public class UP_F00_Login extends javax.swing.JFrame {
         _SGBD.setText("Database");
         jPanel2.add(_SGBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 198, -1, 10));
 
-        textField_User.setBackground(new java.awt.Color(8, 13, 32));
-        textField_User.setForeground(new java.awt.Color(3, 155, 216));
-        textField_User.setLabelText("Enter your user");
         jPanel2.add(textField_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 390, -1));
 
-        passwordField_AccessCode.setBackground(new java.awt.Color(8, 13, 32));
-        passwordField_AccessCode.setForeground(new java.awt.Color(3, 155, 216));
-        passwordField_AccessCode.setLabelText("Enter your access code");
         jPanel2.add(passwordField_AccessCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 390, -1));
 
-        passwordField_SecurityKey.setBackground(new java.awt.Color(8, 13, 32));
-        passwordField_SecurityKey.setForeground(new java.awt.Color(3, 155, 216));
-        passwordField_SecurityKey.setLabelText("Enter your security key");
         jPanel2.add(passwordField_SecurityKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 390, -1));
 
-        btnOut.setBackground(new java.awt.Color(8, 13, 32));
-        btnOut.setBorder(null);
-        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Buttons/08.png"))); // NOI18N
-        btnOut.setColor(new java.awt.Color(8, 13, 32));
-        btnOut.setColorClick(new java.awt.Color(8, 13, 32));
-        btnOut.setColorOver(new java.awt.Color(170, 4, 0));
-        btnOut.setRadius(25);
-        btnOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOutActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 130, 40));
 
-        btnEnter.setBackground(new java.awt.Color(8, 13, 32));
-        btnEnter.setBorder(null);
-        btnEnter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Buttons/09.png"))); // NOI18N
-        btnEnter.setColor(new java.awt.Color(8, 13, 32));
-        btnEnter.setColorClick(new java.awt.Color(8, 13, 32));
-        btnEnter.setColorOver(new java.awt.Color(0, 126, 16));
-        btnEnter.setRadius(25);
-        btnEnter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnterActionPerformed(evt);
-            }
-        });
         jPanel2.add(btnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 130, 40));
 
         lblLogoUmbrellaCorporation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/05.jpg"))); // NOI18N
@@ -317,16 +284,16 @@ public class UP_F00_Login extends javax.swing.JFrame {
     private javax.swing.JLabel TelaFundo;
     private javax.swing.JLabel User;
     private javax.swing.JLabel _SGBD;
-    private up_class_custom.Button btnEnter;
-    private up_class_custom.Button btnOut;
+    private org.netbeans.modules.form.InvalidComponent btnEnter;
+    private org.netbeans.modules.form.InvalidComponent btnOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLogoUmbrellaCorporation;
     private javax.swing.JLabel lblUmbrellaCorporationIBS;
     private javax.swing.JLabel lbllLogoMySQL;
-    private up_class_custom.PasswordField passwordField_AccessCode;
-    private up_class_custom.PasswordField passwordField_SecurityKey;
-    private up_class_custom.TextField textField_User;
+    private org.netbeans.modules.form.InvalidComponent passwordField_AccessCode;
+    private org.netbeans.modules.form.InvalidComponent passwordField_SecurityKey;
+    private org.netbeans.modules.form.InvalidComponent textField_User;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
@@ -339,10 +306,3 @@ public class UP_F00_Login extends javax.swing.JFrame {
         }
     }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- *
- * Эта реализация может со временем претерпевать изменения, в зависимости от
- * развития проекта и исправления дефектов...
- *
- */
