@@ -29,7 +29,7 @@ public class Dados {
 
             // Carrega as propriedades de configuração
             Properties props = new Properties();
-            props.load(new FileInputStream("F:\\NETBEANS PROJECTS 2024\\Umbrella-Pharmaceutical-Inc\\config.properties"));
+            props.load(new FileInputStream("E:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\config.properties"));
 
             // Obtém as propriedades do arquivo
             String dbUrl = props.getProperty("db.url");
@@ -94,7 +94,7 @@ public class Dados {
 
         try {
             // Estabeleça a conexão com o banco de dados aqui (substitua as informações de conexão apropriadas)
-            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx355@$Y");
+            cnn = DriverManager.getConnection("jdbc:mysql://localhost/umbrella", "root", "xyx355@$YY-a");
 
             String sql = "SELECT idperfil FROM usuarios WHERE idusuario=?";
             st = cnn.prepareStatement(sql);
@@ -565,15 +565,15 @@ public class Dados {
             PreparedStatement pstmt = cnn.prepareStatement(sql);
 
             // Passa os valores para cada campo da query
-            pstmt.setInt(1, idVenda);                       // Para idVenda
-            pstmt.setInt(2, idCliente);                     // Para idCliente
+            pstmt.setInt(1, idVenda);                            // Para idVenda
+            pstmt.setInt(2, idCliente);                          // Para idCliente
             pstmt.setDate(3, new java.sql.Date(data.getTime())); // Para data
-            pstmt.setDouble(4, preco);                      // Para preco
-            pstmt.setInt(5, quantidade);                    // Para quantidade
-            pstmt.setString(6, produto);                    // Para produto
-            pstmt.setString(7, descricao);                  // Para descricao
-            pstmt.setInt(8, idProduto);                     // Para idProduto
-            pstmt.setInt(9, idUsuario);                     // Para idUsuario
+            pstmt.setDouble(4, preco);                           // Para preco
+            pstmt.setInt(5, quantidade);                         // Para quantidade
+            pstmt.setString(6, produto);                         // Para produto
+            pstmt.setString(7, descricao);                       // Para descricao
+            pstmt.setInt(8, idProduto);                          // Para idProduto
+            pstmt.setInt(9, idUsuario);                          // Para idUsuario
 
             pstmt.executeUpdate();  // Executa a inserção
         } catch (SQLException e) {
