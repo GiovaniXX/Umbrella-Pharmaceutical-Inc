@@ -561,6 +561,7 @@ public class Dados {
     public void adicionarVenda(int idVenda, int idCliente, Date data, double preco, int quantidade,
             String produto, String descricao, int idProduto, int idUsuario) {
         try {
+            System.out.println("ID do usuário (adicionarVenda): " + idUsuario);
             String sql = "INSERT INTO vendas (idvenda, idcliente, data, preco, quantidade, produto, descricao, idproduto, idusuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
 
