@@ -145,7 +145,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
         btnPrimeiro.setText("Primeiro");
         btnPrimeiro.setBorder(null);
-        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrimeiroActionPerformed(evt);
@@ -158,7 +158,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnAnterior.setForeground(new java.awt.Color(3, 155, 216));
         btnAnterior.setText("Anterior");
         btnAnterior.setBorder(null);
-        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -171,7 +171,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnProximo.setForeground(new java.awt.Color(3, 155, 216));
         btnProximo.setText("Proximo");
         btnProximo.setBorder(null);
-        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);
@@ -184,7 +184,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnUltimo.setForeground(new java.awt.Color(3, 155, 216));
         btnUltimo.setText("Ultimo");
         btnUltimo.setBorder(null);
-        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUltimoActionPerformed(evt);
@@ -197,7 +197,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnNovo.setForeground(new java.awt.Color(3, 155, 216));
         btnNovo.setText("Novo");
         btnNovo.setBorder(null);
-        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
@@ -210,7 +210,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnEditar.setForeground(new java.awt.Color(3, 155, 216));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -223,7 +223,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
-        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +237,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnExcluir.setForeground(new java.awt.Color(3, 155, 216));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(null);
-        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -250,7 +250,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnCancelar.setForeground(new java.awt.Color(3, 155, 216));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -263,7 +263,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnPesquisar.setForeground(new java.awt.Color(3, 155, 216));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -298,7 +298,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

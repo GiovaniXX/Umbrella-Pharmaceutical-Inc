@@ -684,7 +684,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 registro[2] = rs.getString("sobrenome");
                 registro[3] = rs.getString("endereco");
                 registro[4] = rs.getString("telefone");
-                registro[5] = cidade(rs.getInt("cidade"));
+                registro[5] = rs.getString("cidade");
                 registro[6] = rs.getString("dataCadastro");
                 cTabela.addRow(registro);
             }
