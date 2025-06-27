@@ -88,7 +88,7 @@ public class Dados {
 
     // Método para obter o perfil do usuário baseado no ID do usuário
     public int getPerfil(String usuario) {
-        Connection cnn = null;
+        Connection cnnn = null;
         PreparedStatement st = null;
         ResultSet rs = null;
 
@@ -114,7 +114,7 @@ public class Dados {
             return -1;
         } finally {
             // Fecha recursos
-            closeResources(cnn, st, rs);
+            closeResources(cnnn, st, rs);
         }
     }
 
