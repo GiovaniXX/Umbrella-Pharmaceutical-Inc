@@ -82,7 +82,7 @@ INSERT INTO Usuarios (perfil, nome, sobrenome, usuario, senha, chave)
 VALUES (1, 'Giovani', 'Chaves', 'gvc', 'admin', 'matrix');
 
 -- Mudar para mysql_native_password
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'xyx355@$YY-a';
+ALTER USER ''@'localhost' IDENTIFIED WITH mysql_native_password BY '';
 FLUSH PRIVILEGES;
 
 RENAME TABLE usuario TO usuarios;
@@ -93,6 +93,6 @@ DROP TABLE perfil;
 DROP TABLE IF EXISTS itemvenda;
 
 -- volta o usuário root a usar o plugin de autenticação padrão do MySQL (que é o caching_sha2_password nas versões mais recentes)
-ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'xyx355@$YY-a';
+ALTER USER ''@'localhost' IDENTIFIED WITH caching_sha2_password BY '';
 
 ALTER TABLE usuarios DROP COLUMN usuario;
