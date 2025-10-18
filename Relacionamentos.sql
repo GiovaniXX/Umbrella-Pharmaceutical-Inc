@@ -46,3 +46,11 @@ ALTER TABLE vendas
 ADD CONSTRAINT fk_vendas_usuarios
 FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario);
 
+-- E se quiser criar um relacionamento com uma tabela cidades, pode fazer:
+ALTER TABLE clientes
+ADD CONSTRAINT fk_clientes_cidades
+FOREIGN KEY (idcidade) REFERENCES cidades(id);
+
+-- 1. Aumentar o tamanho da coluna no banco
+-- Se você quer permitir telefones com DDD, espaços ou traços, aumente o tamanho:
+ALTER TABLE clientes MODIFY telefone VARCHAR(20);

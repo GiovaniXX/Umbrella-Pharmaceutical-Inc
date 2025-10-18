@@ -286,14 +286,26 @@ public class Dados {
     // Método para adicionar um novo cliente ao banco de dados
     public String adicionarCliente(Cliente mCliente) {
         try {
-            String sql = "INSERT INTO clientes (nome, sobrenome, endereco, telefone, cidade, dataCadastro) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO clientes (nome, sobrenome, email, endereco, telefone, cidade, dataCadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
+
+            // Sanitização do telefone
+//            String telefoneLimpo = mCliente.getTelefone().trim();
+//            if (telefoneLimpo.length() > 20) {
+//                telefoneLimpo = telefoneLimpo.substring(0, 20);
+//            }
+
+            // Preenchimento dos parâmetros
             pstmt.setString(1, mCliente.getNome());
             pstmt.setString(2, mCliente.getSobrenome());
-            pstmt.setString(3, mCliente.getEndereco());
-            pstmt.setString(4, mCliente.getTelefone());
-            pstmt.setInt(5, mCliente.getCidade());
-            pstmt.setDate(6, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setString(3, mCliente.getEmail());
+            pstmt.setString(4, mCliente.getEndereco());
+            //pstmt.setString(5, telefoneLimpo);
+            pstmt.setString(5, mCliente.getTelefone());
+            pstmt.setInt(6, mCliente.getCidade());
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+
+            //System.out.println("Telefone enviado: " + telefoneLimpo);
 
             // Executa a inserção
             pstmt.executeUpdate();
@@ -353,15 +365,16 @@ public class Dados {
     // Método para editar as informações de um cliente
     public String editarCliente(Cliente mCliente) {
         try {
-            String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, endereco = ?, telefone = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
+            String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, email = ?, endereco = ?, telefone = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
             PreparedStatement pstmt = cnn.prepareStatement(sql);
             pstmt.setString(1, mCliente.getNome());
             pstmt.setString(2, mCliente.getSobrenome());
-            pstmt.setString(3, mCliente.getEndereco());
-            pstmt.setString(4, mCliente.getTelefone());
-            pstmt.setInt(5, mCliente.getCidade());
-            pstmt.setDate(6, new java.sql.Date(mCliente.getDataCadastro().getTime()));
-            pstmt.setInt(7, mCliente.getIdcliente());
+            pstmt.setString(3, mCliente.getEmail());
+            pstmt.setString(4, mCliente.getEndereco());
+            pstmt.setString(5, mCliente.getTelefone());
+            pstmt.setInt(6, mCliente.getCidade());
+            pstmt.setDate(7, new java.sql.Date(mCliente.getDataCadastro().getTime()));
+            pstmt.setInt(8, mCliente.getIdcliente());
 
             // Executa a atualização
             pstmt.executeUpdate();

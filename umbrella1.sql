@@ -49,3 +49,25 @@ CREATE TABLE detalhe_venda (
 
 UPDATE usuarios SET idUsuario = 1 WHERE idUsuario = 3;
 UPDATE detalhe_venda SET idDetalheVenda = 1 WHERE idDetalheVenda = 3;
+
+ALTER TABLE clientes ADD COLUMN idcidade INT;
+
+CREATE TABLE cidades (
+  idcidade INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100),
+  estado VARCHAR(2)
+);
+
+INSERT INTO cidades (nome, estado) VALUES ('Florianópolis', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Joinville', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Blumenau', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('São José', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Chapecó', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Criciúma', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Lages', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Jaraguá do Sul', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Itajaí', 'SC');
+INSERT INTO cidades (nome, estado) VALUES ('Palhoça', 'SC');
+
+
+
