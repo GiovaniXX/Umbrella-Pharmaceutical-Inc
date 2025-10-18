@@ -5,11 +5,15 @@ RENAME TABLE produto TO produtos;
 RENAME TABLE venda TO vendas;
 
 ALTER TABLE usuarios CHANGE COLUMN perfil idperfil VARCHAR(255);
+ALTER TABLE Usuarios RENAME COLUMN perfil TO idPerfil;
 
 ALTER TABLE produtos MODIFY COLUMN descricao VARCHAR(255);
 
 INSERT INTO produtos (produto, preco, descricao)
 VALUES ('Paracetamol', 3.50, 'Usado no combate de dores em geral');
+
+INSERT INTO produtos (produto, preco, descricao)
+VALUES ('Xarope', 25.50, 'Despectorante');
 
 INSERT INTO clientes (nome, sobrenome, email, endereco, telefone, cidade, dataCadastro)
 VALUES ('Giovani', 'Chaves', 'giovani_chaves@hotmail.com', 'Marechal Rondon 387', '(49) 9 9936-7954', 'lages', CURRENT_DATE);

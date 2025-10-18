@@ -78,9 +78,9 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Clientes");
-        setMaximumSize(new java.awt.Dimension(1360, 720));
-        setMinimumSize(new java.awt.Dimension(1360, 720));
-        setPreferredSize(new java.awt.Dimension(1360, 720));
+        setMaximumSize(new java.awt.Dimension(1440, 853));
+        setMinimumSize(new java.awt.Dimension(1440, 853));
+        setPreferredSize(new java.awt.Dimension(1440, 853));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -160,7 +160,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel10);
         jLabel10.setBounds(770, 137, 90, 16);
 
-        txtIdcliente.setBackground(new java.awt.Color(30, 30, 30));
+        txtIdcliente.setBackground(new java.awt.Color(135, 135, 135));
         txtIdcliente.setForeground(new java.awt.Color(255, 255, 255));
         txtIdcliente.setBorder(null);
         txtIdcliente.setCaretColor(new java.awt.Color(3, 155, 216));
@@ -169,7 +169,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(txtIdcliente);
         txtIdcliente.setBounds(530, 5, 50, 22);
 
-        txtNome.setBackground(new java.awt.Color(30, 30, 30));
+        txtNome.setBackground(new java.awt.Color(135, 135, 135));
         txtNome.setForeground(new java.awt.Color(255, 255, 255));
         txtNome.setBorder(null);
         txtNome.setCaretColor(new java.awt.Color(3, 155, 216));
@@ -178,7 +178,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(txtNome);
         txtNome.setBounds(530, 30, 510, 22);
 
-        txtSNome.setBackground(new java.awt.Color(30, 30, 30));
+        txtSNome.setBackground(new java.awt.Color(135, 135, 135));
         txtSNome.setForeground(new java.awt.Color(255, 255, 255));
         txtSNome.setBorder(null);
         txtSNome.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -187,7 +187,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(txtSNome);
         txtSNome.setBounds(530, 54, 510, 22);
 
-        txtEndereco.setBackground(new java.awt.Color(30, 30, 30));
+        txtEndereco.setBackground(new java.awt.Color(135, 135, 135));
         txtEndereco.setForeground(new java.awt.Color(255, 255, 255));
         txtEndereco.setBorder(null);
         txtEndereco.setEnabled(false);
@@ -195,7 +195,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(txtEndereco);
         txtEndereco.setBounds(530, 79, 510, 22);
 
-        txtTelefone.setBackground(new java.awt.Color(30, 30, 30));
+        txtTelefone.setBackground(new java.awt.Color(135, 135, 135));
         txtTelefone.setForeground(new java.awt.Color(255, 255, 255));
         txtTelefone.setBorder(null);
         txtTelefone.setEnabled(false);
@@ -209,7 +209,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         getContentPane().add(cmbCidade);
         cmbCidade.setBounds(530, 135, 210, 22);
 
-        jdcDataCadastro.setBackground(new java.awt.Color(30, 30, 30));
+        jdcDataCadastro.setBackground(new java.awt.Color(135, 135, 135));
         jdcDataCadastro.setForeground(new java.awt.Color(255, 255, 255));
         jdcDataCadastro.setEnabled(false);
         getContentPane().add(jdcDataCadastro);
@@ -219,7 +219,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
         btnPrimeiro.setText("Primeiro");
         btnPrimeiro.setBorder(null);
-        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrimeiroActionPerformed(evt);
@@ -232,7 +232,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnAnterior.setForeground(new java.awt.Color(3, 155, 216));
         btnAnterior.setText("Anterior");
         btnAnterior.setBorder(null);
-        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -245,7 +245,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnProximo.setForeground(new java.awt.Color(3, 155, 216));
         btnProximo.setText("Proximo");
         btnProximo.setBorder(null);
-        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);
@@ -258,7 +258,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnUltimo.setForeground(new java.awt.Color(3, 155, 216));
         btnUltimo.setText("Ultimo");
         btnUltimo.setBorder(null);
-        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUltimoActionPerformed(evt);
@@ -271,7 +271,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnNovo.setForeground(new java.awt.Color(3, 155, 216));
         btnNovo.setText("Novo");
         btnNovo.setBorder(null);
-        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
@@ -284,7 +284,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnEditar.setForeground(new java.awt.Color(3, 155, 216));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -297,7 +297,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
-        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,7 +311,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnExcluir.setForeground(new java.awt.Color(3, 155, 216));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(null);
-        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -324,7 +324,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnCancelar.setForeground(new java.awt.Color(3, 155, 216));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setEnabled(false);
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +338,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         btnPesquisar.setForeground(new java.awt.Color(3, 155, 216));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -388,13 +388,13 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jScrollPane1.setBounds(5, 320, 1338, 360);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1350, 685);
+        jLabel1.setBounds(0, 0, 1440, 853);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

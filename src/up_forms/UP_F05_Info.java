@@ -39,7 +39,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
                 + "<li>Implementando Validações de Testes Unitários com Csharp</li>"
                 + "</ul>"
                 + "<p>Atualmente, Giovani está expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universitário Leonardo da Vinci, com previsão de conclusão em 2027. Com foco na inovação e na busca por excelência, ele aprimora suas habilidades técnicas e de pensamento crítico, sendo um profissional preparado para enfrentar os desafios do mercado.</p>"
-                + "<h3 style='font-size: 8px;'>Data.: 25/09/2024 - Lages sc</h3>"
+                + "<h3 style='font-size: 8px;'>Data.: 17/10/2025 - Lages sc</h3>"
                 + "</body>"
                 + "</html>";
         jep_Info.setContentType("text/html");
@@ -78,12 +78,13 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Info");
-        setMaximumSize(new java.awt.Dimension(1360, 720));
-        setMinimumSize(new java.awt.Dimension(1360, 720));
-        setPreferredSize(new java.awt.Dimension(1360, 720));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1440, 853));
+        setMinimumSize(new java.awt.Dimension(1440, 853));
+        setPreferredSize(new java.awt.Dimension(1440, 853));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        openLinkedinProfile.setForeground(new java.awt.Color(0, 0, 0));
+        openLinkedinProfile.setForeground(new java.awt.Color(223, 166, 51));
         openLinkedinProfile.setText("Linkedin");
         openLinkedinProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openLinkedinProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -93,7 +94,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         });
         getContentPane().add(openLinkedinProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, 50, -1));
 
-        openGitHubProfile.setForeground(new java.awt.Color(0, 0, 0));
+        openGitHubProfile.setForeground(new java.awt.Color(223, 166, 51));
         openGitHubProfile.setText("GitHub");
         openGitHubProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openGitHubProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -103,7 +104,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         });
         getContentPane().add(openGitHubProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 580, 50, -1));
 
-        openFacebookProfile.setForeground(new java.awt.Color(0, 0, 0));
+        openFacebookProfile.setForeground(new java.awt.Color(223, 166, 51));
         openFacebookProfile.setText("Facebook");
         openFacebookProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         openFacebookProfile.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,7 +115,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         getContentPane().add(openFacebookProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, 60, -1));
 
         MSN.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        MSN.setForeground(new java.awt.Color(0, 0, 0));
+        MSN.setForeground(new java.awt.Color(223, 166, 51));
         MSN.setText("My Social Networks");
         getContentPane().add(MSN, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 500, -1, -1));
 
@@ -151,42 +152,46 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
         GvC_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Developer.png"))); // NOI18N
         GvC_Developer.setText("jLabel1");
-        getContentPane().add(GvC_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 200, 90));
+        getContentPane().add(GvC_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, 200, 90));
 
         Avanade.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Avanade.jpg"))); // NOI18N
-        getContentPane().add(Avanade, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 10, -1, -1));
+        Avanade.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(Avanade, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 10, -1, -1));
 
         Cognizant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Cognizant.jpg"))); // NOI18N
-        getContentPane().add(Cognizant, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 220, -1, -1));
+        Cognizant.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(Cognizant, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 220, -1, -1));
 
         GTF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/GFT.jpg"))); // NOI18N
-        getContentPane().add(GTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 430, -1, -1));
+        GTF.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(GTF, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 430, -1, -1));
 
         NTTData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/NTT_DATA.jpg"))); // NOI18N
+        NTTData.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(NTTData, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 214, -1, -1));
 
         Uniasselvi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Uniasselvi.png"))); // NOI18N
+        Uniasselvi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(Uniasselvi, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 424, -1, -1));
 
         Java_Developer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/DIO.jpg"))); // NOI18N
+        Java_Developer.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(Java_Developer, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 4, -1, -1));
 
         jep_Info.setEditable(false);
         jep_Info.setBackground(new java.awt.Color(29, 192, 207));
         jep_Info.setForeground(new java.awt.Color(0, 0, 72));
-        jep_Info.setText("Giovani V. Chaves - Developer\nGiovani V. Chaves é um desenvolvedor altamente capacitado com uma sólida formação em Desenvolvimento de Sistemas e Web Design, obtida em um curso tecnólogo de dois anos pela Prepara Cursos Profissionalizantes. Desde o início de sua carreira, tem demonstrado grande dedicação e paixão pela tecnologia, investindo continuamente em sua qualificação profissional.\nAlém de sua formação inicial, Giovani ampliou suas habilidades técnicas por meio de uma série de bootcamps intensivos pela Digital Innovation One (DIO), especializando-se em linguagens de programação como Java e C#, além de adquirir valiosas soft skills.\nFormações e Certificações:\n.NET Developer\nCognizant Cloud Data Engineer\nGFT Quality Assurance\nNTT DATA Android Developer\nJava Developer\nDesenvolvimento Avançado em Java\nArquitetura de Sistemas Avançada\nDesenvolvimento Integrado de Dados com SQLite no Android\nPrincípios de Pensamento Computacional com Python\nTestes Unitários com JUnit\nSegurança da Informação com Python\nExplorando Relacionamentos com MySQL Workbench\nImplementando Validações de Testes Unitários com Csharp\nAtualmente, Giovani está expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universitário Leonardo da Vinci, com previsão de conclusão em 2027. Com foco na inovação e na busca por excelência, ele aprimora suas habilidades técnicas e de pensamento crítico, sendo um profissional preparado para enfrentar os desafios do mercado de tecnologia.\nSeus projetos e habilidades abrangem áreas como desenvolvimento de software robusto, testes unitários, e segurança da informação. Giovani é focado no crescimento contínuo e na busca de soluções inovadoras para problemas complexos, sendo um profissional valioso para qualquer equipe de tecnologia.\nLages, SC 08/09/2024");
+        jep_Info.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane.setViewportView(jep_Info);
 
-        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 690, 400));
+        getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 780, 400));
 
-        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/012.jpg"))); // NOI18N
-        TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
-        TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
-        TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 685));
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/Home.jpg"))); // NOI18N
+        TelaFundo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 900));
         TelaFundo.getAccessibleContext().setAccessibleName("");
 
-        setBounds(0, 0, 1360, 720);
+        setBounds(0, 0, 1440, 853);
     }// </editor-fold>//GEN-END:initComponents
 
     private void openFacebookProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openFacebookProfileMouseClicked
@@ -200,32 +205,35 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("Facebook executado com sucesso.!");
     }//GEN-LAST:event_openFacebookProfileMouseClicked
 
     private void openGitHubProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openGitHubProfileMouseClicked
-        final String FACEBOOK_PROFILE_URL = "https://github.com/GiovaniXX";
+        final String GITHUB_PROFILE_URL = "https://github.com/GiovaniXX";
         Desktop browser = Desktop.getDesktop();
         try {
-            browser.browse(new URI(FACEBOOK_PROFILE_URL));
+            browser.browse(new URI(GITHUB_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do GitHub", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("GitHub executado com sucesso.!");
     }//GEN-LAST:event_openGitHubProfileMouseClicked
 
     private void openLinkedinProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_openLinkedinProfileMouseClicked
-        final String FACEBOOK_PROFILE_URL = "https://www.linkedin.com/in/giovani-v-chaves-245440201/";
+        final String LINKEDIN_PROFILE_URL = "https://www.linkedin.com/in/giovani-v-chaves-245440201/";
         Desktop browser = Desktop.getDesktop();
         try {
-            browser.browse(new URI(FACEBOOK_PROFILE_URL));
+            browser.browse(new URI(LINKEDIN_PROFILE_URL));
         } catch (IOException | URISyntaxException ex) {
             JOptionPane.showMessageDialog(this, "Não foi possível abrir o perfil do Linkedin", "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
+        System.out.println("LinkedIn executado com sucesso.!");
     }//GEN-LAST:event_openLinkedinProfileMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

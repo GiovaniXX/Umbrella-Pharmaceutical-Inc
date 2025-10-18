@@ -4,18 +4,21 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value=".:Umbrella Pharmaceutical Inc&#x2122; Info"/>
+    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+      <Color id="Cursor em Forma de M&#xe3;o"/>
+    </Property>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1360, 720]"/>
+      <Dimension value="[1440, 853]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1360, 720]"/>
+      <Dimension value="[1440, 853]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[1360, 720]"/>
+      <Dimension value="[1440, 853]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
-    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,-48,0,0,5,80"/>
+    <SyntheticProperty name="formSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,85,0,0,5,-96"/>
     <SyntheticProperty name="formPosition" type="java.awt.Point" value="-84,-19,0,5,115,114,0,14,106,97,118,97,46,97,119,116,46,80,111,105,110,116,-74,-60,-118,114,52,126,-56,38,2,0,2,73,0,1,120,73,0,1,121,120,112,0,0,0,0,0,0,0,0"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="0"/>
     <SyntheticProperty name="generatePosition" type="boolean" value="true"/>
@@ -40,11 +43,11 @@
     <Component class="javax.swing.JLabel" name="openLinkedinProfile">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="33" green="a6" red="df" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Linkedin"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor em Forma de M&#xe3;o"/>
         </Property>
       </Properties>
       <Events>
@@ -59,11 +62,11 @@
     <Component class="javax.swing.JLabel" name="openGitHubProfile">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="33" green="a6" red="df" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="GitHub"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor em Forma de M&#xe3;o"/>
         </Property>
       </Properties>
       <Events>
@@ -78,11 +81,11 @@
     <Component class="javax.swing.JLabel" name="openFacebookProfile">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="33" green="a6" red="df" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Facebook"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor em Forma de M&#xe3;o"/>
         </Property>
       </Properties>
       <Events>
@@ -100,7 +103,7 @@
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="33" green="a6" red="df" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="My Social Networks"/>
       </Properties>
@@ -227,7 +230,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="550" y="0" width="200" height="90"/>
+          <AbsoluteConstraints x="620" y="0" width="200" height="90"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -236,10 +239,13 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/Avanade.jpg"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1050" y="10" width="-1" height="-1"/>
+          <AbsoluteConstraints x="1130" y="10" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -248,10 +254,13 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/Cognizant.jpg"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1050" y="220" width="-1" height="-1"/>
+          <AbsoluteConstraints x="1130" y="220" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -260,10 +269,13 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/GFT.jpg"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="1050" y="430" width="-1" height="-1"/>
+          <AbsoluteConstraints x="1130" y="430" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -271,6 +283,9 @@
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/NTT_DATA.jpg"/>
+        </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
         </Property>
       </Properties>
       <Constraints>
@@ -284,6 +299,9 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/Uniasselvi.png"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -296,6 +314,9 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/up_images/DIO.jpg"/>
         </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
+        </Property>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -306,7 +327,7 @@
     <Container class="javax.swing.JScrollPane" name="jScrollPane">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="330" y="90" width="690" height="400"/>
+          <AbsoluteConstraints x="330" y="90" width="780" height="400"/>
         </Constraint>
       </Constraints>
 
@@ -321,7 +342,9 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="48" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Giovani V. Chaves - Developer&#xa;Giovani V. Chaves &#xe9; um desenvolvedor altamente capacitado com uma s&#xf3;lida forma&#xe7;&#xe3;o em Desenvolvimento de Sistemas e Web Design, obtida em um curso tecn&#xf3;logo de dois anos pela Prepara Cursos Profissionalizantes. Desde o in&#xed;cio de sua carreira, tem demonstrado grande dedica&#xe7;&#xe3;o e paix&#xe3;o pela tecnologia, investindo continuamente em sua qualifica&#xe7;&#xe3;o profissional.&#xa;Al&#xe9;m de sua forma&#xe7;&#xe3;o inicial, Giovani ampliou suas habilidades t&#xe9;cnicas por meio de uma s&#xe9;rie de bootcamps intensivos pela Digital Innovation One (DIO), especializando-se em linguagens de programa&#xe7;&#xe3;o como Java e C#, al&#xe9;m de adquirir valiosas soft skills.&#xa;Forma&#xe7;&#xf5;es e Certifica&#xe7;&#xf5;es:&#xa;.NET Developer&#xa;Cognizant Cloud Data Engineer&#xa;GFT Quality Assurance&#xa;NTT DATA Android Developer&#xa;Java Developer&#xa;Desenvolvimento Avan&#xe7;ado em Java&#xa;Arquitetura de Sistemas Avan&#xe7;ada&#xa;Desenvolvimento Integrado de Dados com SQLite no Android&#xa;Princ&#xed;pios de Pensamento Computacional com Python&#xa;Testes Unit&#xe1;rios com JUnit&#xa;Seguran&#xe7;a da Informa&#xe7;&#xe3;o com Python&#xa;Explorando Relacionamentos com MySQL Workbench&#xa;Implementando Valida&#xe7;&#xf5;es de Testes Unit&#xe1;rios com Csharp&#xa;Atualmente, Giovani est&#xe1; expandindo seu conhecimento ao cursar Engenharia de Software (bacharelado) na Uniasselve - Centro Universit&#xe1;rio Leonardo da Vinci, com previs&#xe3;o de conclus&#xe3;o em 2027. Com foco na inova&#xe7;&#xe3;o e na busca por excel&#xea;ncia, ele aprimora suas habilidades t&#xe9;cnicas e de pensamento cr&#xed;tico, sendo um profissional preparado para enfrentar os desafios do mercado de tecnologia.&#xa;Seus projetos e habilidades abrangem &#xe1;reas como desenvolvimento de software robusto, testes unit&#xe1;rios, e seguran&#xe7;a da informa&#xe7;&#xe3;o. Giovani &#xe9; focado no crescimento cont&#xed;nuo e na busca de solu&#xe7;&#xf5;es inovadoras para problemas complexos, sendo um profissional valioso para qualquer equipe de tecnologia.&#xa;Lages, SC 08/09/2024"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor Padr&#xe3;o"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -329,16 +352,10 @@
     <Component class="javax.swing.JLabel" name="TelaFundo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Logos/012.jpg"/>
+          <Image iconType="3" name="/up_images/Logos/Home.jpg"/>
         </Property>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1366, 768]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1366, 768]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[1366, 768]"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Padr&#xe3;o"/>
         </Property>
       </Properties>
       <AccessibilityProperties>
@@ -346,7 +363,7 @@
       </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="1350" height="685"/>
+          <AbsoluteConstraints x="0" y="0" width="1440" height="900"/>
         </Constraint>
       </Constraints>
     </Component>

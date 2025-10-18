@@ -29,7 +29,7 @@ public class Dados {
 
             // Carrega as propriedades de configuração
             Properties props = new Properties();
-            props.load(new FileInputStream("E:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\config.properties"));
+            props.load(new FileInputStream("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\config.properties"));
 
             // Obtém as propriedades do arquivo
             String dbUrl = props.getProperty("db.url");

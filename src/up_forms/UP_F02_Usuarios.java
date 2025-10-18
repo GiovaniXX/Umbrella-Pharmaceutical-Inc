@@ -78,9 +78,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical Inc™ Usuarios");
-        setMaximumSize(new java.awt.Dimension(1360, 720));
-        setMinimumSize(new java.awt.Dimension(1360, 720));
-        setPreferredSize(new java.awt.Dimension(1360, 720));
+        setMaximumSize(new java.awt.Dimension(1440, 853));
+        setMinimumSize(new java.awt.Dimension(1440, 853));
+        setPreferredSize(new java.awt.Dimension(1440, 853));
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }
@@ -220,7 +220,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnPrimeiro.setForeground(new java.awt.Color(3, 155, 216));
         btnPrimeiro.setText("Primeiro");
         btnPrimeiro.setBorder(null);
-        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPrimeiro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPrimeiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrimeiroActionPerformed(evt);
@@ -232,7 +232,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnAnterior.setForeground(new java.awt.Color(3, 155, 216));
         btnAnterior.setText("Anterior");
         btnAnterior.setBorder(null);
-        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -244,7 +244,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnProximo.setForeground(new java.awt.Color(3, 155, 216));
         btnProximo.setText("Proximo");
         btnProximo.setBorder(null);
-        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProximoActionPerformed(evt);
@@ -256,7 +256,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnUltimo.setForeground(new java.awt.Color(3, 155, 216));
         btnUltimo.setText("Ultimo");
         btnUltimo.setBorder(null);
-        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUltimo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnUltimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUltimoActionPerformed(evt);
@@ -268,7 +268,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnNovo.setForeground(new java.awt.Color(3, 155, 216));
         btnNovo.setText("Novo");
         btnNovo.setBorder(null);
-        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNovo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNovoActionPerformed(evt);
@@ -280,7 +280,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnEditar.setForeground(new java.awt.Color(3, 155, 216));
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
-        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
@@ -292,7 +292,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnSalvar.setForeground(new java.awt.Color(3, 155, 216));
         btnSalvar.setText("Salvar");
         btnSalvar.setBorder(null);
-        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalvar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalvar.setEnabled(false);
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,7 +305,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnExcluir.setForeground(new java.awt.Color(3, 155, 216));
         btnExcluir.setText("Excluir");
         btnExcluir.setBorder(null);
-        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -317,7 +317,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnCancelar.setForeground(new java.awt.Color(3, 155, 216));
         btnCancelar.setText("Cancelar");
         btnCancelar.setBorder(null);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCancelarActionPerformed(evt);
@@ -329,7 +329,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         btnPesquisar.setForeground(new java.awt.Color(3, 155, 216));
         btnPesquisar.setText("Pesquisar");
         btnPesquisar.setBorder(null);
-        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnPesquisar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -378,12 +378,12 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 360, 1340, 318));
 
-        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setPreferredSize(new java.awt.Dimension(1366, 768));
-        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1350, 685));
+        getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 853));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

@@ -52,9 +52,9 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setTitle(".:Umbrella Pharmaceutical™ Reports");
-        setMaximumSize(new java.awt.Dimension(1360, 720));
-        setMinimumSize(new java.awt.Dimension(1360, 720));
-        setPreferredSize(new java.awt.Dimension(1360, 720));
+        setMaximumSize(new java.awt.Dimension(1440, 853));
+        setMinimumSize(new java.awt.Dimension(1440, 853));
+        setPreferredSize(new java.awt.Dimension(1440, 853));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl_Pdf_File.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -140,8 +140,8 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 280, 1338, 395));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/014.jpg"))); // NOI18N
-        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1355, 685));
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 853));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
