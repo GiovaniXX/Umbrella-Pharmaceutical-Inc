@@ -1,5 +1,5 @@
 
-package up_classes;
+package categories;
 
 public class SessaoUsuario {
     private static int idUsuario;

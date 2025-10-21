@@ -1,32 +1,39 @@
-package up_forms;
+package view;
 
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Utilidades;
+import categories.Utilidades;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingConstants;
-import up_classes.Cliente;
-import up_classes.Produto;
-import up_classes.Dados;
+import model.Cliente;
+import model.Produto;
+import util.Conexao;
 
 public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
-    private Dados dados;
+    private final controller.ClienteController clienteController = new controller.ClienteController();
+    private final controller.ProdutoController produtoController = new controller.ProdutoController();
+    private final controller.VendaController vendaController = new controller.VendaController();
+    
+    private final model.Dados dados = new model.Dados();
+
+    public Conexao conexao;
     private final DefaultTableModel vTabela;
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
+    public void setConexao(Conexao conexao) {
+        this.conexao = conexao;
     }
 
     public UP_F06_Vendas() {
         initComponents();
         vTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
         tblTabela.setModel(vTabela);
+
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -290,7 +297,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         // Obter o cliente selecionado
         String clienteSelecionado = (String) cmbCliente.getSelectedItem();
-        Cliente cliente = dados.getClientePorNome(clienteSelecionado);
+        Cliente cliente = clienteController.getClientePorNome(clienteSelecionado);
         if (cliente == null) {
             JOptionPane.showMessageDialog(rootPane, "Cliente não encontrado: " + clienteSelecionado);
             return;
@@ -299,7 +306,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         // Obter o produto selecionado
         String produtoSelecionado = (String) cmbProduto.getSelectedItem();
         System.out.println("Produto selecionado: " + produtoSelecionado); // Debug
-        Produto produto = dados.getProdutoPorNome(produtoSelecionado);
+        Produto produto = produtoController.getProdutoPorNome(produtoSelecionado);
         if (produto == null) {
             JOptionPane.showMessageDialog(rootPane, "Produto não encontrado: " + produtoSelecionado);
             return;
@@ -343,9 +350,9 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         }
 
         // Obtém o número da venda
-        int numeroVenda = dados.getNumeroVenda();
+        int numeroVenda = vendaController.getNumeroVenda();
         // Obtém o ID do cliente selecionado
-        int idCliente = dados.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
+        int idCliente = vendaController.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
         // Atualiza os valores totais
         totalGeral();
         // Obtém o valor total da venda
@@ -358,7 +365,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         String descricaoProduto = tblTabela.getValueAt(0, 2).toString(); // Supondo que a coluna 2 é a descrição do produto
 
         //dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
-        dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal,
+        vendaController.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal,
                 nomeProduto, descricaoProduto, 1, 1);
 
         // Salvar detalhes da venda
@@ -366,7 +373,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             int idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
             double preco = Double.parseDouble(tblTabela.getValueAt(i, 3).toString());
             int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
-            dados.adicionarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
+            vendaController.adicionarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
         }
 
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
@@ -399,7 +406,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         try {
             // Obtém o ID do produto selecionado no ComboBox
-            Produto produtoSelecionado = dados.getProdutoPorNome((String) cmbProduto.getSelectedItem());
+            Produto produtoSelecionado = vendaController.getProdutoPorNome((String) cmbProduto.getSelectedItem());
             int idProdutoCombo = produtoSelecionado.getIdProduto();
             int linhaParaRemover = -1;
 
@@ -422,7 +429,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             }
 
         } catch (HeadlessException | NumberFormatException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
+            Logger.getLogger(UP_F06_Vendas.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar o produto.");
         }
 

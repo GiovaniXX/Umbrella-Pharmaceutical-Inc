@@ -1,4 +1,4 @@
-package up_forms;
+package view;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -9,36 +9,30 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import up_classes.Dados;
+import util.Conexao;
 
 public class UP_F00_Login extends javax.swing.JFrame {
 
-    private Connection cnn;
-    public Dados dados;
+    private final controller.UsuarioController usuarioController = new controller.UsuarioController();
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
-    }
+    private Connection cnn;
 
     public UP_F00_Login() {
         initComponents();
         status();
         setIcon();
-
-        dados = new Dados();
     }
 
     private void status() {
-        Dados dados = new Dados();
         try {
             Timer timer = new Timer(2000, new ActtionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        cnn = dados.cnn;
+                        Connection cnn = Conexao.getConnection();
                         // Adiciona verificação se a conexão está ativa
-                        if (cnn != null && !cnn.isClosed()) { 
+                        if (cnn != null && !cnn.isClosed()) {
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
                         } else {
                             SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png")));
@@ -72,11 +66,11 @@ public class UP_F00_Login extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         SGBD = new javax.swing.JLabel();
         _SGBD = new javax.swing.JLabel();
-        textField_User = new up_class_custom.TextField();
-        passwordField_AccessCode = new up_class_custom.PasswordField();
-        passwordField_SecurityKey = new up_class_custom.PasswordField();
-        btnOut = new up_class_custom.Button();
-        btnEnter = new up_class_custom.Button();
+        textField_User = new javax.swing.JTextField();
+        passwordField_AccessCode = new javax.swing.JPasswordField();
+        passwordField_SecurityKey = new javax.swing.JPasswordField();
+        btnEnter = new javax.swing.JButton();
+        btnOut = new javax.swing.JButton();
         lblLogoUmbrellaCorporation = new javax.swing.JLabel();
         lbllLogoMySQL = new javax.swing.JLabel();
         User = new javax.swing.JLabel();
@@ -86,7 +80,6 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:Umbrella Pharmaceutical Inc™ Login");
-        setMaximumSize(new java.awt.Dimension(936, 248));
         setMinimumSize(new java.awt.Dimension(936, 248));
         setResizable(false);
         setSize(new java.awt.Dimension(936, 248));
@@ -111,49 +104,25 @@ public class UP_F00_Login extends javax.swing.JFrame {
         _SGBD.setForeground(new java.awt.Color(218, 139, 8));
         _SGBD.setText("Database");
         jPanel2.add(_SGBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 198, -1, 10));
+        jPanel2.add(textField_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 35, 340, -1));
+        jPanel2.add(passwordField_AccessCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 85, 340, -1));
+        jPanel2.add(passwordField_SecurityKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 135, 340, -1));
 
-        textField_User.setBackground(new java.awt.Color(8, 13, 32));
-        textField_User.setForeground(new java.awt.Color(3, 155, 216));
-        textField_User.setLabelText("Enter your user");
-        jPanel2.add(textField_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 390, -1));
-
-        passwordField_AccessCode.setBackground(new java.awt.Color(8, 13, 32));
-        passwordField_AccessCode.setForeground(new java.awt.Color(3, 155, 216));
-        passwordField_AccessCode.setLabelText("Enter your access code");
-        jPanel2.add(passwordField_AccessCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 390, -1));
-
-        passwordField_SecurityKey.setBackground(new java.awt.Color(8, 13, 32));
-        passwordField_SecurityKey.setForeground(new java.awt.Color(3, 155, 216));
-        passwordField_SecurityKey.setLabelText("Enter your security key");
-        jPanel2.add(passwordField_SecurityKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 390, -1));
-
-        btnOut.setBackground(new java.awt.Color(8, 13, 32));
-        btnOut.setBorder(null);
-        btnOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Buttons/08.png"))); // NOI18N
-        btnOut.setColor(new java.awt.Color(8, 13, 32));
-        btnOut.setColorClick(new java.awt.Color(8, 13, 32));
-        btnOut.setColorOver(new java.awt.Color(170, 4, 0));
-        btnOut.setRadius(25);
-        btnOut.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOutActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 180, 130, 40));
-
-        btnEnter.setBackground(new java.awt.Color(8, 13, 32));
-        btnEnter.setBorder(null);
-        btnEnter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Buttons/09.png"))); // NOI18N
-        btnEnter.setColor(new java.awt.Color(8, 13, 32));
-        btnEnter.setColorClick(new java.awt.Color(8, 13, 32));
-        btnEnter.setColorOver(new java.awt.Color(0, 126, 16));
-        btnEnter.setRadius(25);
+        btnEnter.setText("Logar");
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterActionPerformed(evt);
             }
         });
-        jPanel2.add(btnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 180, 130, 40));
+        jPanel2.add(btnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
+
+        btnOut.setText("Deslogar");
+        btnOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
 
         lblLogoUmbrellaCorporation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/05.jpg"))); // NOI18N
         jPanel2.add(lblLogoUmbrellaCorporation, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 160));
@@ -241,7 +210,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         }
 
         // Validação com o banco de dados
-        if (!dados.validarUsuario(usuario, senha, chave)) {
+        if (!usuarioController.autenticar(usuario, senha, chave)) {
             String errorMessage = "<html><font color='red'><b>Houve um erro na validação com o banco de dados!</b></font></html>";
             showMessageWithDuration(errorMessage, "Erro", JOptionPane.ERROR_MESSAGE, 2000);
 
@@ -255,12 +224,10 @@ public class UP_F00_Login extends javax.swing.JFrame {
         String successMessage = "<html><font color='green'><b>Conexão bem sucedida!</b></font></html>";
         showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 1000);
 
-        // ↓ Continuação do fluxo do código quando a validação é bem-sucedida ↓
+        // ↓ Continuação do fluxo do código quando a validação é bem-sucedida ↓            
         UP_F01_Principal ufp = new UP_F01_Principal();
         this.setVisible(false);
-        // Define os valores usando os métodos adequados (que você deve definir na classe UP_F01_Principal)       
-        ufp.setDados(dados);
-        ufp.setPerfil(dados.getPerfil(textField_User.getText()));
+        ufp.setIdPerfil(usuarioController.obterIdPerfil(usuario));
         ufp.setSenha(senha);
         ufp.setChave(chave);
         ufp.setUsuario(usuario);
@@ -270,20 +237,6 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
-    }
-
-    private void showMessageWithDuration(String message, String title, int messageType, int duration) {
-        JOptionPane pane = new JOptionPane(message, messageType);
-        JDialog dialog = pane.createDialog(rootPane, title);
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-
-        Timer timer = new Timer(duration, (e) -> {
-            dialog.dispose();
-        });
-        timer.setRepeats(false);
-        timer.start();
-
-        dialog.setVisible(true);
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void btnOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutActionPerformed
@@ -317,20 +270,34 @@ public class UP_F00_Login extends javax.swing.JFrame {
     private javax.swing.JLabel TelaFundo;
     private javax.swing.JLabel User;
     private javax.swing.JLabel _SGBD;
-    private up_class_custom.Button btnEnter;
-    private up_class_custom.Button btnOut;
+    private javax.swing.JButton btnEnter;
+    private javax.swing.JButton btnOut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblLogoUmbrellaCorporation;
     private javax.swing.JLabel lblUmbrellaCorporationIBS;
     private javax.swing.JLabel lbllLogoMySQL;
-    private up_class_custom.PasswordField passwordField_AccessCode;
-    private up_class_custom.PasswordField passwordField_SecurityKey;
-    private up_class_custom.TextField textField_User;
+    private javax.swing.JPasswordField passwordField_AccessCode;
+    private javax.swing.JPasswordField passwordField_SecurityKey;
+    private javax.swing.JTextField textField_User;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
+    }
+
+    private void showMessageWithDuration(String message, String title, int messageType, int duration) {
+        JOptionPane pane = new JOptionPane(message, messageType);
+        JDialog dialog = pane.createDialog(rootPane, title);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        Timer timer = new Timer(duration, (e) -> {
+            dialog.dispose();
+        });
+        timer.setRepeats(false);
+        timer.start();
+
+        dialog.setVisible(true);
     }
 
     private static abstract class ActtionListener implements ActionListener {

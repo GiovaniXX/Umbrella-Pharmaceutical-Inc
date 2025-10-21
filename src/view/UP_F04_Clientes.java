@@ -1,21 +1,19 @@
-package up_forms;
+package view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Cliente;
-import java.sql.ResultSet;
+import model.Cliente;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import up_classes.Dados;
-import up_classes.Utilidades;
+import categories.Utilidades;
+import java.util.List;
 
 public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
-    private Dados dados;
+    private final controller.ClienteController clienteController = new controller.ClienteController();
+    private final dao.CidadeDAO cidadeDAO = new dao.CidadeDAO();
+
     private int clienteAtual = 0;
     private boolean novo = false;
     private DefaultTableModel cTabela;
@@ -29,14 +27,14 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private String cidade;
     private String dataCadastro;
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
-    }
-
     public UP_F04_Clientes() {
         initComponents();
-        cTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
+        carregarCidades();
+
+        String[] titulos = {"ID", "Nome", "Sobrenome", "Email", "Endereço", "Telefone", "Cidade", "Data Cadastro"};
+        cTabela = new DefaultTableModel(null, titulos);
         tblTabela.setModel(cTabela);
+
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -226,7 +224,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         cmbCidade.setBackground(new java.awt.Color(30, 30, 30));
         cmbCidade.setForeground(new java.awt.Color(255, 255, 255));
-        cmbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma cidade...", "Blumenau", "Chapecó", "Criciúma", "Florianópolis", "Itajaí", "Joinville", "Lages", "Jaraguá do Sul", "Balneário Camboriú", "São José" }));
+        //cmbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma cidade...", "Blumenau", "Chapecó", "Criciúma", "Florianópolis", "Itajaí", "Joinville", "Lages", "Jaraguá do Sul", "Balneário Camboriú", "São José" }));
         getContentPane().add(cmbCidade);
         cmbCidade.setBounds(530, 180, 210, 22);
 
@@ -435,7 +433,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtNome.setEnabled(true);
         txtSNome.setEnabled(true);
         txtEndereco.setEnabled(true);
-        txtEmail.setEnabled(true); 
+        txtEmail.setEnabled(true);
         txtTelefone.setEnabled(true);
         cmbCidade.setEnabled(true);
         jdcDataCadastro.setEnabled(true);
@@ -443,7 +441,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setText("");
         txtNome.setText("");
         txtSNome.setText("");
-        txtEmail.setText(""); 
+        txtEmail.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
         cmbCidade.setSelectedIndex(0);
@@ -479,7 +477,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         // Verifica a existência do cliente conforme o estado da operação (novo ou edição)
-        boolean clienteExistente = dados.existeCliente(txtIdcliente.getText());
+        boolean clienteExistente = clienteController.clienteExiste(txtIdcliente.getText());
         if (novo && clienteExistente) {
             JOptionPane.showMessageDialog(rootPane, "Este cliente já existe.");
             txtIdcliente.requestFocusInWindow();
@@ -496,13 +494,16 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 txtNome.getText(),
                 txtSNome.getText(),
                 txtEmail.getText(),
-                txtEndereco.getText(),               
+                txtEndereco.getText(),
                 txtTelefone.getText(),
                 cmbCidade.getSelectedIndex(),
                 jdcDataCadastro.getDate());
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
-        String msg = novo ? dados.adicionarCliente(mCliente) : dados.editarCliente(mCliente);
+        String msg = novo
+                ? clienteController.cadastrarCliente(mCliente)
+                : clienteController.atualizarCliente(mCliente);
+
         JOptionPane.showMessageDialog(rootPane, msg);
 
         // Atualiza o estado dos botões
@@ -533,7 +534,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
-        txtEmail.setEnabled(false); 
+        txtEmail.setEnabled(false);
         txtEndereco.setEnabled(false);
         txtTelefone.setEnabled(false);
         cmbCidade.setEnabled(false);
@@ -542,7 +543,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setText(id);
         txtNome.setText(nome);
         txtSNome.setText(sobrenome);
-        txtEmail.setText(email); 
+        txtEmail.setText(email);
         txtEndereco.setText(endereco);
         txtTelefone.setText(telefone);
 
@@ -566,7 +567,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         txtNome.setEnabled(true);
         txtSNome.setEnabled(true);
-        txtEmail.setEnabled(true); 
+        txtEmail.setEnabled(true);
         txtEndereco.setEnabled(true);
         txtTelefone.setEnabled(true);
         cmbCidade.setEnabled(true);
@@ -595,7 +596,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        clienteAtual = dados.numeroClientes() - 1;
+        clienteAtual = clienteController.contarClientes() - 1;
         mostrarRegistro();
 
         int id = evt.getID();
@@ -605,7 +606,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         clienteAtual++;
 
-        if (clienteAtual == dados.numeroClientes()) {
+        if (clienteAtual == clienteController.contarClientes()) {
             clienteAtual = 0;
         }
         mostrarRegistro();
@@ -617,7 +618,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         clienteAtual--;
         if (clienteAtual == -1) {
-            clienteAtual = dados.numeroClientes() - 1;
+            clienteAtual = clienteController.contarClientes() - 1;
         }
         mostrarRegistro();
 
@@ -631,7 +632,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
         String msg;
-        msg = dados.deletarCliente(txtIdcliente.getText());
+        msg = clienteController.excluirCliente(txtIdcliente.getText());
         JOptionPane.showMessageDialog(rootPane, msg);
         clienteAtual = 0;
         preencherTabela();
@@ -653,7 +654,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (!dados.existeCliente(cliente)) {
+        if (!clienteController.clienteExiste(cliente)) {
             JOptionPane.showMessageDialog(rootPane, "Este cliente não existe!");
             return;
         }
@@ -672,136 +673,82 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {
-        // Verificar se a tabela tem registros
         if (cTabela.getRowCount() > 0 && clienteAtual >= 0) {
-            // Acessar e exibir o registro atual
+            // Acessar e exibir o registro atual da tabela
             txtIdcliente.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 0)));
             txtNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 1)));
             txtSNome.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 2)));
             txtEmail.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 3)));
             txtEndereco.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 4)));
             txtTelefone.setText(Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 5)));
-            cmbCidade.setSelectedIndex(cidade(Utilidades.objectToString(tblTabela.getValueAt(clienteAtual, 6))));
+
+            // Selecionar a cidade correta no combo usando o nome
+            String nomeCidade = Utilidades.objectToString(cTabela.getValueAt(clienteAtual, 6));
+            for (int i = 0; i < cmbCidade.getItemCount(); i++) {
+                Object item = cmbCidade.getItemAt(i);
+                if (item instanceof model.Cidade cidadeItem) {
+                    if (cidadeItem.getNome().equalsIgnoreCase(nomeCidade)) {
+                        cmbCidade.setSelectedIndex(i);
+                        break;
+                    }
+                }
+            }
+
+            // Definir a data de cadastro
             jdcDataCadastro.setDate(Utilidades.objectToDate(cTabela.getValueAt(clienteAtual, 7)));
         } else {
-            // Limpar os campos se não houver registros na tabela
+            // Limpar os campos se não houver registros
             txtIdcliente.setText("");
             txtNome.setText("");
             txtSNome.setText("");
-            txtEmail.setText(""); 
+            txtEmail.setText("");
             txtEndereco.setText("");
             txtTelefone.setText("");
-            cmbCidade.setSelectedIndex(0); // Seleciona o primeiro item ou pode manter vazio           
+            cmbCidade.setSelectedIndex(0);
             jdcDataCadastro.setDate(null);
 
-            // Exibir uma mensagem ou tratar de outra forma, se necessário
             System.out.println("A tabela está vazia. Nenhum registro para mostrar.");
         }
     }
 
     // Preenche os registros na tabela
     private void preencherTabela() {
-        try {
-            String titulos[] = {"ID", "Nome", "Sobrenome", "Email", "Endereco", "Telefone", "Cidade", "Data Cadastro"};
-            String registro[] = new String[8];
-            cTabela = new DefaultTableModel(null, titulos);
-            ResultSet rs = dados.getClientes();
+        List<Cliente> clientes = clienteController.listarClientes();
+        String[] titulos = {"ID", "Nome", "Sobrenome", "Email", "Endereco", "Telefone", "Cidade", "Data Cadastro"};
+        String[] registro = new String[8];
+        cTabela = new DefaultTableModel(null, titulos);
 
-            while (rs.next()) {
-                registro[0] = rs.getString("idcliente"); // Como está na base de dados
-                registro[1] = rs.getString("nome");
-                registro[2] = rs.getString("sobrenome");
-                registro[3] = rs.getString("email");
-                registro[4] = rs.getString("endereco");
-                registro[5] = rs.getString("telefone");
-                registro[6] = rs.getString("cidade");
-                registro[7] = rs.getString("dataCadastro");
-                cTabela.addRow(registro);
-            }
-            tblTabela.setModel(cTabela);
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+        for (Cliente c : clientes) {
+            registro[0] = String.valueOf(c.getIdCliente());
+            registro[1] = c.getNome();
+            registro[2] = c.getSobrenome();
+            registro[3] = c.getEmail();
+            registro[4] = c.getEndereco();
+            registro[5] = c.getTelefone();
+            registro[6] = clienteController.obterNomeCidadePorId(c.getIdCidade());
+            registro[7] = Utilidades.objectToString(c.getDataCadastro());
+            cTabela.addRow(registro);
         }
+        tblTabela.setModel(cTabela);
+
     }
 
     private void carregarPrimeiroRegistro() {
-        ResultSet rs = (ResultSet) dados.getClientes();
-        try {
-            if (rs.next()) {
-                id = rs.getString("idcliente");
-                nome = rs.getString("nome");
-                sobrenome = rs.getString("sobrenome");
-                email = rs.getString("email");
-                endereco = rs.getString("endereco");
-                telefone = rs.getString("telefone");
-                cidade = rs.getString("cidade");
-                dataCadastro = rs.getString("dataCadastro");
+        List<Cliente> clientes = clienteController.listarClientes();
+        if (!clientes.isEmpty()) {
+            Cliente c = clientes.get(0);
 
-                txtIdcliente.setText(id);
-                txtNome.setText(nome);
-                txtSNome.setText(sobrenome);
-                txtEmail.setText(email); 
-                txtEndereco.setText(endereco);
-                txtTelefone.setText(telefone);
-                cmbCidade.setSelectedItem(cidade);
-                jdcDataCadastro.setDateFormatString(dataCadastro);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F04_Clientes.class.getName()).log(Level.SEVERE, null, ex);
+            txtIdcliente.setText(String.valueOf(c.getIdCliente()));
+            txtNome.setText(c.getNome());
+            txtSNome.setText(c.getSobrenome());
+            txtEmail.setText(c.getEmail());
+            txtEndereco.setText(c.getEndereco());
+            txtTelefone.setText(c.getTelefone());
+            cmbCidade.setSelectedIndex(c.getIdCidade());
+            jdcDataCadastro.setDate(c.getDataCadastro());
         }
     }
 
-    private String cidade(int cidade) {
-        return switch (cidade) {
-            case 0 ->
-                "Selecione a cidade";
-            case 1 ->
-                "Blumenau";
-            case 2 ->
-                "Chapecó";
-            case 3 ->
-                "Criciúma";
-            case 4 ->
-                "Florianópolis";
-            case 5 ->
-                "Itajaí";            
-            case 6 ->
-                "Lages";
-            case 7 ->
-                "Jaragua do Sul";
-            case 8 ->
-                "Balneário Camboriú";
-            case 9 ->
-                "São Jose";
-            default ->
-                "Não definido!";
-        };
-    }
-
-    private int cidade(String cidade) {
-        return switch (cidade) {
-            case "Blumenau" ->
-                1;
-            case "Chapecó" ->
-                2;
-            case "Criciúma" ->
-                3;
-            case "Florianópolis" ->
-                4;
-            case "Itajaí" ->
-                5;
-            case "Lages" ->
-                6;
-            case "Jaragua do Sul" ->
-                7;
-            case "Balneário Camboriú" ->
-                8;
-            case "São Jose" ->
-                9;                           
-            default ->
-                3;
-        };
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
@@ -814,7 +761,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnProximo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnUltimo;
-    private javax.swing.JComboBox<String> cmbCidade;
+    private javax.swing.JComboBox<model.Cidade> cmbCidade;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -852,7 +799,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
-        txtEmail.setEnabled(false); 
+        txtEmail.setEnabled(false);
         txtEndereco.setEnabled(false);
         txtTelefone.setEnabled(false);
         cmbCidade.setEnabled(false);
@@ -864,10 +811,18 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtIdcliente.setText("");
         txtNome.setText("");
         txtSNome.setText("");
-        txtEmail.setText(""); 
+        txtEmail.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
         cmbCidade.setSelectedIndex(0); // Reseta para a opção padrão       
         jdcDataCadastro.setDate(null); // Reseta a data
+    }
+
+    private void carregarCidades() {
+        List<model.Cidade> cidades = cidadeDAO.listarCidades();
+        cmbCidade.removeAllItems();
+        for (model.Cidade c : cidades) {
+            cmbCidade.addItem(c); // graças ao toString(), o nome será exibido
+        }
     }
 }

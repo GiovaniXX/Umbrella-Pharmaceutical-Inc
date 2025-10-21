@@ -1,4 +1,4 @@
-package up_classes;
+package categories;
 
 import java.awt.Color;
 import java.awt.Font;

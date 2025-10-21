@@ -1,28 +1,28 @@
-package up_classes;
+package model;
 
 public class Usuario {
 
-    private int idusuario;
+    private int idUsuario;
     private String nome;
     private String sobrenome;
     private String senha;
     private String chave;
-    private int perfil;
+    private int idPerfil;
 
-    public Usuario(int idusuario, String nome, String sobrenome, String senha, String chave, int perfil) {
+    public Usuario(int idUsuario, String nome, String sobrenome, String senha, String chave, int idPerfil) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.senha = senha;
         this.chave = chave;
-        this.perfil = perfil;
+        this.idPerfil = idPerfil;
     }
 
-    public int getIdusuario() {
-        return idusuario;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setIdusuario(int idusuario) {
-        this.idusuario = idusuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNome() {
@@ -57,17 +57,17 @@ public class Usuario {
         this.chave = chave;
     }
 
-    public int getPerfil() {
-        return perfil;
+    public int getIdPerfil() {
+        return idPerfil;
     }
 
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "perfil=" + perfil + '}';
+        return "Usuario{" + "idPerfil=" + idPerfil + '}';
     }
 }
 /**

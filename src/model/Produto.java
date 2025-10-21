@@ -1,4 +1,4 @@
-package up_classes;
+package model;
 
 public class Produto {
 
@@ -6,6 +6,9 @@ public class Produto {
     private String produto;
     private double preco;
     private String descricao;
+
+    public Produto() {
+    }
 
     public Produto(int idproduto, String produto, double preco, String descricao) {
         this.idproduto = idproduto;

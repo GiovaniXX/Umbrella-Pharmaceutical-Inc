@@ -1,38 +1,33 @@
-package up_forms;
+package view;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Produto;
-import up_classes.Utilidades;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import model.Produto;
+import categories.Utilidades;
+import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import up_classes.Dados;
 
 public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
-    private Dados dados;
+    private final controller.ProdutoController produtoController = new controller.ProdutoController();
+
+    private List<Produto> produtos;
     public int produtoAtual = 0;
     private boolean novo = false;
     private DefaultTableModel pTabela;
 
     private String id;
-    //private String produto;
     private String preco;
     private String descricao;
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
-    }
-
     public UP_F03_Produtos() {
         initComponents();
-
         pTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
         tblTabela.setModel(pTabela);
+
+        preencherTabela();
+
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -399,7 +394,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         // Verifica a existência do produto, conforme o estado da operação (novo ou edição)
-        boolean produtoExistente = dados.existeProduto(txtIdproduto.getText());
+        boolean produtoExistente = produtoController.produtoExiste(txtIdproduto.getText());
         if (novo && produtoExistente) {
             JOptionPane.showMessageDialog(rootPane, "Este produto já existe.");
             txtIdproduto.requestFocusInWindow();
@@ -419,7 +414,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         );
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
-        String msg = novo ? dados.adicionarProduto(mProduto) : dados.editarProduto(mProduto);
+        String msg = novo
+                ? produtoController.cadastrarProduto(mProduto)
+                : produtoController.atualizarProduto(mProduto);
+
         JOptionPane.showMessageDialog(rootPane, msg);
 
         // Habilita e desabilita os botões conforme a operação
@@ -503,7 +501,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        produtoAtual = dados.numeroProdutos() - 1;
+        produtoAtual = produtoController.contarProdutos() - 1;
         mostrarRegistro();
 
         int id = evt.getID();
@@ -512,7 +510,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         produtoAtual++;
-        if (produtoAtual == dados.numeroProdutos()) {
+        if (produtoAtual == produtoController.contarProdutos()) {
             produtoAtual = 0;
         }
         mostrarRegistro();
@@ -524,7 +522,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         produtoAtual--;
         if (produtoAtual == -1) {
-            produtoAtual = dados.numeroProdutos() - 1;
+            produtoAtual = produtoController.contarProdutos() - 1;
         }
         mostrarRegistro();
 
@@ -537,8 +535,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         if (resposta != 0) {
             return;
         }
-        String msg;
-        msg = dados.deletarProduto(txtIdproduto.getText());
+        String msg = produtoController.excluirProduto(txtIdproduto.getText());
         JOptionPane.showMessageDialog(rootPane, msg);
         produtoAtual = 0;
         preencherTabela();
@@ -550,16 +547,16 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         String produto = JOptionPane.showInputDialog("Insira o código do produto");
-        if (produto.equals("")) {
+        if (produto == null || produto.isEmpty()) {
             return;
         }
 
-        if (!dados.existeProduto(produto)) {
+        if (!produtoController.produtoExiste(produto)) {
             JOptionPane.showMessageDialog(rootPane, "Este produto não existe!");
             return;
         }
-        int num = tblTabela.getRowCount();
 
+        int num = tblTabela.getRowCount();
         for (int i = 0; i < num; i++) {
             if (Utilidades.objectToString(tblTabela.getValueAt(i, 0)).equals(produto)) {
                 produtoAtual = i;
@@ -579,42 +576,32 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     }
 
     private void preencherTabela() {
-        try {
-            String titulos[] = {"ID Produto", "Descricao", "Preco"};
-            String registro[] = new String[3];
-            pTabela = new DefaultTableModel(null, titulos);
-            ResultSet rs = dados.getProdutos();
+        produtos = produtoController.listarProdutos();
 
-            while (rs.next()) {
-                registro[0] = rs.getString("idProduto");
-                registro[1] = rs.getString("descricao");
-                registro[2] = rs.getString("preco");
-                pTabela.addRow(registro);
-            }
-            // Centraliza as linhas da tabela
-            tblTabela.setModel(pTabela);
-            DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-            dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-            tblTabela.getColumnModel().getColumn(2).setCellRenderer(dtcr);
-        } catch (SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+        String[] titulos = {"ID Produto", "Descricao", "Preco"};
+        String[] registro = new String[3];
+        pTabela = new DefaultTableModel(null, titulos);
+
+        for (Produto p : produtos) {
+            registro[0] = String.valueOf(p.getIdProduto());
+            registro[1] = p.getDescricao();
+            registro[2] = String.valueOf(p.getPreco());
+            pTabela.addRow(registro);
         }
+
+        tblTabela.setModel(pTabela);
+        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
+        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tblTabela.getColumnModel().getColumn(2).setCellRenderer(dtcr);
     }
 
     private void carregarPrimeiroRegistro() {
-        ResultSet rs = dados.getProdutos();
-        try {
-            if (rs.next()) {
-                id = rs.getString("idproduto");
-                descricao = rs.getString("descricao");
-                preco = rs.getString("preco");
-
-                txtIdproduto.setText(id);
-                txtDescricao.setText(descricao);
-                txtPreco.setText(preco);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F03_Produtos.class.getName()).log(Level.SEVERE, null, ex);
+        List<Produto> produtos = produtoController.listarProdutos();
+        if (!produtos.isEmpty()) {
+            Produto p = produtos.get(0);
+            txtIdproduto.setText(String.valueOf(p.getIdProduto()));
+            txtDescricao.setText(p.getDescricao());
+            txtPreco.setText(String.valueOf(p.getPreco()));
         }
     }
 

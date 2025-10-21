@@ -1,4 +1,4 @@
-package up_forms;
+package view;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -7,25 +7,25 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
-import up_classes.Letreiro;
-import up_classes.Dados;
+import categories.Letreiro;
+import util.Conexao;
 
 public class UP_F01_Principal extends javax.swing.JFrame {
 
     private final Letreiro letreiro;
-    public Dados dados;
+    public Conexao conexao;
 
-    public int perfil;
+    public int idPerfil;
     public String senha;
     public String chave;
     public String usuario;
 
-    public void setPerfil(int perfil) {
-        this.perfil = perfil;
+    public void setIdPerfil(int idPerfil) {
+        this.idPerfil = idPerfil;
     }
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
+    public void setDados(Conexao conexao) {
+        this.conexao = conexao;
     }
 
     public void setUsuario(String usuario) {
@@ -80,9 +80,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:Umbrella Pharmaceutical Inc™ menu");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(1440, 900));
         setMinimumSize(new java.awt.Dimension(1440, 900));
-        setPreferredSize(new java.awt.Dimension(1440, 900));
         setSize(new java.awt.Dimension(1366, 768));
 
         dpnDesk.setMaximumSize(new java.awt.Dimension(1366, 768));
@@ -263,7 +261,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
         UP_F02_Usuarios ufu = new UP_F02_Usuarios();
-        ufu.setDados(dados);
         dpnDesk.add(ufu);
         ufu.show();
 
@@ -275,7 +272,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void ProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProdutosActionPerformed
         UP_F03_Produtos ufp = new UP_F03_Produtos();
-        ufp.setDados(dados);
         dpnDesk.add(ufp);
         ufp.show();
 
@@ -286,7 +282,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
         UP_F04_Clientes ufc = new UP_F04_Clientes();
-        ufc.setDados(dados);
         dpnDesk.add(ufc);
         ufc.show();
 
@@ -304,7 +299,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void NovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NovaVendaActionPerformed
         UP_F06_Vendas ufv = new UP_F06_Vendas();
-        ufv.setDados(dados);
+        ufv.setConexao(conexao);
         dpnDesk.add(ufv);
         ufv.show();
 
@@ -315,7 +310,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void DevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DevActionPerformed
         UP_F05_Info ufi = new UP_F05_Info();
-        ufi.setDados(dados);
+        ufi.setConexao(conexao);
         dpnDesk.add(ufi);
         ufi.show();
 
@@ -382,7 +377,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
     private void SendReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendReportActionPerformed
         UP_F07_Relatorios ufsr = new UP_F07_Relatorios();
-        ufsr.setDados(dados);
         dpnDesk.add(ufsr);
         ufsr.show();
 

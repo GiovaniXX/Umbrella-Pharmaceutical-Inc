@@ -1,4 +1,4 @@
-package up_classes;
+package model;
 
 import java.util.Date;
 

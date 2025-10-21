@@ -1,20 +1,17 @@
-package up_forms;
+package view;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import up_classes.Usuario;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import model.Usuario;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import up_classes.Dados;
-import up_classes.Utilidades;
+import categories.Utilidades;
+import java.util.List;
 
 public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
-    private Dados dados;
+    private final controller.UsuarioController usuarioController = new controller.UsuarioController();
+
     private int usuarioAtual = 0;
     private boolean novo = false;
     private DefaultTableModel uTabela;
@@ -24,13 +21,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private String sobrenome;
     private String perfil;
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
-    }
-
     public UP_F02_Usuarios() {
         initComponents();
-        dados = new Dados();
 
         uTabela = new DefaultTableModel(null, new String[]{"Id", "Nome", "Sobrenome", "Perfil"});
         tblUsuarios.setModel(uTabela);
@@ -490,13 +482,13 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
 
         if (novo) {
-            if (dados.existeUsuario(txtIdusuario.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "Este usuário já existe!");
+            if (usuarioController.usuarioExiste((txtIdusuario.getText()))) {
+                JOptionPane.showMessageDialog(null, "Este usuário já existe!");
                 txtNome.requestFocusInWindow();
                 return;
             }
         } else {
-            if (!dados.existeUsuario(txtIdusuario.getText())) {
+            if (!usuarioController.usuarioExiste(txtIdusuario.getText())) {
                 JOptionPane.showMessageDialog(rootPane, "Este usuário não existe!");
                 txtNome.requestFocusInWindow();
                 return;
@@ -512,9 +504,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 cmbPerfil.getSelectedIndex());
         String msg;
         if (novo) {
-            msg = dados.adicionarUsuario(mUsuario);
+            msg = usuarioController.cadastrarUsuario(mUsuario);
         } else {
-            msg = dados.editarUsuario(mUsuario);
+            msg = usuarioController.atualizarUsuario(mUsuario);
         }
         JOptionPane.showMessageDialog(rootPane, msg);
 
@@ -626,7 +618,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
-        usuarioAtual = dados.numeroUsuarios() - 1;
+        usuarioAtual = usuarioController.contarUsuarios() - 1;
         mostrarRegistro();
 
         int id = evt.getID();
@@ -636,7 +628,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
         usuarioAtual++;
-        if (usuarioAtual == dados.numeroUsuarios()) {
+        if (usuarioAtual == usuarioController.contarUsuarios()) {
             usuarioAtual = 0;
         }
         mostrarRegistro();
@@ -649,7 +641,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         usuarioAtual--;
         if (usuarioAtual == -1) {
-            usuarioAtual = dados.numeroUsuarios() - 1;
+            usuarioAtual = usuarioController.contarUsuarios() - 1;
         }
         mostrarRegistro();
 
@@ -664,7 +656,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             return;
         }
         String msg;
-        msg = dados.deletarUsuario(txtIdusuario.getText());
+        msg = usuarioController.excluirUsuario(txtIdusuario.getText());
         JOptionPane.showMessageDialog(rootPane, msg);
         usuarioAtual = 0;
         preencherTabela();
@@ -687,7 +679,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
-        if (!dados.existeUsuario(usuario)) {
+        if (!usuarioController.usuarioExiste(usuario)) {
             JOptionPane.showMessageDialog(rootPane, "Este usário não existe");
             return;
         }
@@ -718,42 +710,32 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     }
 
     private void preencherTabela() {
-        try {
-            String titulos[] = {"ID Usuario", "Nome", "Sobrenome", "Perfil"};
-            String registro[] = new String[4];
-            uTabela = new DefaultTableModel(null, titulos);
-            ResultSet rs = dados.getUsuarios();
+        String[] titulos = {"ID Usuario", "Nome", "Sobrenome", "Perfil"};
+        String[] registro = new String[4];
+        uTabela = new DefaultTableModel(null, titulos);
 
-            while (rs.next()) {
-                registro[0] = rs.getString("idusuario");
-                registro[1] = rs.getString("nome");
-                registro[2] = rs.getString("sobrenome");
-                registro[3] = perfil(rs.getInt("idperfil"));
-
-                uTabela.addRow(registro);
-            }
-            tblUsuarios.setModel(uTabela);
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        List<Usuario> usuarios = usuarioController.listarUsuarios();
+        for (Usuario u : usuarios) {
+            registro[0] = String.valueOf(u.getIdUsuario());
+            registro[1] = u.getNome();
+            registro[2] = u.getSobrenome();
+            registro[3] = perfil(u.getIdPerfil());
+            uTabela.addRow(registro);
         }
+
+        tblUsuarios.setModel(uTabela);
     }
 
     private void carregarPrimeiroRegistro() {
-        ResultSet rs = dados.getUsuarios();
-        try {
-            if (rs.next()) {
-                id = rs.getString("idusuario");
-                nome = rs.getString("nome");
-                sobrenome = rs.getString("sobrenome");
-                perfil = rs.getString("idperfil");
-
-                txtIdusuario.setText(id);
-                txtNome.setText(nome);
-                txtSNome.setText(sobrenome);
-                cmbPerfil.setSelectedItem(perfil);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UP_F02_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        List<Usuario> usuarios = usuarioController.listarUsuarios();
+        if (!usuarios.isEmpty()) {
+            Usuario u = usuarios.get(0);
+            txtIdusuario.setText(String.valueOf(u.getIdUsuario()));
+            txtNome.setText(u.getNome());
+            txtSNome.setText(u.getSobrenome());
+            //cmbPerfil.setSelectedIndex(u.getIdPerfil());
+            // cmbPerfil mostra "Administrador" ou "Usuario" em vez de apenas o índice.!
+            cmbPerfil.setSelectedItem(perfil(u.getIdPerfil()));
         }
     }
 

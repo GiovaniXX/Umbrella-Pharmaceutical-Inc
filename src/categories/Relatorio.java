@@ -1,10 +1,11 @@
-package up_classes;
+package categories;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.mysql.cj.util.Util;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.ResultSet;
@@ -94,7 +95,7 @@ public class Relatorio {
             document.close();
 
         } catch (DocumentException | FileNotFoundException | SQLException e) {
-            Logger.getLogger(Dados.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             document.close();
         }

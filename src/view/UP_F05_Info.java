@@ -1,18 +1,18 @@
-package up_forms;
+package view;
 
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.JOptionPane;
-import up_classes.Dados;
+import util.Conexao;
 
 public class UP_F05_Info extends javax.swing.JInternalFrame {
 
-    public Dados dados;
+    public Conexao conexao;
 
-    public void setDados(Dados dados) {
-        this.dados = dados;
+    public void setConexao(Conexao conexao) {
+        this.conexao = conexao;
     }
 
     public UP_F05_Info() {

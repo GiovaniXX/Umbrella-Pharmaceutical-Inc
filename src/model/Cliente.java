@@ -1,4 +1,4 @@
-package up_classes;
+package model;
 
 import java.util.Date;
 
@@ -10,18 +10,18 @@ public class Cliente {
     private String email;
     private String endereco;
     private String telefone;
-    private int cidade;
+    private int IdCidade;
     private Date dataCadastro;
     private int idCliente;
 
-    public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, int cidade, Date dataCadastro) {
+    public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, int IdCidade, Date dataCadastro) {
         this.idcliente = idcliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.cidade = cidade;
+        this.IdCidade = IdCidade;
         this.dataCadastro = dataCadastro;
     }
 
@@ -79,12 +79,12 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public int getCidade() {
-        return cidade;
+    public int getIdCidade() {
+        return IdCidade;
     }
 
-    public void setCidade(int cidade) {
-        this.cidade = cidade;
+    public void setIdCidade(int IdCidade) {
+        this.IdCidade = IdCidade;
     }
 
     public Date getDataCadastro() {

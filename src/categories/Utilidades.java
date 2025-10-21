@@ -1,4 +1,4 @@
-package up_classes;
+package categories;
 
 import java.text.DateFormat;
 import java.text.ParseException;
