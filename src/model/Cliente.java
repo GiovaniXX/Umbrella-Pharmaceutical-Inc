@@ -12,6 +12,7 @@ public class Cliente {
     private String telefone;
     private String cidade;
     private Date dataCadastro;
+    private int idCidade;
     private int idCliente;
 
     public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, String IdCidade, Date dataCadastro) {
@@ -100,5 +101,13 @@ public class Cliente {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public int getIdCidade() {
+        return idCidade;
+    }
+
+    public void setIdCidade(int idCidade) {
+        this.idCidade = idCidade;
     }
 }

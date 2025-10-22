@@ -42,7 +42,7 @@ public class ClienteDAO {
     }
 
     public String editarCliente(Cliente cliente) {
-        String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, email = ?, endereco = ?, telefone = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
+        String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, email = ?, endereco = ?, telefone = ?, cidade = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, cliente.getNome());
             pstmt.setString(2, cliente.getSobrenome());
@@ -50,8 +50,9 @@ public class ClienteDAO {
             pstmt.setString(4, cliente.getEndereco());
             pstmt.setString(5, cliente.getTelefone());
             pstmt.setString(6, cliente.getCidade());
-            pstmt.setDate(7, new java.sql.Date(cliente.getDataCadastro().getTime()));
-            pstmt.setInt(8, cliente.getIdCliente());
+            pstmt.setInt(7, cliente.getIdCidade());
+            pstmt.setDate(8, new java.sql.Date(cliente.getDataCadastro().getTime()));
+            pstmt.setInt(9, cliente.getIdCliente());
             pstmt.executeUpdate();
             return "Cliente editado com sucesso";
         } catch (SQLException e) {
@@ -154,5 +155,26 @@ public class ClienteDAO {
             Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return "";
+    }
+
+    public Cliente buscarPorId(int id) {
+        String sql = "SELECT * FROM clientes WHERE idcliente = ?";
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Cliente c = new Cliente();
+                    c.setIdCliente(rs.getInt("idcliente"));
+                    c.setNome(rs.getString("nome"));
+                    c.setCidade(rs.getString("cidade"));
+                    // outros campos se necessário
+                    return c;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

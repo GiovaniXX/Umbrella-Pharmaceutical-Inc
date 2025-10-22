@@ -11,6 +11,13 @@
     <description>Builds, tests, and runs the project Umbrella_Pharmaceutical_Inc.</description>
     <import file="nbproject/build-impl.xml"/>
 	
+	<!-- Caminho para os JARs do JUnit -->
+    <path id="junit.classpath">
+        <fileset dir="lib">
+            <include name="**/*.jar"/>
+        </fileset>
+    </path>
+	
 	<!-- Adicione a configuração do javac aqui -->
     <target name="-pre-compile">
         <property name="javac.source" value="22"/>
@@ -18,6 +25,24 @@
         <property name="javac.compilerargs" value="--enable-preview"/>
     </target>
 
+	<!-- Target para rodar os testes -->
+    <target name="test" depends="compile-test">
+        <junit printsummary="true" haltonfailure="true">
+            <classpath>
+                <path refid="junit.classpath"/>
+                <pathelement path="${build.test.classes.dir}"/>
+                <pathelement path="${build.classes.dir}"/>
+            </classpath>
+            <batchtest fork="true" todir="${build.test.results.dir}">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test.java"/>
+                </fileset>
+            </batchtest>
+            <formatter type="plain"/>
+            <formatter type="xml"/>
+        </junit>
+    </target>	
+	
     <!--
 
     There exist several targets which are by default empty and which can be 

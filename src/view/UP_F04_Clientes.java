@@ -503,6 +503,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         String msg = novo
                 ? clienteController.cadastrarCliente(mCliente)
                 : clienteController.atualizarCliente(mCliente);
+                //: clienteController.editarCliente(mCliente);
 
         JOptionPane.showMessageDialog(rootPane, msg);
 

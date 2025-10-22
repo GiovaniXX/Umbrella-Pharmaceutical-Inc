@@ -12,6 +12,7 @@ public class CidadeDAO {
 
     public boolean existeCidade(int idCidade) {
         String sql = "SELECT 1 FROM cidades WHERE idcidade = ?";
+        // A conexão será automaticamente direcionada para H2 ou MySQL conforme o modo definido em Conexao.java
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, idCidade);
             try (ResultSet rs = pstmt.executeQuery()) {
