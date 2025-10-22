@@ -148,7 +148,7 @@
     <Component class="javax.swing.JLabel" name="Chapeu">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Icons/chapeu-de-graduacao.png"/>
+          <Image iconType="3" name="/img/variadas/Icons/chapeu-de-graduacao.png"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
@@ -179,7 +179,7 @@
     <Component class="javax.swing.JLabel" name="Logo_Linkedin">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Icons/linkedin1.png"/>
+          <Image iconType="3" name="/img/variadas/Icons/linkedin1.png"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
@@ -194,7 +194,7 @@
     <Component class="javax.swing.JLabel" name="Logo_GitHub">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Icons/github1.png"/>
+          <Image iconType="3" name="/img/variadas/Icons/github1.png"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
@@ -209,7 +209,7 @@
     <Component class="javax.swing.JLabel" name="Logo_Facebook">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Icons/facebook2.png"/>
+          <Image iconType="3" name="/img/variadas/Icons/facebook2.png"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[32, 32]"/>
@@ -224,7 +224,7 @@
     <Component class="javax.swing.JLabel" name="GvC_Developer">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Developer.png"/>
+          <Image iconType="3" name="/img/banners/Developer.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
@@ -237,7 +237,7 @@
     <Component class="javax.swing.JLabel" name="Avanade">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Avanade.jpg"/>
+          <Image iconType="3" name="/img/banners/Avanade.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -252,7 +252,7 @@
     <Component class="javax.swing.JLabel" name="Cognizant">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Cognizant.jpg"/>
+          <Image iconType="3" name="/img/banners/Cognizant.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -267,7 +267,7 @@
     <Component class="javax.swing.JLabel" name="GTF">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/GFT.jpg"/>
+          <Image iconType="3" name="/img/banners/GFT.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -282,7 +282,7 @@
     <Component class="javax.swing.JLabel" name="NTTData">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/NTT_DATA.jpg"/>
+          <Image iconType="3" name="/img/banners/NTT_DATA.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -297,7 +297,7 @@
     <Component class="javax.swing.JLabel" name="Uniasselvi">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Uniasselvi.png"/>
+          <Image iconType="3" name="/img/banners/Uniasselvi.png"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -312,7 +312,7 @@
     <Component class="javax.swing.JLabel" name="Java_Developer">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/DIO.jpg"/>
+          <Image iconType="3" name="/img/banners/DIO.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
@@ -352,15 +352,12 @@
     <Component class="javax.swing.JLabel" name="TelaFundo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/up_images/Logos/Home.jpg"/>
+          <Image iconType="3" name="/img/variadas/Logos/Home.jpg"/>
         </Property>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Padr&#xe3;o"/>
         </Property>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value=""/>
-      </AccessibilityProperties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="1440" height="900"/>

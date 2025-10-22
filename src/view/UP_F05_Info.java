@@ -189,7 +189,6 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/Home.jpg"))); // NOI18N
         TelaFundo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 900));
-        TelaFundo.getAccessibleContext().setAccessibleName("");
 
         setBounds(0, 0, 1440, 853);
     }// </editor-fold>//GEN-END:initComponents

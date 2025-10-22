@@ -90,7 +90,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         lblMensagem.setMinimumSize(new java.awt.Dimension(37, 30));
         lblMensagem.setPreferredSize(new java.awt.Dimension(37, 30));
         dpnDesk.add(lblMensagem);
-        lblMensagem.setBounds(10, 680, 1350, 30);
+        lblMensagem.setBounds(10, 820, 1350, 30);
 
         LogoJavaOracle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/Oracle1.png"))); // NOI18N
         dpnDesk.add(LogoJavaOracle);
@@ -99,7 +99,6 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0000.jpg"))); // NOI18N
         dpnDesk.add(Logo);
         Logo.setBounds(0, 0, 1440, 900);
-        Logo.getAccessibleContext().setAccessibleName("");
 
         Menu.setBackground(new java.awt.Color(78, 103, 74));
         Menu.setMaximumSize(new java.awt.Dimension(151, 21));
@@ -108,7 +107,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Arquivo.setText("Arquivo");
 
         Clientes.setBackground(new java.awt.Color(78, 103, 74));
-        Clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/seguindo.png"))); // NOI18N
+        Clientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/seguindo.png"))); // NOI18N
         Clientes.setText("Clientes");
         Clientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Clientes.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +118,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Arquivo.add(Clientes);
 
         Produtos.setBackground(new java.awt.Color(78, 103, 74));
-        Produtos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/caminhao-sofa.png"))); // NOI18N
+        Produtos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/caminhao-sofa.png"))); // NOI18N
         Produtos.setText("Produtos");
         Produtos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Produtos.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +129,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Arquivo.add(Produtos);
 
         Usuarios.setBackground(new java.awt.Color(78, 103, 74));
-        Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/usuarios.png"))); // NOI18N
+        Usuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/usuarios.png"))); // NOI18N
         Usuarios.setText("Usuarios");
         Usuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Usuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +148,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Arquivo.add(jSeparator2);
 
         Sair.setBackground(new java.awt.Color(78, 103, 74));
-        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/circulo-cruzado.png"))); // NOI18N
+        Sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/circulo-cruzado.png"))); // NOI18N
         Sair.setText("Sair");
         Sair.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Sair.addActionListener(new java.awt.event.ActionListener() {
@@ -165,7 +164,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         Movimentos.setText("Movimentos");
 
         NovaVenda.setBackground(new java.awt.Color(78, 103, 74));
-        NovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/dolar-aberto-envelope.png"))); // NOI18N
+        NovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dolar-aberto-envelope.png"))); // NOI18N
         NovaVenda.setText("Nova Venda");
         NovaVenda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         NovaVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +186,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         SocialNetwork.setText("Redes Sociais");
 
-        openFacebookProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/facebook2.png"))); // NOI18N
+        openFacebookProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/facebook2.png"))); // NOI18N
         openFacebookProfile.setText("Facebook");
         openFacebookProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         openFacebookProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +196,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         SocialNetwork.add(openFacebookProfile);
 
-        openGitHubProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/github1.png"))); // NOI18N
+        openGitHubProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/github1.png"))); // NOI18N
         openGitHubProfile.setText("GitHub");
         openGitHubProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         openGitHubProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +206,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         SocialNetwork.add(openGitHubProfile);
 
-        openLinkedinProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/linkedin1.png"))); // NOI18N
+        openLinkedinProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/linkedin1.png"))); // NOI18N
         openLinkedinProfile.setText("Linkedin");
         openLinkedinProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         openLinkedinProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +216,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         });
         SocialNetwork.add(openLinkedinProfile);
 
-        openWhatsUpProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/whatsapp1.png"))); // NOI18N
+        openWhatsUpProfile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/whatsapp1.png"))); // NOI18N
         openWhatsUpProfile.setText("WhatsUp");
         openWhatsUpProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         openWhatsUpProfile.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +230,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
 
         Desenvolvedor.setText("Desenvolvedor");
 
-        Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/dev.png"))); // NOI18N
+        Dev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Icons/dev.png"))); // NOI18N
         Dev.setText("Dev");
         Dev.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Dev.addActionListener(new java.awt.event.ActionListener() {
