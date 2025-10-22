@@ -98,7 +98,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         dpnDesk.add(LogoJavaOracle);
         LogoJavaOracle.setBounds(1180, 10, 180, 180);
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0000.jpg"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Logos/0000.jpg"))); // NOI18N
         dpnDesk.add(Logo);
         Logo.setBounds(0, 0, 1440, 900);
 
@@ -433,7 +433,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/variadas/Icons/Icon.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Icons/Icon.jpg")));
     }
 }
 /**

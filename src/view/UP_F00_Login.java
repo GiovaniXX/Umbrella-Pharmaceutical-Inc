@@ -84,14 +84,14 @@ public class UP_F00_Login extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(936, 248));
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 51));
+        jPanel1.setBackground(new java.awt.Color(75, 0, 0));
         jPanel1.setMaximumSize(new java.awt.Dimension(936, 248));
         jPanel1.setMinimumSize(new java.awt.Dimension(936, 248));
         jPanel1.setPreferredSize(new java.awt.Dimension(936, 248));
 
         lblUmbrellaCorporationIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/04.jpg"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(8, 13, 32));
+        jPanel2.setBackground(new java.awt.Color(157, 38, 42));
         jPanel2.setMaximumSize(new java.awt.Dimension(691, 222));
         jPanel2.setMinimumSize(new java.awt.Dimension(691, 222));
         jPanel2.setPreferredSize(new java.awt.Dimension(691, 222));
@@ -104,11 +104,29 @@ public class UP_F00_Login extends javax.swing.JFrame {
         _SGBD.setForeground(new java.awt.Color(218, 139, 8));
         _SGBD.setText("Database");
         jPanel2.add(_SGBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 198, -1, 10));
+
+        textField_User.setBackground(new java.awt.Color(75, 0, 0));
+        textField_User.setForeground(new java.awt.Color(255, 255, 255));
+        textField_User.setBorder(null);
+        textField_User.setPreferredSize(new java.awt.Dimension(64, 22));
         jPanel2.add(textField_User, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 35, 340, -1));
+
+        passwordField_AccessCode.setBackground(new java.awt.Color(75, 0, 0));
+        passwordField_AccessCode.setForeground(new java.awt.Color(255, 255, 255));
+        passwordField_AccessCode.setBorder(null);
+        passwordField_AccessCode.setPreferredSize(new java.awt.Dimension(64, 22));
         jPanel2.add(passwordField_AccessCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 85, 340, -1));
+
+        passwordField_SecurityKey.setBackground(new java.awt.Color(75, 0, 0));
+        passwordField_SecurityKey.setForeground(new java.awt.Color(255, 255, 255));
+        passwordField_SecurityKey.setBorder(null);
+        passwordField_SecurityKey.setPreferredSize(new java.awt.Dimension(64, 22));
         jPanel2.add(passwordField_SecurityKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 135, 340, -1));
 
+        btnEnter.setBackground(new java.awt.Color(75, 0, 0));
         btnEnter.setText("Logar");
+        btnEnter.setBorder(null);
+        btnEnter.setPreferredSize(new java.awt.Dimension(76, 23));
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEnterActionPerformed(evt);
@@ -116,13 +134,17 @@ public class UP_F00_Login extends javax.swing.JFrame {
         });
         jPanel2.add(btnEnter, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 190, -1, -1));
 
+        btnOut.setBackground(new java.awt.Color(75, 0, 0));
         btnOut.setText("Deslogar");
+        btnOut.setBorder(null);
+        btnOut.setName(""); // NOI18N
+        btnOut.setPreferredSize(new java.awt.Dimension(76, 23));
         btnOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOutActionPerformed(evt);
             }
         });
-        jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
+        jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 190, -1, -1));
 
         lblLogoUmbrellaCorporation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/05.jpg"))); // NOI18N
         jPanel2.add(lblLogoUmbrellaCorporation, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 160));
@@ -283,7 +305,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/variadas/Icons/Icon.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Icons/Icon.jpg")));
     }
 
     private void showMessageWithDuration(String message, String title, int messageType, int duration) {
