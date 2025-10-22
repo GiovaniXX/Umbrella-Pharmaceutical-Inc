@@ -80,8 +80,10 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".:Umbrella Pharmaceutical Inc™ menu");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMinimumSize(new java.awt.Dimension(1440, 900));
-        setSize(new java.awt.Dimension(1366, 768));
+        setMaximumSize(new java.awt.Dimension(1440, 853));
+        setMinimumSize(new java.awt.Dimension(1440, 853));
+        setPreferredSize(new java.awt.Dimension(1440, 853));
+        setSize(new java.awt.Dimension(1440, 853));
 
         dpnDesk.setMaximumSize(new java.awt.Dimension(1366, 768));
         dpnDesk.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -90,7 +92,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
         lblMensagem.setMinimumSize(new java.awt.Dimension(37, 30));
         lblMensagem.setPreferredSize(new java.awt.Dimension(37, 30));
         dpnDesk.add(lblMensagem);
-        lblMensagem.setBounds(10, 820, 1350, 30);
+        lblMensagem.setBounds(10, 790, 1420, 30);
 
         LogoJavaOracle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/Oracle1.png"))); // NOI18N
         dpnDesk.add(LogoJavaOracle);
@@ -255,7 +257,7 @@ public class UP_F01_Principal extends javax.swing.JFrame {
             .addComponent(dpnDesk, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1456, 908);
+        setBounds(0, 0, 1456, 861);
     }// </editor-fold>//GEN-END:initComponents
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
