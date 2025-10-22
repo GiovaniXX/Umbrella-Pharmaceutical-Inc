@@ -4,6 +4,8 @@ import model.Cliente;
 import model.Produto;
 import util.Conexao;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -92,27 +94,31 @@ public class VendaDAO {
         }
     }
 
-    public ResultSet listarClientes() {
+    public List<String> listarNomesClientes() {
+        List<String> nomes = new ArrayList<>();
         String sql = "SELECT nome FROM cliente ORDER BY nome";
-        try {
-            Connection conn = Conexao.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            return pstmt.executeQuery(); // cuidado: não fechar aqui!
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                nomes.add(rs.getString("nome"));
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        return null;
+        return nomes;
     }
 
-    public ResultSet listarProdutos() {
+    public List<String> listarNomesProdutos() {
+        List<String> produtos = new ArrayList<>();
         String sql = "SELECT produto FROM produto ORDER BY produto";
-        try {
-            Connection conn = Conexao.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            return pstmt.executeQuery(); // cuidado: não fechar aqui!
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                produtos.add(rs.getString("produto"));
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
         }
-        return null;
+        return produtos;
     }
 }

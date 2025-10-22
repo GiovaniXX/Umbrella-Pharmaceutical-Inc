@@ -10,25 +10,24 @@ public class Cliente {
     private String email;
     private String endereco;
     private String telefone;
-    private int IdCidade;
+    private String cidade;
     private Date dataCadastro;
     private int idCliente;
 
-    public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, int IdCidade, Date dataCadastro) {
+    public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, String IdCidade, Date dataCadastro) {
         this.idcliente = idcliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.IdCidade = IdCidade;
+        this.cidade = cidade;
         this.dataCadastro = dataCadastro;
     }
 
     public Cliente() {
-        this.idCliente = 0; // ou outro valor padrão
+        this.idCliente = 0;
         this.nome = "";
-        // Inicializar outros atributos com valores padrão
     }
 
     public int getIdcliente() {
@@ -54,11 +53,11 @@ public class Cliente {
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
-    
+
     public String getEmail() {
         return email;
     }
-    
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -79,12 +78,12 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public int getIdCidade() {
-        return IdCidade;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setIdCidade(int IdCidade) {
-        this.IdCidade = IdCidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public Date getDataCadastro() {

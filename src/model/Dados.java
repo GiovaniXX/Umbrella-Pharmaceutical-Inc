@@ -22,12 +22,12 @@ public class Dados {
         return vendaDAO.buscarProdutoPorNome(nome);
     }
 
-    public ResultSet getClientes() {
-        return vendaDAO.listarClientes();
+    public List<String> getNomesClientes() {
+        return vendaDAO.listarNomesClientes();
     }
 
-    public ResultSet getProdutos() {
-        return vendaDAO.listarProdutos();
+    public List<String> getNomesProdutos() {
+        return vendaDAO.listarNomesProdutos();
     }
 
     public void adicionarVenda(int numeroVenda, int idCliente, java.util.Date data, double valorTotal, int quantidadeTotal,

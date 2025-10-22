@@ -31,7 +31,7 @@ public class ClienteDAO {
             pstmt.setString(3, cliente.getEmail());
             pstmt.setString(4, cliente.getEndereco());
             pstmt.setString(5, cliente.getTelefone());
-            pstmt.setInt(6, cliente.getIdCidade());
+            pstmt.setString(6, cliente.getCidade());
             pstmt.setDate(7, new java.sql.Date(cliente.getDataCadastro().getTime()));
             pstmt.executeUpdate();
             return "Cliente cadastrado com sucesso";
@@ -49,7 +49,7 @@ public class ClienteDAO {
             pstmt.setString(3, cliente.getEmail());
             pstmt.setString(4, cliente.getEndereco());
             pstmt.setString(5, cliente.getTelefone());
-            pstmt.setInt(6, cliente.getIdCidade());
+            pstmt.setString(6, cliente.getCidade());
             pstmt.setDate(7, new java.sql.Date(cliente.getDataCadastro().getTime()));
             pstmt.setInt(8, cliente.getIdCliente());
             pstmt.executeUpdate();
@@ -84,7 +84,7 @@ public class ClienteDAO {
                 cliente.setEmail(rs.getString("email"));
                 cliente.setEndereco(rs.getString("endereco"));
                 cliente.setTelefone(rs.getString("telefone"));
-                cliente.setIdCidade(rs.getInt("cidade"));
+                cliente.setCidade(rs.getString("cidade"));
                 cliente.setDataCadastro(rs.getDate("dataCadastro"));
                 clientes.add(cliente);
             }
@@ -130,7 +130,7 @@ public class ClienteDAO {
                     cliente.setEmail(rs.getString("email"));
                     cliente.setEndereco(rs.getString("endereco"));
                     cliente.setTelefone(rs.getString("telefone"));
-                    cliente.setIdCidade(rs.getInt("cidade"));
+                    cliente.setCidade(rs.getString("cidade"));
                     cliente.setDataCadastro(rs.getDate("dataCadastro"));
                     return cliente;
                 }
@@ -141,10 +141,10 @@ public class ClienteDAO {
         return null;
     }
 
-    public String getNomeCidadePorId(int idCidade) {
+    public String getNomeCidade(String nomeCidade) {
         String sql = "SELECT nome FROM cidades WHERE idcidade = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, idCidade);
+            pstmt.setString(1, nomeCidade);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     return rs.getString("nome");

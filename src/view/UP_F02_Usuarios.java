@@ -370,7 +370,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 360, 1340, 318));
 
-        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));

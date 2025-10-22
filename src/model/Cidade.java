@@ -2,25 +2,25 @@ package model;
 
 public class Cidade {
 
-    private int idCidade;
+    private int idcidade;
     private String nome;
     private String estado;
 
     public Cidade() {
     }
 
-    public Cidade(int idCidade, String nome, String estado) {
-        this.idCidade = idCidade;
+    public Cidade(int idcidade, String nome, String estado) {
+        this.idcidade = idcidade;
         this.nome = nome;
         this.estado = estado;
     }
 
     public int getIdCidade() {
-        return idCidade;
+        return idcidade;
     }
 
-    public void setIdCidade(int idCidade) {
-        this.idCidade = idCidade;
+    public void setIdCidade(int idcidade) {
+        this.idcidade = idcidade;
     }
 
     public String getNome() {

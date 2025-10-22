@@ -39,7 +39,6 @@ public class ClienteController {
 //    public Cliente buscarPorNome(String nomeCliente) {
 //        return dao.getClientePorNome(nomeCliente);
 //    }
-
     public List<String> listarTelefones() {
         return dao.getTelefonesClientes();
     }
@@ -48,8 +47,8 @@ public class ClienteController {
         return dao.numeroClientes();
     }
 
-    public String obterNomeCidadePorId(int idCidade) {
-        return dao.getNomeCidadePorId(idCidade);
+    public String obterNomeCidade(String cidade) {
+        return dao.getNomeCidade(cidade);
     }
 
     public Cliente getClientePorNome(String nome) {

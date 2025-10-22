@@ -25,7 +25,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
     private void status() {
         try {
-            Timer timer = new Timer(2000, new ActtionListener() {
+            Timer timer = new Timer(2000, new ActionListener() {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -33,9 +33,9 @@ public class UP_F00_Login extends javax.swing.JFrame {
                         Connection cnn = Conexao.getConnection();
                         // Adiciona verificação se a conexão está ativa
                         if (cnn != null && !cnn.isClosed()) {
-                            SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dbok.png")));
+                            SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/dbok.png")));
                         } else {
-                            SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png")));
+                            SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/dberror.png")));
                         }
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, ex);
@@ -89,7 +89,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(936, 248));
         jPanel1.setPreferredSize(new java.awt.Dimension(936, 248));
 
-        lblUmbrellaCorporationIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/04.jpg"))); // NOI18N
+        lblUmbrellaCorporationIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/04.jpg"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(8, 13, 32));
         jPanel2.setMaximumSize(new java.awt.Dimension(691, 222));
@@ -97,7 +97,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(691, 222));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/dberror.png"))); // NOI18N
+        SGBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/dberror.png"))); // NOI18N
         jPanel2.add(SGBD, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 180, -1, -1));
 
         _SGBD.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -124,10 +124,10 @@ public class UP_F00_Login extends javax.swing.JFrame {
         });
         jPanel2.add(btnOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
 
-        lblLogoUmbrellaCorporation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/05.jpg"))); // NOI18N
+        lblLogoUmbrellaCorporation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/05.jpg"))); // NOI18N
         jPanel2.add(lblLogoUmbrellaCorporation, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 160));
 
-        lbllLogoMySQL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/mysql.jpg"))); // NOI18N
+        lbllLogoMySQL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/mysql.jpg"))); // NOI18N
         jPanel2.add(lbllLogoMySQL, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 175, 70, 40));
 
         User.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,7 +283,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/up_images/Icons/Icon.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/variadas/Icons/Icon.jpg")));
     }
 
     private void showMessageWithDuration(String message, String title, int messageType, int duration) {

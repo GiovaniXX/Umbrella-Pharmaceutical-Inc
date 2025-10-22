@@ -407,7 +407,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jScrollPane1.setBounds(5, 320, 1338, 360);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -496,7 +496,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 txtEmail.getText(),
                 txtEndereco.getText(),
                 txtTelefone.getText(),
-                cmbCidade.getSelectedIndex(),
+                cmbCidade.getSelectedItem().toString(),
                 jdcDataCadastro.getDate());
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
@@ -725,12 +725,11 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             registro[3] = c.getEmail();
             registro[4] = c.getEndereco();
             registro[5] = c.getTelefone();
-            registro[6] = clienteController.obterNomeCidadePorId(c.getIdCidade());
+            registro[6] = clienteController.obterNomeCidade(c.getCidade());
             registro[7] = Utilidades.objectToString(c.getDataCadastro());
             cTabela.addRow(registro);
         }
         tblTabela.setModel(cTabela);
-
     }
 
     private void carregarPrimeiroRegistro() {
@@ -744,7 +743,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             txtEmail.setText(c.getEmail());
             txtEndereco.setText(c.getEndereco());
             txtTelefone.setText(c.getTelefone());
-            cmbCidade.setSelectedIndex(c.getIdCidade());
+            cmbCidade.setSelectedItem(c.getCidade());
             jdcDataCadastro.setDate(c.getDataCadastro());
         }
     }

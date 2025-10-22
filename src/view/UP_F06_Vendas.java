@@ -19,7 +19,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     private final controller.ClienteController clienteController = new controller.ClienteController();
     private final controller.ProdutoController produtoController = new controller.ProdutoController();
     private final controller.VendaController vendaController = new controller.VendaController();
-    
+
     private final model.Dados dados = new model.Dados();
 
     public Conexao conexao;
@@ -265,7 +265,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 190, 1350, 430));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1360, 768));
@@ -487,35 +487,21 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     // Método para preencher o ComboBox de Clientes
     private void preencherComboClientes() {
-        try {
-            cmbCliente.removeAllItems();
-            // Opção padrão
-            cmbCliente.addItem("Selecione um cliente");
+        cmbCliente.removeAllItems();
+        cmbCliente.addItem("Selecione um cliente");
 
-            ResultSet rsClientes = dados.getClientes();
-            while (rsClientes.next()) {
-                // Exibe apenas o nome
-                cmbCliente.addItem(rsClientes.getString("nome"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        for (String nome : dados.getNomesClientes()) {
+            cmbCliente.addItem(nome);
         }
     }
 
     // Método para preencher o ComboBox de Produtos
     private void preencherComboProdutos() {
-        try {
-            cmbProduto.removeAllItems();
-            // Opção padrão
-            cmbProduto.addItem("Selecione um produto");
+        cmbProduto.removeAllItems();
+        cmbProduto.addItem("Selecione um produto");
 
-            ResultSet rsProdutos = dados.getProdutos();
-            while (rsProdutos.next()) {
-                // Exibe apenas o nome
-                cmbProduto.addItem(rsProdutos.getString("produto"));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        for (String nomeProduto : dados.getNomesProdutos()) {
+            cmbProduto.addItem(nomeProduto);
         }
     }
 }
