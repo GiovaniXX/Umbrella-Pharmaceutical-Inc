@@ -299,10 +299,4 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         dialog.setVisible(true);
     }
-
-    private static abstract class ActtionListener implements ActionListener {
-
-        public ActtionListener() {
-        }
-    }
 }

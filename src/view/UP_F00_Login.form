@@ -84,7 +84,7 @@
         <Component class="javax.swing.JLabel" name="lblUmbrellaCorporationIBS">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/up_images/04.jpg"/>
+              <Image iconType="3" name="/img/banners/04.jpg"/>
             </Property>
           </Properties>
         </Component>
@@ -111,7 +111,7 @@
             <Component class="javax.swing.JLabel" name="SGBD">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/dberror.png"/>
+                  <Image iconType="3" name="/img/banners/dberror.png"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -186,7 +186,7 @@
             <Component class="javax.swing.JLabel" name="lblLogoUmbrellaCorporation">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/05.jpg"/>
+                  <Image iconType="3" name="/img/banners/05.jpg"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -198,7 +198,7 @@
             <Component class="javax.swing.JLabel" name="lbllLogoMySQL">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/mysql.jpg"/>
+                  <Image iconType="3" name="/img/banners/mysql.jpg"/>
                 </Property>
               </Properties>
               <Constraints>
