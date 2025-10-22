@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import categories.Utilidades;
 import java.util.List;
+import model.Cidade;
 
 public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
@@ -488,6 +489,9 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             return;
         }
 
+        // Recupera a cidade selecionada no combo
+        Cidade cidadeSelecionada = (Cidade) cmbCidade.getSelectedItem();
+
         // Cria um novo objeto Cliente
         Cliente mCliente = new Cliente(
                 Utilidades.objectToInt(txtIdcliente.getText()),
@@ -496,14 +500,16 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 txtEmail.getText(),
                 txtEndereco.getText(),
                 txtTelefone.getText(),
-                cmbCidade.getSelectedItem().toString(),
+                cidadeSelecionada.getNome(), // ✅ nome da cidade
+                cidadeSelecionada.getIdCidade(), // ✅ id da cidade
+                //cmbCidade.getSelectedItem().toString(),
                 jdcDataCadastro.getDate());
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
         String msg = novo
                 ? clienteController.cadastrarCliente(mCliente)
                 : clienteController.atualizarCliente(mCliente);
-                //: clienteController.editarCliente(mCliente);
+        //: clienteController.editarCliente(mCliente);
 
         JOptionPane.showMessageDialog(rootPane, msg);
 

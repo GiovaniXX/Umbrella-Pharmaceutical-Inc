@@ -4,39 +4,38 @@ import java.util.Date;
 
 public class Cliente {
 
-    private int idcliente;
+    private int idCliente;
     private String nome;
     private String sobrenome;
     private String email;
     private String endereco;
     private String telefone;
     private String cidade;
-    private Date dataCadastro;
     private int idCidade;
-    private int idCliente;
+    private Date dataCadastro;
 
-    public Cliente(int idcliente, String nome, String sobrenome, String email, String endereco, String telefone, String IdCidade, Date dataCadastro) {
-        this.idcliente = idcliente;
+    public Cliente(int idCliente, String nome, String sobrenome, String email, String endereco, String telefone, String cidade, int idCidade, Date dataCadastro) {
+        this.idCliente = idCliente;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.endereco = endereco;
         this.telefone = telefone;
         this.cidade = cidade;
+        this.idCidade = idCidade;
         this.dataCadastro = dataCadastro;
     }
 
     public Cliente() {
-        this.idCliente = 0;
-        this.nome = "";
+        // Construtor vazio necessário para instanciar objetos sem argumentos
     }
 
-    public int getIdcliente() {
-        return idcliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setIdcliente(int idCliente) {
-        this.idcliente = idCliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNome() {
@@ -87,27 +86,19 @@ public class Cliente {
         this.cidade = cidade;
     }
 
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public int getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
-    }
-
     public int getIdCidade() {
         return idCidade;
     }
 
     public void setIdCidade(int idCidade) {
         this.idCidade = idCidade;
+    }
+
+    public Date getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(Date dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }

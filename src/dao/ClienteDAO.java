@@ -42,6 +42,9 @@ public class ClienteDAO {
     }
 
     public String editarCliente(Cliente cliente) {
+        System.out.println("Cidade: " + cliente.getCidade());
+        System.out.println("ID Cidade: " + cliente.getIdCidade());
+
         String sql = "UPDATE clientes SET nome = ?, sobrenome = ?, email = ?, endereco = ?, telefone = ?, cidade = ?, idcidade = ?, dataCadastro = ? WHERE idcliente = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, cliente.getNome());
