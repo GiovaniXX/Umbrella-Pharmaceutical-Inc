@@ -225,7 +225,6 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         cmbCidade.setBackground(new java.awt.Color(30, 30, 30));
         cmbCidade.setForeground(new java.awt.Color(255, 255, 255));
-        //cmbCidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione uma cidade...", "Blumenau", "Chapecó", "Criciúma", "Florianópolis", "Itajaí", "Joinville", "Lages", "Jaraguá do Sul", "Balneário Camboriú", "São José" }));
         getContentPane().add(cmbCidade);
         cmbCidade.setBounds(530, 180, 210, 22);
 
@@ -380,7 +379,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -405,10 +404,10 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(5, 320, 1338, 360);
+        jScrollPane1.setBounds(20, 320, 1400, 490);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -500,9 +499,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
                 txtEmail.getText(),
                 txtEndereco.getText(),
                 txtTelefone.getText(),
-                cidadeSelecionada.getNome(), // ✅ nome da cidade
-                cidadeSelecionada.getIdCidade(), // ✅ id da cidade
-                //cmbCidade.getSelectedItem().toString(),
+                cidadeSelecionada.getNome(),
+                cidadeSelecionada.getIdCidade(),
                 jdcDataCadastro.getDate());
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
@@ -732,7 +730,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
             registro[3] = c.getEmail();
             registro[4] = c.getEndereco();
             registro[5] = c.getTelefone();
-            registro[6] = clienteController.obterNomeCidade(c.getCidade());
+            registro[6] = c.getCidade();
             registro[7] = Utilidades.objectToString(c.getDataCadastro());
             cTabela.addRow(registro);
         }
@@ -820,15 +818,15 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         txtEmail.setText("");
         txtEndereco.setText("");
         txtTelefone.setText("");
-        cmbCidade.setSelectedIndex(0); // Reseta para a opção padrão       
-        jdcDataCadastro.setDate(null); // Reseta a data
+        cmbCidade.setSelectedIndex(0);
+        jdcDataCadastro.setDate(null);
     }
 
     private void carregarCidades() {
         List<model.Cidade> cidades = cidadeDAO.listarCidades();
         cmbCidade.removeAllItems();
         for (model.Cidade c : cidades) {
-            cmbCidade.addItem(c); // graças ao toString(), o nome será exibido
+            cmbCidade.addItem(c);
         }
     }
 }

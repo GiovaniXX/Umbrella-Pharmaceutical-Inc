@@ -116,6 +116,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel5);
         jLabel5.setBounds(440, 150, 70, 16);
 
+        jLabel6.setForeground(new java.awt.Color(3, 155, 216));
         jLabel6.setText("Produto.:");
         getContentPane().add(jLabel6);
         jLabel6.setBounds(457, 60, 50, 16);
@@ -331,15 +332,15 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(5, 310, 1338, 370);
+        jScrollPane1.setBounds(15, 310, 1400, 500);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1366, 768));
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1440, 853);
+        jLabel1.setBounds(0, 0, 1430, 853);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -458,12 +459,12 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
-        //jtaAnotacao.setEnabled(false);
+        jtaAnotacao.setEnabled(false);
 
         txtIdproduto.setText(id);
         txtDescricao.setText(descricao);
         txtPreco.setText(preco);
-        //jtaAnotacao.setText(anotacao);
+        jtaAnotacao.setText("Entre com a anotação do produto aqui");
 
         carregarPrimeiroRegistro();
 
@@ -485,10 +486,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
-        //jtaAnotacao.setEnabled(true);
+        jtaAnotacao.setEnabled(true);
 
         novo = false;
-        //jtaAnotacao.requestFocus();
+        jtaAnotacao.requestFocus();
 
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
@@ -659,7 +660,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
-        // jtaAnotacao.setText(""); // Descomente se for usar
+        jtaAnotacao.setText(""); // Descomente se for usar
     }
 
 }
