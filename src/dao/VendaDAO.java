@@ -52,7 +52,7 @@ public class VendaDAO {
                     p.setIdProduto(rs.getInt("idproduto"));
                     p.setProduto(rs.getString("produto"));
                     p.setDescricao(rs.getString("descricao"));
-                    p.setPreco(rs.getDouble("preco"));
+                    p.setPreco(rs.getBigDecimal("preco"));
                     return p;
                 }
             }

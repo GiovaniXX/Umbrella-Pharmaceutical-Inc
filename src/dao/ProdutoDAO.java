@@ -28,7 +28,7 @@ public class ProdutoDAO {
         String sql = "INSERT INTO produtos (produto, preco, descricao) VALUES (?, ?, ?)";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getProduto());
-            pstmt.setDouble(2, produto.getPreco());
+            pstmt.setBigDecimal(2, produto.getPreco());
             pstmt.setString(3, produto.getDescricao());
             pstmt.executeUpdate();
             return "Produto cadastrado com sucesso";
@@ -42,23 +42,25 @@ public class ProdutoDAO {
         String sql = "UPDATE produtos SET produto = ?, preco = ?, descricao = ? WHERE idproduto = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getProduto());
-            pstmt.setDouble(2, produto.getPreco());
+            pstmt.setBigDecimal(2, produto.getPreco());
             pstmt.setString(3, produto.getDescricao());
             pstmt.setInt(4, produto.getIdProduto());
             pstmt.executeUpdate();
-            return "Produto editado com sucesso";
+            return "Produto editado com sucesso!";
         } catch (SQLException e) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível editar este produto";
         }
     }
 
-    public String deletarProduto(String idProduto) {
+    //public String deletarProduto(String idProduto) {
+    public String deletarProduto(int idProduto) {
         String sql = "DELETE FROM produtos WHERE idproduto = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, idProduto);
+            //pstmt.setString(1, idProduto);
+            pstmt.setInt(1, idProduto);
             pstmt.executeUpdate();
-            return "Produto deletado com sucesso";
+            return "Produto excluído com sucesso!";
         } catch (SQLException e) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este produto";
@@ -73,7 +75,7 @@ public class ProdutoDAO {
                 Produto produto = new Produto(
                         rs.getInt("idproduto"),
                         rs.getString("produto"),
-                        rs.getDouble("preco"),
+                        rs.getBigDecimal("preco"),
                         rs.getString("descricao")
                 );
                 produtos.add(produto);
@@ -103,7 +105,7 @@ public class ProdutoDAO {
                     return new Produto(
                             Utilidades.stringToInt(rs.getString("idproduto")),
                             rs.getString("produto"),
-                            rs.getDouble("preco"),
+                            rs.getBigDecimal("preco"),
                             rs.getString("descricao")
                     );
                 }
@@ -123,7 +125,7 @@ public class ProdutoDAO {
                     return new Produto(
                             rs.getInt("idproduto"),
                             rs.getString("produto"),
-                            rs.getDouble("preco"),
+                            rs.getBigDecimal("preco"),
                             rs.getString("descricao")
                     );
                 }
@@ -147,5 +149,19 @@ public class ProdutoDAO {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return "";
+    }
+
+    public String inserirProduto(Produto p) {
+        String sql = "INSERT INTO produtos (produto, descricao, preco) VALUES (?, ?, ?)";
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, p.getProduto());
+            pstmt.setString(2, p.getDescricao());
+            pstmt.setBigDecimal(3, p.getPreco());
+            pstmt.executeUpdate();
+            return "Produto inserido com sucesso!";
+        } catch (SQLException e) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
+            return "Erro ao inserir produto.";
+        }
     }
 }

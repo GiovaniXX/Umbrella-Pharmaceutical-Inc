@@ -28,8 +28,13 @@ public class ProdutoController {
         return dao.editarProduto(produto);
     }
 
+//    public String excluirProduto(String idProduto) {
+//        return dao.deletarProduto(idProduto);
+//    }
+    
     public String excluirProduto(String idProduto) {
-        return dao.deletarProduto(idProduto);
+        int id = Integer.parseInt(idProduto);
+        return dao.deletarProduto(id);
     }
 
     public List<Produto> listarProdutos() {

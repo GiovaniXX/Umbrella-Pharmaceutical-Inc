@@ -1,4 +1,4 @@
-package Estrutura_de_testes_JUnit;
+package Estrutura_de_testes_JUnit_4;
 
 import java.sql.Connection;
 import java.sql.Statement;

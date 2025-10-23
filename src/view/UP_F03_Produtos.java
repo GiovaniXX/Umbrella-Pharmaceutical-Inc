@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import categories.Utilidades;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -420,7 +421,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         Produto mProduto = new Produto(
                 Utilidades.objectToInt(txtIdproduto.getText()),
                 txtDescricao.getText(),
-                preco,
+                new BigDecimal(String.valueOf(preco)),
                 txtDescricao.getText()
         );
 
