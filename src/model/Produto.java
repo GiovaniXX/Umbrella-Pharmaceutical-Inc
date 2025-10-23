@@ -8,15 +8,17 @@ public class Produto {
     private String produto;
     private BigDecimal preco;
     private String descricao;
+    private String observacao;
 
     public Produto() {
     }
 
-    public Produto(int idproduto, String produto, BigDecimal preco, String descricao) {
+    public Produto(int idproduto, String produto, BigDecimal preco, String descricao, String observacao) {
         this.idproduto = idproduto;
         this.produto = produto;
         this.preco = preco;
         this.descricao = descricao;
+        this.observacao = observacao;
     }
 
     public int getIdProduto() {
@@ -49,5 +51,13 @@ public class Produto {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
     }
 }

@@ -18,14 +18,15 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel pTabela;
 
-    private String id;
+    private String idProduto;
     private String produto;
     private String preco;
     private String descricao;
+    private String observacao;
 
     public UP_F03_Produtos() {
         initComponents();
-        pTabela = new DefaultTableModel(new Object[]{"ID", "Produto", "Descrição", "Preço"}, 0);
+        pTabela = new DefaultTableModel(new Object[]{"Id", "Produto", "Descrição", "Preço", "Observação"}, 0);
         tblTabela.setModel(pTabela);
 
         preencherTabela();
@@ -63,7 +64,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtaAnotacao = new javax.swing.JTextArea();
+        jtaObservacao = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -112,7 +113,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Anotação.:");
+        jLabel5.setText("Observação.:");
         jLabel5.setEnabled(false);
         getContentPane().add(jLabel5);
         jLabel5.setBounds(440, 150, 70, 16);
@@ -279,12 +280,12 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(680, 270, 73, 25);
 
-        jtaAnotacao.setBackground(new java.awt.Color(30, 30, 30));
-        jtaAnotacao.setColumns(20);
-        jtaAnotacao.setForeground(new java.awt.Color(3, 155, 216));
-        jtaAnotacao.setRows(5);
-        jtaAnotacao.setEnabled(false);
-        jScrollPane2.setViewportView(jtaAnotacao);
+        jtaObservacao.setBackground(new java.awt.Color(30, 30, 30));
+        jtaObservacao.setColumns(20);
+        jtaObservacao.setForeground(new java.awt.Color(3, 155, 216));
+        jtaObservacao.setRows(5);
+        jtaObservacao.setEnabled(false);
+        jScrollPane2.setViewportView(jtaObservacao);
 
         getContentPane().add(jScrollPane2);
         jScrollPane2.setBounds(520, 150, 310, 50);
@@ -298,14 +299,14 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Produto", "Descricao", "Preco"
+                "Id", "Produto", "Descrição", "Preço", "Observação"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -358,14 +359,16 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
 
+        txtProduto.setEnabled(true);
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
-        jtaAnotacao.setEnabled(true);
+        jtaObservacao.setEnabled(true);
 
         txtIdproduto.setText("");
+        txtProduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
-        jtaAnotacao.setText("");
+        jtaObservacao.setText("");
 
         novo = true;
         txtIdproduto.requestFocus();
@@ -420,9 +423,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         // Cria um novo objeto Produto
         Produto mProduto = new Produto(
                 Utilidades.objectToInt(txtIdproduto.getText()),
-                txtDescricao.getText(),
+                txtProduto.getText(),
                 new BigDecimal(String.valueOf(preco)),
-                txtDescricao.getText()
+                txtDescricao.getText(),
+                jtaObservacao.getText()
         );
 
         // Mensagem a ser exibida após a operação de adicionar ou editar
@@ -441,6 +445,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         // Atualiza a tabela
         preencherTabela();
 
+        carregarProdutoAtual();
+
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnSalvarActionPerformed
@@ -458,16 +464,19 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnCancelar.setEnabled(false);
 
         txtIdproduto.setEnabled(false);
+        txtProduto.setEnabled(false);
         txtDescricao.setEnabled(false);
         txtPreco.setEnabled(false);
-        jtaAnotacao.setEnabled(false);
+        jtaObservacao.setEnabled(false);
 
-        txtIdproduto.setText(id);
+        txtIdproduto.setText(idProduto);
+        txtProduto.setText(produto);
         txtDescricao.setText(descricao);
         txtPreco.setText(preco);
-        jtaAnotacao.setText("Entre com a anotação do produto aqui");
+        jtaObservacao.setText("Entre com a observação sobre o produto aqui");
 
         carregarPrimeiroRegistro();
+        carregarProdutoAtual();
 
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
@@ -485,12 +494,13 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         btnSalvar.setEnabled(true);
         btnCancelar.setEnabled(true);
 
+        txtProduto.setEnabled(true);
         txtDescricao.setEnabled(true);
         txtPreco.setEnabled(true);
-        jtaAnotacao.setEnabled(true);
+        jtaObservacao.setEnabled(true);
 
         novo = false;
-        jtaAnotacao.requestFocus();
+        jtaObservacao.requestFocus();
 
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
@@ -508,6 +518,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         produtoAtual = 0;
         mostrarRegistro();
 
+//        produtoAtual = 0;
+//        carregarProdutoAtual();
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -516,6 +528,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         produtoAtual = produtoController.contarProdutos() - 1;
         mostrarRegistro();
 
+//        produtoAtual = produtos.size() - 1;
+//        carregarProdutoAtual();
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -527,6 +541,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
+//        if (produtoAtual < produtos.size() - 1) {
+//            produtoAtual++;
+//            carregarProdutoAtual();
+//        }
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnProximoActionPerformed
@@ -538,6 +556,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
+//        if (produtoAtual > 0) {
+//            produtoAtual--;
+//            carregarProdutoAtual();
+//        }
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -586,6 +608,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtProduto.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 1)));
         txtDescricao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 2)));
         txtPreco.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 3)));
+        jtaObservacao.setText(Utilidades.objectToString(tblTabela.getValueAt(produtoAtual, 4)));
     }
 
     private void preencherTabela() {
@@ -598,7 +621,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
                 p.getIdProduto(),
                 p.getProduto(),
                 p.getDescricao(),
-                p.getPreco()
+                p.getPreco(),
+                p.getObservacao()
             });
         }
     }
@@ -611,7 +635,23 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             txtProduto.setText(p.getProduto());
             txtDescricao.setText(p.getDescricao());
             txtPreco.setText(String.valueOf(p.getPreco()));
+            jtaObservacao.setText(p.getObservacao());
         }
+    }
+
+    private void carregarProdutoAtual() {
+        if (produtos == null || produtos.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum produto disponível.");
+            return;
+        }
+
+        Produto p = produtos.get(produtoAtual);
+
+        txtIdproduto.setText(String.valueOf(p.getIdProduto()));
+        txtProduto.setText(p.getProduto());
+        txtDescricao.setText(p.getDescricao());
+        txtPreco.setText(p.getPreco().toString());
+        jtaObservacao.setText(p.getObservacao());
     }
 
 
@@ -634,7 +674,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jtaAnotacao;
+    private javax.swing.JTextArea jtaObservacao;
     private javax.swing.JTable tblTabela;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtIdproduto;
@@ -659,9 +699,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     // Método auxiliar para limpar os campos de entrada
     private void clearInputFields() {
         txtIdproduto.setText("");
+        txtProduto.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");
-        jtaAnotacao.setText(""); // Descomente se for usar
+        jtaObservacao.setText("");
     }
 
 }

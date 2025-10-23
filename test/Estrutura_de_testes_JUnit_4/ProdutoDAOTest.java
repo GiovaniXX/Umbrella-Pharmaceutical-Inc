@@ -12,20 +12,20 @@ public class ProdutoDAOTest {
 
     @Before
     public void prepararBanco() throws SQLException {
-        try (Connection conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", ""); 
-                Statement stmt = conn.createStatement()) {
+        try (Connection conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", ""); Statement stmt = conn.createStatement()) {
             stmt.execute("CREATE TABLE produtos ("
                     + "idProduto INT AUTO_INCREMENT PRIMARY KEY, "
                     + "produto VARCHAR(100), "
                     + "preco DECIMAL, "
-                    + "descricao VARCHAR(255))");
+                    + "descricao VARCHAR(255), "
+                    + "observacao VARCHAR(100))"
+            );
         }
     }
 
     @After
     public void limparBanco() throws SQLException {
-        try (Connection conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", ""); 
-                Statement stmt = conn.createStatement()) {
+        try (Connection conn = DriverManager.getConnection("jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1", "sa", ""); Statement stmt = conn.createStatement()) {
             stmt.execute("DROP TABLE produtos");
         }
     }
@@ -52,7 +52,7 @@ public class ProdutoDAOTest {
     @Test
     public void testEdicaoProduto() {
         ProdutoDAO dao = new ProdutoDAO();
-        Produto produto = new Produto(0, "Dipirona 500mg", new BigDecimal("8.90"), "Analgésico e antitérmico");
+        Produto produto = new Produto(0, "Dipirona 500mg", new BigDecimal("8.90"), "Analgésico e antitérmico", "observacao de teste");
         dao.inserirProduto(produto);
 
         Produto produtoEditavel = dao.getProdutoPorNome("Dipirona 500mg");
@@ -70,7 +70,7 @@ public class ProdutoDAOTest {
     @Test
     public void testExclusaoProduto() {
         ProdutoDAO dao = new ProdutoDAO();
-        Produto produto = new Produto(0, "Dipirona 500mg", new BigDecimal("8.90"), "Analgésico e antitérmico");
+        Produto produto = new Produto(0, "Dipirona 500mg", new BigDecimal("8.90"), "Analgésico e antitérmico", "observacao de teste");
         dao.inserirProduto(produto);
 
         Produto produtoParaExcluir = dao.getProdutoPorNome("Dipirona 500mg");

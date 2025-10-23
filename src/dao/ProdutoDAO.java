@@ -25,11 +25,12 @@ public class ProdutoDAO {
     }
 
     public String adicionarProduto(Produto produto) {
-        String sql = "INSERT INTO produtos (produto, preco, descricao) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO produtos (produto, preco, descricao, observacao) VALUES (?, ?, ?, ?)";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getProduto());
             pstmt.setBigDecimal(2, produto.getPreco());
             pstmt.setString(3, produto.getDescricao());
+            pstmt.setString(4, produto.getObservacao());
             pstmt.executeUpdate();
             return "Produto cadastrado com sucesso";
         } catch (SQLException e) {
@@ -39,12 +40,13 @@ public class ProdutoDAO {
     }
 
     public String editarProduto(Produto produto) {
-        String sql = "UPDATE produtos SET produto = ?, preco = ?, descricao = ? WHERE idproduto = ?";
+        String sql = "UPDATE produtos SET produto = ?, preco = ?, descricao = ?, observacao = ? WHERE idproduto = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getProduto());
             pstmt.setBigDecimal(2, produto.getPreco());
             pstmt.setString(3, produto.getDescricao());
-            pstmt.setInt(4, produto.getIdProduto());
+            pstmt.setString(4, produto.getObservacao());
+            pstmt.setInt(5, produto.getIdProduto());
             pstmt.executeUpdate();
             return "Produto editado com sucesso!";
         } catch (SQLException e) {
@@ -76,7 +78,8 @@ public class ProdutoDAO {
                         rs.getInt("idproduto"),
                         rs.getString("produto"),
                         rs.getBigDecimal("preco"),
-                        rs.getString("descricao")
+                        rs.getString("descricao"),
+                        rs.getString("observacao")
                 );
                 produtos.add(produto);
             }
@@ -106,7 +109,8 @@ public class ProdutoDAO {
                             Utilidades.stringToInt(rs.getString("idproduto")),
                             rs.getString("produto"),
                             rs.getBigDecimal("preco"),
-                            rs.getString("descricao")
+                            rs.getString("descricao"),
+                            rs.getString("observacao")
                     );
                 }
             }
@@ -126,7 +130,8 @@ public class ProdutoDAO {
                             rs.getInt("idproduto"),
                             rs.getString("produto"),
                             rs.getBigDecimal("preco"),
-                            rs.getString("descricao")
+                            rs.getString("descricao"),
+                            rs.getString("observacao")
                     );
                 }
             }
@@ -152,11 +157,12 @@ public class ProdutoDAO {
     }
 
     public String inserirProduto(Produto p) {
-        String sql = "INSERT INTO produtos (produto, descricao, preco) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO produtos (produto, preco, descricao, observacao) VALUES (?, ?, ?, ?)";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, p.getProduto());
-            pstmt.setString(2, p.getDescricao());
-            pstmt.setBigDecimal(3, p.getPreco());
+            pstmt.setBigDecimal(2, p.getPreco());
+            pstmt.setString(3, p.getDescricao());
+            pstmt.setString(4, p.getObservacao());
             pstmt.executeUpdate();
             return "Produto inserido com sucesso!";
         } catch (SQLException e) {
