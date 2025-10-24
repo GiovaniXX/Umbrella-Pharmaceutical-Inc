@@ -2,6 +2,8 @@ package dao;
 
 import model.Cliente;
 import model.Produto;
+import java.math.BigDecimal;
+
 import util.Conexao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,9 +13,18 @@ import java.util.logging.Logger;
 
 public class VendaDAO {
 
+    private Connection conn;
+
+    public VendaDAO(Connection conn) {
+        if (conn == null) {
+            throw new IllegalArgumentException("Conexão não pode ser nula");
+        }
+        this.conn = conn;
+    }
+
     public int gerarNumeroVenda() {
         String sql = "SELECT MAX(numerovenda) FROM vendas";
-        try (Connection conn = Conexao.getConnection(); Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+        try (Statement stmt = this.conn.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next()) {
                 return rs.getInt(1) + 1;
             }
@@ -24,15 +35,14 @@ public class VendaDAO {
     }
 
     public Cliente buscarClientePorNome(String nome) {
-        String sql = "SELECT * FROM cliente WHERE nome = ?";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT * FROM clientes WHERE nome = ?";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
             pstmt.setString(1, nome);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     Cliente c = new Cliente();
                     c.setIdCliente(rs.getInt("idcliente"));
                     c.setNome(rs.getString("nome"));
-                    // outros campos...
                     return c;
                 }
             }
@@ -43,8 +53,8 @@ public class VendaDAO {
     }
 
     public Produto buscarProdutoPorNome(String nome) {
-        String sql = "SELECT * FROM produto WHERE produto = ?";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "SELECT * FROM produtos WHERE produto = ?";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
             pstmt.setString(1, nome);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
@@ -62,43 +72,53 @@ public class VendaDAO {
         return null;
     }
 
-    public void salvarVenda(int numeroVenda, int idCliente, java.util.Date data, double valorTotal, int quantidadeTotal,
-            String nomeProduto, String descricaoProduto, int idFuncionario, int idFormaPagamento) {
-        String sql = "INSERT INTO vendas (numerovenda, idcliente, datavenda, valortotal, quantidadetotal, nomeproduto, descricaoproduto, idfuncionario, idformapagamento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, numeroVenda);
-            pstmt.setInt(2, idCliente);
-            pstmt.setDate(3, new java.sql.Date(data.getTime()));
-            pstmt.setDouble(4, valorTotal);
-            pstmt.setInt(5, quantidadeTotal);
-            pstmt.setString(6, nomeProduto);
-            pstmt.setString(7, descricaoProduto);
-            pstmt.setInt(8, idFuncionario);
-            pstmt.setInt(9, idFormaPagamento);
+    public int salvarVenda(int idUsuario, int numeroVenda, int idCliente, java.util.Date dataVenda, double valorTotal,
+            int quantidade, String produto, String descricao, BigDecimal preco, int idProduto) {
+
+        String sql = "INSERT INTO vendas (idUsuario, numerovenda, idCliente, dataVenda, valortotal, quantidade, produto, descricao, preco, idProduto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setInt(1, idUsuario);
+            pstmt.setInt(2, numeroVenda);
+            pstmt.setInt(3, idCliente);
+            pstmt.setTimestamp(4, new java.sql.Timestamp(dataVenda.getTime())); // datetime
+            pstmt.setDouble(5, valorTotal);
+            pstmt.setInt(6, quantidade);
+            pstmt.setString(7, produto);
+            pstmt.setString(8, descricao);
+            pstmt.setBigDecimal(9, preco);
+            pstmt.setInt(10, idProduto);
+
             pstmt.executeUpdate();
+
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    return rs.getInt(1); // retorna o idVenda gerado
+                }
+            }
         } catch (SQLException e) {
-            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao salvar venda", e);
         }
+        return -1;
     }
 
-    public void salvarDetalheVenda(int numeroVenda, int idProduto, double preco, int quantidade) {
-        String sql = "INSERT INTO detalhesvenda (numerovenda, idproduto, preco, quantidade) VALUES (?, ?, ?, ?)";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, numeroVenda);
+    public void salvarDetalheVenda(int idVenda, int idProduto, BigDecimal preco, int quantidade) {
+        String sql = "INSERT INTO detalhe_venda (idVenda, idProduto, preco, quantidade) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
+            pstmt.setInt(1, idVenda);
             pstmt.setInt(2, idProduto);
-            pstmt.setDouble(3, preco);
+            pstmt.setBigDecimal(3, preco); // ✅ usa BigDecimal
             pstmt.setInt(4, quantidade);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao salvar os detalhes da venda", e);
         }
     }
 
     public List<String> listarNomesClientes() {
         List<String> nomes = new ArrayList<>();
-        String sql = "SELECT nome FROM cliente ORDER BY nome";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-
+        String sql = "SELECT nome FROM clientes ORDER BY nome";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 nomes.add(rs.getString("nome"));
             }
@@ -110,9 +130,8 @@ public class VendaDAO {
 
     public List<String> listarNomesProdutos() {
         List<String> produtos = new ArrayList<>();
-        String sql = "SELECT produto FROM produto ORDER BY produto";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
-
+        String sql = "SELECT produto FROM produtos ORDER BY produto";
+        try (PreparedStatement pstmt = this.conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
                 produtos.add(rs.getString("produto"));
             }

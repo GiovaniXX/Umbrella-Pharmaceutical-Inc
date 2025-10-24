@@ -1,16 +1,19 @@
 package controller;
 
 import dao.VendaDAO;
+import java.math.BigDecimal;
+import java.sql.Connection;
 import model.Cliente;
 import model.Produto;
 import java.util.Date;
 
 public class VendaController {
 
+    Connection conn;
     private final VendaDAO dao;
 
     public VendaController() {
-        dao = new VendaDAO();
+        dao = new VendaDAO(conn);
     }
 
     public int getNumeroVenda() {
@@ -25,13 +28,12 @@ public class VendaController {
         return dao.buscarProdutoPorNome(nome);
     }
 
-    public void adicionarVenda(int numeroVenda, int idCliente, Date data, double valorTotal, int quantidadeTotal,
-            String nomeProduto, String descricaoProduto, int idFuncionario, int idFormaPagamento) {
-        dao.salvarVenda(numeroVenda, idCliente, data, valorTotal, quantidadeTotal,
-                nomeProduto, descricaoProduto, idFuncionario, idFormaPagamento);
+    public int adicionarVenda(int idUsuario, int numeroVenda, Date data, double valorTotal, int quantidade,
+            int idCliente, String produto, String descricao, BigDecimal preco, int idProduto) {
+        return dao.salvarVenda(idUsuario, numeroVenda, idCliente, data, valorTotal, quantidade, produto, descricao, preco, idProduto);
     }
 
-    public void adicionarDetalheVenda(int numeroVenda, int idProduto, double preco, int quantidade) {
-        dao.salvarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
+    public void adicionarDetalheVenda(int idVenda, int idProduto, BigDecimal preco, int quantidade) {
+        dao.salvarDetalheVenda(idVenda, idProduto, preco, quantidade);
     }
 }

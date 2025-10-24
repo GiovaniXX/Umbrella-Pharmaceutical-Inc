@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import util.Conexao;
+import util.SessaoUsuario;
 
 public class UP_F00_Login extends javax.swing.JFrame {
 
@@ -242,6 +243,10 @@ public class UP_F00_Login extends javax.swing.JFrame {
             textField_User.requestFocusInWindow();
             return;
         }
+
+        // Recupera o usuário autenticado
+        model.Usuario usuarioLogado = usuarioController.buscarUsuarioPorCredenciais(usuario, senha, chave);
+        SessaoUsuario.setIdUsuario(usuarioLogado.getIdUsuario());
 
         String successMessage = "<html><font color='green'><b>Conexão bem sucedida!</b></font></html>";
         showMessageWithDuration(successMessage, "Sucesso", JOptionPane.INFORMATION_MESSAGE, 1000);

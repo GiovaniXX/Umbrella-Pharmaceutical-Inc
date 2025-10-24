@@ -42,7 +42,7 @@ public class Conexao {
         }
     }
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws SQLException {
         try {
             if (MODO.equals("TEST")) {
                 Class.forName("org.h2.Driver");

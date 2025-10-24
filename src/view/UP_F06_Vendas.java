@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import categories.Utilidades;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -12,7 +14,9 @@ import java.util.logging.Logger;
 import javax.swing.SwingConstants;
 import model.Cliente;
 import model.Produto;
+import java.sql.Connection;
 import util.Conexao;
+import util.SessaoUsuario;
 
 public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
@@ -20,7 +24,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     private final controller.ProdutoController produtoController = new controller.ProdutoController();
     private final controller.VendaController vendaController = new controller.VendaController();
 
-    private final model.Dados dados = new model.Dados();
+    private final model.Dados dados;
 
     public Conexao conexao;
     private final DefaultTableModel vTabela;
@@ -31,10 +35,17 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     public UP_F06_Vendas() {
         initComponents();
+        try {
+            Connection conn = Conexao.getConnection(); // usa sua classe util
+            dados = new model.Dados(conn); // ✅ passa a conexão corretamente
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao conectar com o banco", e);
+        }
+
+        int idUsuario = SessaoUsuario.getIdUsuario();
         vTabela = new DefaultTableModel(null, new String[]{"Id", "Produto", "Descrição", "Preço", "Quantidade", "Data"});
         tblTabela.setModel(vTabela);
 
-        // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < 6; i++) {
@@ -114,17 +125,17 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Total Geral.:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, -1, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 790, -1, 20));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Quantidade");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 630, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 770, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Valor");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 630, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 770, -1, -1));
 
         txtQuantidade.setBackground(new java.awt.Color(30, 30, 30));
         txtQuantidade.setForeground(new java.awt.Color(3, 155, 216));
@@ -138,7 +149,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         txtTotalQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalQuantidade.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalQuantidade.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 650, 110, -1));
+        getContentPane().add(txtTotalQuantidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 790, 110, -1));
 
         txtTotalValor.setBackground(new java.awt.Color(30, 30, 30));
         txtTotalValor.setForeground(new java.awt.Color(3, 155, 216));
@@ -146,7 +157,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         txtTotalValor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txtTotalValor.setCaretColor(new java.awt.Color(0, 0, 0));
         txtTotalValor.setPreferredSize(new java.awt.Dimension(71, 22));
-        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 650, 110, -1));
+        getContentPane().add(txtTotalValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 790, 110, -1));
 
         cmbCliente.setBackground(new java.awt.Color(30, 30, 30));
         cmbCliente.setForeground(new java.awt.Color(3, 155, 216));
@@ -263,9 +274,9 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             tblTabela.getColumnModel().getColumn(5).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 190, 1350, 430));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 190, 1410, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1360, 768));
@@ -344,38 +355,60 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        int idUsuario = SessaoUsuario.getIdUsuario();
+
         if (cmbCliente.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Selecione um cliente");
             return;
         }
 
-        // Obtém o número da venda
+        // Obtém o número da venda (sequencial visível)
         int numeroVenda = vendaController.getNumeroVenda();
+
         // Obtém o ID do cliente selecionado
         int idCliente = vendaController.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
+
         // Atualiza os valores totais
         totalGeral();
+
         // Obtém o valor total da venda
         double valorVenda = Double.parseDouble(txtTotalValor.getText());
+
         // Obtém a quantidade total da venda
         int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText());
 
         // Obtém os valores dinamicamente da tabela tblTabela
-        String nomeProduto = tblTabela.getValueAt(0, 1).toString(); // Supondo que a coluna 1 é o nome do produto
-        String descricaoProduto = tblTabela.getValueAt(0, 2).toString(); // Supondo que a coluna 2 é a descrição do produto
+        String nomeProduto = tblTabela.getValueAt(0, 1).toString();
+        String descricaoProduto = tblTabela.getValueAt(0, 2).toString();
 
-        //dados.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal);
-        vendaController.adicionarVenda(numeroVenda, idCliente, new java.util.Date(), valorVenda, quantidadeTotal,
-                nomeProduto, descricaoProduto, 1, 1);
+        // Salva a venda e captura o idVenda gerado
+        BigDecimal preco = new BigDecimal("3500.00");
+        int idProduto = 1;
 
-        // Salvar detalhes da venda
-        for (int i = 0; i < tblTabela.getRowCount(); i++) {
-            int idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
-            double preco = Double.parseDouble(tblTabela.getValueAt(i, 3).toString());
-            int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
-            vendaController.adicionarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
+        int idVenda = vendaController.adicionarVenda(idUsuario, numeroVenda, new Date(), valorVenda,
+                quantidadeTotal, idCliente, nomeProduto, descricaoProduto,
+                preco, idProduto);
+
+        // Verifica se a venda foi salva com sucesso
+        if (idVenda == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda.");
+            return;
         }
 
+        for (int i = 0; i < tblTabela.getRowCount(); i++) {
+            idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
+            preco = new BigDecimal(tblTabela.getValueAt(i, 3).toString());
+            int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
+            vendaController.adicionarDetalheVenda(idVenda, idProduto, preco, quantidade);
+        }
+
+//        // Salvar detalhes da venda usando o idVenda real
+//        for (int i = 0; i < tblTabela.getRowCount(); i++) {
+//            int idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
+//            double preco = Double.parseDouble(tblTabela.getValueAt(i, 3).toString());
+//            int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
+//            vendaController.adicionarDetalheVenda(idVenda, idProduto, preco, quantidade);
+//        }
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
         limparTabela();
         totalGeral();

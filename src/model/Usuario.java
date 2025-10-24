@@ -20,6 +20,10 @@ public class Usuario {
         this.idPerfil = idPerfil;
     }
 
+    public Usuario() {
+        // construtor padrão
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }

@@ -1,14 +1,20 @@
 package model;
 
 import dao.VendaDAO;
+import java.math.BigDecimal;
 import model.Cliente;
 import model.Produto;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
 
 public class Dados {
 
-    private final VendaDAO vendaDAO = new VendaDAO();
+    private final VendaDAO vendaDAO;
+
+    public Dados(Connection conn) {
+        this.vendaDAO = new VendaDAO(conn);
+    }
 
     public int getNumeroVenda() {
         return vendaDAO.gerarNumeroVenda();
@@ -30,13 +36,14 @@ public class Dados {
         return vendaDAO.listarNomesProdutos();
     }
 
-    public void adicionarVenda(int numeroVenda, int idCliente, java.util.Date data, double valorTotal, int quantidadeTotal,
-            String nomeProduto, String descricaoProduto, int idFuncionario, int idFormaPagamento) {
-        vendaDAO.salvarVenda(numeroVenda, idCliente, data, valorTotal, quantidadeTotal,
-                nomeProduto, descricaoProduto, idFuncionario, idFormaPagamento);
+    public void adicionarVenda(int idUsuario, int numeroVenda, int idCliente, java.util.Date data, double valorTotal,
+            int quantidadeTotal, String nomeProduto, String descricaoProduto,
+            BigDecimal preco, int idProduto) {
+        vendaDAO.salvarVenda(idUsuario, numeroVenda, idCliente, data, valorTotal, quantidadeTotal,
+                nomeProduto, descricaoProduto, preco, idProduto);
     }
 
-    public void adicionarDetalheVenda(int numeroVenda, int idProduto, double preco, int quantidade) {
+    public void adicionarDetalheVenda(int numeroVenda, int idProduto, BigDecimal preco, int quantidade) {
         vendaDAO.salvarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
     }
 }
