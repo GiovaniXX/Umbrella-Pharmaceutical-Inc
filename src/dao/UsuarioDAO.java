@@ -42,13 +42,14 @@ public class UsuarioDAO {
     }
 
     public String editarUsuario(Usuario usuario) {
-        String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, senha = ?, idPerfil = ? WHERE idusuario = ?";
+        String sql = "UPDATE usuarios SET nome = ?, sobrenome = ?, usuario = ?, senha = ?, idPerfil = ? WHERE idusuario = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usuario.getNome());
             pstmt.setString(2, usuario.getSobrenome());
-            pstmt.setString(3, usuario.getSenha());
-            pstmt.setInt(4, usuario.getIdPerfil());
-            pstmt.setInt(5, usuario.getIdUsuario());
+            pstmt.setString(3, usuario.getUsuario());
+            pstmt.setString(4, usuario.getSenha());
+            pstmt.setInt(5, usuario.getIdPerfil());
+            pstmt.setInt(6, usuario.getIdUsuario());
             pstmt.executeUpdate();
             return "Usuário editado com sucesso";
         } catch (SQLException e) {
