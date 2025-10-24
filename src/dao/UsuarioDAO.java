@@ -24,18 +24,20 @@ public class UsuarioDAO {
     }
 
     public String adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (nome, sobrenome, senha, chave, idPerfil) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO usuarios (idUsuario, nome, sobrenome, usuario, senha, chave, perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, usuario.getNome());
-            pstmt.setString(2, usuario.getSobrenome());
-            pstmt.setString(3, usuario.getSenha());
-            pstmt.setString(4, usuario.getChave());
-            pstmt.setInt(5, usuario.getIdPerfil());
+            pstmt.setInt(1, usuario.getIdUsuario());               // ✅ idUsuario
+            pstmt.setString(2, usuario.getNome());                 // ✅ nome
+            pstmt.setString(3, usuario.getSobrenome());            // ✅ sobrenome
+            pstmt.setString(4, usuario.getUsuario());              // ✅ usuario
+            pstmt.setString(5, usuario.getSenha());                // ✅ senha
+            pstmt.setString(6, usuario.getChave());                // ✅ chave
+            pstmt.setInt(7, usuario.getIdPerfil());
             pstmt.executeUpdate();
-            return "Usuário cadastrado com sucesso";
+            return "Usuário cadastrado com sucesso!";
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
-            return "Não foi possível cadastrar este usuário";
+            return "Não foi possível cadastrar este usuário!";
         }
     }
 
@@ -90,7 +92,7 @@ public class UsuarioDAO {
     }
 
     public Usuario getUsuarioPorNome(String nomeUsuario) {
-        String sql = "SELECT idusuario, nome, sobrenome, senha, chave, idPerfil FROM usuarios WHERE nome = ?";
+        String sql = "SELECT idusuario, nome, sobrenome, usuario, senha, chave, idPerfil FROM usuarios WHERE nome = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nomeUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -99,6 +101,7 @@ public class UsuarioDAO {
                             rs.getInt("idusuario"),
                             rs.getString("nome"),
                             rs.getString("sobrenome"),
+                            rs.getString("usuario"),
                             rs.getString("senha"),
                             rs.getString("chave"),
                             rs.getInt("idPerfil")
@@ -125,7 +128,7 @@ public class UsuarioDAO {
     }
 
     public boolean validarUsuario(String usuario, String senha, String chave) {
-        String sql = "SELECT 1 FROM usuarios WHERE idusuario = ? AND senha = ? AND chave = ?";
+        String sql = "SELECT 1 FROM usuarios WHERE usuario = ? AND senha = ? AND chave = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usuario);
             pstmt.setString(2, senha);
@@ -148,6 +151,7 @@ public class UsuarioDAO {
                         rs.getInt("idusuario"),
                         rs.getString("nome"),
                         rs.getString("sobrenome"),
+                        rs.getString("usuario"),
                         rs.getString("senha"),
                         rs.getString("chave"),
                         rs.getInt("idperfil")

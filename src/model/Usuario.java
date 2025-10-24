@@ -5,13 +5,16 @@ public class Usuario {
     private int idUsuario;
     private String nome;
     private String sobrenome;
+    private String usuario;
     private String senha;
     private String chave;
     private int idPerfil;
 
-    public Usuario(int idUsuario, String nome, String sobrenome, String senha, String chave, int idPerfil) {
+    public Usuario(int idUsuario, String nome, String sobrenome, String usuario, String senha, String chave, int idPerfil) {
+        this.idUsuario = idUsuario;
         this.nome = nome;
         this.sobrenome = sobrenome;
+        this.usuario = usuario;
         this.senha = senha;
         this.chave = chave;
         this.idPerfil = idPerfil;
@@ -39,6 +42,14 @@ public class Usuario {
 
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getSenha() {
@@ -70,6 +81,3 @@ public class Usuario {
         return "Usuario{" + "idPerfil=" + idPerfil + '}';
     }
 }
-/**
- * 01000111 01101001 01101111 01110110 01100001 01101110 01101110 01101001
- */

@@ -26,6 +26,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         uTabela = new DefaultTableModel(null, new String[]{"Id", "Nome", "Sobrenome", "Perfil"});
         tblUsuarios.setModel(uTabela);
+
         // Centraliza o texto nas colunas
         DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
         dtcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -49,8 +50,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtIdusuario = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtSNome = new javax.swing.JTextField();
+        jpfUsuario = new javax.swing.JPasswordField();
         jpfSenha = new javax.swing.JPasswordField();
-        jpfConfirmarSenha = new javax.swing.JPasswordField();
         jpfChave = new javax.swing.JPasswordField();
         jpfConfirmarChave = new javax.swing.JPasswordField();
         btnPrimeiro = new javax.swing.JButton();
@@ -111,12 +112,12 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel5.setText("Senha.:");
+        jLabel5.setText("Usuario.:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 70, -1));
 
         jLabel6.setForeground(new java.awt.Color(3, 155, 216));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Conf Senha.:");
+        jLabel6.setText("Senha.:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 90, -1));
 
         jLabel7.setForeground(new java.awt.Color(3, 155, 216));
@@ -129,6 +130,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         jLabel8.setForeground(new java.awt.Color(3, 155, 216));
         jLabel8.setText("Conf Chave.:");
+        jLabel8.setEnabled(false);
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, -1, -1));
 
         txtIdusuario.setBackground(new java.awt.Color(30, 30, 30));
@@ -164,6 +166,17 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtSNome.setSelectionColor(new java.awt.Color(30, 30, 30));
         getContentPane().add(txtSNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 310, -1));
 
+        jpfUsuario.setBackground(new java.awt.Color(30, 30, 30));
+        jpfUsuario.setForeground(new java.awt.Color(2, 154, 184));
+        jpfUsuario.setBorder(null);
+        jpfUsuario.setCaretColor(new java.awt.Color(30, 30, 30));
+        jpfUsuario.setDisabledTextColor(new java.awt.Color(30, 30, 30));
+        jpfUsuario.setEnabled(false);
+        jpfUsuario.setPreferredSize(new java.awt.Dimension(71, 22));
+        jpfUsuario.setSelectedTextColor(new java.awt.Color(30, 30, 30));
+        jpfUsuario.setSelectionColor(new java.awt.Color(30, 30, 30));
+        getContentPane().add(jpfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 310, -1));
+
         jpfSenha.setBackground(new java.awt.Color(30, 30, 30));
         jpfSenha.setForeground(new java.awt.Color(2, 154, 184));
         jpfSenha.setBorder(null);
@@ -173,18 +186,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         jpfSenha.setPreferredSize(new java.awt.Dimension(71, 22));
         jpfSenha.setSelectedTextColor(new java.awt.Color(30, 30, 30));
         jpfSenha.setSelectionColor(new java.awt.Color(30, 30, 30));
-        getContentPane().add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 310, -1));
-
-        jpfConfirmarSenha.setBackground(new java.awt.Color(30, 30, 30));
-        jpfConfirmarSenha.setForeground(new java.awt.Color(2, 154, 184));
-        jpfConfirmarSenha.setBorder(null);
-        jpfConfirmarSenha.setCaretColor(new java.awt.Color(30, 30, 30));
-        jpfConfirmarSenha.setDisabledTextColor(new java.awt.Color(30, 30, 30));
-        jpfConfirmarSenha.setEnabled(false);
-        jpfConfirmarSenha.setPreferredSize(new java.awt.Dimension(71, 22));
-        jpfConfirmarSenha.setSelectedTextColor(new java.awt.Color(30, 30, 30));
-        jpfConfirmarSenha.setSelectionColor(new java.awt.Color(30, 30, 30));
-        getContentPane().add(jpfConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 310, -1));
+        getContentPane().add(jpfSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 310, -1));
 
         jpfChave.setBackground(new java.awt.Color(30, 30, 30));
         jpfChave.setForeground(new java.awt.Color(2, 154, 184));
@@ -368,9 +370,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             tblUsuarios.getColumnModel().getColumn(0).setMaxWidth(50);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 360, 1340, 318));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 360, 1400, 450));
 
-        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         TelaFundo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         TelaFundo.setMaximumSize(new java.awt.Dimension(1366, 768));
         TelaFundo.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -394,34 +396,33 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         txtNome.setEnabled(true);
         txtSNome.setEnabled(true);
-        jpfSenha.setEnabled(true);
+        jpfUsuario.setEnabled(true);
         jpfChave.setEnabled(true);
-        jpfConfirmarSenha.setEnabled(true);
+        jpfSenha.setEnabled(true);
         jpfConfirmarChave.setEnabled(true);
         cmbPerfil.setEnabled(true);
 
         txtIdusuario.setText("");
         txtNome.setText("");
         txtSNome.setText("");
-        jpfSenha.setText("");
+        jpfUsuario.setText("");
         jpfChave.setText("");
-        jpfConfirmarSenha.setText("");
+        jpfSenha.setText("");
         jpfConfirmarChave.setText("");
         cmbPerfil.setSelectedIndex(0);
 
         novo = true;
         txtIdusuario.requestFocus();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt novo executado com sucesso.!");
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String usuario = new String(jpfUsuario.getPassword());
         String senha = new String(jpfSenha.getPassword());
-        String confirmarSenha = new String(jpfConfirmarSenha.getPassword());
         String chave = new String(jpfChave.getPassword());
-        String confirmarChave = new String(jpfConfirmarChave.getPassword());
 
         if (cmbPerfil.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Favor selecionar um perfil!");
@@ -441,42 +442,20 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             return;
         }
 
+        if (usuario.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Favor digitar um usuario válido!");
+            jpfUsuario.requestFocusInWindow();
+            return;
+        }
+
         if (senha.equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor digitar uma senha válida!");
-            jpfSenha.requestFocusInWindow();
-            return;
-        }
-
-        if (confirmarSenha.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Favor confirmar sua senha!");
-            jpfConfirmarSenha.requestFocusInWindow();
-            return;
-        }
-
-        if (!senha.equals(confirmarSenha)) {
-            JOptionPane.showMessageDialog(rootPane, "A sua senha esta diferente da confirmação!");
-            jpfSenha.setText("");
-            jpfConfirmarSenha.setText("");
             jpfSenha.requestFocusInWindow();
             return;
         }
 
         if (chave.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Favor digitar uma chave válida!");
-            jpfChave.requestFocusInWindow();
-            return;
-        }
-
-        if (confirmarChave.equals("")) {
-            JOptionPane.showMessageDialog(rootPane, "Favor confirmar sua chave!");
-            jpfConfirmarChave.requestFocusInWindow();
-            return;
-        }
-
-        if (!chave.equals(confirmarChave)) {
-            JOptionPane.showMessageDialog(rootPane, "A sua chave esta diferente da confirmação!");
-            jpfChave.setText("");
-            jpfConfirmarChave.setText("");
             jpfChave.requestFocusInWindow();
             return;
         }
@@ -499,6 +478,7 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
                 Utilidades.objectToInt(txtIdusuario.getText()),
                 txtNome.getText(),
                 txtSNome.getText(),
+                usuario,
                 senha,
                 chave,
                 cmbPerfil.getSelectedIndex());
@@ -524,16 +504,17 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtIdusuario.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
-        jpfSenha.setEnabled(false);
+        jpfUsuario.setEnabled(false);
         jpfChave.setEnabled(false);
-        jpfConfirmarSenha.setEnabled(false);
+        jpfSenha.setEnabled(false);
         jpfConfirmarChave.setEnabled(false);
         cmbPerfil.setEnabled(false);
 
+        //carregarUsuarioAtual();
         preencherTabela();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt salvar executado com sucesso.!");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
@@ -552,23 +533,23 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtIdusuario.setEnabled(false);
         txtNome.setEnabled(false);
         txtSNome.setEnabled(false);
-        jpfSenha.setEnabled(false);
+        jpfUsuario.setEnabled(false);
         jpfChave.setEnabled(false);
-        jpfConfirmarSenha.setEnabled(false);
+        jpfSenha.setEnabled(false);
         jpfConfirmarChave.setEnabled(false);
         cmbPerfil.setEnabled(false);
 
         txtNome.setText("");
         txtSNome.setText("");
+        jpfUsuario.setText("");
         jpfSenha.setText("");
-        jpfConfirmarSenha.setText("");
         jpfChave.setText("");
         jpfConfirmarChave.setText("");
 
         carregarPrimeiroRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt cancelar executado com sucesso.!");
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -586,17 +567,17 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
 
         txtNome.setEnabled(true);
         txtSNome.setEnabled(true);
-        jpfSenha.setEnabled(true);
+        jpfUsuario.setEnabled(true);
         jpfChave.setEnabled(true);
-        jpfConfirmarSenha.setEnabled(true);
+        jpfSenha.setEnabled(true);
         jpfConfirmarChave.setEnabled(true);
         cmbPerfil.setEnabled(true);
 
         novo = false;
         txtNome.requestFocus();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt editar executado com sucesso.!");
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -604,16 +585,16 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         preencherTabela();
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         usuarioAtual = 0;
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt primeiro executado com sucesso.!");
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
@@ -621,8 +602,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         usuarioAtual = usuarioController.contarUsuarios() - 1;
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt ultimo executado com sucesso.!");
     }//GEN-LAST:event_btnUltimoActionPerformed
 
@@ -633,8 +614,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt proximo executado com sucesso.!");
     }//GEN-LAST:event_btnProximoActionPerformed
 
@@ -645,8 +626,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt anterior executado com sucesso.!");
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
@@ -662,8 +643,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         preencherTabela();
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt excluir executado com sucesso.!");
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -693,8 +674,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
         System.out.println("evt pesquisar executado com sucesso.!");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -702,9 +683,9 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         txtIdusuario.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 0)));
         txtNome.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 1)));
         txtSNome.setText(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 2)));
-        jpfSenha.setText("");
+        jpfUsuario.setText("");
         jpfChave.setText("");
-        jpfConfirmarSenha.setText("");
+        jpfSenha.setText("");
         jpfConfirmarChave.setText("");
         cmbPerfil.setSelectedIndex(perfil(Utilidades.objectToString(uTabela.getValueAt(usuarioAtual, 3))));
     }
@@ -739,6 +720,19 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
     }
 
+//    private void carregarUsuarioAtual() {
+//        if (usuario == null || usuarios.isEmpty()) {
+//            JOptionPane.showMessageDialog(rootPane, "Nenhum usuario disponível.");
+//            return;
+//        }
+//
+//        Usuario p = usuario.get(usuarioAtual);
+//
+//        txtIdusuario.setText(String.valueOf(p.getIdUsuario()));
+//        txtNome.setText(p.getNome());
+//        txtSNome.setText(p.getSobrenome());
+//        txtPerfil.setText(p.getPerfil());
+//    }
     private String perfil(int perfil) {
         if (perfil == 1) {
             return "Administrador";
@@ -779,8 +773,8 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField jpfChave;
     private javax.swing.JPasswordField jpfConfirmarChave;
-    private javax.swing.JPasswordField jpfConfirmarSenha;
     private javax.swing.JPasswordField jpfSenha;
+    private javax.swing.JPasswordField jpfUsuario;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtIdusuario;
     private javax.swing.JTextField txtNome;
