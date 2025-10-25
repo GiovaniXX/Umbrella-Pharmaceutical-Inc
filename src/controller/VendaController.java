@@ -12,8 +12,12 @@ public class VendaController {
     Connection conn;
     private final VendaDAO dao;
 
-    public VendaController() {
-        dao = new VendaDAO(conn);
+    public VendaController(Connection conn) {
+        if (conn == null) {
+            throw new IllegalArgumentException("Conexão não pode ser nula");
+        }
+        this.conn = conn;
+        this.dao = new VendaDAO(conn);
     }
 
     public int getNumeroVenda() {

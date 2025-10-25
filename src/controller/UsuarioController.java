@@ -73,7 +73,7 @@ public class UsuarioController {
                     usuarioEncontrado.setIdUsuario(rs.getInt("idUsuario"));
                     usuarioEncontrado.setUsuario(rs.getString("usuario"));
                     usuarioEncontrado.setNome(rs.getString("nome"));
-                    usuarioEncontrado.setIdPerfil(rs.getInt("perfil")); // se houver campo de perfil
+                    usuarioEncontrado.setIdPerfil(rs.getInt("idPerfil"));
                     return usuarioEncontrado;
                 }
             }
@@ -81,6 +81,6 @@ public class UsuarioController {
             Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, "Erro ao buscar usuário por credenciais", e);
         }
 
-        return null; // não encontrado ou erro
+        return null;
     }
 }

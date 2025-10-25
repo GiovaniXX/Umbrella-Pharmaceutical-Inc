@@ -141,19 +141,25 @@ public class ProdutoDAO {
         return null;
     }
 
-    public String getNomeProdutoPorId(int idProduto) {
-        String sql = "SELECT produto FROM produtos WHERE idproduto = ?";
+    public Produto getProdutoPorId(int idProduto) {
+        String sql = "SELECT idProduto, produto, descricao, preco, observacao FROM produtos WHERE idProduto = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, idProduto);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
-                    return rs.getString("produto");
+                    Produto p = new Produto();
+                    p.setIdProduto(rs.getInt("idProduto"));
+                    p.setProduto(rs.getString("produto"));
+                    p.setDescricao(rs.getString("descricao"));
+                    p.setPreco(rs.getBigDecimal("preco"));
+                    p.setObservacao(rs.getString("observacao"));
+                    return p;
                 }
             }
         } catch (SQLException e) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, "Erro ao buscar produto por ID", e);
         }
-        return "";
+        return null;
     }
 
     public String inserirProduto(Produto p) {

@@ -7,53 +7,49 @@ import java.util.List;
 
 public class ProdutoController {
 
-    private final ProdutoDAO dao;
+    private final ProdutoDAO produtoDAO;
 
     public ProdutoController() {
-        dao = new ProdutoDAO();
+        this.produtoDAO = new ProdutoDAO();
     }
 
     public boolean produtoExiste(String idProduto) {
-        return dao.existeProduto(idProduto);
+        return produtoDAO.existeProduto(idProduto);
     }
 
     public String cadastrarProduto(Produto produto) {
         if (produtoExiste(String.valueOf(produto.getIdProduto()))) {
             return "Produto já existe";
         }
-        return dao.adicionarProduto(produto);
+        return produtoDAO.adicionarProduto(produto);
     }
 
     public String atualizarProduto(Produto produto) {
-        return dao.editarProduto(produto);
+        return produtoDAO.editarProduto(produto);
     }
 
-//    public String excluirProduto(String idProduto) {
-//        return dao.deletarProduto(idProduto);
-//    }
-    
     public String excluirProduto(String idProduto) {
         int id = Integer.parseInt(idProduto);
-        return dao.deletarProduto(id);
+        return produtoDAO.deletarProduto(id);
     }
 
     public List<Produto> listarProdutos() {
-        return dao.listarProdutos();
+        return produtoDAO.listarProdutos();
     }
 
     public Produto buscarPorId(int idProduto) {
-        return dao.getProduto(String.valueOf(idProduto));
+        return produtoDAO.getProduto(String.valueOf(idProduto));
     }
 
     public Produto getProdutoPorNome(String nome) {
-        return dao.getProdutoPorNome(nome);
+        return produtoDAO.getProdutoPorNome(nome);
     }
 
-    public String obterNomePorId(int idProduto) {
-        return dao.getNomeProdutoPorId(idProduto);
+    public Produto getProdutoPorId(int idProduto) {
+        return produtoDAO.getProdutoPorId(idProduto);
     }
 
     public int contarProdutos() {
-        return dao.numeroProdutos();
+        return produtoDAO.numeroProdutos();
     }
 }

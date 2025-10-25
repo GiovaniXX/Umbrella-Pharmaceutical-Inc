@@ -24,9 +24,6 @@ public class ClienteController {
         return dao.adicionarCliente(cliente);
     }
 
-//    public boolean editarCliente(Cliente cliente) {
-//        return dao.editarCliente(cliente);
-//    }
     public String atualizarCliente(Cliente cliente) {
         return dao.editarCliente(cliente);
     }

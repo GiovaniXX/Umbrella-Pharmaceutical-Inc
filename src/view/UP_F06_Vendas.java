@@ -22,7 +22,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     private final controller.ClienteController clienteController = new controller.ClienteController();
     private final controller.ProdutoController produtoController = new controller.ProdutoController();
-    private final controller.VendaController vendaController = new controller.VendaController();
+    private controller.VendaController vendaController;
 
     private final model.Dados dados;
 
@@ -36,8 +36,9 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     public UP_F06_Vendas() {
         initComponents();
         try {
-            Connection conn = Conexao.getConnection(); // usa sua classe util
+            Connection conn = Conexao.getConnection();
             dados = new model.Dados(conn); // ✅ passa a conexão corretamente
+            vendaController = new controller.VendaController(conn);
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao conectar com o banco", e);
         }
@@ -362,53 +363,49 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             return;
         }
 
-        // Obtém o número da venda (sequencial visível)
         int numeroVenda = vendaController.getNumeroVenda();
-
-        // Obtém o ID do cliente selecionado
         int idCliente = vendaController.getClientePorNome((String) cmbCliente.getSelectedItem()).getIdCliente();
 
-        // Atualiza os valores totais
         totalGeral();
 
-        // Obtém o valor total da venda
         double valorVenda = Double.parseDouble(txtTotalValor.getText());
-
-        // Obtém a quantidade total da venda
         int quantidadeTotal = Integer.parseInt(txtTotalQuantidade.getText());
 
-        // Obtém os valores dinamicamente da tabela tblTabela
-        String nomeProduto = tblTabela.getValueAt(0, 1).toString();
-        String descricaoProduto = tblTabela.getValueAt(0, 2).toString();
+        // Obtém o idProduto da primeira linha da tabela
+        int idProduto = Integer.parseInt(tblTabela.getValueAt(0, 0).toString());
+
+        // Busca o produto completo no banco
+        Produto produto = produtoController.getProdutoPorId(idProduto);
+        if (produto == null) {
+            JOptionPane.showMessageDialog(rootPane, "Produto não encontrado no banco.");
+            return;
+        }
 
         // Salva a venda e captura o idVenda gerado
-        BigDecimal preco = new BigDecimal("3500.00");
-        int idProduto = 1;
+        int idVenda = vendaController.adicionarVenda(
+                idUsuario, numeroVenda, new Date(), valorVenda,
+                quantidadeTotal, idCliente,
+                produto.getProduto(), produto.getDescricao(),
+                produto.getPreco(), produto.getIdProduto()
+        );
 
-        int idVenda = vendaController.adicionarVenda(idUsuario, numeroVenda, new Date(), valorVenda,
-                quantidadeTotal, idCliente, nomeProduto, descricaoProduto,
-                preco, idProduto);
-
-        // Verifica se a venda foi salva com sucesso
         if (idVenda == -1) {
             JOptionPane.showMessageDialog(rootPane, "Erro ao salvar a venda.");
             return;
         }
 
+        // Salva os detalhes da venda para cada item da tabela
         for (int i = 0; i < tblTabela.getRowCount(); i++) {
             idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
-            preco = new BigDecimal(tblTabela.getValueAt(i, 3).toString());
+            produto = produtoController.getProdutoPorId(idProduto);
+            if (produto == null) {
+                continue;
+            }
+
             int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
-            vendaController.adicionarDetalheVenda(idVenda, idProduto, preco, quantidade);
+            vendaController.adicionarDetalheVenda(idVenda, produto.getIdProduto(), produto.getPreco(), quantidade);
         }
 
-//        // Salvar detalhes da venda usando o idVenda real
-//        for (int i = 0; i < tblTabela.getRowCount(); i++) {
-//            int idProduto = Integer.parseInt(tblTabela.getValueAt(i, 0).toString());
-//            double preco = Double.parseDouble(tblTabela.getValueAt(i, 3).toString());
-//            int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
-//            vendaController.adicionarDetalheVenda(idVenda, idProduto, preco, quantidade);
-//        }
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");
         limparTabela();
         totalGeral();
