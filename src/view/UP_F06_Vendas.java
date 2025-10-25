@@ -5,9 +5,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import categories.Utilidades;
-import java.math.BigDecimal;
 import java.util.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -235,7 +233,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Id", "Nome do produto", "Descricao do produto", "Preço", "Quantidade", "Data"
+                "Id", "produto", "Descricao", "Preço", "Quantidade", "Data"
             }
         ) {
             Class[] types = new Class [] {
@@ -462,7 +460,6 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             Logger.getLogger(UP_F06_Vendas.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
             JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar o produto.");
         }
-
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnDeletarActionPerformed
