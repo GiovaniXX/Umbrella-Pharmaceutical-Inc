@@ -16,11 +16,6 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel uTabela;
 
-    private String id;
-    private String nome;
-    private String sobrenome;
-    private String perfil;
-
     public UP_F02_Usuarios() {
         initComponents();
 
@@ -720,19 +715,6 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
         }
     }
 
-//    private void carregarUsuarioAtual() {
-//        if (usuario == null || usuarios.isEmpty()) {
-//            JOptionPane.showMessageDialog(rootPane, "Nenhum usuario disponível.");
-//            return;
-//        }
-//
-//        Usuario p = usuario.get(usuarioAtual);
-//
-//        txtIdusuario.setText(String.valueOf(p.getIdUsuario()));
-//        txtNome.setText(p.getNome());
-//        txtSNome.setText(p.getSobrenome());
-//        txtPerfil.setText(p.getPerfil());
-//    }
     private String perfil(int perfil) {
         if (perfil == 1) {
             return "Administrador";

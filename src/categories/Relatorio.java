@@ -1,13 +1,10 @@
 package categories;
 
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import com.mysql.cj.util.Util;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,85 +13,118 @@ import java.util.logging.Logger;
 public class Relatorio {
 
     public static void relatorioVenda(String arquivo, ResultSet rs) {
-        com.itextpdf.text.Document document = new com.itextpdf.text.Document();
+        Document document = new Document();
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(arquivo));
-            document.open();
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(arquivo));
+            document.open(); // ✅ Abre o documento antes de qualquer operação
 
-            // Cabeçalho da empresa
-            String textoCabecalho = """
-                           Umbrella Pharmaceutical Inc
-                           Rua: Marechal Rondon 387
-                           Bairro: Conta Dinheiro
-                           RELATÓRIO DA VENDA
-                           """;
-            Paragraph cabecalho = new Paragraph(textoCabecalho);
-            cabecalho.setAlignment(Element.ALIGN_CENTER);
-            document.add(cabecalho);
+            // Imagem de fundo — tratada separadamente
+            try {
+                Image background = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\img\\Logos\\pdf.jpg");
+                background.setAbsolutePosition(0, 0);
+                background.scaleToFit(PageSize.A4.getWidth(), PageSize.A4.getHeight());
+                writer.getDirectContentUnder().addImage(background);
+            } catch (DocumentException | IOException imgEx) {
+                Logger.getLogger(Util.class.getName()).log(Level.WARNING, "Imagem de fundo não carregada", imgEx);
+            }
 
-            document.add(new Paragraph(" "));  // Linha em branco
+            // Logotipo (opcional)
+            Image logo = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\img\\banners\\01.jpg");
+            logo.scaleToFit(80, 80);
+            logo.setAlignment(Image.ALIGN_CENTER);
+            document.add(logo);
 
-            // Adicionar informações do vendedor e data da venda
+            // Título com fonte azul escuro
+            Font fonteTitulo = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, new BaseColor(0, 51, 102));
+            Paragraph titulo = new Paragraph("Umbrella Pharmaceuticals Ltd\nRelatório de Vendas", fonteTitulo);
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            titulo.setSpacingAfter(20);
+            document.add(titulo);
+
+            // Tabela de vendedor e data
             PdfPTable tabelaVendedor = new PdfPTable(2);
-            tabelaVendedor.setWidthPercentage(100); // Preenche a largura da página
+            tabelaVendedor.setWidthPercentage(100);
+            tabelaVendedor.setSpacingAfter(10);
 
-            tabelaVendedor.addCell("VENDEDOR");
-            tabelaVendedor.addCell("DATA");
+            Font fonteLabel = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+            Font fonteValor = new Font(Font.FontFamily.HELVETICA, 12);
 
-            // Preencher os dados do vendedor e data (exemplo, você pode ajustar conforme seu ResultSet)
-            tabelaVendedor.addCell("Nome do Vendedor:");
-            tabelaVendedor.addCell("Data da Venda:");
+            tabelaVendedor.addCell(new Phrase("VENDEDOR", fonteLabel));
+            tabelaVendedor.addCell(new Phrase("DATA", fonteLabel));
+            tabelaVendedor.addCell(new Phrase("Nome do Vendedor:", fonteValor));
+            tabelaVendedor.addCell(new Phrase("Data da Venda:", fonteValor));
 
             document.add(tabelaVendedor);
 
-            document.add(new Paragraph(" "));  // Linha em branco
-
-            // Cabeçalhos da tabela de produtos
+            // Tabela de produtos com cabeçalho colorido
             PdfPTable tabelaProdutos = new PdfPTable(new float[]{1, 2, 2, 2, 2, 1, 2});
-            tabelaProdutos.setWidthPercentage(100);  // Preenche a largura da página
+            tabelaProdutos.setWidthPercentage(100);
 
-            tabelaProdutos.addCell("ID");
-            tabelaProdutos.addCell("CLIENTE");
-            tabelaProdutos.addCell("PRODUTO");
-            tabelaProdutos.addCell("DESCRIÇÃO");
-            tabelaProdutos.addCell("PREÇO");
-            tabelaProdutos.addCell("QTD.");
-            tabelaProdutos.addCell("VALOR");
+            Font fonteCabecalho = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+            BaseColor corCabecalho = new BaseColor(0, 102, 204);
 
-            // Preencher os dados da venda
+            String[] colunas = {"ID", "CLIENTE", "PRODUTO", "DESCRIÇÃO", "PREÇO", "QTD.", "VALOR"};
+            for (String coluna : colunas) {
+                PdfPCell cell = new PdfPCell(new Phrase(coluna, fonteCabecalho));
+                cell.setBackgroundColor(corCabecalho);
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                cell.setPadding(6);
+                tabelaProdutos.addCell(cell);
+            }
+
+            // Linhas alternadas
             double totalVenda = 0;
+            boolean alternar = false;
 
             while (rs.next()) {
-                tabelaProdutos.addCell(rs.getString("idvenda")); // ID PRODUTO
-                tabelaProdutos.addCell(rs.getString("nome")); //NOME DO CLIENTE
-                tabelaProdutos.addCell(rs.getString("produto")); // NOME DO PRODUTO
-                tabelaProdutos.addCell(rs.getString("descricao")); // DESCRIÇÃO DO ITEM
-                tabelaProdutos.addCell(String.format("$%.2f", rs.getDouble("preco"))); // PREÇO
-                tabelaProdutos.addCell(rs.getString("quantidade")); // QTD
-                double valor = rs.getDouble("preco") * rs.getInt("quantidade");
-                tabelaProdutos.addCell(String.format("$%.2f", valor)); // VALOR
-                totalVenda += valor;
+                BaseColor fundoLinha = alternar ? new BaseColor(240, 240, 240) : BaseColor.WHITE;
+                alternar = !alternar;
+
+                PdfPCell[] cells = new PdfPCell[]{
+                    new PdfPCell(new Phrase(rs.getString("idvenda"))),
+                    new PdfPCell(new Phrase(rs.getString("nomeCliente"))),
+                    new PdfPCell(new Phrase(rs.getString("nomeProduto"))),
+                    new PdfPCell(new Phrase(rs.getString("descricao"))),
+                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco")))),
+                    new PdfPCell(new Phrase(rs.getString("quantidade"))),
+                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco") * rs.getInt("quantidade"))))
+                };
+
+                for (PdfPCell cell : cells) {
+                    cell.setBackgroundColor(fundoLinha);
+                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    cell.setPadding(5);
+                    tabelaProdutos.addCell(cell);
+                }
+
+                totalVenda += rs.getDouble("preco") * rs.getInt("quantidade");
             }
 
             document.add(tabelaProdutos);
 
-            // Linhas em branco para separar
+            // Espaço antes do total
             document.add(new Paragraph(" "));
             document.add(new Paragraph(" "));
 
-            // Tabela para os totais
+            // Tabela de totais com destaque
+            Font fonteTotais = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, new BaseColor(0, 153, 76));
             PdfPTable tabelaTotais = new PdfPTable(2);
-            tabelaTotais.setWidthPercentage(50); // Ajuste a largura conforme necessário
+            tabelaTotais.setWidthPercentage(40);
             tabelaTotais.setHorizontalAlignment(Element.ALIGN_RIGHT);
 
-            tabelaTotais.addCell("VALOR DA VENDA");
-            tabelaTotais.addCell(String.format("$%.2f", totalVenda));
+            PdfPCell label = new PdfPCell(new Phrase("VALOR TOTAL", fonteTotais));
+            PdfPCell valor = new PdfPCell(new Phrase(String.format("R$ %.2f", totalVenda), fonteTotais));
 
+            label.setBorder(Rectangle.NO_BORDER);
+            valor.setBorder(Rectangle.NO_BORDER);
+            label.setHorizontalAlignment(Element.ALIGN_LEFT);
+            valor.setHorizontalAlignment(Element.ALIGN_RIGHT);
+
+            tabelaTotais.addCell(label);
+            tabelaTotais.addCell(valor);
             document.add(tabelaTotais);
 
-            document.close();
-
-        } catch (DocumentException | FileNotFoundException | SQLException e) {
+        } catch (DocumentException | IOException | SQLException e) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             document.close();

@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import categories.Relatorio;
 import java.sql.ResultSet;
 import dao.RelatorioDAO;
+import javax.swing.JOptionPane;
 
 public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
 
@@ -118,10 +119,10 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
             tbl_Tabela.getColumnModel().getColumn(6).setMaxWidth(100);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 280, 1338, 395));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(13, 280, 1400, 530));
 
         lblIcon.setBackground(new java.awt.Color(50, 0, 1));
-        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/0014.jpg"))); // NOI18N
+        lblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
         getContentPane().add(lblIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 853));
 
         pack();
@@ -134,7 +135,7 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         try (var vendas = relatorioDAO.getVendas()) {
             while (vendas != null && vendas.next()) {
                 int idVenda = vendas.getInt("idvenda");
-                Date data = vendas.getDate("data");
+                Date data = vendas.getDate("dataVenda");
                 int idCliente = vendas.getInt("idcliente");
                 int idProduto = vendas.getInt("idproduto");
                 String descricao = vendas.getString("descricao");
@@ -158,7 +159,7 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         int linhaSelecionada = tbl_Tabela.getSelectedRow();
 
         if (linhaSelecionada == -1) {
-            System.out.println("Nenhum registro selecionado.");
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma venda na tabela para gerar o PDF.");
             return;
         }
 
@@ -168,11 +169,11 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         try {
             ResultSet rs = relatorioDAO.getVendaPorId(idVenda);
             Relatorio.relatorioVenda(caminhoArquivo, rs);
-            System.out.println("PDF gerado com sucesso!");
+            JOptionPane.showMessageDialog(rootPane, "PDF gerado com sucesso!");
         } catch (Exception e) {
-            System.out.println("Erro ao gerar o relatório de vendas: " + e.getMessage());
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao gerar o relatório de vendas", e);
+            JOptionPane.showMessageDialog(rootPane, "Erro ao gerar o PDF da venda.");
         }
-        System.out.println("PDF gerado com sucesso!");
         System.out.println("ID do evento: " + evt.getID());
     }//GEN-LAST:event_btn_Generate_Pdf_FileActionPerformed
 
