@@ -26,7 +26,7 @@
                   <Color blue="4a" green="67" red="4e" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/seguindo.png"/>
+                  <Image iconType="3" name="/img/icons/seguindo.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -43,7 +43,7 @@
                   <Color blue="4a" green="67" red="4e" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/caminhao-sofa.png"/>
+                  <Image iconType="3" name="/img/icons/caminhao-sofa.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Produtos"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -60,7 +60,7 @@
                   <Color blue="4a" green="67" red="4e" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/usuarios.png"/>
+                  <Image iconType="3" name="/img/icons/usuarios.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Usuarios"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -97,7 +97,7 @@
                   <Color blue="4a" green="67" red="4e" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/circulo-cruzado.png"/>
+                  <Image iconType="3" name="/img/icons/circulo-cruzado.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -124,7 +124,7 @@
                   <Color blue="4a" green="67" red="4e" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/dolar-aberto-envelope.png"/>
+                  <Image iconType="3" name="/img/icons/dolar-aberto-envelope.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nova Venda"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -153,7 +153,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="openFacebookProfile">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/facebook2.png"/>
+                  <Image iconType="3" name="/img/icons/facebook2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Facebook"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -167,7 +167,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="openGitHubProfile">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/github1.png"/>
+                  <Image iconType="3" name="/img/icons/github1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="GitHub"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -181,7 +181,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="openLinkedinProfile">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/linkedin1.png"/>
+                  <Image iconType="3" name="/img/icons/linkedin1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Linkedin"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -195,7 +195,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="openWhatsUpProfile">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/whatsapp1.png"/>
+                  <Image iconType="3" name="/img/icons/whatsapp1.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="WhatsUp"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -216,7 +216,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="Dev">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/up_images/Icons/dev.png"/>
+                  <Image iconType="3" name="/img/icons/dev.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dev"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -332,7 +332,7 @@
         <Component class="javax.swing.JLabel" name="Logo">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/variadas/Logos/0000.jpg"/>
+              <Image iconType="3" name="/img/logos/0000.jpg"/>
             </Property>
           </Properties>
           <Constraints>

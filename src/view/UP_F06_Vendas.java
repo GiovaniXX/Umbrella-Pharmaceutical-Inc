@@ -292,7 +292,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 190, 1410, 570));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logos/0014.jpg"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1360, 768));
         jLabel1.setPreferredSize(new java.awt.Dimension(1360, 768));
@@ -445,42 +445,6 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         carregarVendasNaTabela();
         JOptionPane.showMessageDialog(rootPane, "Selecione a venda na tabela e clique em 'Confirmar Exclusão' para deletar.");
 
-//
-//        // Verifica se alguma venda foi selecionado
-//        if (cmbProduto.getSelectedIndex() == 0) {
-//            JOptionPane.showMessageDialog(rootPane, "Selecione uma venda para deletar.");
-//            cmbProduto.requestFocusInWindow();
-//            return;
-//        }
-//
-//        try {
-//            // Obtém o ID do produto selecionado no ComboBox
-//            Produto produtoSelecionado = vendaController.getProdutoPorNome((String) cmbProduto.getSelectedItem());
-//            int idProdutoCombo = produtoSelecionado.getIdProduto();
-//            int linhaParaRemover = -1;
-//
-//            // Percorre a tabela para encontrar o produto a ser deletado
-//            for (int i = 0; i < vTabela.getRowCount(); i++) {
-//                int idProdutoTabela = Integer.parseInt(vTabela.getValueAt(i, 0).toString());
-//                if (idProdutoTabela == idProdutoCombo) {
-//                    linhaParaRemover = i;
-//                    break; // Encontra a primeira ocorrência
-//                }
-//            }
-//
-//            if (linhaParaRemover != -1) {
-//                vTabela.removeRow(linhaParaRemover);
-//                // Atualiza os totais após a exclusão
-//                totalGeral();
-//                JOptionPane.showMessageDialog(rootPane, "Venda deletado com sucesso.");
-//            } else {
-//                JOptionPane.showMessageDialog(rootPane, "Venda não encontrado na tabela.");
-//            }
-//
-//        } catch (HeadlessException | NumberFormatException e) {
-//            Logger.getLogger(UP_F06_Vendas.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
-//            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar a venda.");
-//        }
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnDeletarActionPerformed

@@ -129,7 +129,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         Curso.setText("Engenharia de Software");
         getContentPane().add(Curso, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 590, -1, -1));
 
-        Chapeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/chapeu-de-graduacao.png"))); // NOI18N
+        Chapeu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/chapeu-de-graduacao.png"))); // NOI18N
         Chapeu.setPreferredSize(new java.awt.Dimension(32, 32));
         getContentPane().add(Chapeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 420, -1, -1));
 
@@ -138,15 +138,15 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
         Nome.setText("Giovani V. Chaves");
         getContentPane().add(Nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
 
-        Logo_Linkedin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/linkedin1.png"))); // NOI18N
+        Logo_Linkedin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/linkedin1.png"))); // NOI18N
         Logo_Linkedin.setPreferredSize(new java.awt.Dimension(32, 32));
         getContentPane().add(Logo_Linkedin, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 600, 40, -1));
 
-        Logo_GitHub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/github1.png"))); // NOI18N
+        Logo_GitHub.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/github1.png"))); // NOI18N
         Logo_GitHub.setPreferredSize(new java.awt.Dimension(32, 32));
         getContentPane().add(Logo_GitHub, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 570, 40, -1));
 
-        Logo_Facebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Icons/facebook2.png"))); // NOI18N
+        Logo_Facebook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons/facebook2.png"))); // NOI18N
         Logo_Facebook.setPreferredSize(new java.awt.Dimension(32, 32));
         getContentPane().add(Logo_Facebook, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 540, 40, -1));
 
@@ -186,7 +186,7 @@ public class UP_F05_Info extends javax.swing.JInternalFrame {
 
         getContentPane().add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 780, 400));
 
-        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/variadas/Logos/Home.jpg"))); // NOI18N
+        TelaFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logos/Home.jpg"))); // NOI18N
         TelaFundo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         getContentPane().add(TelaFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1440, 900));
 

@@ -310,7 +310,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void setIcon() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/Icons/Icon.jpg")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/icons/Icon.jpg")));
     }
 
     private void showMessageWithDuration(String message, String title, int messageType, int duration) {

@@ -407,7 +407,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         jScrollPane1.setBounds(20, 320, 1400, 490);
 
         jLabel1.setBackground(new java.awt.Color(200, 22, 22));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));

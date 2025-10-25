@@ -336,7 +336,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(15, 310, 1400, 500);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/up_images/Logos/0014.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/logos/0014.jpg"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setMaximumSize(new java.awt.Dimension(1366, 768));
         jLabel1.setMinimumSize(new java.awt.Dimension(1366, 768));

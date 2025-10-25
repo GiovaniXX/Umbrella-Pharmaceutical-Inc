@@ -18,11 +18,30 @@
         </fileset>
     </path>
 	
+	<target name="-post-compile">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="src/main/resources"/>
+        </copy>
+    </target>
+
+	
 	<!-- Adicione a configuração do javac aqui -->
     <target name="-pre-compile">
         <property name="javac.source" value="22"/>
         <property name="javac.target" value="22"/>
         <property name="javac.compilerargs" value="--enable-preview"/>
+    </target>
+	
+	<target name="-pre-jar">
+        <echo message="Incluindo recursos no JAR..."/>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="src/main/resources"/>
+        </copy>
+    </target>
+	
+	<target name="-post-clean">
+        <echo message="Limpando diretórios temporários..."/>
+        <delete dir="${build.test.results.dir}" failonerror="false"/>
     </target>
 
 	<!-- Target para rodar os testes -->
