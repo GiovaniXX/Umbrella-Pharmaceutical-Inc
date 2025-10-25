@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Venda;
 
 public class VendaDAO {
 
@@ -102,6 +103,29 @@ public class VendaDAO {
         return -1;
     }
 
+    public List<Venda> buscarTodasVendas() {
+        List<Venda> lista = new ArrayList<>();
+        String sql = "SELECT idVenda, produto, descricao, preco, quantidade, dataVenda FROM vendas";
+
+        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Venda v = new Venda();
+                v.setIdvenda(rs.getInt("idVenda"));
+                v.setProduto(rs.getString("produto"));
+                v.setDescricao(rs.getString("descricao"));
+                v.setPreco(rs.getDouble("preco"));
+                v.setQuantidade(rs.getInt("quantidade"));
+                v.setData(rs.getDate("dataVenda"));
+                lista.add(v);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao buscar a venda", e);
+        }
+
+        return lista;
+    }
+
     public void salvarDetalheVenda(int idVenda, int idProduto, BigDecimal preco, int quantidade) {
         String sql = "INSERT INTO detalhe_venda (idVenda, idProduto, preco, quantidade) VALUES (?, ?, ?, ?)";
         try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
@@ -139,5 +163,20 @@ public class VendaDAO {
             Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         return produtos;
+    }
+
+    public boolean deletarVendaPorId(int idVenda) {
+        String sql = "DELETE FROM vendas WHERE id = ?";
+
+        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idVenda);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0;
+
+        } catch (SQLException e) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
+            return false;
+        }
     }
 }

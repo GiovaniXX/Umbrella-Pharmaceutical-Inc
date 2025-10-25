@@ -26,6 +26,9 @@ public class Venda {
         this.idusuario = idusuario;
     }
 
+    public Venda() {
+    }
+
     public int getIdvenda() {
         return idvenda;
     }

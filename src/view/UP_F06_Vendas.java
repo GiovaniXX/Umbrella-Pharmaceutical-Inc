@@ -13,6 +13,9 @@ import javax.swing.SwingConstants;
 import model.Cliente;
 import model.Produto;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import model.Venda;
 import util.Conexao;
 import util.SessaoUsuario;
 
@@ -71,6 +74,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         btnDeletar = new javax.swing.JButton();
         btnDelTodos = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        btnConfirmarExclusao = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTabela = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -223,6 +227,19 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, -1, -1));
+
+        btnConfirmarExclusao.setBackground(new java.awt.Color(122, 0, 0));
+        btnConfirmarExclusao.setText("Exclusao");
+        btnConfirmarExclusao.setBorder(null);
+        btnConfirmarExclusao.setMaximumSize(new java.awt.Dimension(101, 25));
+        btnConfirmarExclusao.setMinimumSize(new java.awt.Dimension(101, 25));
+        btnConfirmarExclusao.setPreferredSize(new java.awt.Dimension(101, 25));
+        btnConfirmarExclusao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarExclusaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnConfirmarExclusao, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 150, -1, -1));
 
         jScrollPane1.setPreferredSize(new java.awt.Dimension(485, 402));
 
@@ -425,44 +442,79 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDelTodosActionPerformed
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        // Verifica se algum produto foi selecionado
-        if (cmbProduto.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Selecione um produto para deletar.");
-            cmbProduto.requestFocusInWindow();
-            return;
-        }
+        carregarVendasNaTabela();
+        JOptionPane.showMessageDialog(rootPane, "Selecione a venda na tabela e clique em 'Confirmar Exclusão' para deletar.");
 
-        try {
-            // Obtém o ID do produto selecionado no ComboBox
-            Produto produtoSelecionado = vendaController.getProdutoPorNome((String) cmbProduto.getSelectedItem());
-            int idProdutoCombo = produtoSelecionado.getIdProduto();
-            int linhaParaRemover = -1;
-
-            // Percorre a tabela para encontrar o produto a ser deletado
-            for (int i = 0; i < vTabela.getRowCount(); i++) {
-                int idProdutoTabela = Integer.parseInt(vTabela.getValueAt(i, 0).toString());
-                if (idProdutoTabela == idProdutoCombo) {
-                    linhaParaRemover = i;
-                    break; // Encontra a primeira ocorrência
-                }
-            }
-
-            if (linhaParaRemover != -1) {
-                vTabela.removeRow(linhaParaRemover);
-                // Atualiza os totais após a exclusão
-                totalGeral();
-                JOptionPane.showMessageDialog(rootPane, "Produto deletado com sucesso.");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Produto não encontrado na tabela.");
-            }
-
-        } catch (HeadlessException | NumberFormatException e) {
-            Logger.getLogger(UP_F06_Vendas.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
-            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar o produto.");
-        }
+//
+//        // Verifica se alguma venda foi selecionado
+//        if (cmbProduto.getSelectedIndex() == 0) {
+//            JOptionPane.showMessageDialog(rootPane, "Selecione uma venda para deletar.");
+//            cmbProduto.requestFocusInWindow();
+//            return;
+//        }
+//
+//        try {
+//            // Obtém o ID do produto selecionado no ComboBox
+//            Produto produtoSelecionado = vendaController.getProdutoPorNome((String) cmbProduto.getSelectedItem());
+//            int idProdutoCombo = produtoSelecionado.getIdProduto();
+//            int linhaParaRemover = -1;
+//
+//            // Percorre a tabela para encontrar o produto a ser deletado
+//            for (int i = 0; i < vTabela.getRowCount(); i++) {
+//                int idProdutoTabela = Integer.parseInt(vTabela.getValueAt(i, 0).toString());
+//                if (idProdutoTabela == idProdutoCombo) {
+//                    linhaParaRemover = i;
+//                    break; // Encontra a primeira ocorrência
+//                }
+//            }
+//
+//            if (linhaParaRemover != -1) {
+//                vTabela.removeRow(linhaParaRemover);
+//                // Atualiza os totais após a exclusão
+//                totalGeral();
+//                JOptionPane.showMessageDialog(rootPane, "Venda deletado com sucesso.");
+//            } else {
+//                JOptionPane.showMessageDialog(rootPane, "Venda não encontrado na tabela.");
+//            }
+//
+//        } catch (HeadlessException | NumberFormatException e) {
+//            Logger.getLogger(UP_F06_Vendas.class.getName()).log(Level.SEVERE, "Ocorreu um erro ao deletar", e);
+//            JOptionPane.showMessageDialog(rootPane, "Erro ao tentar deletar a venda.");
+//        }
         int id = evt.getID();
         System.out.println("ID do evento: " + id);
     }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnConfirmarExclusaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarExclusaoActionPerformed
+        int linha = tblTabela.getSelectedRow();
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Selecione uma venda na tabela para excluir.");
+            return;
+        }
+
+        int idVenda = Integer.parseInt(tblTabela.getValueAt(linha, 0).toString());
+        String produto = tblTabela.getValueAt(linha, 1).toString();
+
+        int confirm = JOptionPane.showConfirmDialog(
+                rootPane,
+                "Tem certeza que deseja excluir a venda do produto: " + produto + "?",
+                "Confirmação",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        String resposta = vendaController.excluirVenda(idVenda);
+        JOptionPane.showMessageDialog(rootPane, resposta);
+
+        carregarVendasNaTabela(); // atualiza a tabela
+        totalGeral(); // atualiza os totais
+
+        int id = evt.getID();
+        System.out.println("ID do evento: " + id);
+    }//GEN-LAST:event_btnConfirmarExclusaoActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> {
@@ -472,6 +524,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
+    private javax.swing.JButton btnConfirmarExclusao;
     private javax.swing.JButton btnDelTodos;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnSalvar;
@@ -529,6 +582,24 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
         for (String nomeProduto : dados.getNomesProdutos()) {
             cmbProduto.addItem(nomeProduto);
+        }
+    }
+
+    private void carregarVendasNaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tblTabela.getModel();
+        modelo.setRowCount(0); // limpa a tabela
+
+        List<Venda> vendas = vendaController.listarVendas();
+
+        for (Venda v : vendas) {
+            modelo.addRow(new Object[]{
+                v.getIdvenda(),
+                v.getProduto(),
+                v.getDescricao(),
+                v.getPreco(),
+                v.getQuantidade(),
+                new SimpleDateFormat("dd/MM/yyyy").format(v.getData())
+            });
         }
     }
 }
