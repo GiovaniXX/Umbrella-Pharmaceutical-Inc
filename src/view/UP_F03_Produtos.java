@@ -403,10 +403,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
             return;
         }
 
-        double preco = Double.parseDouble(txtPreco.getText());
+        BigDecimal preco = new BigDecimal(txtPreco.getText());
 
         // Verifica se o preço é maior que zero
-        if (preco <= 0) {
+        if (preco.compareTo(BigDecimal.ZERO) <= 0) {
             JOptionPane.showMessageDialog(rootPane, "Insira um preço acima de zero.");
             txtPreco.requestFocusInWindow();
             return;

@@ -19,7 +19,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
     private boolean novo = false;
     private DefaultTableModel cTabela;
 
-    private String id;
+    private String idCliente;
     private String nome;
     private String sobrenome;
     private String email;
@@ -545,7 +545,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         cmbCidade.setEnabled(false);
         jdcDataCadastro.setEnabled(false);
 
-        txtIdcliente.setText(id);
+        txtIdcliente.setText(idCliente);
         txtNome.setText(nome);
         txtSNome.setText(sobrenome);
         txtEmail.setText(email);
