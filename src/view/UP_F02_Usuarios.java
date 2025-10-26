@@ -709,8 +709,6 @@ public class UP_F02_Usuarios extends javax.swing.JInternalFrame {
             txtIdusuario.setText(String.valueOf(u.getIdUsuario()));
             txtNome.setText(u.getNome());
             txtSNome.setText(u.getSobrenome());
-            //cmbPerfil.setSelectedIndex(u.getIdPerfil());
-            // cmbPerfil mostra "Administrador" ou "Usuario" em vez de apenas o índice.!
             cmbPerfil.setSelectedItem(perfil(u.getIdPerfil()));
         }
     }

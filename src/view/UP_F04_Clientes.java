@@ -32,7 +32,7 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         initComponents();
         carregarCidades();
 
-        String[] titulos = {"ID", "Nome", "Sobrenome", "Email", "Endereço", "Telefone", "Cidade", "Data Cadastro"};
+        String[] titulos = {"Id", "Nome", "Sobrenome", "Email", "Endereço", "Telefone", "Cidade", "Data Cadastro"};
         cTabela = new DefaultTableModel(null, titulos);
         tblTabela.setModel(cTabela);
 
@@ -450,8 +450,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         novo = true;
         txtIdcliente.requestFocus();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
@@ -520,8 +520,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         // Atualiza a tabela
         preencherTabela();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -554,8 +554,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         carregarPrimeiroRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -580,32 +580,32 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
 
         novo = false;
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
         preencherTabela();
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void btnPrimeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrimeiroActionPerformed
         clienteAtual = 0;
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnPrimeiroActionPerformed
 
     private void btnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUltimoActionPerformed
         clienteAtual = clienteController.contarClientes() - 1;
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnUltimoActionPerformed
 
     private void btnProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProximoActionPerformed
@@ -616,8 +616,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnProximoActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
@@ -627,8 +627,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -643,8 +643,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         preencherTabela();
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -673,8 +673,8 @@ public class UP_F04_Clientes extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-        int id = evt.getID();
-        System.out.println("ID do evento: " + id);
+        int id_number = evt.getID();
+        System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void mostrarRegistro() {

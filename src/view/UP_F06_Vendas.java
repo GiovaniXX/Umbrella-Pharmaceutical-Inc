@@ -1,14 +1,11 @@
 package view;
 
-import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import categories.Utilidades;
 import java.util.Date;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.SwingConstants;
 import model.Cliente;
 import model.Produto;
@@ -38,7 +35,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         initComponents();
         try {
             Connection conn = Conexao.getConnection();
-            dados = new model.Dados(conn); // ✅ passa a conexão corretamente
+            dados = new model.Dados(conn);
             vendaController = new controller.VendaController(conn);
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao conectar com o banco", e);
@@ -351,7 +348,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         String[] registro = {
             // Id
             String.valueOf(produto.getIdProduto()),
-            // Nome do produto
+            // produto
             produto.getProduto(),
             // Descrição
             produto.getDescricao(),
@@ -443,7 +440,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
         carregarVendasNaTabela();
-        JOptionPane.showMessageDialog(rootPane, "Selecione a venda na tabela e clique em 'Confirmar Exclusão' para deletar.");
+        JOptionPane.showMessageDialog(rootPane, "Selecione a venda na tabela e clique em 'Exclusão' para deletar.");
 
         int id = evt.getID();
         System.out.println("ID do evento: " + id);

@@ -16,7 +16,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private List<Produto> produtos;
     public int produtoAtual = 0;
     private boolean novo = false;
-    private DefaultTableModel pTabela;
+    private final DefaultTableModel pTabela;
 
     private String idProduto;
     private String produto;
@@ -114,9 +114,8 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(3, 155, 216));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Observação.:");
-        jLabel5.setEnabled(false);
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(440, 150, 70, 16);
+        jLabel5.setBounds(430, 150, 80, 16);
 
         jLabel6.setForeground(new java.awt.Color(3, 155, 216));
         jLabel6.setText("Produto.:");
@@ -130,6 +129,10 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtIdproduto.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtIdproduto);
         txtIdproduto.setBounds(520, 20, 50, 22);
+
+        txtProduto.setBackground(new java.awt.Color(30, 30, 30));
+        txtProduto.setBorder(null);
+        txtProduto.setPreferredSize(new java.awt.Dimension(71, 22));
         getContentPane().add(txtProduto);
         txtProduto.setBounds(520, 60, 310, 22);
 
@@ -280,11 +283,12 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         getContentPane().add(btnPesquisar);
         btnPesquisar.setBounds(680, 270, 73, 25);
 
+        jtaObservacao.setEditable(false);
         jtaObservacao.setBackground(new java.awt.Color(30, 30, 30));
         jtaObservacao.setColumns(20);
         jtaObservacao.setForeground(new java.awt.Color(3, 155, 216));
         jtaObservacao.setRows(5);
-        jtaObservacao.setEnabled(false);
+        jtaObservacao.setBorder(null);
         jScrollPane2.setViewportView(jtaObservacao);
 
         getContentPane().add(jScrollPane2);
@@ -518,8 +522,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         produtoAtual = 0;
         mostrarRegistro();
 
-//        produtoAtual = 0;
-//        carregarProdutoAtual();
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnPrimeiroActionPerformed
@@ -528,8 +530,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         produtoAtual = produtoController.contarProdutos() - 1;
         mostrarRegistro();
 
-//        produtoAtual = produtos.size() - 1;
-//        carregarProdutoAtual();
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnUltimoActionPerformed
@@ -541,10 +541,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-//        if (produtoAtual < produtos.size() - 1) {
-//            produtoAtual++;
-//            carregarProdutoAtual();
-//        }
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnProximoActionPerformed
@@ -556,10 +552,6 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         }
         mostrarRegistro();
 
-//        if (produtoAtual > 0) {
-//            produtoAtual--;
-//            carregarProdutoAtual();
-//        }
         int id_number = evt.getID();
         System.out.println("ID do evento: " + id_number);
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -614,7 +606,7 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         List<Produto> produtos = produtoController.listarProdutos();
         DefaultTableModel modelo = (DefaultTableModel) tblTabela.getModel();
-        modelo.setRowCount(0); // limpa a tabela antes de preencher
+        modelo.setRowCount(0);
 
         for (Produto p : produtos) {
             modelo.addRow(new Object[]{
@@ -704,5 +696,4 @@ public class UP_F03_Produtos extends javax.swing.JInternalFrame {
         txtPreco.setText("");
         jtaObservacao.setText("");
     }
-
 }
