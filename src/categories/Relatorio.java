@@ -20,7 +20,7 @@ public class Relatorio {
 
             // Imagem de fundo — tratada separadamente
             try {
-                Image background = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\img\\Logos\\pdf.jpg");
+                Image background = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\main\\resources\\img\\logos\\background.jpg");
                 background.setAbsolutePosition(0, 0);
                 background.scaleToFit(PageSize.A4.getWidth(), PageSize.A4.getHeight());
                 writer.getDirectContentUnder().addImage(background);
@@ -28,35 +28,43 @@ public class Relatorio {
                 Logger.getLogger(Util.class.getName()).log(Level.WARNING, "Imagem de fundo não carregada", imgEx);
             }
 
-            // Logotipo (opcional)
-            Image logo = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\img\\banners\\01.jpg");
+            // Logotipo (opcional)           
+            Image logo = Image.getInstance("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\main\\resources\\img\\banners\\logo.jpg");
             logo.scaleToFit(80, 80);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
 
-            // Título com fonte azul escuro
-            Font fonteTitulo = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, new BaseColor(0, 51, 102));
-            Paragraph titulo = new Paragraph("Umbrella Pharmaceuticals Ltd\nRelatório de Vendas", fonteTitulo);
+            // Título com fonte branco
+            Font fonteTitulo = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD, new BaseColor(255, 255, 255));
+            Paragraph titulo = new Paragraph("Umbrella Pharmaceutical Inc\nRelatório de Vendas", fonteTitulo);
             titulo.setAlignment(Element.ALIGN_CENTER);
             titulo.setSpacingAfter(20);
             document.add(titulo);
 
-            // Tabela de vendedor e data
+            // TABELA DE VENDEDOR E DATA
             PdfPTable tabelaVendedor = new PdfPTable(2);
             tabelaVendedor.setWidthPercentage(100);
             tabelaVendedor.setSpacingAfter(10);
 
-            Font fonteLabel = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-            Font fonteValor = new Font(Font.FontFamily.HELVETICA, 12);
+            Font fonteLabel = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, BaseColor.WHITE);
+            Font fonteValor = new Font(Font.FontFamily.HELVETICA, 12, Font.NORMAL, BaseColor.WHITE);
 
-            tabelaVendedor.addCell(new Phrase("VENDEDOR", fonteLabel));
-            tabelaVendedor.addCell(new Phrase("DATA", fonteLabel));
-            tabelaVendedor.addCell(new Phrase("Nome do Vendedor:", fonteValor));
-            tabelaVendedor.addCell(new Phrase("Data da Venda:", fonteValor));
+            PdfPCell cell1 = new PdfPCell(new Phrase("VENDEDOR", fonteLabel));
+            PdfPCell cell2 = new PdfPCell(new Phrase("DATA", fonteLabel));
+            PdfPCell cell3 = new PdfPCell(new Phrase("Nome do Vendedor:", fonteValor));
+            PdfPCell cell4 = new PdfPCell(new Phrase("Data da Venda:", fonteValor));
+
+            PdfPCell[] cellsVendedor = {cell1, cell2, cell3, cell4};
+            for (PdfPCell cell : cellsVendedor) {
+                cell.setBorderColor(BaseColor.WHITE);               
+                cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+                cell.setPadding(5);
+                tabelaVendedor.addCell(cell);
+            }
 
             document.add(tabelaVendedor);
 
-            // Tabela de produtos com cabeçalho colorido
+            // TABELA DE PRODUTOS
             PdfPTable tabelaProdutos = new PdfPTable(new float[]{1, 2, 2, 2, 2, 1, 2});
             tabelaProdutos.setWidthPercentage(100);
 
@@ -77,21 +85,20 @@ public class Relatorio {
             boolean alternar = false;
 
             while (rs.next()) {
-                BaseColor fundoLinha = alternar ? new BaseColor(240, 240, 240) : BaseColor.WHITE;
                 alternar = !alternar;
 
                 PdfPCell[] cells = new PdfPCell[]{
-                    new PdfPCell(new Phrase(rs.getString("idvenda"))),
-                    new PdfPCell(new Phrase(rs.getString("nomeCliente"))),
-                    new PdfPCell(new Phrase(rs.getString("nomeProduto"))),
-                    new PdfPCell(new Phrase(rs.getString("descricao"))),
-                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco")))),
-                    new PdfPCell(new Phrase(rs.getString("quantidade"))),
-                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco") * rs.getInt("quantidade"))))
+                    new PdfPCell(new Phrase(rs.getString("idvenda"), fonteValor)),
+                    new PdfPCell(new Phrase(rs.getString("nomeCliente"), fonteValor)),
+                    new PdfPCell(new Phrase(rs.getString("nomeProduto"), fonteValor)),
+                    new PdfPCell(new Phrase(rs.getString("descricao"), fonteValor)),
+                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco")), fonteValor)),
+                    new PdfPCell(new Phrase(rs.getString("quantidade"), fonteValor)),
+                    new PdfPCell(new Phrase(String.format("R$ %.2f", rs.getDouble("preco") * rs.getInt("quantidade")), fonteValor))
                 };
 
                 for (PdfPCell cell : cells) {
-                    cell.setBackgroundColor(fundoLinha);
+                    cell.setBorderColor(BaseColor.WHITE);
                     cell.setHorizontalAlignment(Element.ALIGN_CENTER);
                     cell.setPadding(5);
                     tabelaProdutos.addCell(cell);
@@ -107,7 +114,7 @@ public class Relatorio {
             document.add(new Paragraph(" "));
 
             // Tabela de totais com destaque
-            Font fonteTotais = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, new BaseColor(0, 153, 76));
+            Font fonteTotais = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD, new BaseColor(255, 255, 255));
             PdfPTable tabelaTotais = new PdfPTable(2);
             tabelaTotais.setWidthPercentage(40);
             tabelaTotais.setHorizontalAlignment(Element.ALIGN_RIGHT);
