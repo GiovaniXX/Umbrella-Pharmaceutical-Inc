@@ -27,9 +27,16 @@ public class ClienteDAOTest {
         Connection conn = Conexao.getConnection();
         Statement stmt = conn.createStatement();
 
+        // Dropa na ordem correta
+        stmt.execute("DROP TABLE IF EXISTS detalhe_venda");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS itemvenda");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS relatorio");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS vendas");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS clientes");// Acrescentadoesta linha 05/03/2026
+
         stmt.execute("""
-        CREATE TABLE clientes (
-            idcliente INT PRIMARY KEY,
+        CREATE TABLE IF NOT EXISTS clientes (
+            idCliente INT PRIMARY KEY,
             nome VARCHAR(100),
             sobrenome VARCHAR(100),
             email VARCHAR(100),
@@ -43,7 +50,7 @@ public class ClienteDAOTest {
 
         stmt.execute("""
         INSERT INTO clientes (
-        idcliente, nome, sobrenome, email, endereco, telefone, idcidade, dataCadastro, cidade
+        idCliente, nome, sobrenome, email, endereco, telefone, idcidade, dataCadastro, cidade
         ) VALUES (
         1, 'Teste', 'Silva', 'teste@email.com', 'Rua A, 123', '99999-9999', 1, CURRENT_DATE, 'Cidade'
         )
@@ -57,7 +64,13 @@ public class ClienteDAOTest {
     public static void tearDownClass() throws Exception {
         Connection conn = Conexao.getConnection();
         Statement stmt = conn.createStatement();
-        stmt.execute("DROP TABLE clientes");
+
+        // Dropa na ordem inversa das dependências
+        stmt.execute("DROP TABLE IF EXISTS detalhe_venda");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS itemvenda");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS relatorio");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS vendas");// Acrescentado esta linha 05/03/2026
+        stmt.execute("DROP TABLE IF EXISTS clientes");
         stmt.close();
         conn.close();
     }

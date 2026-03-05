@@ -59,10 +59,9 @@ public class ProdutoDAO {
     public String deletarProduto(int idProduto) {
         String sql = "DELETE FROM produtos WHERE idproduto = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            //pstmt.setString(1, idProduto);
             pstmt.setInt(1, idProduto);
-            pstmt.executeUpdate();
-            return "Produto excluído com sucesso!";
+            int rows = pstmt.executeUpdate();
+            return rows > 0 ? "Produto excluído com sucesso!" : "Produto não encontrado!";
         } catch (SQLException e) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);
             return "Não foi possível deletar este produto";
@@ -164,12 +163,19 @@ public class ProdutoDAO {
 
     public String inserirProduto(Produto p) {
         String sql = "INSERT INTO produtos (produto, preco, descricao, observacao) VALUES (?, ?, ?, ?)";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setString(1, p.getProduto());
             pstmt.setBigDecimal(2, p.getPreco());
             pstmt.setString(3, p.getDescricao());
             pstmt.setString(4, p.getObservacao());
             pstmt.executeUpdate();
+
+            // Captura o ID gerado pelo banco
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                if (rs.next()) {
+                    p.setIdProduto(rs.getInt(1)); // agora o objeto tem o ID correto
+                }
+            }
             return "Produto inserido com sucesso!";
         } catch (SQLException e) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, e);

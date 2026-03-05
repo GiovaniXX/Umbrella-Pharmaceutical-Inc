@@ -11,7 +11,7 @@ import util.Conexao;
 public class UsuarioDAO {
 
     public boolean existeUsuario(String idUsuario) {
-        String sql = "SELECT 1 FROM usuarios WHERE idusuario = ?";
+        String sql = "SELECT 1 FROM usuarios WHERE idUsuario = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, idUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -24,8 +24,8 @@ public class UsuarioDAO {
     }
 
     public String adicionarUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuarios (idUsuario, nome, sobrenome, usuario, senha, chave, perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        String sql = "INSERT INTO usuarios (idUsuario, nome, sobrenome, usuario, senha, chave, idPerfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, usuario.getIdUsuario());               // ✅ idUsuario
             pstmt.setString(2, usuario.getNome());                 // ✅ nome
             pstmt.setString(3, usuario.getSobrenome());            // ✅ sobrenome
@@ -34,6 +34,11 @@ public class UsuarioDAO {
             pstmt.setString(6, usuario.getChave());                // ✅ chave
             pstmt.setInt(7, usuario.getIdPerfil());
             pstmt.executeUpdate();
+
+            ResultSet rs = pstmt.getGeneratedKeys();
+            if (rs.next()) {
+                usuario.setIdUsuario(rs.getInt(1));
+            }
             return "Usuário cadastrado com sucesso!";
         } catch (SQLException e) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -59,7 +64,7 @@ public class UsuarioDAO {
     }
 
     public String deletarUsuario(String idUsuario) {
-        String sql = "DELETE FROM usuarios WHERE idusuario = ?";
+        String sql = "DELETE FROM usuarios WHERE idUsuario = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, idUsuario);
             pstmt.executeUpdate();
@@ -93,13 +98,13 @@ public class UsuarioDAO {
     }
 
     public Usuario getUsuarioPorNome(String nomeUsuario) {
-        String sql = "SELECT idusuario, nome, sobrenome, usuario, senha, chave, idPerfil FROM usuarios WHERE nome = ?";
+        String sql = "SELECT idUsuario, nome, sobrenome, usuario, senha, chave, idPerfil FROM usuarios WHERE nome = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nomeUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     return new Usuario(
-                            rs.getInt("idusuario"),
+                            rs.getInt("idUsuario"),
                             rs.getString("nome"),
                             rs.getString("sobrenome"),
                             rs.getString("usuario"),
@@ -116,7 +121,7 @@ public class UsuarioDAO {
     }
 
     public int getIdPerfil(String idUsuario) {
-        String sql = "SELECT idPerfil FROM usuarios WHERE idusuario = ?";
+        String sql = "SELECT idPerfil FROM usuarios WHERE idUsuario = ?";
         try (Connection conn = Conexao.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, idUsuario);
             try (ResultSet rs = pstmt.executeQuery()) {
@@ -149,13 +154,13 @@ public class UsuarioDAO {
         try (Connection conn = Conexao.getConnection(); Statement st = conn.createStatement(); ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
                 Usuario u = new Usuario(
-                        rs.getInt("idusuario"),
+                        rs.getInt("idUsuario"),
                         rs.getString("nome"),
                         rs.getString("sobrenome"),
                         rs.getString("usuario"),
                         rs.getString("senha"),
                         rs.getString("chave"),
-                        rs.getInt("idperfil")
+                        rs.getInt("idPerfil")
                 );
                 usuarios.add(u);
             }

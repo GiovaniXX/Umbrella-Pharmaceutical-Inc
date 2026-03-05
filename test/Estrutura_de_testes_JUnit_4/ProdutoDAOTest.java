@@ -42,11 +42,12 @@ public class ProdutoDAOTest {
 
         assertEquals("Produto inserido com sucesso!", resultado);
 
-        Produto produtoInserido = dao.getProdutoPorNome("Dipirona 500mg");
+        // Buscar pelo ID único, não pelo nome
+        Produto produtoInserido = dao.getProdutoPorId(produto.getIdProduto());
         assertNotNull(produtoInserido);
         assertEquals("Dipirona 500mg", produtoInserido.getProduto());
         assertEquals("Analgésico e antitérmico", produtoInserido.getDescricao());
-        assertEquals(new BigDecimal("8.90"), produto.getPreco());
+        assertEquals(new BigDecimal("8.90"), produtoInserido.getPreco());
     }
 
     @Test
@@ -73,12 +74,16 @@ public class ProdutoDAOTest {
         Produto produto = new Produto(0, "Dipirona 500mg", new BigDecimal("8.90"), "Analgésico e antitérmico", "observacao de teste");
         dao.inserirProduto(produto);
 
-        Produto produtoParaExcluir = dao.getProdutoPorNome("Dipirona 500mg");
-        String resultado = dao.deletarProduto(produtoParaExcluir.getIdProduto());
+        // Buscar pelo ID gerado
+        Produto produtoParaExcluir = dao.getProdutoPorId(produto.getIdProduto());
+        assertNotNull(produtoParaExcluir);
 
+        // Excluir pelo ID único
+        String resultado = dao.deletarProduto(produtoParaExcluir.getIdProduto());
         assertEquals("Produto excluído com sucesso!", resultado);
 
-        Produto produtoExcluido = dao.getProdutoPorNome("Dipirona 500mg");
+        // Validar exclusão pelo ID, não pelo nome
+        Produto produtoExcluido = dao.getProdutoPorId(produto.getIdProduto());
         assertNull(produtoExcluido);
     }
 }
