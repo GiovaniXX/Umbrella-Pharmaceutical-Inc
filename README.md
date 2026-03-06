@@ -1,6 +1,6 @@
 # 🧪 Umbrella Pharmaceutical – Sistema de Vendas
 
-Sistema desktop desenvolvido em Java para gerenciamento de vendas, clientes e produtos, com geração de relatórios em PDF. Ideal para farmácias, lojas ou qualquer comércio que deseje controle simples e eficiente de suas operações.
+Sistema desktop desenvolvido em Java para gerenciamento de vendas, clientes e produtos, com geração de relatórios em PDF.
 
 ---
 
