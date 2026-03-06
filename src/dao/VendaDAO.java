@@ -76,7 +76,7 @@ public class VendaDAO {
     public int salvarVenda(int idUsuario, int numeroVenda, int idCliente, java.util.Date dataVenda, double valorTotal,
             int quantidade, String produto, String descricao, BigDecimal preco, int idProduto) {
 
-        String sql = "INSERT INTO vendas (idUsuario, numerovenda, idCliente, dataVenda, valortotal, quantidade, produto, descricao, preco, idProduto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vendas (idUsuario, numeroVenda, idCliente, dataVenda, valorTotal, quantidade, produto, descricao, preco, idProduto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, idUsuario);

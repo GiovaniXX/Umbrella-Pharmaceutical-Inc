@@ -3,11 +3,15 @@ CREATE DATABASE umbrella;
 
 USE umbrella;
 
-CREATE TABLE Cliente (
+CREATE TABLE Clientes (
     idCliente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
+    sobrenome VARCHAR(100),   
     email VARCHAR(100),
-    telefone VARCHAR(20)
+    endereco VARCHAR(250),
+    telefone VARCHAR(20),
+    cidade VARCHAR(200),
+    dataCadastro DATE         
 );
 
 CREATE TABLE Produto (
@@ -17,20 +21,20 @@ CREATE TABLE Produto (
     estoque INT
 );
 
-CREATE TABLE Usuario (
+CREATE TABLE Usuarios (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     usuario VARCHAR(100),
     senha VARCHAR(50),
     chave VARCHAR(100)
 );
 
-CREATE TABLE Venda (
+CREATE TABLE Vendas (
     idVenda INT PRIMARY KEY AUTO_INCREMENT,
     dataVenda DATETIME,
     idCliente INT,
     idUsuario INT,
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-    FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (idCliente) REFERENCES Clientes(idCliente),
+    FOREIGN KEY (idUsuario) REFERENCES Usuarios(idUsuario)
 );
 
 CREATE TABLE Relatorio (
@@ -47,13 +51,13 @@ CREATE TABLE ItemVenda (
     idProduto INT,
     quantidade INT,
     precoUnitario DECIMAL(10,2),
-    FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
-    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
+    FOREIGN KEY (idVenda) REFERENCES Vendas(idVenda),
+    FOREIGN KEY (idProduto) REFERENCES Produtos(idProduto)
 );
 
 ALTER TABLE Usuarios ADD COLUMN nome VARCHAR(100) AFTER idUsuario;
 ALTER TABLE Usuarios ADD COLUMN sobrenome VARCHAR(100) AFTER nome;
-ALTER TABLE Usuarios ADD COLUMN perfil INT AFTER chave;
+ALTER TABLE Usuarios ADD COLUMN idPerfil INT AFTER chave;
 
 CREATE TABLE Perfil (
     idPerfil INT PRIMARY KEY,
