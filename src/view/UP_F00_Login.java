@@ -92,7 +92,7 @@ public class UP_F00_Login extends javax.swing.JFrame {
 
         lblUmbrellaCorporationIBS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/banners/04.jpg"))); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(157, 38, 42));
+        jPanel2.setBackground(new java.awt.Color(56, 0, 0));
         jPanel2.setMaximumSize(new java.awt.Dimension(691, 222));
         jPanel2.setMinimumSize(new java.awt.Dimension(691, 222));
         jPanel2.setPreferredSize(new java.awt.Dimension(691, 222));
