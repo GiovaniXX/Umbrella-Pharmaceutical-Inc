@@ -194,19 +194,4 @@ public class VendaDAO {
             return false;
         }
     }
-
-//    public boolean deletarVendaPorId(int idVenda) {
-//        String sql = "DELETE FROM vendas WHERE idVenda = ?";
-//
-//        try (Connection conn = Conexao.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-//
-//            stmt.setInt(1, idVenda);
-//            int linhasAfetadas = stmt.executeUpdate();
-//            return linhasAfetadas > 0;
-//
-//        } catch (SQLException e) {
-//            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, e);
-//            return false;
-//        }
-//    }
 }

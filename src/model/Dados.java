@@ -2,10 +2,7 @@ package model;
 
 import dao.VendaDAO;
 import java.math.BigDecimal;
-import model.Cliente;
-import model.Produto;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.List;
 
 public class Dados {
