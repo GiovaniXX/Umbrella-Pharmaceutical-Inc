@@ -24,10 +24,12 @@ public class VendaDAOTest {
         dao = new VendaDAO(conn);
 
         try (Statement stmt = conn.createStatement()) {
-            stmt.execute("CREATE TABLE clientes (idcliente INT PRIMARY KEY, nome VARCHAR(100))");
-            stmt.execute("CREATE TABLE produtos (idproduto INT PRIMARY KEY, produto VARCHAR(100), descricao VARCHAR(255), preco DECIMAL(10,2))");
-            stmt.execute("CREATE TABLE vendas (idVenda INT AUTO_INCREMENT PRIMARY KEY, produto VARCHAR(255), descricao VARCHAR(255), preco DECIMAL(10,2), quantidade INT, dataVenda DATETIME, idProduto INT, idCliente INT, idUsuario INT, numerovenda INT, valortotal DOUBLE)");
-            stmt.execute("CREATE TABLE detalhe_venda (idDetalheVenda INT AUTO_INCREMENT PRIMARY KEY, idVenda INT, idProduto INT, preco DECIMAL(10,2), quantidade INT)");
+            stmt.execute("CREATE TABLE clientes (idCliente INT PRIMARY KEY, nome VARCHAR(100))");
+            stmt.execute("CREATE TABLE produtos (idProduto INT PRIMARY KEY, produto VARCHAR(100), descricao VARCHAR(255), preco DECIMAL(10,2))");
+
+            stmt.execute("CREATE TABLE vendas (idVenda INT AUTO_INCREMENT PRIMARY KEY, dataVenda TIMESTAMP, idCliente INT, idUsuario INT, numeroVenda INT, valorTotal DECIMAL(10,2), quantidadeTotal INT)");
+
+            stmt.execute("CREATE TABLE itemvenda (idItemVenda INT AUTO_INCREMENT PRIMARY KEY, idVenda INT, idProduto INT, quantidade INT, precoUnitario DECIMAL(10,2))");
         }
     }
 
@@ -49,8 +51,8 @@ public class VendaDAOTest {
         int idUsuario = 1;
 
         try (Statement stmt = conn.createStatement()) {
-            stmt.execute("INSERT INTO clientes (idcliente, nome) VALUES (1, 'João')");
-            stmt.execute("INSERT INTO produtos (idproduto, produto, descricao, preco) VALUES (1, 'Notebook', 'Dell Inspiron', 3500.00)");
+            stmt.execute("INSERT INTO clientes (idCliente, nome) VALUES (1, 'João')");
+            stmt.execute("INSERT INTO produtos (idProduto, produto, descricao, preco) VALUES (1, 'Notebook', 'Dell Inspiron', 3500.00)");
         }
 
         BigDecimal preco = new BigDecimal("3500.00");
@@ -71,7 +73,7 @@ public class VendaDAOTest {
             assertEquals(1, rs.getInt(1));
         }
 
-        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM detalhe_venda")) {
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM itemvenda")) {
             assertTrue(rs.next());
             assertEquals(1, rs.getInt(1));
         }
@@ -84,8 +86,8 @@ public class VendaDAOTest {
         int idProduto = 2;
 
         try (Statement stmt = conn.createStatement()) {
-            stmt.execute("INSERT INTO clientes (idcliente, nome) VALUES (2, 'Maria')");
-            stmt.execute("INSERT INTO produtos (idproduto, produto, descricao, preco) VALUES (2, 'Mouse', 'Mouse sem fio', 150.00)");
+            stmt.execute("INSERT INTO clientes (idCliente, nome) VALUES (2, 'Maria')");
+            stmt.execute("INSERT INTO produtos (idProduto, produto, descricao, preco) VALUES (2, 'Mouse', 'Mouse sem fio', 150.00)");
         }
 
         BigDecimal preco = new BigDecimal("150.00");
@@ -121,7 +123,7 @@ public class VendaDAOTest {
             assertEquals(2, rs.getInt(1));
         }
 
-        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM detalhe_venda")) {
+        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM itemvenda")) {
             assertTrue(rs.next());
             assertEquals(2, rs.getInt(1));
         }
