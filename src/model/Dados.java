@@ -3,6 +3,7 @@ package model;
 import dao.VendaDAO;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 
 public class Dados {
@@ -34,13 +35,14 @@ public class Dados {
     }
 
     public void adicionarVenda(int idUsuario, int numeroVenda, int idCliente, java.util.Date data, double valorTotal,
-            int quantidadeTotal, String nomeProduto, String descricaoProduto,
-            BigDecimal preco, int idProduto) {
-        vendaDAO.salvarVenda(idUsuario, numeroVenda, idCliente, data, valorTotal, quantidadeTotal,
-                nomeProduto, descricaoProduto, preco, idProduto);
+            int quantidadeTotal) {
+        java.sql.Timestamp ts = new java.sql.Timestamp(data.getTime());
+        vendaDAO.salvarVenda(idUsuario, numeroVenda, idCliente, ts, valorTotal, quantidadeTotal);
+        //vendaDAO.salvarVenda(idUsuario, numeroVenda, idCliente, (Date) data, valorTotal, quantidadeTotal);
     }
 
-    public void adicionarDetalheVenda(int numeroVenda, int idProduto, BigDecimal preco, int quantidade) {
-        vendaDAO.salvarDetalheVenda(numeroVenda, idProduto, preco, quantidade);
+    public void adicionarItensVenda(int idVenda, List<ItemVenda> itens) {
+        vendaDAO.salvarItensVenda(idVenda, itens);
     }
+
 }

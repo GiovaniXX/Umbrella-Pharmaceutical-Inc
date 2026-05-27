@@ -2,7 +2,6 @@ package dao;
 
 import model.Cliente;
 import model.Produto;
-import java.math.BigDecimal;
 
 import util.Conexao;
 import java.sql.*;
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.ItemVenda;
 import model.Venda;
 
 public class VendaDAO {
@@ -73,22 +73,15 @@ public class VendaDAO {
         return null;
     }
 
-    public int salvarVenda(int idUsuario, int numeroVenda, int idCliente, java.util.Date dataVenda, double valorTotal,
-            int quantidade, String produto, String descricao, BigDecimal preco, int idProduto) {
-
-        String sql = "INSERT INTO vendas (idUsuario, numeroVenda, idCliente, dataVenda, valorTotal, quantidade, produto, descricao, preco, idProduto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (PreparedStatement pstmt = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    public int salvarVenda(int idUsuario, int numeroVenda, int idCliente, java.sql.Timestamp dataVenda, double valorTotal, int quantidadeTotal) {
+        String sql = "INSERT INTO vendas (idUsuario, numeroVenda, idCliente, dataVenda, valorTotal, quantidadeTotal) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             pstmt.setInt(1, idUsuario);
             pstmt.setInt(2, numeroVenda);
             pstmt.setInt(3, idCliente);
-            pstmt.setTimestamp(4, new java.sql.Timestamp(dataVenda.getTime())); // datetime
+            pstmt.setTimestamp(4, dataVenda);
             pstmt.setDouble(5, valorTotal);
-            pstmt.setInt(6, quantidade);
-            pstmt.setString(7, produto);
-            pstmt.setString(8, descricao);
-            pstmt.setBigDecimal(9, preco);
-            pstmt.setInt(10, idProduto);
+            pstmt.setInt(6, quantidadeTotal);
 
             pstmt.executeUpdate();
 
@@ -101,6 +94,30 @@ public class VendaDAO {
             Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao salvar venda", e);
         }
         return -1;
+    }
+
+    public void salvarItensVenda(int idVenda, List<ItemVenda> itens) {
+        String sql = "INSERT INTO itemvenda (idVenda, idProduto, quantidade, precoUnitario) VALUES (?, ?, ?, ?)";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for (ItemVenda item : itens) {
+                pstmt.setInt(1, idVenda);
+                pstmt.setInt(2, item.getIdProduto());
+                pstmt.setInt(3, item.getQuantidade());
+                pstmt.setBigDecimal(4, item.getPrecoUnitario());
+                pstmt.addBatch();
+            }
+            pstmt.executeBatch();
+        } catch (SQLException e) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao salvar itens da venda", e);
+        }
+    }
+
+    public int salvarVendaComItens(int idUsuario, int numeroVenda, int idCliente, java.sql.Timestamp dataVenda, double valorTotal, int quantidadeTotal, List<ItemVenda> itens) {
+        int idVenda = salvarVenda(idUsuario, numeroVenda, idCliente, dataVenda, valorTotal, quantidadeTotal);
+        if (idVenda > 0) {
+            salvarItensVenda(idVenda, itens);
+        }
+        return idVenda;
     }
 
     public List<Venda> buscarTodasVendas() {
@@ -124,19 +141,6 @@ public class VendaDAO {
         }
 
         return lista;
-    }
-
-    public void salvarDetalheVenda(int idVenda, int idProduto, BigDecimal preco, int quantidade) {
-        String sql = "INSERT INTO detalhe_venda (idVenda, idProduto, preco, quantidade) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement pstmt = this.conn.prepareStatement(sql)) {
-            pstmt.setInt(1, idVenda);
-            pstmt.setInt(2, idProduto);
-            pstmt.setBigDecimal(3, preco); // ✅ usa BigDecimal
-            pstmt.setInt(4, quantidade);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, "Erro ao salvar os detalhes da venda", e);
-        }
     }
 
     public List<String> listarNomesClientes() {

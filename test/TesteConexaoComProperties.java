@@ -11,11 +11,11 @@ public class TesteConexaoComProperties {
     public static void main(String[] args) {
         Properties props = new Properties();
 
-        try (FileInputStream fis = new FileInputStream("H:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\config.properties")) {
+        try (FileInputStream fis = new FileInputStream("E:\\Projetos Java 2025\\Umbrella-Pharmaceutical-Inc\\src\\config.properties")) {
             props.load(fis);
 
             String url = props.getProperty("db.url");
-            String user = props.getProperty("db.user");
+            String user = props.getProperty("db.username");
             String password = props.getProperty("db.password");
 
             Connection conn = DriverManager.getConnection(url, user, password);

@@ -396,9 +396,7 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
         // Salva a venda e captura o idVenda gerado
         int idVenda = vendaController.adicionarVenda(
                 idUsuario, numeroVenda, new Date(), valorVenda,
-                quantidadeTotal, idCliente,
-                produto.getProduto(), produto.getDescricao(),
-                produto.getPreco(), produto.getIdProduto()
+                quantidadeTotal, idCliente
         );
 
         if (idVenda == -1) {
@@ -414,8 +412,6 @@ public class UP_F06_Vendas extends javax.swing.JInternalFrame {
                 continue;
             }
 
-            int quantidade = Integer.parseInt(tblTabela.getValueAt(i, 4).toString());
-            vendaController.adicionarDetalheVenda(idVenda, produto.getIdProduto(), produto.getPreco(), quantidade);
         }
 
         JOptionPane.showMessageDialog(rootPane, "Venda realizada com sucesso!");

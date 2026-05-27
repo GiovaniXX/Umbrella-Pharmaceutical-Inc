@@ -16,7 +16,7 @@ public class ProdutoDAOTest {
             stmt.execute("CREATE TABLE produtos ("
                     + "idProduto INT AUTO_INCREMENT PRIMARY KEY, "
                     + "produto VARCHAR(100), "
-                    + "preco DECIMAL, "
+                    + "preco DECIMAL(10,2), "
                     + "descricao VARCHAR(255), "
                     + "observacao VARCHAR(100))"
             );
