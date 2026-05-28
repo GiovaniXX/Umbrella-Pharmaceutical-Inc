@@ -2,13 +2,13 @@ package view;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.Date;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import categories.Relatorio;
 import java.sql.ResultSet;
 import dao.RelatorioDAO;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
@@ -132,20 +132,32 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tbl_Tabela.getModel();
         model.setRowCount(0);
 
-        try (var vendas = relatorioDAO.getVendas()) {
+        try (ResultSet vendas = relatorioDAO.getVendas()) {
             while (vendas != null && vendas.next()) {
-                int idVenda = vendas.getInt("idvenda");
-                Date data = vendas.getDate("dataVenda");
-                int idCliente = vendas.getInt("idcliente");
-                int idProduto = vendas.getInt("idproduto");
+                int idVenda = vendas.getInt("idVenda");
+                java.sql.Timestamp dataVenda = vendas.getTimestamp("dataVenda");
+                String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataVenda);
+
+                int idCliente = vendas.getInt("idCliente");
+                String nomeCliente = relatorioDAO.getNomeClientePorId(idCliente);
+
+                String produto = vendas.getString("produto");
                 String descricao = vendas.getString("descricao");
                 int quantidade = vendas.getInt("quantidade");
-                double preco = vendas.getDouble("preco");
+                double preco = vendas.getDouble("precoUnitario");
 
-                String nomeCliente = relatorioDAO.getNomeClientePorId(idCliente);
-                String nomeProduto = relatorioDAO.getNomeProdutoPorId(idProduto);
+                double valorTotal = preco * quantidade;
 
-                model.addRow(new Object[]{idVenda, data, nomeCliente, nomeProduto, descricao, quantidade, preco});
+                model.addRow(new Object[]{
+                    idVenda,
+                    dataFormatada,
+                    nomeCliente,
+                    produto,
+                    descricao,
+                    preco,
+                    quantidade,
+                    valorTotal
+                });
             }
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao acessar vendas", e);
