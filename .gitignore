@@ -1,12 +1,40 @@
-# Ignore diretórios de build do NetBeans
-/dist/
+# Ignorar diretórios de build do NetBeans/Ant
 /build/
-
-# Ignore arquivos privados de configuração do NetBeans
+/dist/
+/nbbuild/
+/nbdist/
 /nbproject/private/
+/nbproject/configs/
 
-# Ignore arquivos de configuração e SQL personalizados
+# Ignorar arquivos de configuração locais do NetBeans
+/nbactions.xml
+/nb-configuration.xml
+
+# Ignorar arquivos de log e temporários
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorar arquivos compilados Java
+*.class
+
+# Ignorar pacotes gerados
+*.jar
+*.war
+*.ear
+
+# Ignorar arquivos de IDEs (IntelliJ, Eclipse, VSCode)
+*.iml
+/.idea/
+/.project
+/.classpath
+/.settings/
+/.vscode/
+
+# Ignorar arquivos de configuração e SQL personalizados
 /config.properties
 /MySQL-Workbench.sql
 /SSMS.sql
 /SSMS-config.properties
+

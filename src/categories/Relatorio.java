@@ -31,7 +31,7 @@ public class Relatorio {
             }
 
             // Logotipo (opcional)                      
-            Image logo = Image.getInstance(Relatorio.class.getResource("/img/banners/logo.jpg"));
+            Image logo = Image.getInstance(Relatorio.class.getResource("/img/banners/logo.png"));
             logo.scaleToFit(80, 80);
             logo.setAlignment(Image.ALIGN_CENTER);
             document.add(logo);
@@ -50,7 +50,7 @@ public class Relatorio {
 
                 String nomeCliente = rs.getString("nomeCliente");
                 java.sql.Timestamp dataVenda = rs.getTimestamp("dataVenda");
-                String dataFormatada = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(dataVenda);
+                String dataFormatada = new SimpleDateFormat("dd/MM/yyyy").format(dataVenda);
 
                 // Tabela Vendedor/Data
                 PdfPTable tabelaVendedor = new PdfPTable(2);
