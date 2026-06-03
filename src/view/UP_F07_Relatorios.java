@@ -154,8 +154,8 @@ public class UP_F07_Relatorios extends javax.swing.JInternalFrame {
                     nomeCliente,
                     produto,
                     descricao,
-                    preco,
                     quantidade,
+                    preco,
                     valorTotal
                 });
             }

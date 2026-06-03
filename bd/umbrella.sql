@@ -173,3 +173,5 @@ FROM detalhe_venda;
 -- Removendo a tabela antiga
 DROP TABLE detalhe_venda;
 
+ALTER TABLE vendas 
+MODIFY COLUMN dataVenda TIMESTAMP;
